@@ -1,0 +1,6 @@
+@Indica.System.API_HostAddress = http://localhost:5277
+
+GET {{Indica.System.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
