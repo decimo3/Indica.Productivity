@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Indica.System.Application.DTO
+{
+    public class ContractDTO : EntityBaseDTO
+    {
+        public long ContractNumber { get; set; }
+        public int AdditiveNumber { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly FinalDate { get; set; }
+    }
+}
