@@ -11,6 +11,7 @@ namespace Indica.System.Infra
         {
             modelBuilder.ApplyConfiguration(new SupervisorMapper());
             modelBuilder.ApplyConfiguration(new ElectricianMapper());
+            modelBuilder.ApplyConfiguration(new ContractMapper());
         }
     }
 }
