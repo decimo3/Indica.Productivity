@@ -13,7 +13,7 @@ namespace Indica.System.Infra.AutoMappers
             builder.Property(e => e.Registry)
                 .HasColumnName("matricula")
                 .IsRequired();
-            builder.Property(e => e.Name)
+            builder.Property(e => e.FullName)
                 .HasColumnName("nome_colaborador")
                 .IsRequired();
             builder.Property(e => e.Admission)
