@@ -25,6 +25,7 @@ namespace Indica.System.API
 
             // AutoMapper
             builder.Services.AddAutoMapper(
+                typeof(ContractAutoMapper).Assembly,
                 typeof(SupervisorAutoMapper).Assembly,
                 typeof(ElectricianAutoMapper).Assembly
             );
