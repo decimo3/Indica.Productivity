@@ -40,6 +40,14 @@ namespace Indica.System.API
             //      options.UseNpgsql(config.GetConnectionString("Default")));
             #endregion
 
+            #region SERVICES
+            builder.Services.AddScoped<ISupervisorService, SupervisorService>();
+            #endregion
+
+            #region REPOSITORIES
+            builder.Services.AddScoped<ISupervisorRepository, SupervisorRepository>();
+            #endregion
+
             WebApplication app = builder.Build();
 
 			// Configure the HTTP request pipeline.
