@@ -1,4 +1,5 @@
 using Indica.System.Application.Interfaces;
+using Indica.System.Application.Mappers;
 using Indica.System.Application.Services;
 using Indica.System.Domain.Interfaces;
 using Indica.System.Infra;
@@ -21,6 +22,11 @@ namespace Indica.System.API
 			// at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+
+            // AutoMapper
+            builder.Services.AddAutoMapper(
+                typeof(SupervisorAutoMapper).Assembly
+            );
 
             #region DATABASE
             // InMemory
