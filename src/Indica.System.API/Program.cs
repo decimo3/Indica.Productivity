@@ -25,7 +25,8 @@ namespace Indica.System.API
 
             // AutoMapper
             builder.Services.AddAutoMapper(
-                typeof(SupervisorAutoMapper).Assembly
+                typeof(SupervisorAutoMapper).Assembly,
+                typeof(ElectricianAutoMapper).Assembly
             );
 
             #region DATABASE
