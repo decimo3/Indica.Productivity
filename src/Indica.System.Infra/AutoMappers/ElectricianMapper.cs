@@ -27,6 +27,9 @@ namespace Indica.System.Infra.AutoMappers
             builder.Property(e => e.IdSupervisor)
                 .HasColumnName("id_supervisor")
                 .IsRequired();
+            builder.Property(e => e.Habilities)
+                .HasColumnName("habilitacoes")
+                .IsRequired();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Indica.System.Domain.Entities
     public class Electrician : Employer
     {
         public int IdSupervisor { get; set; }
+        public string[] Habilities { get; set; }
     }
 }
