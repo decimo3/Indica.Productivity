@@ -10,6 +10,7 @@ namespace Indica.System.Infra
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new SupervisorMapper());
+            modelBuilder.ApplyConfiguration(new ElectricianMapper());
         }
     }
 }
