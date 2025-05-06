@@ -7,6 +7,9 @@ namespace Indica.System.Infra
     public class ProductivityContext : DbContext
     {
         public ProductivityContext(DbContextOptions<ProductivityContext> options) : base(options) { }
-        protected override void OnModelCreating(ModelBuilder modelBuilder) { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new SupervisorMapper());
+        }
     }
 }
