@@ -43,10 +43,12 @@ namespace Indica.System.API
 
             #region SERVICES
             builder.Services.AddScoped<ISupervisorService, SupervisorService>();
+            builder.Services.AddScoped<IElectricianService, ElectricianService>();
             #endregion
 
             #region REPOSITORIES
             builder.Services.AddScoped<ISupervisorRepository, SupervisorRepository>();
+            builder.Services.AddScoped<IElectricianRepository, ElectricianRepository>();
             #endregion
 
             WebApplication app = builder.Build();
