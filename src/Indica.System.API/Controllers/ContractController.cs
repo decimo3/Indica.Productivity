@@ -23,7 +23,7 @@ namespace Indica.System.API.Controllers
         }
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(double id)
         {
             var contract = await _contractService.GetByIdAsync(id);
             return Ok(contract);
@@ -42,7 +42,7 @@ namespace Indica.System.API.Controllers
         }
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(double id)
         {
             await _contractService.DeleteAsync(id);
             return NoContent();
