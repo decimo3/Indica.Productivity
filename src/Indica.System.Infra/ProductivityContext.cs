@@ -1,5 +1,5 @@
 ﻿using Indica.System.Domain.Entities;
-using Indica.System.Infra.AutoMappers;
+using Indica.System.Infra.EntityMappers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Indica.System.Infra
@@ -11,6 +11,7 @@ namespace Indica.System.Infra
         {
             modelBuilder.ApplyConfiguration(new EmployerMapper());
             modelBuilder.ApplyConfiguration(new ContractMapper());
+            modelBuilder.ApplyConfiguration(new RoleMapper());
         }
     }
 }
