@@ -8,7 +8,8 @@ namespace Indica.System.Application.DTO
         public string FullName { get; set; }
         public DateOnly Admission { get; set; }
         public DateOnly? Demission { get; set; }
-        public string Situation { get; set; }
+        public int IdSituation { get; set; }
+        public int IdRole { get; set; }
 
         //public Dictionary<string, List<string>> Validate(Employer employer)
         //{
