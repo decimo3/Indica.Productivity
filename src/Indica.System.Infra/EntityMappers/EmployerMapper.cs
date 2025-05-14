@@ -27,6 +27,10 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(e => e.IdSituation)
                 .HasColumnName("id_situacao")
                 .IsRequired();
+            builder.HasOne<Role>()
+                .WithMany()
+                .HasForeignKey(e => e.IdRole)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
