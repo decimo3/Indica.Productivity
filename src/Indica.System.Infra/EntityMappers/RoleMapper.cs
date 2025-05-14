@@ -17,46 +17,36 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("cargo")
                 .HasMaxLength(32)
                 .IsRequired();
-            builder.Property(e => e.Description)
-                .HasColumnName("descricao")
-                .HasMaxLength(128)
-                .IsRequired();
             builder.HasData([
                 new Role
                 {
-                    IdRole = 0,
-                    RoleName = "Eletricista",
-                    Description = "Responsável pela execução do serviço"
-                },
-                new Role
-                {
                     IdRole = 1,
-                    RoleName = "Supervisor",
-                    Description = "Responsável pela gestão de equipes"
+                    RoleName = "Eletricista",
                 },
                 new Role
                 {
                     IdRole = 2,
-                    RoleName = "Controlador",
-                    Description = "Responsável pelo suporte as equipes"
+                    RoleName = "Supervisor",
                 },
                 new Role
                 {
                     IdRole = 3,
-                    RoleName = "Comunicador",
-                    Description = "Responsável pela gestão de qualidade"
+                    RoleName = "Controlador",
                 },
                 new Role
                 {
                     IdRole = 4,
-                    RoleName = "Administrador",
-                    Description = "Responsável pela gestão de supervisores e comunicadores"
+                    RoleName = "Qualidade",
                 },
                 new Role
                 {
                     IdRole = 5,
+                    RoleName = "Administrador",
+                },
+                new Role
+                {
+                    IdRole = 6,
                     RoleName = "Proprietario",
-                    Description = "Responsável pela gestão de administradores"
                 },
                 ]);
         }
