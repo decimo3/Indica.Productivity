@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Indica.System.Infra.AutoMappers
+namespace Indica.System.Infra.EntityMappers
 {
     public class EmployerMapper : IEntityTypeConfiguration<Employer>
     {

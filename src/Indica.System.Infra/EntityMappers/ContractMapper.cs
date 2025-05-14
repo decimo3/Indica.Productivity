@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Indica.System.Domain.Entities;
 
-namespace Indica.System.Infra.AutoMappers
+namespace Indica.System.Infra.EntityMappers
 {
     public class ContractMapper : IEntityTypeConfiguration<Contract>
     {
