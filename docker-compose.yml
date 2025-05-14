@@ -1,0 +1,28 @@
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: dotnet.dockerfile
+    ports:
+      - "7826:7826"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+    #  - ./app:/usr/src/app # TODO - Uncomment this when the app is ready
+    networks:
+      - mynetwork
+    depends_on:
+      - dba
+  dba:
+    container_name: dba
+    image: postgres:16.1
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+    #  - db_data:/var/lib/postgresql/data # TODO - Uncomment this when the database is ready
+    networks:
+      - mynetwork
