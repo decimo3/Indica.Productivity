@@ -8,10 +8,10 @@ namespace Indica.System.Infra.AutoMappers
     {
         public void Configure(EntityTypeBuilder<Contract> builder)
         {
-            builder.ToTable("Contract");
+            builder.ToTable("contratos");
             builder.HasKey(c => c.IdContract);
             builder.Property(c => c.IdContract)
-                .HasColumnName("identificador")
+                .HasColumnName("id_contrato")
                 .IsRequired();
             builder.Property(c => c.ContractNumber)
                 .HasColumnName("contrato")
