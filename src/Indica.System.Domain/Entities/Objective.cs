@@ -9,7 +9,7 @@ namespace Indica.System.Domain.Entities
         public bool IsHalfPrice { get; set; }
         public decimal MonthlyProfitGoal { get; set; }
         public float FixedDivisorByMonth { get; set; }
-        public int TargetOfTeamCountWorkday { get; set; }
+        public int TargetOfTeamCountOnWorkday { get; set; }
         public int TargetOfTeamCountOnHoliday { get; set; }
         public int TargetOfExecutionsPerDay { get; set; }
     }
