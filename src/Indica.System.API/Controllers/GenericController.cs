@@ -28,7 +28,7 @@ namespace Indica.System.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<IActionResult> GetById(object id)
+        public virtual async Task<IActionResult> GetById(int id)
         {
             var result = await _service.GetByIdAsync(id);
             return Ok(result);
@@ -49,7 +49,7 @@ namespace Indica.System.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public virtual async Task<IActionResult> Delete(object id)
+        public virtual async Task<IActionResult> Delete(int id)
         {
             await _service.DeleteAsync(id);
             return NoContent();
