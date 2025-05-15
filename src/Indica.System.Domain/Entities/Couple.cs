@@ -4,6 +4,6 @@
     {
         public string IdFieldTeam { get; set; }
         public int Registry { get; set; }
-        public int IdEmployerRole { get; set; }
+        public int IdEmployerFunction { get; set; }
     }
 }
