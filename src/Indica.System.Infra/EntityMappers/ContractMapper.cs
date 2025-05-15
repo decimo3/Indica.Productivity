@@ -9,9 +9,9 @@ namespace Indica.System.Infra.EntityMappers
         public void Configure(EntityTypeBuilder<Contract> builder)
         {
             builder.ToTable("contratos");
-            builder.HasKey(c => c.IdContract);
-            builder.Property(c => c.IdContract)
-                .HasColumnName("id_contrato")
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id)
+                .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(c => c.ContractNumber)
                 .HasColumnName("contrato")
