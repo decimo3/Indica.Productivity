@@ -4,6 +4,6 @@
     {
         public string IdFieldTeam { get; set; }
         public int Registry { get; set; }
-        public bool IsLeader { get; set; }
+        public int IdEmployerRole { get; set; }
     }
 }
