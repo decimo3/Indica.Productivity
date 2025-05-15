@@ -30,7 +30,8 @@ namespace Indica.System.Infra.EntityMappers
             builder.HasOne<Role>()
                 .WithMany()
                 .HasForeignKey(e => e.IdRole)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
         }
     }
 }
