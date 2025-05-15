@@ -9,7 +9,10 @@ namespace Indica.System.Infra.EntityMappers
         public void Configure(EntityTypeBuilder<Employer> builder)
         {
             builder.ToTable("funcionarios");
-            builder.HasKey(e => e.Registry);
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
             builder.Property(e => e.Registry)
                 .HasColumnName("matricula")
                 .IsRequired();
@@ -27,7 +30,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(e => e.IdSituation)
                 .HasColumnName("id_situacao")
                 .IsRequired();
-            builder.HasOne<Role>()
+            builder.HasOne<EmployerFunction>()
                 .WithMany()
                 .HasForeignKey(e => e.IdRole)
                 .OnDelete(DeleteBehavior.NoAction)
