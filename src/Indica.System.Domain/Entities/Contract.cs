@@ -1,6 +1,6 @@
 namespace Indica.System.Domain.Entities
 {
-    public class Contract
+    public class Contract : EntityBase
     {
         public double IdContract { get; set; }
         public long ContractNumber { get; set; }
