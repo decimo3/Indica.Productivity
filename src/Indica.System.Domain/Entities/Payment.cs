@@ -6,7 +6,6 @@ namespace Indica.System.Domain.Entities
         public int AdditiveNumber { get; set; }
         public int IdProcess { get; set; }
         public int PaymentMaster { get; set; }
-        public string Description { get; set; }
         public decimal Value { get; set; }
     }
 }
