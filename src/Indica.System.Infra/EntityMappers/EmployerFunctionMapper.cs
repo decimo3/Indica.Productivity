@@ -4,50 +4,26 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public class RoleMapper : IEntityTypeConfiguration<Role>
+    public class EmployerFunctionMapper : IEntityTypeConfiguration<EmployerFunction>
     {
-        public void Configure(EntityTypeBuilder<Role> builder)
+        public void Configure(EntityTypeBuilder<EmployerFunction> builder)
         {
             builder.ToTable("cargos");
-            builder.HasKey(e => e.IdRole);
-            builder.Property(e => e.IdRole)
-                .HasColumnName("id_cargo")
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
                 .IsRequired();
-            builder.Property(e => e.RoleName)
+            builder.Property(e => e.FunctionName)
                 .HasColumnName("cargo")
-                .HasMaxLength(32)
+                .HasMaxLength(16)
                 .IsRequired();
             builder.HasData([
-                new Role
-                {
-                    IdRole = 1,
-                    RoleName = "Eletricista",
-                },
-                new Role
-                {
-                    IdRole = 2,
-                    RoleName = "Supervisor",
-                },
-                new Role
-                {
-                    IdRole = 3,
-                    RoleName = "Controlador",
-                },
-                new Role
-                {
-                    IdRole = 4,
-                    RoleName = "Qualidade",
-                },
-                new Role
-                {
-                    IdRole = 5,
-                    RoleName = "Administrador",
-                },
-                new Role
-                {
-                    IdRole = 6,
-                    RoleName = "Proprietario",
-                },
+                new EmployerFunction { FunctionName = "Eletricista" },
+                new EmployerFunction { FunctionName = "Supervisor" },
+                new EmployerFunction { FunctionName = "Controlador" },
+                new EmployerFunction { FunctionName = "Qualidade" },
+                new EmployerFunction { FunctionName = "Administrador"},
+                new EmployerFunction { FunctionName = "Proprietario" },
                 ]);
         }
     }
