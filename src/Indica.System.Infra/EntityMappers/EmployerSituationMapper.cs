@@ -8,35 +8,19 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<EmployerSituation> builder)
         {
-            builder.ToTable("EmployerSituations");
-            builder.HasKey(x => x.IdSituation);
-            builder.Property(x => x.IdSituation)
+            builder.ToTable("funcionario_situacao");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.SituationName)
                 .HasMaxLength(16)
                 .IsRequired();
             builder.HasData([
-                new EmployerSituation
-                {
-                    IdSituation = 1,
-                    SituationName = "Ativo"
-                },
-                new EmployerSituation
-                {
-                    IdSituation = 2,
-                    SituationName = "Ferias"
-                },
-                new EmployerSituation
-                {
-                    IdSituation = 3,
-                    SituationName = "Afastado"
-                },
-                new EmployerSituation
-                {
-                    IdSituation = 4,
-                    SituationName = "Desligado"
-                },
+                new EmployerSituation { SituationName = "Ativo" },
+                new EmployerSituation { SituationName = "Ferias" },
+                new EmployerSituation { SituationName = "Afastado" },
+                new EmployerSituation { SituationName = "Desligado" },
                 ]);
         }
 
