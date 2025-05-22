@@ -18,12 +18,12 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(16)
                 .IsRequired();
             builder.HasData([
-                new EmployerFunction { FunctionName = "Eletricista" },
-                new EmployerFunction { FunctionName = "Supervisor" },
-                new EmployerFunction { FunctionName = "Controlador" },
-                new EmployerFunction { FunctionName = "Qualidade" },
-                new EmployerFunction { FunctionName = "Administrador"},
-                new EmployerFunction { FunctionName = "Proprietario" },
+                new EmployerFunction { Id = 1, FunctionName = "Eletricista" },
+                new EmployerFunction { Id = 2, FunctionName = "Supervisor" },
+                new EmployerFunction { Id = 3, FunctionName = "Controlador" },
+                new EmployerFunction { Id = 4, FunctionName = "Qualidade" },
+                new EmployerFunction { Id = 5, FunctionName = "Administrador"},
+                new EmployerFunction { Id = 6, FunctionName = "Proprietario" },
                 ]);
         }
     }

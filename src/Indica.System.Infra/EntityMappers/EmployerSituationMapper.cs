@@ -17,10 +17,10 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(16)
                 .IsRequired();
             builder.HasData([
-                new EmployerSituation { SituationName = "Ativo" },
-                new EmployerSituation { SituationName = "Ferias" },
-                new EmployerSituation { SituationName = "Afastado" },
-                new EmployerSituation { SituationName = "Desligado" },
+                new EmployerSituation { Id = 1, SituationName = "Ativo" },
+                new EmployerSituation { Id = 2, SituationName = "Ferias" },
+                new EmployerSituation { Id = 3, SituationName = "Afastado" },
+                new EmployerSituation { Id = 4, SituationName = "Desligado" },
                 ]);
         }
 
