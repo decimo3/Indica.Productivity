@@ -9,5 +9,6 @@ namespace Indica.System.Domain
         Task<bool> AddAsync(T entity);
         Task<bool> UpdateAsync(T entity);
         Task<bool> DeleteAsync(int id);
+        Task<List<T>> GetByExpression(Expression<Func<T,bool>> e);
     }
 }
