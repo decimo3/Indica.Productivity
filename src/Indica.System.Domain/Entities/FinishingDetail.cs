@@ -2,6 +2,7 @@
 {
     public class FinishingDetail : EntityBase
     {
-        public string Description { get; set; }
+        public string Detail { get; set; }
+        public bool IsExecuted { get; set; }
     }
 }
