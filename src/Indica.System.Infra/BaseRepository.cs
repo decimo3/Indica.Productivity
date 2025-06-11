@@ -23,7 +23,7 @@ namespace Indica.System.Infra
             return true;
         }
 
-        public virtual async Task<bool> DeleteAsync(object id)
+        public virtual async Task<bool> DeleteAsync(int id)
         {
             var entity = await _dbSet.FindAsync(id);
             if (entity == null) return false;
@@ -38,7 +38,7 @@ namespace Indica.System.Infra
             return await _dbSet.ToListAsync();
         }
 
-        public virtual async Task<T> GetByIdAsync(object id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }
