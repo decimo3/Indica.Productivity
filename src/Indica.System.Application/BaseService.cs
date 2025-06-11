@@ -2,6 +2,7 @@
 using Indica.System.Application.DTO;
 using Indica.System.Domain;
 using Indica.System.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace Indica.System.Application
 {
@@ -57,6 +58,28 @@ namespace Indica.System.Application
 
             var entityMapped = _mapper.Map<Y>(entity);
             return await _repository.UpdateAsync(entityMapped);
+        }
+
+        public virtual async Task<List<T>> GetByExpression(Expression<Func<T, bool>> expression)
+        {
+            var mappedExpression = _mapper.Map<Expression<Func<Y, bool>>>(expression);
+            var entity = await _repository.GetByExpression(mappedExpression);
+            return _mapper.Map<List<T>>(entity);
+        }
+
+        public async Task<int> AddRangeAsync(List<T> lista)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> UpdateRangeAsync(List<T> lista)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> AddRangeAsync(Stream arquivo)
+        {
+            throw new NotImplementedException();
         }
     }
 }
