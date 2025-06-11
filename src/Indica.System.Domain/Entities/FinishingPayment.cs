@@ -4,5 +4,7 @@
     {
         public string GroupingOfMeasures { get; set; }
         public int IdPaymentMaster { get; set; }
+        public int IdFinishingDetail { get; set; }
+        public virtual FinishingDetail FinishingDetail { get; set; }
     }
 }
