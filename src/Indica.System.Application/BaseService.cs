@@ -30,7 +30,7 @@ namespace Indica.System.Application
             return await _repository.AddAsync(entityMapped);
         }
 
-        public virtual async Task<bool> DeleteAsync(object id)
+        public virtual async Task<bool> DeleteAsync(int id)
         {
             return await _repository.DeleteAsync(id);
         }
@@ -41,7 +41,7 @@ namespace Indica.System.Application
             return _mapper.Map<List<T>>(entities);
         }
 
-        public virtual async Task<T> GetByIdAsync(object id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<T>(entity);
