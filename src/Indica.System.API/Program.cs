@@ -27,7 +27,8 @@ namespace Indica.System.API
             builder.Services.AddAutoMapper(
                 typeof(ContractAutoMapper).Assembly,
                 typeof(EmployerAutoMapper).Assembly,
-                typeof(PaymentAutoMappers).Assembly
+                typeof(PaymentAutoMappers).Assembly,
+                typeof(FinishingPaymentAutoMapper).Assembly
             );
 
             #region DATABASE
@@ -46,12 +47,16 @@ namespace Indica.System.API
             builder.Services.AddScoped<IContractService, ContractService>();
             builder.Services.AddScoped<IEmployerService, EmployerService>();
             builder.Services.AddScoped<IPaymentService, PaymentService>();
+            // Finishing entity will not exposed in the API, so I don't create a service
+            builder.Services.AddScoped<IFinishingPaymentService, FinishingPaymentService>();
             #endregion
 
             #region REPOSITORIES
             builder.Services.AddScoped<IContractRepository, ContractRepository>();
             builder.Services.AddScoped<IEmployerRepository, EmployerRepository>();
             builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+            // Finishing entity will not exposed in the API, so I don't create a repository
+            builder.Services.AddScoped<IFinishingPaymentRepository, FinishingPaymentRepository>();
             #endregion
 
             WebApplication app = builder.Build();
