@@ -26,7 +26,8 @@ namespace Indica.System.API
             // AutoMapper
             builder.Services.AddAutoMapper(
                 typeof(ContractAutoMapper).Assembly,
-                typeof(EmployerAutoMapper).Assembly
+                typeof(EmployerAutoMapper).Assembly,
+                typeof(PaymentAutoMappers).Assembly
             );
 
             #region DATABASE
@@ -44,11 +45,13 @@ namespace Indica.System.API
             #region SERVICES
             builder.Services.AddScoped<IContractService, ContractService>();
             builder.Services.AddScoped<IEmployerService, EmployerService>();
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
             #endregion
 
             #region REPOSITORIES
             builder.Services.AddScoped<IContractRepository, ContractRepository>();
             builder.Services.AddScoped<IEmployerRepository, EmployerRepository>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             #endregion
 
             WebApplication app = builder.Build();
