@@ -2,6 +2,7 @@
 using Indica.System.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Linq.Expressions;
 
 namespace Indica.System.Infra
 {
@@ -48,6 +49,11 @@ namespace Indica.System.Infra
             _dbSet.Update(entity);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public virtual async Task<List<T>> GetByExpression(Expression<Func<T, bool>> expression)
+        {
+            return await _dbSet.Where(expression).ToListAsync();
         }
     }
 }
