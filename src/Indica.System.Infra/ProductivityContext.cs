@@ -14,6 +14,7 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new EmployerFunctionMapper());
             modelBuilder.ApplyConfiguration(new EmployerSituationMapper());
             modelBuilder.ApplyConfiguration(new ProcessMapper());
+            modelBuilder.ApplyConfiguration(new PaymentMapper());
         }
     }
 }
