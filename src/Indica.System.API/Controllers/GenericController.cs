@@ -20,13 +20,6 @@ namespace Indica.System.API.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public virtual async Task<IActionResult> Get()
-        {
-            var result = await _service.GetAllAsync();
-            return Ok(result);
-        }
-
         [HttpGet("{id}")]
         public virtual async Task<IActionResult> GetById(int id)
         {
@@ -53,6 +46,13 @@ namespace Indica.System.API.Controllers
         {
             await _service.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("Batch")]
+        public virtual async Task<IActionResult> GetMany()
+        {
+            var result = await _service.GetAllAsync();
+            return Ok(result);
         }
 
         [HttpPost("Batch")]
