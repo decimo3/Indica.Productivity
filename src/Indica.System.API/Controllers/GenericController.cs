@@ -54,5 +54,37 @@ namespace Indica.System.API.Controllers
             await _service.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpPost("Batch")]
+        public virtual async Task<IActionResult> PostMany([FromBody] List<TDto> list)
+        {
+            var result = await _service.AddRangeAsync(list);
+            return Created();
+        }
+
+        [HttpPut("Batch")]
+        public virtual async Task<IActionResult> PutMany([FromBody] List<TDto> list)
+        {
+            var result = await _service.UpdateRangeAsync(list);
+            return NoContent();
+        }
+
+        [HttpDelete("Batch")]
+        public virtual async Task<IActionResult> DeleteMany([FromBody] List<TDto> list)
+        {
+            var result = await _service.DeleteRangeAsync(list);
+            return NoContent();
+        }
+
+        [HttpPost("Upload")]
+        public virtual async Task<IActionResult> PostFile([FromForm] IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("Arquivo enviado está vazio!");
+            }
+            var result = await _service.AddRangeAsync(file.OpenReadStream(), file.FileName);
+            return Created();
+        }
     }
 }
