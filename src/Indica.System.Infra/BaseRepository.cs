@@ -55,5 +55,19 @@ namespace Indica.System.Infra
         {
             return await _dbSet.Where(expression).ToListAsync();
         }
+
+        public virtual async Task<int> AddRangeAsync(List<T> lista)
+        {
+            await _dbSet.AddRangeAsync(lista);
+            await _context.SaveChangesAsync();
+            return lista.Count;
+        }
+
+        public virtual async Task<int> UpdateRangeAsync(List<T> lista)
+        {
+            _dbSet.UpdateRange(lista);
+            await _context.SaveChangesAsync();
+            return lista.Count;
+        }
     }
 }
