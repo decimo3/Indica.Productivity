@@ -4,6 +4,6 @@
     {
         public string GroupingOfMeasures { get; set; }
         public int IdFinishingDetail { get; set; }
-        public int PaymentMaster { get; set; }
+        public int IdPaymentMaster { get; set; }
     }
 }
