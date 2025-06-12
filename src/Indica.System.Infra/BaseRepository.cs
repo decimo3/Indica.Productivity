@@ -69,5 +69,12 @@ namespace Indica.System.Infra
             await _context.SaveChangesAsync();
             return lista.Count;
         }
+
+        public virtual async Task<int> DeleteRangeAsync(List<T> lista)
+        {
+            _dbSet.RemoveRange(lista);
+            await _context.SaveChangesAsync();
+            return lista.Count;
+        }
     }
 }
