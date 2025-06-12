@@ -67,14 +67,30 @@ namespace Indica.System.Application
             return _mapper.Map<List<T>>(entity);
         }
 
-        public async Task<int> AddRangeAsync(List<T> lista)
+        public virtual async Task<int> AddRangeAsync(List<T> lista)
         {
-            throw new NotImplementedException();
+            var errosValidacao = lista.SelectMany(item => item.Validate()).ToList();
+            if (errosValidacao.Count != 0)
+            {
+                // TODO: passar detalhes do erro
+                throw new InvalidOperationException("Aconteceu um erro de validação!");
+            }
+            var entityMapped = _mapper.Map<List<Y>>(lista);
+            await _repository.AddRangeAsync(entityMapped);
+            return lista.Count;
         }
 
-        public async Task<int> UpdateRangeAsync(List<T> lista)
+        public virtual async Task<int> UpdateRangeAsync(List<T> lista)
         {
-            throw new NotImplementedException();
+            var errosValidacao = lista.SelectMany(item => item.Validate()).ToList();
+            if (errosValidacao.Count != 0)
+            {
+                // TODO: passar detalhes do erro
+                throw new InvalidOperationException("Aconteceu um erro de validação!");
+            }
+            var entityMapped = _mapper.Map<List<Y>>(lista);
+            await _repository.UpdateRangeAsync(entityMapped);
+            return lista.Count;
         }
 
         public async Task<int> AddRangeAsync(Stream arquivo)
