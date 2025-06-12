@@ -58,21 +58,21 @@ namespace Indica.System.API.Controllers
         [HttpPost("Batch")]
         public virtual async Task<IActionResult> PostMany([FromBody] List<TDto> list)
         {
-            var result = await _service.AddRangeAsync(list);
+            await _service.AddRangeAsync(list);
             return Created();
         }
 
         [HttpPut("Batch")]
         public virtual async Task<IActionResult> PutMany([FromBody] List<TDto> list)
         {
-            var result = await _service.UpdateRangeAsync(list);
+            await _service.UpdateRangeAsync(list);
             return NoContent();
         }
 
         [HttpDelete("Batch")]
         public virtual async Task<IActionResult> DeleteMany([FromBody] List<TDto> list)
         {
-            var result = await _service.DeleteRangeAsync(list);
+            await _service.DeleteRangeAsync(list);
             return NoContent();
         }
 
@@ -83,7 +83,7 @@ namespace Indica.System.API.Controllers
             {
                 return BadRequest("Arquivo enviado está vazio!");
             }
-            var result = await _service.AddRangeAsync(file.OpenReadStream(), file.FileName);
+            await _service.AddRangeAsync(file.OpenReadStream(), file.FileName);
             return Created();
         }
     }
