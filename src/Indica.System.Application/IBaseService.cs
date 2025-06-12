@@ -13,6 +13,7 @@ namespace Indica.System.Application
         Task<List<T>> GetByExpression(Expression<Func<T, bool>> expression);
         Task<int> AddRangeAsync(List<T> lista);
         Task<int> UpdateRangeAsync(List<T> lista);
+        Task<int> DeleteRangeAsync(List<T> lista);
         Task<int> AddRangeAsync(Stream arquivo, string filename);
     }
 }
