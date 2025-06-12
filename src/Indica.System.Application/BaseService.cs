@@ -93,7 +93,7 @@ namespace Indica.System.Application
             return lista.Count;
         }
 
-        public async Task<int> AddRangeAsync(Stream arquivo)
+        public virtual async Task<int> AddRangeAsync(Stream arquivo, string filename)
         {
             throw new NotImplementedException();
         }
