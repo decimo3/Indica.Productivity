@@ -1,8 +1,8 @@
 namespace Indica.System.Domain.Entities
 {
-    public class CodeFilter
+    public class CodeFilter : EntityBase
     {
         public string Code { get; set; }
-        public string ProcessName { get; set; }
+        public int IdProcess { get; set; }
     }
 }
