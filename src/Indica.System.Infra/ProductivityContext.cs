@@ -18,6 +18,7 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new FinishingDetailMapper());
             modelBuilder.ApplyConfiguration(new FinishingMapper());
             modelBuilder.ApplyConfiguration(new FinishingPaymentMapper());
+            modelBuilder.ApplyConfiguration(new CodeFilterMapper());
         }
     }
 }
