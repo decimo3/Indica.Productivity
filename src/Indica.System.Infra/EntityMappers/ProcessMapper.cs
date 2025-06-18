@@ -11,17 +11,18 @@ namespace Indica.System.Infra.EntityMappers
             builder.ToTable("processos");
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id)
+                .HasColumnName("id_processo")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(p => p.ProcessName)
-                .HasColumnName("nome")
+                .HasColumnName("nome_processo")
                 .HasMaxLength(100)
                 .IsRequired();
             builder.HasData([
                 new Process { Id = 1, ProcessName = "CORE" },
                 new Process { Id = 2, ProcessName = "LIDE" },
                 new Process { Id = 3, ProcessName = "REN" },
-                new Process { Id = 4, ProcessName = "ANEXO" },
+                new Process { Id = 4, ProcessName = "EMEG" },
                 ]);
         }
     }
