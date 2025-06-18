@@ -18,14 +18,14 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("code")
                 .HasMaxLength(4)
                 .IsRequired();
-            builder.Property(cf => cf.IdProcess)
-                .HasColumnName("id_process")
+            builder.Property(cf => cf.IdProject)
+                .HasColumnName("id_projeto")
                 .IsRequired();
-            builder.HasOne<Process>()
+            builder.HasOne<Project>()
                 .WithMany()
-                .HasForeignKey(cf => cf.IdProcess)
+                .HasForeignKey(cf => cf.IdProject)
                 .OnDelete(DeleteBehavior.SetNull);
-            builder.HasIndex(cf => new { cf.Code, cf.IdProcess })
+            builder.HasIndex(cf => new { cf.Code, cf.IdProject })
                 .IsUnique();
         }
     }
