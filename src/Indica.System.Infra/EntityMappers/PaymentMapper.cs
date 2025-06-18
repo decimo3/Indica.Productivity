@@ -13,8 +13,8 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(p => p.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
-            builder.Property(p => p.IdProcess)
-                .HasColumnName("id_processo")
+            builder.Property(p => p.IdProject)
+                .HasColumnName("id_projeto")
                 .IsRequired();
             builder.Property(p => p.IdContract)
                 .HasColumnName("id_contrato")
@@ -38,9 +38,9 @@ namespace Indica.System.Infra.EntityMappers
                 .WithMany()
                 .HasForeignKey(p => p.IdContract)
                 .OnDelete(DeleteBehavior.SetNull);
-            builder.HasOne<Process>(p => p.Process)
+            builder.HasOne<Project>()
                 .WithMany()
-                .HasForeignKey(p => p.IdProcess)
+                .HasForeignKey(p => p.IdProject)
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }
