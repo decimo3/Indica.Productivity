@@ -11,6 +11,7 @@ namespace Indica.System.Infra
         {
             modelBuilder.ApplyConfiguration(new EmployerMapper());
             modelBuilder.ApplyConfiguration(new ContractMapper());
+            modelBuilder.ApplyConfiguration(new EmployerAbilityMapper());
             modelBuilder.ApplyConfiguration(new EmployerFunctionMapper());
             modelBuilder.ApplyConfiguration(new EmployerSituationMapper());
             modelBuilder.ApplyConfiguration(new ProcessMapper());
