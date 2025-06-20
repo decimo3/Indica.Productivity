@@ -13,8 +13,11 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
-            builder.Property(e => e.Registry)
-                .HasColumnName("matricula")
+            builder.Property(e => e.IndicaRegistry)
+                .HasColumnName("matricula_indica")
+                .IsRequired();
+            builder.Property(e => e.ClientRegistry)
+                .HasColumnName("matricula_cliente")
                 .IsRequired();
             builder.Property(e => e.FullName)
                 .HasColumnName("nome_colaborador")
@@ -24,7 +27,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(e => e.Demission)
                 .HasColumnName("demissao");
-            builder.Property(e => e.IdRole)
+            builder.Property(e => e.IdFunction)
                 .HasColumnName("id_cargo")
                 .IsRequired();
             builder.Property(e => e.IdSituation)
@@ -32,7 +35,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.HasOne<EmployerFunction>()
                 .WithMany()
-                .HasForeignKey(e => e.IdRole)
+                .HasForeignKey(e => e.IdFunction)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
             builder.HasOne<EmployerSituation>()
