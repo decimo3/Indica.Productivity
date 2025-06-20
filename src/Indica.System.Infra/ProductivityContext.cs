@@ -1,4 +1,4 @@
-﻿using Indica.System.Domain.Entities;
+using Indica.System.Domain.Entities;
 using Indica.System.Infra.EntityMappers;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +16,7 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new ProcessMapper());
             modelBuilder.ApplyConfiguration(new ProjectMapper());
             modelBuilder.ApplyConfiguration(new ActivityMapper());
+            modelBuilder.ApplyConfiguration(new PaymentMasterMapper());
             modelBuilder.ApplyConfiguration(new PaymentMapper());
             modelBuilder.ApplyConfiguration(new FinishingDetailMapper());
             modelBuilder.ApplyConfiguration(new FinishingMapper());
