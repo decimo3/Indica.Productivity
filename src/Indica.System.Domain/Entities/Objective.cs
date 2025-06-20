@@ -2,8 +2,7 @@ namespace Indica.System.Domain.Entities
 {
     public class Objective
     {
-        public int ContractNumber { get; set; }
-        public int AdditiveNumber { get; set; }
+        public int IdContract { get; set; }
         public int IdProcess { get; set; }
         public bool IsBasketTruck { get; set; }
         public bool IsHalfPrice { get; set; }
