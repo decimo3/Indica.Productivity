@@ -19,7 +19,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(p => p.IdContract)
                 .HasColumnName("id_contrato")
                 .IsRequired();
-            builder.Property(p => p.PaymentMaster)
+            builder.Property(p => p.IdPaymentMaster)
                 .HasColumnName("id_mestre")
                 .IsRequired();
             builder.Property(p => p.ValueLight)
@@ -34,13 +34,17 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("valor_especial")
                 .HasColumnType("decimal(18, 2)")
                 .IsRequired();
-            builder.HasOne<Contract>(p => p.Contract)
+            builder.HasOne<Contract>()
                 .WithMany()
                 .HasForeignKey(p => p.IdContract)
                 .OnDelete(DeleteBehavior.SetNull);
             builder.HasOne<Project>()
                 .WithMany()
                 .HasForeignKey(p => p.IdProject)
+                .OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne<PaymentMaster>()
+                .WithMany()
+                .HasForeignKey(p => p.IdPaymentMaster)
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }
