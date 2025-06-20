@@ -23,6 +23,7 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new FinishingMapper());
             modelBuilder.ApplyConfiguration(new FinishingPaymentMapper());
             modelBuilder.ApplyConfiguration(new CodeFilterMapper());
+            modelBuilder.ApplyConfiguration(new FieldTeamRegionalMapper());
         }
     }
 }
