@@ -16,12 +16,12 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdFinishing)
                 .HasColumnName("id_finalizacao")
                 .IsRequired();
-            builder.Property(x => x.IdMaster)
+            builder.Property(x => x.IdPaymentMaster)
                 .HasColumnName("id_mestre_pagamento")
                 .IsRequired();
             builder.HasOne<PaymentMaster>()
                 .WithMany()
-                .HasForeignKey(x => x.IdMaster)
+                .HasForeignKey(x => x.IdPaymentMaster)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
         }
