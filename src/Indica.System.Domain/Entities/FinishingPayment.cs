@@ -2,9 +2,7 @@
 {
     public class FinishingPayment : EntityBase
     {
-        public string GroupingOfMeasures { get; set; }
+        public string IdFinishing { get; set; }
         public int IdPaymentMaster { get; set; }
-        public int IdFinishingDetail { get; set; }
-        public virtual FinishingDetail FinishingDetail { get; set; }
     }
 }
