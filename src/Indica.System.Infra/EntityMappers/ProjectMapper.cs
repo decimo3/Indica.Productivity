@@ -41,6 +41,4 @@ namespace Indica.System.Infra.EntityMappers
             );
         }
     }
-    {
-    }
 }
