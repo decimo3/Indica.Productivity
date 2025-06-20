@@ -1,6 +1,6 @@
 namespace Indica.System.Domain.Entities
 {
-    public class WorkOrder
+    public class WorkOrder : EntityBase
     {
         public string Resource { get; set; }
         public DateOnly Date { get; set; }
