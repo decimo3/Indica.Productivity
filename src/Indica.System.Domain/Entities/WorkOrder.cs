@@ -79,7 +79,7 @@ namespace Indica.System.Domain.Entities
         public int InterruptedTime { get; set; }
         public int FinancialCompensationAmount { get; set; }
         public string FileName { get; set; }
-        public string IdFieldteam { get; set; }
+        public string ComposedKey { get; set; }
         public DateTime Timestamp { get; set; }
         public string GroupingOfMeasures { get; set; }
     }
