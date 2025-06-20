@@ -1,8 +1,3 @@
-using System.Diagnostics;
-using System.Reflection.Emit;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 namespace Indica.System.Domain.Entities
 {
     public class WorkOrder
