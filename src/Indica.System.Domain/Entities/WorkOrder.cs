@@ -5,7 +5,7 @@ namespace Indica.System.Domain.Entities
         public string Resource { get; set; }
         public DateOnly Date { get; set; }
         public long IdActivity { get; set; }
-        public string ActivityStatus { get; set; }
+        public int IdSituation { get; set; }
         public string CostumerName { get; set; }
         public string CostumerAddress { get; set; }
         public string CostumerCity { get; set; }
