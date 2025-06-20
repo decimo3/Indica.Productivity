@@ -13,19 +13,15 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
-            builder.Property(x => x.GroupingOfMeasures)
-                .HasColumnName("agrupamento_medidas")
-                .HasMaxLength(128)
+            builder.Property(x => x.IdFinishing)
+                .HasColumnName("id_finalizacao")
                 .IsRequired();
-            builder.Property(x => x.IdPaymentMaster)
+            builder.Property(x => x.IdMaster)
                 .HasColumnName("id_mestre_pagamento")
                 .IsRequired();
-            builder.Property(x => x.IdFinishingDetail)
-                .HasColumnName("id_finalizacao_detalhe")
-                .IsRequired();
-            builder.HasOne(fp => fp.FinishingDetail)
+            builder.HasOne<PaymentMaster>()
                 .WithMany()
-                .HasForeignKey(x => x.IdFinishingDetail)
+                .HasForeignKey(x => x.IdMaster)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
         }
