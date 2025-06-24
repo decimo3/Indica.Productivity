@@ -9,14 +9,14 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<EmployerAbility> builder)
         {
-            builder.ToTable("funcionario_competencias");
+            builder.ToTable("competencias");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                .HasColumnName("id_funcionario_competencia")
+                .HasColumnName("id_competencia")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.AbilityName)
-                .HasColumnName("nome_funcionario_competencia")
+                .HasColumnName("nome_competencia")
                 .HasMaxLength(32)
                 .IsRequired();
         }
