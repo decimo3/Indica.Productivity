@@ -1,6 +1,6 @@
 namespace Indica.System.Domain.Entities
 {
-    public class Objective
+    public class Objective : EntityBase
     {
         public int IdContract { get; set; }
         public int IdProcess { get; set; }
