@@ -26,6 +26,7 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new WorkOrderSituationMapper());
             modelBuilder.ApplyConfiguration(new ObjectiveMapper());
             modelBuilder.ApplyConfiguration(new DamageToProcessMapper());
+            modelBuilder.ApplyConfiguration(new FieldTeamMapper());
         }
     }
 }
