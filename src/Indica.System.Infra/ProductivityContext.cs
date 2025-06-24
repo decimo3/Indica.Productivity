@@ -1,4 +1,3 @@
-using Indica.System.Domain.Entities;
 using Indica.System.Infra.EntityMappers;
 using Microsoft.EntityFrameworkCore;
 
