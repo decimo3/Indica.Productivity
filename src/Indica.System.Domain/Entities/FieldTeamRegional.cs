@@ -1,6 +1,6 @@
 ﻿namespace Indica.System.Domain.Entities
 {
-    public class Regional : EntityBase
+    public class FieldTeamRegional : EntityBase
     {
         public string RegionName { get; set; }
     }
