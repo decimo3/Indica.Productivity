@@ -41,22 +41,22 @@ namespace Indica.System.Domain.Entities
         public string UserConclusion { get; set; }
         public double CoordinateX { get; set; }
         public double CoordinateY { get; set; }
-        public string CoordinateAccuracy { get; set; }
-        public string CoordinateStatus { get; set; }
+        public string CoordinateAccuracy { get; set; } // TODO - IdCoordinateAccuracy
+        public bool IsFoundCoordinateStatus { get; set; }
         public string ClosingCodes { get; set; }
-        public string LgCtrlTypeClosingOk { get; set; }
-        public string ClosedCodesFilledIn { get; set; }
+        public bool IsLgCtrlTypeClosingOk { get; set; }
+        public bool IsClosedCodesFilledIn { get; set; }
         public string ClosingCodes_1 { get; set; }
         public string VehicleLabel { get; set; }
         public int IdLeaderRegistration { get; set; }
         public int IdAuxiliaryRegistration { get; set; }
         public int IdTechnicalRegistration { get; set; }
-        public string Observation { get; set; }
-        public string BriefDescriptionOfTheContentOfTheNote { get; set; }
+        public string? Observation { get; set; }
+        public string? Description { get; set; }
         public string SubNeighborhood { get; set; }
-        public string LgFlagPrefillimentoClosing { get; set; }
+        public bool IsLgFlagPrefillimentoClosing { get; set; }
         public string ParentActivityClosingCodesV03 { get; set; }
-        public string LgCtrlReprovedFlag { get; set; }
+        public bool IsLgCtrlReprovedFlag { get; set; }
         public long InstallationNumber { get; set; }
         public string BuildingNumberOrAcronym { get; set; }
         public string NumberComplement { get; set; }
@@ -64,9 +64,9 @@ namespace Indica.System.Domain.Entities
         public string ReasonForRejection { get; set; }
         public string TypeOfServiceNote { get; set; }
         public DateTime ActivityBookingTime { get; set; }
-        public double TotalCustomerDebts { get; set; }
+        public decimal TotalCustomerDebts { get; set; }
         public string BucketOrigin { get; set; }
-        public string ConnectionType { get; set; }
+        public string ConnectionType { get; set; } // TODO - IdConnectionType
         public bool HasCustomerSignedToi { get; set; }
         public bool HasRefusedToSignToi { get; set; }
         public bool HasRefusedToReceiveToi { get; set; }
@@ -80,7 +80,6 @@ namespace Indica.System.Domain.Entities
         public int FinancialCompensationAmount { get; set; }
         public string FileName { get; set; }
         public string ComposedKey { get; set; }
-        public DateTime Timestamp { get; set; }
-        public string GroupingOfMeasures { get; set; }
+        public int IdFinishing { get; set; }
     }
 }
