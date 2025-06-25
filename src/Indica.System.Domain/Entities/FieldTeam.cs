@@ -1,8 +1,8 @@
 namespace Indica.System.Domain.Entities
 {
-    public class Fieldteam : EntityBase
+    public class FieldTeam : EntityBase
     {
-        public string IdFieldteam { get; set; }
+        public string IdFieldTeam { get; set; }
         public DateOnly Date { get; set; }
         public int Order { get; set; }
         public string Plate { get; set; }
