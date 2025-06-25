@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public class FieldTeamRegionalMapper : IEntityTypeConfiguration<Regional>
+    public class FieldTeamRegionalMapper : IEntityTypeConfiguration<FieldTeamRegional>
     {
-        public void Configure(EntityTypeBuilder<Regional> builder)
+        public void Configure(EntityTypeBuilder<FieldTeamRegional> builder)
         {
             builder.ToTable("composicao_regional");
             builder.HasKey(x => x.Id);
