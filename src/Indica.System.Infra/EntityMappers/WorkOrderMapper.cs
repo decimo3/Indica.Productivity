@@ -294,6 +294,22 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdFinishing)
                 .HasColumnName("id_finalizacao")
                 .IsRequired(false);
+            builder.HasOne<WorkOrderSituation>()
+                .WithMany()
+                .HasForeignKey(x => x.IdSituation)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasOne<DamageToProcess>()
+                .WithMany()
+                .HasForeignKey(x => x.TypeOfActivity_1)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasOne<Finishing>()
+                .WithMany()
+                .HasForeignKey(x => x.IdFinishing)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasIndex(x => x.IdActivity).IsUnique();
         }
     }
 }
