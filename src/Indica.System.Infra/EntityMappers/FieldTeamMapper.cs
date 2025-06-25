@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public class FieldTeamMapper : IEntityTypeConfiguration<Fieldteam>
+    public class FieldTeamMapper : IEntityTypeConfiguration<FieldTeam>
     {
-        public void Configure(EntityTypeBuilder<Fieldteam> builder)
+        public void Configure(EntityTypeBuilder<FieldTeam> builder)
         {
             builder.ToTable("composicao");
             builder.HasKey(x => x.Id);
@@ -31,7 +31,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.Cellphone)
                 .HasColumnName("telefone")
                 .IsRequired();
-            builder.Property(x => x.IdFieldteam)
+            builder.Property(x => x.IdFieldTeam)
                 .HasColumnName("abreviatura")
                 .IsRequired();
             builder.Property(x => x.IdActivity)
