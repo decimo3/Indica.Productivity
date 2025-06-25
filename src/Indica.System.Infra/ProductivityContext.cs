@@ -23,11 +23,14 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new FinishingPaymentMapper());
             modelBuilder.ApplyConfiguration(new CodeFilterMapper());
             modelBuilder.ApplyConfiguration(new FieldTeamRegionalMapper());
+            modelBuilder.ApplyConfiguration(new FieldTeamFuncionMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderSituationMapper());
             modelBuilder.ApplyConfiguration(new ObjectiveMapper());
             modelBuilder.ApplyConfiguration(new DamageToProcessMapper());
             modelBuilder.ApplyConfiguration(new FieldTeamMapper());
             modelBuilder.ApplyConfiguration(new CoupleMapper());
+            modelBuilder.ApplyConfiguration(new EmployerAbilitiesMapper());
+            modelBuilder.ApplyConfiguration(new WorkOrderMapper());
         }
     }
 }
