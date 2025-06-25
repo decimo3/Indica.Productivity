@@ -2,5 +2,5 @@ using Indica.System.Domain.Entities;
 
 namespace Indica.System.Domain.Interfaces
 {
-    public interface IFieldTeamRepository : IBaseRepository<Fieldteam> { }
+    public interface IFieldTeamRepository : IBaseRepository<FieldTeam> { }
 }
