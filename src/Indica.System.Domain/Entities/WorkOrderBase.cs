@@ -1,85 +1,23 @@
 namespace Indica.System.Domain.Entities
 {
-    public class WorkOrder : EntityBase
+    public abstract class WorkOrderBase : EntityBase
     {
         public string Resource { get; set; }
         public DateOnly Date { get; set; }
         public long IdActivity { get; set; }
         public int IdSituation { get; set; }
-        public string CostumerName { get; set; }
-        public string CostumerAddress { get; set; }
-        public string CostumerCity { get; set; }
-        public string CostumerState { get; set; }
-        public int CostumerPostalCode { get; set; }
-        public long CostumerTelephone { get; set; }
-        public long CostumerCellphone { get; set; }
-        public string CostumerEmail { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly FinalTime { get; set; }
         public string StartFinal { get; set; }
-        public DateTime StartOfSLA { get; set; }
-        public DateTime FinalOfSLA { get; set; }
         public TimeSpan DurationTime { get; set; }
         public TimeSpan TravellingTime { get; set; }
-        public string TypeOfActivity { get; set; }
-        public string TypeOfActivity_1 { get; set; }
-        public long WorkOrderNumber { get; set; }
-        public long AccountNumber { get; set; }
-        public string WorkAbility { get; set; }
-        public int WorkArea { get; set; }
-        public string FirstManualOperation { get; set; }
-        public string FirstManualOperationPerformedByUserLogin { get; set; }
-        public string FirstManualOperationPerformedByUserName { get; set; }
-        public string EnRouteTimetable { get; set; }
-        public DateTime ShiftStartDate { get; set; }
-        public string RODate { get; set; }
-        public DateOnly AutoRoutedToMoment { get; set; }
-        public int AutoRoutedToResource { get; set; }
-        public string AutoRoutedToResourceName { get; set; }
-        public int IdResource { get; set; }
-        public int FirstManualOperationPerformedByUser { get; set; }
-        public string UserConclusion { get; set; }
-        public double CoordinateX { get; set; }
-        public double CoordinateY { get; set; }
-        public string CoordinateAccuracy { get; set; } // TODO - IdCoordinateAccuracy
-        public bool IsFoundCoordinateStatus { get; set; }
-        public string ClosingCodes { get; set; }
-        public bool IsLgCtrlTypeClosingOk { get; set; }
-        public bool IsClosedCodesFilledIn { get; set; }
-        public string ClosingCodes_1 { get; set; }
-        public string VehicleLabel { get; set; }
-        public int IdLeaderRegistration { get; set; }
-        public int IdAuxiliaryRegistration { get; set; }
-        public int IdTechnicalRegistration { get; set; }
-        public string? Observation { get; set; }
-        public string? Description { get; set; }
-        public string SubNeighborhood { get; set; }
-        public bool IsLgFlagPrefillimentoClosing { get; set; }
-        public string ParentActivityClosingCodesV03 { get; set; }
-        public bool IsLgCtrlReprovedFlag { get; set; }
-        public long InstallationNumber { get; set; }
-        public string BuildingNumberOrAcronym { get; set; }
-        public string NumberComplement { get; set; }
-        public string TimeInterval { get; set; }
-        public string ReasonForRejection { get; set; }
-        public string TypeOfServiceNote { get; set; }
+        public int IdTypeOfActivity { get; set; }
         public DateTime ActivityBookingTime { get; set; }
-        public decimal TotalCustomerDebts { get; set; }
-        public string BucketOrigin { get; set; }
-        public string ConnectionType { get; set; } // TODO - IdConnectionType
-        public bool HasCustomerSignedToi { get; set; }
-        public bool HasRefusedToSignToi { get; set; }
-        public bool HasRefusedToReceiveToi { get; set; }
-        public string CustomerAuthorizedloadAnalysis { get; set; }
         public TimeSpan EstimatedTravellingTime { get; set; }
         public TimeSpan EstimatedDurationTime { get; set; }
-        public string ScopeOfService { get; set; }
-        public string ReasonForUnavailability { get; set; }
-        public int CHI { get; set; }
-        public int InterruptedTime { get; set; }
-        public int FinancialCompensationAmount { get; set; }
         public string FileName { get; set; }
         public string ComposedKey { get; set; }
-        public int IdFinishing { get; set; }
+        public virtual DamageToProcess DamageToProcess { get; set; }
+        public virtual WorkOrderSituation WorkOrderSituation { get; set; }
     }
 }
