@@ -26,34 +26,6 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdSituation)
                 .HasColumnName("id_status_da_atividade")
                 .IsRequired();
-            builder.Property(x => x.CostumerName)
-                .HasColumnName("cliente_nome")
-                .HasMaxLength(128)
-                .IsRequired(false);
-            builder.Property(x => x.CostumerAddress)
-                .HasColumnName("cliente_logradouro")
-                .HasMaxLength(64)
-                .IsRequired(false);
-            builder.Property(x => x.CostumerCity)
-                .HasColumnName("cliente_cidade")
-                .HasMaxLength(32)
-                .IsRequired(false);
-            builder.Property(x => x.CostumerState)
-                .HasColumnName("cliente_estado")
-                .HasMaxLength(32)
-                .IsRequired(false);
-            builder.Property(x => x.CostumerPostalCode)
-                .HasColumnName("cliente_codigo_postal")
-                .IsRequired(false);
-            builder.Property(x => x.CostumerTelephone)
-                .HasColumnName("cliente_telefone")
-                .IsRequired(false);
-            builder.Property(x => x.CostumerCellphone)
-                .HasColumnName("cliente_celular")
-                .IsRequired(false);
-            builder.Property(x => x.CostumerEmail)
-                .HasColumnName("cliente_email")
-                .IsRequired(false);
             builder.Property(x => x.StartTime)
                 .HasColumnName("tempo_inicio")
                 .IsRequired();
@@ -100,9 +72,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(64)
                 .IsFixedLength()
                 .IsRequired(false);
-            builder.Property(x => x.WorkArea)
-                .HasColumnName("area_de_trabalho")
-                .IsRequired(false);
             builder.Property(x => x.FirstManualOperation)
                 .HasColumnName("primeira_operacao_manual")
                 .HasMaxLength(32)
@@ -146,19 +115,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("conclusao_do_usuario")
                 .HasMaxLength(32)
                 .IsRequired(false);
-            builder.Property(x => x.CoordinateX)
-                .HasColumnName("coordenada_x")
-                .IsRequired(false);
-            builder.Property(x => x.CoordinateY)
-                .HasColumnName("coordenada_y")
-                .IsRequired(false);
-            builder.Property(x => x.CoordinateAccuracy)
-                .HasColumnName("precisao_das_coordenadas")
-                .HasMaxLength(5)
-                .IsRequired(false);
-            builder.Property(x => x.IsFoundCoordinateStatus)
-                .HasColumnName("eh_encontrada_coordenadas_status")
-                .IsRequired(false);
             builder.Property(x => x.ClosingCodes)
                 .HasColumnName("codigos_fechamentos")
                 .HasMaxLength(0)
@@ -196,10 +152,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("descricao")
                 .HasMaxLength(64)
                 .IsRequired(false);
-            builder.Property(x => x.SubNeighborhood)
-                .HasColumnName("subbairro")
-                .HasMaxLength(32)
-                .IsRequired(false);
             builder.Property(x => x.IsLgFlagPrefillimentoClosing)
                 .HasColumnName("eh_lg_flag_preech_fechamento")
                 .HasDefaultValue(false)
@@ -211,17 +163,6 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IsLgCtrlReprovedFlag)
                 .HasColumnName("lg_ctrl_reprovado_flag")
                 .HasDefaultValue(false)
-                .IsRequired(false);
-            builder.Property(x => x.InstallationNumber)
-                .HasColumnName("instalacao")
-                .IsRequired(false);
-            builder.Property(x => x.BuildingNumberOrAcronym)
-                .HasColumnName("numero_de_rua")
-                .HasMaxLength(32)
-                .IsRequired(false);
-            builder.Property(x => x.NumberComplement)
-                .HasColumnName("complemento_de_numero")
-                .HasMaxLength(32)
                 .IsRequired(false);
             builder.Property(x => x.TimeInterval)
                 .HasColumnName("intervalo_de_tempo")
