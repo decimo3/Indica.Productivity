@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.System.Application",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.System.API", "src\Indica.System.API\Indica.System.API.csproj", "{4DB339A3-C79A-4AD9-8654-C492AAE517F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.Systems.Test", "src\Indica.Systems.Test\Indica.Systems.Test.csproj", "{D144C0B2-6758-4FF4-ABE0-A02BB468E5E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.System.Test", "src\Indica.System.Test\Indica.System.Test.csproj", "{D144C0B2-6758-4FF4-ABE0-A02BB468E5E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.System.FileParser", "src\Indica.System.FileParser\Indica.System.FileParser.csproj", "{76B75130-99C7-4A32-92AD-B9F28652AFA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
