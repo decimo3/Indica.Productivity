@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
@@ -18,6 +17,15 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Indica.System.FileParser\Indica.System.FileParser.csproj" />
+    <ProjectReference Include="..\Indica.System.Application\Indica.System.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Sample\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
