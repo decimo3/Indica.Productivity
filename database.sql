@@ -1,107 +1,377 @@
 -- Criação do banco de dados
-CREATE DATABASE IF NOT EXISTS development;
+CREATE DATABASE IF NOT EXISTS produtivity;
 
 -- Conectar ao banco de dados
-\c development; 
-
-
-CREATE TABLE IF NOT EXISTS contratos (
-    id_contrato NUMERIC(11, 1) PRIMARY KEY,
-    contrato BIGINT NOT NULL,
-    aditivo INT NOT NULL,
-    inicio_vigencia DATE NOT NULL,
-    final_vigencia DATE NOT NULL,
-);
+\c produtivity;
 
 CREATE TABLE IF NOT EXISTS processos (
-    id_processo INT PRIMARY KEY,
-    nome_processo BIGINT NOT NULL,
-    descricao VARCHAR(128) NOT NULL
+    id_processo INTEGER PRIMARY KEY,
+    nome_processo VARCHAR(8) NOT NULL,
+);
+
+INSERT INTO processos (id_processo, nome_processo) VALUES
+(1, 'CORE'),
+(2, 'LIDE'),
+(3, 'REN'),
+(4, 'EMEG');
+
+CREATE TABLE IF NOT EXISTS projetos (
+    id_projeto INTEGER PRIMARY KEY,
+    nome_projeto VARCHAR(16) NOT NULL,
+    id_processo INTEGER REFERENCES processos(id_processo)
+);
+
+INSERT INTO projetos (id_projeto, nome_projeto, id_processo) VALUES
+(1, 'CORTE', 1),
+(2, 'RELIGA', 1),
+(3, 'LIDE', 2),
+(4, 'ANEXO', 2),
+(5, 'AFERICAO', 2),
+(6, 'INSPECAO', 3),
+(7, 'EXTERNALIZACAO', 3),
+(8, 'MODERNIZACAO', 3),
+(9, 'MANUTENCAO', 3),
+(10, 'PQM', 4),
+(11, 'EMERGENCIA', 4),
+(12, 'MANOBRA', 4);
+
+CREATE TABLE IF NOT EXISTS atividades (
+    id_atividade INTEGER PRIMARY KEY,
+    nome_atividade VARCHAR(32) NOT NULL,
+    eh_caminhao BOOLEAN DEFAULT FALSE,
+    eh_metade BOOLEAN DEFAULT FALSE,
+    eh_especial BOOLEAN DEFAULT FALSE,
+    id_projeto INTEGER REFERENCES projetos(id_projeto)
+);
+
+INSERT INTO atividades (id_atividade, nome_atividade, eh_caminhao, eh_metade, eh_especial, id_projeto) VALUES
+(1, 'CORTE', FALSE, FALSE, FALSE, 1),
+(2, 'CORTE PILOTO', FALSE, FALSE, FALSE, 1),
+(3, 'CORTE ESPECIAL', FALSE, FALSE, FALSE, 1),
+(4, 'RELIGA', FALSE, FALSE, FALSE, 2),
+(5, 'RELIGA POSTO', FALSE, FALSE, FALSE, 2),
+(6, 'RELIGA CAMINHÃO', TRUE, FALSE, FALSE, 2),
+(7, 'LIDE', FALSE, FALSE, FALSE, 3),
+(8, 'LIDE VISTORIADOR', FALSE, TRUE, FALSE, 3),
+(9, 'LIDE PESADO', TRUE, FALSE, TRUE, 3),
+(10, 'ANEXO IV', FALSE, FALSE, FALSE, 4),
+(11, 'ANEXO IV VISTORIADOR', FALSE, TRUE, TRUE, 4),
+(12, 'ANEXO IV PESADO', TRUE, FALSE, FALSE, 4),
+(13, 'EMERGÊNCIA', FALSE, FALSE, TRUE, 11),
+(14, 'PQM', FALSE, FALSE,  FALSE, 10),
+(15, 'ATENDIMENTO COLETIVO', FALSE, FALSE, FALSE, 11),
+(16, 'CONVENCIONAL', FALSE, FALSE, FALSE, 6),
+(17, 'EXTERNALIZAÇÃO', FALSE, FALSE, FALSE, 7),
+(18, 'LABORATÓRIO', FALSE, TRUE, FALSE, 3),
+(19, 'CORTE OSDC', FALSE, FALSE, FALSE, 1),
+(20, 'BAIXA RENDA', FALSE, FALSE, FALSE, 1),
+(21, 'MANUTENÇÃO BT', FALSE, FALSE, FALSE, 9),
+(22, 'MEDIDOR OBSOLETO', FALSE, FALSE, FALSE, 8);
+
+CREATE TABLE IF NOT EXISTS contratos (
+    id_contrato INTEGER PRIMARY KEY,
+    contrato INTEGER NOT NULL,
+    aditivo INTEGER NOT NULL,
+    inicio_vigencia DATE NOT NULL,
+    final_vigencia DATE DEFAULT '9999-12-31'
+);
+
+INSERT INTO contratos (id_contrato, contrato, aditivo, vigencia_inicio) VALUES
+(1, 4600008096, 1, '2025-06-01');
+
+CREATE TABLE IF NOT EXISTS contrato_atividade (
+    id_contrato_atividade INTEGER PRIMARY KEY,
+    id_contrato INTEGER REFERENCES contratos(id_contrato),
+    id_atividade INTEGER REFERENCES atividades(id_atividade),
+    inicio_vigencia DATE NOT NULL,
+    final_vigencia DATE DEFAULT '9999-12-31'
 );
 
 CREATE TABLE IF NOT EXISTS objetivos (
-    id_contrato NUMERIC(11, 1) NOT NULL,
-    id_processo INT NOT NULL,
-    is_viatura BOOLEAN NOT NULL,
-    is_metade BOOLEAN NOT NULL,
-    meta_mensal DECIMAL NOT NULL,
-    divisor FLOAT NOT NULL,
-    meta_equipe_dia_util INT NOT NULL,
-    meta_equipe_feriado INT NOT NULL,
-    meta_quantidade_exec INT NOT NULL,
-    PRIMARY KEY (id_contrato, id_processo, is_viatura, is_metade),
-    FOREIGN KEY (id_contrato) REFERENCES contratos(id_contrato),
-    FOREIGN KEY (id_processo) REFERENCES processos(id_processo)
+    id_objetivo INTEGER PRIMARY KEY,
+    id_contrato INTEGER REFERENCES contratos(id_contrato),
+    id_projeto INTEGER REFERENCES projetos(id_projeto),
+    eh_caminhao BOOLEAN DEFAULT FALSE,
+    eh_metade BOOLEAN DEFAULT FALSE,
+    meta_valor_mensal NUMERIC DEFAULT 0,
+    divisor_mensal_fixo NUMERIC DEFAULT 0,
+    meta_apresentacao_util INTEGER DEFAULT 0,
+    meta_apresentacao_feriado INTEGER DEFAULT 0,
+    meta_execucoes_diaria INTEGER DEFAULT 0
 );
 
--- Criação da tabela finalizacoes
-CREATE TABLE IF NOT EXISTS finalizacoes (
-    agrupamento_de_medidas VARCHAR(128) PRIMARY KEY,
-    descricao VARCHAR(32) NOT NULL
+INSERT INTO objetivos (id_objetivo, id_contrato, id_projeto, eh_caminhao, eh_metade, meta_valor_mensal, divisor_mensal_fixo, meta_apresentacao_util, meta_apresentacao_feriado, meta_execucoes_diaria) VALUES
+(1, 1, 1, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0),
+(2, 1, 2, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0),
+(3, 1, 2, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0),
+(4, 1, 3, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0),
+(5, 1, 3, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0),
+(6, 1, 3, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0),
+(7, 1, 4, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0),
+(8, 1, 4, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0),
+(9, 1, 4, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0),
+(10, 1, 5, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0),
+(11, 1, 6, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
+(12, 1, 7, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
+(13, 1, 8, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
+(14, 1, 9, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
+(15, 1, 10, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0),
+(16, 1, 11, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0),
+(17, 1, 12, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0);
+
+CREATE TABLE IF NOT EXISTS funcionario_situacao (
+    id_funcionario_situacao INTEGER PRIMARY KEY,
+    nome_funcionario_situacao VARCHAR(16) NOT NULL,
 );
 
--- Criação da tabela pagamentos
-CREATE TABLE IF NOT EXISTS pagamentos (
-    id_contrato NUMERIC(11, 1) NOT NULL,
-    id_processo INT NOT NULL,
-    id_mestre INT NOT NULL,
-    descricao VARCHAR(256) NOT NULL,
-    valor DECIMAL(10, 2) NOT NULL,
-    PRIMARY KEY (id_contrato, id_processo, id_mestre)
+INSERT INTO funcionario_situacao (id_funcionario_situacao, nome_funcionario_situacao) VALUES
+(1, 'ativo'),
+(2, 'inss'),
+(3, 'ferias'),
+(4, 'suspenso'),
+(5, 'desligado');
+
+CREATE TABLE IF NOT EXISTS funcionario_funcao (
+    id_funcionario_funcao INTEGER PRIMARY KEY,
+    nome_funcionario_funcao VARCHAR(16) NOT NULL,
 );
 
--- Criação da tabela finalizacao_pagamento
-CREATE TABLE IF NOT EXISTS finalizacao_pagamento (
-    agrupamento_de_medidas VARCHAR(128) NOT NULL,
-    id_contrato NUMERIC(11, 1) NOT NULL,
-    id_processo INT NOT NULL,
-    id_mestre INT NOT NULL,
-    PRIMARY KEY (agrupamento_de_medidas, id_contrato, id_processo, id_mestre),
-    FOREIGN KEY (agrupamento_de_medidas) REFERENCES finalizacoes(agrupamento_de_medidas),
-    FOREIGN KEY (id_contrato, id_processo, id_mestre) REFERENCES pagamentos(id_contrato, id_processo, id_mestre)
+INSERT INTO funcionario_funcao (id_funcionario_funcao, nome_funcionario_funcao) VALUES
+(1, 'eletricista'),
+(2, 'supervisor'),
+(3, 'administrativo'),
+(4, 'supervisor lider'),
+(5, 'coordenador');
+
+CREATE TABLE IF NOT EXISTS funcionarios (
+    id_funcionario INTEGER PRIMARY KEY,
+    matricula_indica INTEGER NOT NULL,
+    matricula_cliente INTEGER NOT NULL,
+    nome_funcionario VARCHAR(128) NOT NULL,
+    admissao DATE NOT NULL,
+    demissao DATE DEFAULT NULL,
+    id_situacao INTEGER REFERENCES funcionario_situacao(id_funcionario_situacao),
+    id_funcao INTEGER REFERENCES funcionario_funcao(id_funcionario_funcao)
 );
 
--- Criação da tabela de filtros de código
-CREATE TABLE IF NOT EXISTS filtros_de_codigo (
-    id_codigo_filtro VARCHAR(5) PRIMARY KEY,
-    id_processo INT NOT NULL,
-    codigo VARCHAR(4) NOT NULL,
-    FOREIGN KEY (id_processo) REFERENCES processos(id_processo)
+CREATE TABLE IF NOT EXISTS competencias (
+    id_competencia INTEGER PRIMARY KEY,
+    nome_competencia VARCHAR(32) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS dano_processo (
-    dano VARCHAR(4) PRIMARY KEY,
-    descricao VARCHAR(128) NOT NULL,
-    id_processo INT NOT NULL,
-    FOREIGN KEY (id_processo) REFERENCES processos(id_processo)
+INSERT INTO competencias (id_competencia, nome_competencia) VALUES
+(1, 'CORTE'),
+(2, 'RELIGA'),
+(3, 'LIDE'),
+(4, 'ANEXO'),
+(5, 'REN'),
+(6, 'PQM'),
+(7, 'EMERGENCIA'),
+(8, 'MANOBRA');
+
+CREATE TABLE IF NOT EXISTS qualificacoes (
+    id_qualificacoes INTEGER PRIMARY KEY,
+    vigencia_inicio DATE NOT NULL,
+    vigencia_final DATE NOT NULL,
+    id_funcionario INTEGER REFERENCES funcionarios(id_funcionario),
+    id_competencia INTEGER REFERENCES competencias(id_competencia)
 );
 
-CREATE TABLE IF NOT EXISTS clientes (
-    id_instalacao BIGINT PRIMARY KEY,
-    nome VARCHAR(128),
-    logradouro VARCHAR(128),
-    numero_rua VARCHAR(32),
-    complemento VARCHAR(32),
-    sub_bairro VARCHAR(32),
-    cidade VARCHAR(32),
-    estado VARCHAR(2),
-    cod_postal INT,
-    telefone BIGINT,
-    celular BIGINT,
-    email VARCHAR(128),
+CREATE TABLE IF NOT EXISTS regionais (
+    id_regional INTEGER PRIMARY KEY,
+    nome_regional VARCHAR(16) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS status_servicos (
-    id_status_servico INT PRIMARY KEY,
-    nome_status_servico VARCHAR(32) NOT NULL,
-);
+INSERT INTO regionais (id_regional, nome_regional) VALUES
+(1, 'oeste'),
+(2, 'baixada');
 
--- TODO - Criação da tabela de servicos
-CREATE TABLE IF NOT EXISTS servicos (
+CREATE TABLE IF NOT EXISTS composicoes (
+    id_composicao INTEGER PRIMARY KEY,
+    dia DATE NOT NULL,
+    ordem INTEGER NOT NULL,
+    placa VARCHAR(8) NOT NULL,
     recurso VARCHAR(32) NOT NULL,
-    data_servico DATE NOT NULL,
-    id_atividade BIGINT PRIMARY KEY,
-    id_status_servico INT NOT NULL,
+    id_atividade INTEGER REFERENCES atividades(id_atividade),
+    telefone INTEGER NOT NULL,
+    id_regional INTEGER REFERENCES regionais(id_regional),
+    abreviatura VARCHAR(16) NOT NULL,
+    eh_considerado BOOLEAN DEFAULT TRUE,
+    eh_especial BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS composicao_funcao (
+    id_funcao INTEGER PRIMARY KEY,
+    nome_funcao VARCHAR(16) NOT NULL
+);
+
+INSERT INTO composicao_funcao (id_composicao_funcao, nome_composicao_funcao) VALUES
+(1, 'lider'),
+(2, 'auxiliar'),
+(3, 'supervisor');
+
+CREATE TABLE IF NOT EXISTS equipes (
+    id_equipe INTEGER PRIMARY KEY,
+    id_composicao INTEGER REFERENCES composicao(id_composicao),
+    id_funcionario INTEGER REFERENCES funcionario(id_funcionario),
+    id_composicao_funcao INTEGER REFERENCES composicao_funcao(id_composicao_funcao)
+);
+
+CREATE TABLE IF NOT EXISTS mestres (
+    id_mestre INTEGER PRIMARY KEY,
+    mestre INTEGER NOT NULL,
+    descricao VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pagamentos (
+    id_pagamento INTEGER PRIMARY KEY,
+    id_contrato INTEGER REFERENCES contrato(id_contrato),
+    id_projeto INTEGER REFERENCES projetos(id_projeto),
+    id_mestre INTEGER REFERENCES mestres(id_mestre),
+    valor_leve DECIMAL(5,2) NOT NULL,
+    valor_pesado DECIMAL(5,2) NOT NULL,
+    valor_especial DECIMAL(5,2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS categorias (
+    id_categoria INTEGER PRIMARY KEY,
+    nome_categoria VARCHAR(16) NOT NULL,
+    eh_executado BOOLEAN DEFAULT TRUE
+);
+
+INSERT INTO categorias (id_categoria, nome_categoria, eh_executado) VALUES
+(1, 'EXEC', TRUE),
+(2, 'NEXE', FALSE),
+(3, 'PGMQ', TRUE),
+(4, 'CAPEX', TRUE),
+(5, 'OPEX', TRUE),
+(6, 'TOI', TRUE),
+(7, 'NA', TRUE),
+(8, 'NI', FALSE),
+(9, 'NORM', TRUE),
+(10, 'VIST', TRUE),
+(11, 'ELIG', FALSE),
+(12, 'SO MEDIDOR', TRUE),
+(13, 'SO RAMAL', TRUE),
+(14, 'PRODUTIVO', TRUE),
+(15, 'IMPRODUTIVO', FALSE);
+
+CREATE TABLE IF NOT EXISTS finalizacoes (
+    id_finalizacao INTEGER PRIMARY KEY,
+    agrupamento_medidas VARCHAR(128) NOT NULL,
+    id_categoria INTEGER REFERENCES categorias(id_categoria)
+);
+
+CREATE TABLE IF NOT EXISTS finalizacoes_mestres (
+    id_finalizacao_pagamento INTEGER PRIMARY KEY,
+    id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao),
+    id_mestre INTEGER REFERENCES mestres(id_mestre),
+);
+
+CREATE TABLE IF NOT EXISTS dano_projeto (
+    id_dano_projeto INTEGER PRIMARY KEY,
+    dano VARCHAR(4) NOT NULL,
+    texto_breve_para_dano VARCHAR(64) NOT NULL,
+    id_projeto INTEGER REFERENCES projetos(id_projeto)
+);
+
+CREATE TABLE IF NOT EXISTS codigo_filtragem (
+    id_code_filtragem INTEGER PRIMARY KEY,
+    code VARCHAR(4) NOT NULL,
+    id_projeto INTEGER REFERENCES projetos(id_projeto)
+);
+
+CREATE TABLE IF NOT EXISTS servico_situacao (
+    id_servico_situacao INTEGER PRIMARY KEY,
+    nome_servico_situacao VARCHAR(16) NOT NULL
+);
+
+INSERT INTO servico_situacao (id_servico_situacao, nome_servico_situacao) VALUES
+(1, 'pendente'), (2, 'em rota'), (3, 'iniciado'),
+(4, 'concluído'), (5, 'não concluído'), (6, 'cancelado');
+
+CREATE TABLE IF NOT EXISTS servico_tipo (
+    id_servico_tipo INTEGER PRIMARY KEY,
+    nome_servico_tipo VARCHAR(64) NOT NULL
+);
+
+INSERT INTO servico_tipo (id_servico_tipo, nome_servico_tipo) VALUES
+(1, 'Início de turno'), (2, 'Intervalo para almoço'),
+(3, 'Indisponibilidade'), (4, 'Retorno para base');
+
+CREATE TABLE IF NOT EXISTS servico_fases (
+    id_servico_fase INTEGER PRIMARY KEY,
+    nome_servico_fase VARCHAR(16) NOT NULL
+);
+
+INSERT INTO servico_fases (id_servico_fase, nome_servico_fase) VALUES
+(1, 'Monofásico'), (2, 'Bifásico'), (3, 'Trifásico');
+
+CREATE TABLE IF NOT EXISTS servico_exatidao (
+    id_servico_exatidao INTEGER PRIMARY KEY,
+    nome_servico_exatidao VARCHAR(16) NOT NULL
+);
+
+INSERT INTO coordenadas_exatidao (id_coordenadas_exatidao, nome_coordenadas_exatidao) VALUES
+(1, 'Alto'), (2, 'Médio'), (3, 'Baixo');
+
+CREATE TABLE IF NOT EXISTS servico_cliente (
+    id_servico_cliente INTEGER PRIMARY KEY,
+    instalacao BIGINT NOT NULL,
+    nome VARCHAR(128) NOT NULL,
+    logradouro VARCHAR(64) NOT NULL,
+    num_edificio VARCHAR(32),
+    complemento VARCHAR(32)
+    area_trabalho INTEGER NOT NULL,
+    sub_bairro VARCHAR(32) NOT NULL,
+    cidade VARCHAR(32) NOT NULL,
+    estado VARCHAR(32) NOT NULL,
+    codigo_postal INTEGER DEFAULT 0,
+    telefone INTEGER DEFAULT 0,
+    celular INTEGER DEFAULT 0,
+    email VARCHAR(64) DEFAULT NULL,
+    fases INTEGER NOT NULL,
+    eh_encontrada_coordenadas BOOLEAN DEFAULT TRUE,
+    coordenada_x DOUBLE DEFAULT 0,
+    coordenada_y DOUBLE DEFAULT 0,
+    id_coordenadas_exatidao INTEGER DEFAULT 0,
+    FOREIGN KEY (id_coordenadas_exatidao)
+    REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
+);
+
+CREATE TABLE IF NOT EXISTS primeira_operacao_manual (
+    id_primeira_operacao_manual INTEGER PRIMARY KEY,
+    nome_primeira_operacao_manual VARCHAR(16) NOT NULL
+);
+
+INSERT INTO primeira_operacao_manual (id_primeira_operacao_manual, nome_primeira_operacao_manual) VALUES
+(1, 'Não agendado'), (2, 'Reordenado'), (3, 'Reatribuída');
+
+CREATE TABLE IF NOT EXISTS servico_roteamento (
+    id_servico_roteamento INTEGER PRIMARY KEY,
+    id_primeira_operacao_manual INTEGER NOT NULL,
+    primeira_operacao_manual_usuario_login VARCHAR(64) NOT NULL,
+    primeira_operacao_manual_usuario_nome VARCHAR(64) NOT NULL,
+    roteado_automaticamente_ate_o_momento DATE NOT NULL,
+    roteado_automaticamente_ate_o_recurso_id INTEGER NOT NULL,
+    roteado_automaticamente_ate_o_recurso_nome VARCHAR(32) NOT NULL,
+    id_recurso INTEGER NOT NULL,
+    primeira_operacao_manual_usuario INTEGER NOT NULL,
+    usuario_conclusao VARCHAR(16) DEFAULT NULL,
+    horario_em_rota TIMESTAMP DEFAULT NULL,
+    balde_de_origem VARCHAR(32) NOT NULL,
+    FOREIGN KEY (id_primeira_operacao_manual)
+    REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
+);
+
+CREATE TABLE IF NOT EXISTS servicos (
+    id_servico INTEGER PRIMARY KEY,
+    recurso VARCHAR(32) NOT NULL,
+    dia DATE NOT NULL,
+    id_atividade INTEGER NOT NULL,
+    id_servico_situacao INTEGER NOT NULL,
+    id_servico_cliente INTEGER DEFAULT NULL,
+    id_servico_roteamento INTEGER DEFAULT NULL,
     StartTime TIME NOT NULL,
     FinalTime TIME NOT NULL,
     StartFinal VARCHAR(),
@@ -115,6 +385,7 @@ CREATE TABLE IF NOT EXISTS servicos (
     AccountNumber BIGINT,
     WorkAbility VARCHAR,
     WorkArea INT,
+    ---
     FirstManualOperation VARCHAR,
     FirstManualOperationPerformedByUserLogin VARCHAR,
     FirstManualOperationPerformedByUserName VARCHAR,
@@ -131,6 +402,7 @@ CREATE TABLE IF NOT EXISTS servicos (
     CoordinateY DOUBLE PRECISION,
     CoordinateAccuracy VARCHAR,
     CoordinateStatus VARCHAR,
+    -- 
     ClosingCodes VARCHAR,
     LgCtrlTypeClosingOk VARCHAR,
     ClosedCodesFilledIn VARCHAR,
@@ -163,9 +435,11 @@ CREATE TABLE IF NOT EXISTS servicos (
     CHI INT,
     InterruptedTime INT,
     FinancialCompensationAmount INT,
+    -- TODO
     nome_arquivo VARCHAR(64) NOT NULL,
     id_composicao VARCHAR(32) NOT NULL,
     datahora TIMESTAMP NOT NULL,
+    eh_finalizado BOOLEAN DEFAULT TRUE,
     agrupamento_de_medidas VARCHAR(128),
     FOREIGN KEY (id_composicao) REFERENCES composicoes(id_composicao),
     FOREIGN KEY (agrupamento_de_medidas) REFERENCES finalizacoes(agrupamento_de_medidas),
@@ -173,92 +447,9 @@ CREATE TABLE IF NOT EXISTS servicos (
     FOREIGN KEY (id_status_servico) REFERENCES status_servicos(id_status_servico)
 );
 
-CREATE TABLE IF NOT EXISTS funcoes (
-    id_funcao INT PRIMARY KEY,
-    nome_funcao VARCHAR(32) NOT NULL,
-    descricao VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS situacoes (
-    id_situacao INT PRIMARY KEY,
-    nome_situacao VARCHAR(32) NOT NULL,
-    descricao VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS funcionarios (
-    matricula INT PRIMARY KEY,
-    nome VARCHAR(128) NOT NULL,
-    admissao DATE NOT NULL,
-    demissao DATE,
-    id_funcao INT NOT NULL,
-    id_situacao INT NOT NULL,
-    FOREIGN KEY (id_funcao) REFERENCES funcoes(id_funcao),
-    FOREIGN KEY (id_situacao) REFERENCES situacoes(id_situacao)
-);
-
-CREATE TABLE IF NOT EXISTS habilidades (
-    id_habilidade INT PRIMARY KEY,
-    nome_habilidade VARCHAR(32) NOT NULL,
-    descricao VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS equipes (
-    id_equipe INT PRIMARY KEY,
-    id_composicao VARCHAR(32) NOT NULL,
-    matricula INT NOT NULL,
-    id_funcao INT NOT NULL,
-    FOREIGN KEY (id_composicao) REFERENCES composicoes(id_composicao),
-    FOREIGN KEY (matricula) REFERENCES funcionarios(matricula),
-    FOREIGN KEY (id_funcao) REFERENCES funcoes(id_funcao)
-);
-
-CREATE TABLE IF NOT EXISTS funcionario_habilidades (
-    matricula INT NOT NULL,
-    id_habilidade INT NOT NULL,
-    PRIMARY KEY (matricula, id_habilidade),
-    FOREIGN KEY (matricula) REFERENCES funcionarios(matricula),
-    FOREIGN KEY (id_habilidade) REFERENCES habilidades(id_habilidade)
-);
 
 CREATE TABLE IF NOT EXISTS credenciais (
-    matricula INT PRIMARY KEY,
-    passhash VARCHAR(128) NOT NULL,
-    FOREIGN KEY (matricula) REFERENCES funcionarios(matricula)
-);
-
-CREATE TABLE IF NOT EXISTS regionais (
-    id_regional INT PRIMARY KEY,
-    nome_regional VARCHAR(32) NOT NULL,
-    descricao VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS viaturas (
-    adesivo INT PRIMARY KEY,
-    placa VARCHAR(8) NOT NULL,
-);
-
-CREATE TABLE IF NOT EXISTS atividades (
-    id_atividade INT PRIMARY KEY,
-    nome_atividade VARCHAR(32) NOT NULL,
-    descricao VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS supervisor_contratos (
-    id_supervisor_contrato INT PRIMARY KEY,
-    id_supervisor INT NOT NULL,
-    id_contrato NUMERIC(11, 1) NOT NULL,
-    FOREIGN KEY (id_supervisor) REFERENCES funcionarios(matricula),
-    FOREIGN KEY (id_contrato) REFERENCES contratos(id_contrato)
-);
-
-CREATE TABLE IF NOT EXISTS composicoes (
-    id_composicao VARCHAR(32) PRIMARY KEY,
-    adesivo INT NOT NULL,
-    id_atividade INT NOT NULL,
-    id_equipe INT NOT NULL,
-    id_regional INT NOT NULL,
-    FOREIGN KEY (id_viatura) REFERENCES viaturas(id_viatura),
-    FOREIGN KEY (id_atividade) REFERENCES atividades(id_atividade),
-    FOREIGN KEY (id_equipe) REFERENCES equipes(id_equipe),
-    FOREIGN KEY (id_regional) REFERENCES regionais(id_regional)
+    id_credencial INTEGER PRIMARY KEY,
+    id_funcionario INTEGER REFERENCES funcionario(id_funcionario),
+    passwordhash VARCHAR(32) NOT NULL
 );
