@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public class WorkOrderMapper : IEntityTypeConfiguration<WorkOrder>
+    public class WorkOrderMapper : IEntityTypeConfiguration<WorkOrderBase>
     {
-        public void Configure(EntityTypeBuilder<WorkOrder> builder)
+        public void Configure(EntityTypeBuilder<WorkOrderBase> builder)
         {
-            builder.ToTable("servicos");
+            builder.ToTable("servicos_base");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasColumnName("id_servicos")
