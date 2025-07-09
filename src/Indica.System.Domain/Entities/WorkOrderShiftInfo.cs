@@ -7,7 +7,5 @@ namespace Indica.System.Domain.Entities
         public int IdLeaderRegistration { get; set; }
         public int IdAuxiliaryRegistration { get; set; }
         public int IdTechnicalRegistration { get; set; }
-        public string ReasonForTimeInterval { get; set; }
-        public string? Observation { get; set; }
     }
 }
