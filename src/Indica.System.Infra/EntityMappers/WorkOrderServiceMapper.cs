@@ -60,6 +60,9 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(2)
                 .IsFixedLength()
                 .IsRequired(false);
+            builder.Property(x => x.BucketOrigin)
+                .HasColumnName("balde_origem")
+                .IsRequired();
             builder.Property(x => x.TotalCustomerDebts)
                 .HasColumnName("cliente_debitos")
                 .IsRequired(false);
