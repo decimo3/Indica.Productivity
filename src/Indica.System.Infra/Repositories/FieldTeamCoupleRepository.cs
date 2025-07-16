@@ -3,8 +3,8 @@ using Indica.System.Domain.Interfaces;
 
 namespace Indica.System.Infra.Repositories
 {
-    public class CoupleRepository : BaseRepository<Couple>, ICoupleRepository
+    public class FieldTeamCoupleRepository : BaseRepository<FieldTeamCouple>, IFieldTeamCoupleRepository
     {
-        public CoupleRepository(ProductivityContext context) : base(context) {}
+        public FieldTeamCoupleRepository(ProductivityContext context) : base(context) {}
     }
 }
