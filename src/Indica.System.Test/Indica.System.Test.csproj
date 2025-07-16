@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Sample\*" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Samples\**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
