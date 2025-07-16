@@ -24,7 +24,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.IdAuxiliaryRegistration)
                 .HasColumnName("id_matricula_auxiliares")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.IdTechnicalRegistration)
                 .HasColumnName("id_matricula_tecnico")
                 .IsRequired();

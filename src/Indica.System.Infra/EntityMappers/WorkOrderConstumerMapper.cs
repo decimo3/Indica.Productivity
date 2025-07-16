@@ -16,7 +16,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.InstallationNumber)
                 .HasColumnName("instalacao")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.CostumerName)
                 .HasColumnName("nome_cliente")
                 .HasMaxLength(128)
@@ -28,18 +28,18 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.BuildingNumberOrAcronym)
                 .HasColumnName("numero_de_rua")
                 .HasMaxLength(32)
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.NumberComplement)
                 .HasColumnName("complemento_de_numero")
                 .HasMaxLength(32)
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.SubNeighborhood)
                 .HasColumnName("subbairro")
                 .HasMaxLength(32)
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.WorkAreaNumber)
                 .HasColumnName("area_de_trabalho")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.CostumerCity)
                 .HasColumnName("cliente_cidade")
                 .HasMaxLength(32)
@@ -62,17 +62,17 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.CoordinateX)
                 .HasColumnName("coordenada_x")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.CoordinateY)
                 .HasColumnName("coordenada_y")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.IdCoordinateAccuracy)
                 .HasColumnName("id_coordenadas_precisao")
                 .HasMaxLength(5)
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.IsFoundCoordinateStatus)
                 .HasColumnName("eh_encontrada_coordenadas")
-                .IsRequired(false);
+                .IsRequired();
         }
     }
 }

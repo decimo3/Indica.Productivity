@@ -34,10 +34,10 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.DurationTime)
                 .HasColumnName("tempo_duracao")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.TravellingTime)
                 .HasColumnName("tempo_deslocamento")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.IdTypeOfActivity)
                 .HasColumnName("dano")
                 .HasMaxLength(4)
@@ -48,10 +48,10 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.EstimatedTravellingTime)
                 .HasColumnName("desloca_estimado")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.EstimatedDurationTime)
                 .HasColumnName("duracao_estimado")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.FileName)
                 .HasColumnName("nome_do_arquivo")
                 .HasMaxLength(64)
