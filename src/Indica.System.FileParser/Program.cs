@@ -34,15 +34,28 @@ namespace Indica.System.FileParser
             var type = typeof(T);
             var properties = type.GetProperties(BindingFlags.Public);
             var list = new List<T>();
+            object? converted;
             foreach (DataRow row in datatable.Rows)
             {
                 T item = new();
                 foreach (var property in properties)
                 {
                     var value = row[property.Name];
-                    if (value is null) continue;
-                    var converted = Convert.ChangeType(value, property.GetType(), null);
+                    if (value is null || value is DBNull) continue;
+                    if (property.PropertyType == typeof(DateOnly))
+                    {
+                        converted = DateOnly.FromDateTime((DateTime)value);
+                    }
+                    else if (property.PropertyType == typeof(TimeOnly))
+                    {
+                        converted = TimeOnly.FromDateTime((DateTime)value);
+                    }
+                    else
+                    {
+                        converted = Convert.ChangeType(value, property.PropertyType, null);
+                    }
                     property.SetValue(item, converted);
+                    converted = null;
                 }
                 list.Add(item);
             }
