@@ -22,16 +22,16 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(p => p.IdPaymentMaster)
                 .HasColumnName("id_mestre")
                 .IsRequired();
-            builder.Property(p => p.ValueLight)
+            builder.Property(p => p.IsCaminhao)
+                .HasColumnName("eh_caminhao")
+                .HasDefaultValue(false)
+                .IsRequired();
+            builder.Property(p => p.IsEspecial)
+                .HasColumnName("eh_especial")
+                .HasDefaultValue(false)
+                .IsRequired();
+            builder.Property(p => p.Valuation)
                 .HasColumnName("valor_leve")
-                .HasColumnType("decimal(18, 2)")
-                .IsRequired();
-            builder.Property(p => p.ValueHeavy)
-                .HasColumnName("valor_pesado")
-                .HasColumnType("decimal(18, 2)")
-                .IsRequired();
-            builder.Property(p => p.ValueSpecial)
-                .HasColumnName("valor_especial")
                 .HasColumnType("decimal(18, 2)")
                 .IsRequired();
             builder.HasOne<Contract>()
