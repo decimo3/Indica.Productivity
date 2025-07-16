@@ -53,7 +53,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdActivity)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasOne<Regional>()
+            builder.HasOne<FieldTeamRegional>()
                 .WithMany()
                 .HasForeignKey(x => x.IdRegion)
                 .OnDelete(DeleteBehavior.SetNull)
