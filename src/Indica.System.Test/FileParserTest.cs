@@ -15,7 +15,7 @@ namespace Indica.System.Test
             );
             var filepathJsonSample = Path.Combine(
                 AppContext.BaseDirectory, "Samples",
-                "FileParserExcelJsonFileSample.xlsx"
+                "FileParserExcelJsonFileSample.json"
             );
             var objListFromSample = JsonSerializer.Deserialize<List<FieldTeamDTO>>(filepathJsonSample);
             var objListToBeTested = ParseXLSX.ParseByFilepath<FieldTeamDTO>(filepathXlsxSample, "Planilha1");
