@@ -17,6 +17,7 @@ namespace Indica.System.Domain.Entities
         public string ParentActivityClosingCodesV03 { get; set; }
         public bool IsLgCtrlReprovedFlag { get; set; }
         public string TypeOfServiceNote { get; set; }
+        public string BucketOrigin { get; set; }
         public decimal TotalCustomerDebts { get; set; }
         public bool HasCustomerSignedToi { get; set; }
         public bool HasRefusedToSignToi { get; set; }
