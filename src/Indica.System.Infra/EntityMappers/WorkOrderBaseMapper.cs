@@ -46,9 +46,6 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.ActivityBookingTime)
                 .HasColumnName("tempo_de_reserva_da_atividade")
                 .IsRequired();
-            builder.Property(x => x.BucketOrigin)
-                .HasColumnName("balde_origem")
-                .IsRequired(false);
             builder.Property(x => x.EstimatedTravellingTime)
                 .HasColumnName("desloca_estimado")
                 .IsRequired(false);
