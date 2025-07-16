@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Data;
 using System.Reflection;
 using ExcelDataReader;
@@ -16,9 +16,17 @@ namespace Indica.System.FileParser
             {
                 throw new InvalidOperationException();
             }
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            var config = new ExcelDataSetConfiguration
+            {
+                ConfigureDataTable = _ => new ExcelDataTableConfiguration
+                {
+                    UseHeaderRow = true
+                }
+            };
             using var stream = File.Open(filepath, FileMode.Open, FileAccess.Read);
             using var reader = ExcelReaderFactory.CreateReader(stream);
-            var datatable = reader.AsDataSet().Tables[sheetname];
+            var datatable = reader.AsDataSet(config).Tables[sheetname];
             if (datatable is null)
             {
                 throw new InvalidOperationException("Planilha não encontrada!");
