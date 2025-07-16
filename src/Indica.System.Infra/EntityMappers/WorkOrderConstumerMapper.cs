@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public class WorkOrderCostumersMapper : IEntityTypeConfiguration<WorkOrderCostumer>
+    public class WorkOrderCostumerMapper : IEntityTypeConfiguration<WorkOrderCostumer>
     {
         public void Configure(EntityTypeBuilder<WorkOrderCostumer> builder)
         {
