@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public class CoupleMapper : IEntityTypeConfiguration<Couple>
+    public class FieldTeamCoupleMapper : IEntityTypeConfiguration<FieldTeamCouple>
     {
-        public void Configure(EntityTypeBuilder<Couple> builder)
+        public void Configure(EntityTypeBuilder<FieldTeamCouple> builder)
         {
             builder.ToTable("equipe");
             builder.HasKey(x => x.Id);
