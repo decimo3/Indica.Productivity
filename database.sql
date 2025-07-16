@@ -89,8 +89,6 @@ CREATE TABLE IF NOT EXISTS contrato_atividade (
 
 CREATE TABLE IF NOT EXISTS objetivos (
     id_objetivo INTEGER PRIMARY KEY,
-    id_contrato INTEGER REFERENCES contratos(id_contrato),
-    id_projeto INTEGER REFERENCES projetos(id_projeto),
     eh_caminhao BOOLEAN DEFAULT FALSE,
     eh_metade BOOLEAN DEFAULT FALSE,
     meta_valor_mensal NUMERIC DEFAULT 0,
@@ -98,26 +96,28 @@ CREATE TABLE IF NOT EXISTS objetivos (
     meta_apresentacao_util INTEGER DEFAULT 0,
     meta_apresentacao_feriado INTEGER DEFAULT 0,
     meta_execucoes_diaria INTEGER DEFAULT 0
+    id_contrato INTEGER REFERENCES contratos(id_contrato),
+    id_projeto INTEGER REFERENCES projetos(id_projeto),
 );
 
 INSERT INTO objetivos (id_objetivo, id_contrato, id_projeto, eh_caminhao, eh_metade, meta_valor_mensal, divisor_mensal_fixo, meta_apresentacao_util, meta_apresentacao_feriado, meta_execucoes_diaria) VALUES
-(1, 1, 1, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0),
-(2, 1, 2, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0),
-(3, 1, 2, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0),
-(4, 1, 3, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0),
-(5, 1, 3, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0),
-(6, 1, 3, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0),
-(7, 1, 4, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0),
-(8, 1, 4, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0),
-(9, 1, 4, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0),
-(10, 1, 5, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0),
-(11, 1, 6, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
-(12, 1, 7, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
-(13, 1, 8, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
-(14, 1, 9, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0),
-(15, 1, 10, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0),
-(16, 1, 11, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0),
-(17, 1, 12, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0);
+(1, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0, 1, 1),
+(2, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0, 1, 2),
+(3, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0, 1, 2),
+(4, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0, 1, 3),
+(5, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0, 1, 3),
+(6, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0, 1, 3),
+(7, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0, 1, 4),
+(8, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0, 1, 4),
+(9, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0, 1, 4),
+(10, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0,  1, 5),
+(11, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 6),
+(12, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 7),
+(13, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 8),
+(14, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 9),
+(15, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0,  1, 1),
+(16, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0,  1, 1),
+(17, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0,  1, 1);
 
 CREATE TABLE IF NOT EXISTS funcionario_situacao (
     id_funcionario_situacao INTEGER PRIMARY KEY,
@@ -192,12 +192,12 @@ CREATE TABLE IF NOT EXISTS composicoes (
     ordem INTEGER NOT NULL,
     placa VARCHAR(8) NOT NULL,
     recurso VARCHAR(32) NOT NULL,
-    id_atividade INTEGER REFERENCES atividades(id_atividade),
     telefone INTEGER NOT NULL,
-    id_regional INTEGER REFERENCES regionais(id_regional),
-    abreviatura VARCHAR(16) NOT NULL,
     eh_considerado BOOLEAN DEFAULT TRUE,
     eh_especial BOOLEAN DEFAULT FALSE
+    abreviatura VARCHAR(16) NOT NULL,
+    id_atividade INTEGER REFERENCES atividades(id_atividade),
+    id_regional INTEGER REFERENCES regionais(id_regional),
 );
 
 CREATE TABLE IF NOT EXISTS composicao_funcao (
