@@ -11,7 +11,6 @@ namespace Indica.System.Domain.Entities
         public TimeSpan DurationTime { get; set; }
         public TimeSpan TravellingTime { get; set; }
         public int IdTypeOfActivity { get; set; }
-        public string BucketOrigin { get; set; }
         public DateTime ActivityBookingTime { get; set; }
         public TimeSpan EstimatedTravellingTime { get; set; }
         public TimeSpan EstimatedDurationTime { get; set; }
