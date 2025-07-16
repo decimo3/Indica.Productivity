@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text;
 using System.Data;
 using System.Reflection;
 using ExcelDataReader;
