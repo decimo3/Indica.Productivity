@@ -33,7 +33,7 @@ namespace Indica.System.FileParser
                 throw new InvalidOperationException("Planilha não encontrada!");
             }
             var type = typeof(T);
-            var properties = type.GetProperties(BindingFlags.Public);
+            var properties = type.GetProperties();
             var list = new List<T>();
             object? converted;
             foreach (DataRow row in datatable.Rows)
