@@ -22,7 +22,7 @@ namespace Indica.System.Test
             var objListFromSample = JsonSerializer.Deserialize<List<FieldTeamDTO>>(JsonSampleContent);
             if (objListFromSample is null || objListFromSample.Count == 0) Assert.Fail();
             var objListToBeTested = ParseXLSX.ParseByFilepath<FieldTeamDTO>(filepathXlsxSample, "Planilha1");
-            Assert.Equal(objListFromSample, objListToBeTested);
+            objListToBeTested.Should().BeEquivalentTo(objListFromSample, options => options.WithTracing());
         }
     }
 }
