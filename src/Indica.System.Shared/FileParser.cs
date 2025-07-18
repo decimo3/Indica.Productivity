@@ -6,7 +6,7 @@ using ExcelDataReader;
 using Indica.System.Shared.Interfaces;
 namespace Indica.System.Shared
 {
-    public class FileParser
+    public class FileParser : IFileParser, IDisposable
     {
         private IExcelDataReader? reader = null;
         private DataTable? datatable = null;
@@ -65,6 +65,32 @@ namespace Indica.System.Shared
                 list.Add(item);
             }
             return list;
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (datatable is not null)
+                {
+                    datatable.Dispose();
+                    datatable = null;
+                }
+                if (reader is not null)
+                {
+                    reader.Dispose();
+                    reader = null;
+                }
+                if (stream is not null)
+                {
+                    stream.Dispose();
+                    stream = null;
+                }
+            }
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
