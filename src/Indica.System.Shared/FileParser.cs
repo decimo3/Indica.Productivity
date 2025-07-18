@@ -17,10 +17,7 @@ namespace Indica.System.Shared
             {
                 throw new InvalidOperationException();
             }
-            if (!string.Equals(Path.GetExtension(filepath), ".xlsx"))
-            {
-                throw new InvalidOperationException();
-            }
+
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var config = new ExcelDataSetConfiguration
             {
@@ -29,9 +26,21 @@ namespace Indica.System.Shared
                     UseHeaderRow = true
                 }
             };
-            using var stream = File.Open(filepath, FileMode.Open, FileAccess.Read);
-            using var reader = ExcelReaderFactory.CreateReader(stream);
-            var datatable = reader.AsDataSet(config).Tables[sheetname];
+            stream = File.Open(filepath, FileMode.Open, FileAccess.Read);
+            if (string.Equals(Path.GetExtension(filepath), ".xlsx"))
+            {
+                reader = ExcelReaderFactory.CreateReader(stream);
+                datatable = reader.AsDataSet(config).Tables[0];
+            }
+            else if (string.Equals(Path.GetExtension(filepath), ".csv"))
+            {
+                reader = ExcelReaderFactory.CreateCsvReader(stream);
+                datatable = reader.AsDataSet(config).Tables[0];
+            }
+            else
+            {
+                throw new InvalidOperationException("Formato de arquivo não suportado!");
+            }
             if (datatable is null)
             {
                 throw new InvalidOperationException("Planilha não encontrada!");
