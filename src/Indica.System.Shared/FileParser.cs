@@ -3,7 +3,8 @@ using System.Text;
 using System.Data;
 using System.Reflection;
 using ExcelDataReader;
-namespace Indica.System.FileParser
+using Indica.System.Shared.Interfaces;
+namespace Indica.System.Shared
 {
     public static class ParseXLSX
     {
