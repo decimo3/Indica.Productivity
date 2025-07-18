@@ -25,5 +25,24 @@ namespace Indica.System.Test
             var objListToBeTested = fileparser.ParseByFilepath<FieldTeamDTO>(filepathXlsxSample);
             objListToBeTested.Should().BeEquivalentTo(objListFromSample, options => options.WithTracing());
         }
+        [Fact]
+        public void ParseCSV_ValidFile_Test()
+        {
+            var filepathCsvSample = Path.Combine(
+                AppContext.BaseDirectory, "Samples",
+                "FileParserExcelCsvFileSample.csv"
+            );
+            var filepathJsonSample = Path.Combine(
+                AppContext.BaseDirectory, "Samples",
+                "FileParserExcelJsonFileSample.json"
+            );
+            if (!File.Exists(filepathCsvSample) || !File.Exists(filepathJsonSample)) Assert.Fail();
+            var JsonSampleContent = File.ReadAllText(filepathJsonSample);
+            var objListFromSample = JsonSerializer.Deserialize<List<FieldTeamDTO>>(JsonSampleContent);
+            if (objListFromSample is null || objListFromSample.Count == 0) Assert.Fail();
+            using var fileparser = new FileParser();
+            var objListToBeTested = fileparser.ParseByFilepath<FieldTeamDTO>(filepathCsvSample);
+            objListToBeTested.Should().BeEquivalentTo(objListFromSample, options => options.WithTracing());
+        }        
     }
 }
