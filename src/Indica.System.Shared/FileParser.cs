@@ -6,9 +6,12 @@ using ExcelDataReader;
 using Indica.System.Shared.Interfaces;
 namespace Indica.System.Shared
 {
-    public static class ParseXLSX
+    public class FileParser
     {
-        public static List<T> ParseByFilepath<T>(string filepath, string sheetname) where T : new()
+        private IExcelDataReader? reader = null;
+        private DataTable? datatable = null;
+        private Stream? stream = null;
+        public List<T> ParseByFilepath<T>(string filepath) where T : new()
         {
             if (!File.Exists(filepath))
             {
