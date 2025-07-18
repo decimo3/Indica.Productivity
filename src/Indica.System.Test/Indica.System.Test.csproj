@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Indica.System.FileParser\Indica.System.FileParser.csproj" />
+    <ProjectReference Include="..\Indica.System.Shared\Indica.System.Shared.csproj" />
     <ProjectReference Include="..\Indica.System.Application\Indica.System.Application.csproj" />
   </ItemGroup>
 
