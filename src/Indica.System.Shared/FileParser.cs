@@ -58,6 +58,8 @@ namespace Indica.System.Shared
                     if (value is null || value is DBNull) continue;
                     if (property.PropertyType == typeof(DateOnly))
                     {
+                        if (value.GetType() == typeof(String))
+                            value = DateTime.Parse((string)value);
                         converted = DateOnly.FromDateTime((DateTime)value);
                     }
                     else if (property.PropertyType == typeof(TimeOnly))
