@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.System.API", "src\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.System.Test", "src\Indica.System.Test\Indica.System.Test.csproj", "{D144C0B2-6758-4FF4-ABE0-A02BB468E5E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.System.FileParser", "src\Indica.System.FileParser\Indica.System.FileParser.csproj", "{76B75130-99C7-4A32-92AD-B9F28652AFA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.System.Shared", "src\Indica.System.Shared\Indica.System.Shared.csproj", "{76B75130-99C7-4A32-92AD-B9F28652AFA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
