@@ -80,9 +80,12 @@ namespace Indica.System.Shared
             foreach (DataRow row in datatable.Rows)
             {
                 T item = new();
-                foreach (var property in properties)
+                foreach (DataColumn header in datatable.Columns)
                 {
-                    var value = row[property.Name];
+                    var propertyName = ToPascalPropertyName(header.ColumnName);
+                    var property = type.GetProperty(propertyName);
+                    if (property is null) continue;
+                    var value = row[header.ColumnName];
                     if (value is null || value is DBNull) continue;
                     if (property.PropertyType == typeof(DateOnly))
                     {
