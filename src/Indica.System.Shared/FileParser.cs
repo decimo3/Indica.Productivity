@@ -2,6 +2,8 @@ using System.IO;
 using System.Text;
 using System.Data;
 using System.Reflection;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using ExcelDataReader;
 using Indica.System.Shared.Interfaces;
 namespace Indica.System.Shared
@@ -11,6 +13,32 @@ namespace Indica.System.Shared
         private IExcelDataReader? reader = null;
         private DataTable? datatable = null;
         private Stream? stream = null;
+        public static string ToPascalPropertyName(string input)
+        {
+            var result = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+            // Normalize and remove diacritics
+            foreach (char c in input.Normalize(NormalizationForm.FormD))
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    result.Append(c);
+            }
+            // Remove non-letter/digit characters
+            var ascii = Regex.Replace(result.ToString(), @"[^a-zA-Z0-9\s]", " ");
+            result.Clear();
+            // Split, capitalize, and combine
+            var parts = ascii.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var part in parts)
+            {
+                result.Append(char.ToUpperInvariant(part[0]));
+                if (part.Length > 1)
+                {
+                    result.Append(part.Substring(1).ToLowerInvariant());
+                }
+            }
+            return result.ToString();
+        }
         public List<T> ParseByFilepath<T>(string filepath) where T : new()
         {
             if (!File.Exists(filepath))
