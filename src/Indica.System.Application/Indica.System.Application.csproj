@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Indica.System.Domain\Indica.System.Domain.csproj" />
+	  <ProjectReference Include="..\Indica.System.Shared\Indica.System.Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
