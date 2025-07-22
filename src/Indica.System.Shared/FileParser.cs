@@ -74,7 +74,6 @@ namespace Indica.System.Shared
                 throw new InvalidOperationException("Planilha não encontrada!");
             }
             var type = typeof(T);
-            var properties = type.GetProperties();
             var list = new List<T>();
             object? converted;
             foreach (DataRow row in datatable.Rows)
@@ -83,7 +82,11 @@ namespace Indica.System.Shared
                 foreach (DataColumn header in datatable.Columns)
                 {
                     var propertyName = ToPascalPropertyName(header.ColumnName);
-                    var property = type.GetProperty(propertyName);
+                    // get property by aliases
+                    var property = type.GetProperty(propertyName) ?? type.GetProperties()
+                        .FirstOrDefault(p => p.GetCustomAttributes(typeof(AliasAttribute), true).Any(attr =>
+                            ((AliasAttribute)attr).Name.Equals(header.ColumnName, StringComparison.OrdinalIgnoreCase) ||
+                            ((AliasAttribute)attr).Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase)));
                     if (property is null) continue;
                     var value = row[header.ColumnName];
                     if (value is null || value is DBNull) continue;
