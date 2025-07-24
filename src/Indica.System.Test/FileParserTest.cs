@@ -11,11 +11,11 @@ namespace Indica.System.Test
         {
             var filepathXlsxSample = Path.Combine(
                 AppContext.BaseDirectory, "Samples",
-                "FileParserExcelXlsxFileSample.xlsx"
+                "FileParserExcelFileSample.xlsx"
             );
             var filepathJsonSample = Path.Combine(
                 AppContext.BaseDirectory, "Samples",
-                "FileParserExcelJsonFileSample.json"
+                "FileParserExcelFileSample.json"
             );
             if (!File.Exists(filepathXlsxSample) || !File.Exists(filepathJsonSample)) Assert.Fail();
             var JsonSampleContent = File.ReadAllText(filepathJsonSample);
@@ -30,11 +30,11 @@ namespace Indica.System.Test
         {
             var filepathCsvSample = Path.Combine(
                 AppContext.BaseDirectory, "Samples",
-                "FileParserExcelCsvFileSample.csv"
+                "FileParserReportFileSample.csv"
             );
             var filepathJsonSample = Path.Combine(
                 AppContext.BaseDirectory, "Samples",
-                "FileParserExcelJsonFileSample.json"
+                "FileParserReportFileSample.json"
             );
             if (!File.Exists(filepathCsvSample) || !File.Exists(filepathJsonSample)) Assert.Fail();
             var JsonSampleContent = File.ReadAllText(filepathJsonSample);
