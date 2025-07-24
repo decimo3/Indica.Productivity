@@ -75,7 +75,6 @@ namespace Indica.System.Shared
             }
             var type = typeof(T);
             var list = new List<T>();
-            object? converted;
             foreach (DataRow row in datatable.Rows)
             {
                 T item = new();
@@ -90,22 +89,8 @@ namespace Indica.System.Shared
                     if (property is null) continue;
                     var value = row[header.ColumnName];
                     if (value is null || value is DBNull) continue;
-                    if (property.PropertyType == typeof(DateOnly))
-                    {
-                        if (value.GetType() == typeof(String))
-                            value = DateTime.Parse((string)value);
-                        converted = DateOnly.FromDateTime((DateTime)value);
-                    }
-                    else if (property.PropertyType == typeof(TimeOnly))
-                    {
-                        converted = TimeOnly.FromDateTime((DateTime)value);
-                    }
-                    else
-                    {
-                        converted = Convert.ChangeType(value, property.PropertyType, null);
-                    }
-                    property.SetValue(item, converted);
-                    converted = null;
+                    property.SetValue(item, Converter.GetDesiredType(property.PropertyType, value));
+                    value = null;
                 }
                 list.Add(item);
             }
