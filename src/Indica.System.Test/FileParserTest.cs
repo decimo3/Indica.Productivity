@@ -38,10 +38,10 @@ namespace Indica.System.Test
             );
             if (!File.Exists(filepathCsvSample) || !File.Exists(filepathJsonSample)) Assert.Fail();
             var JsonSampleContent = File.ReadAllText(filepathJsonSample);
-            var objListFromSample = JsonSerializer.Deserialize<List<FieldTeamDTO>>(JsonSampleContent);
+            var objListFromSample = JsonSerializer.Deserialize<List<WorkOrderDTO>>(JsonSampleContent);
             if (objListFromSample is null || objListFromSample.Count == 0) Assert.Fail();
             using var fileparser = new FileParser();
-            var objListToBeTested = fileparser.ParseByFilepath<FieldTeamDTO>(filepathCsvSample);
+            var objListToBeTested = fileparser.ParseByFilepath<WorkOrderDTO>(filepathCsvSample);
             objListToBeTested.Should().BeEquivalentTo(objListFromSample, options => options.WithTracing());
         }        
     }
