@@ -1,0 +1,118 @@
+﻿namespace Indica.System.Shared
+{
+    public static class Converter
+    {
+        private static string ExtractDigits(string input) =>
+            new(input.Where(char.IsDigit).ToArray());
+        private static string ExtractDigitsAndDot(string input) =>
+            new(input.Where(c => char.IsDigit(c) || c == '.').ToArray());
+        public static string GetString(object value)
+        {
+            return value?.ToString() ?? string.Empty;
+        }
+        public static int GetInt32(object value)
+        {
+            if (value is int i) return i;
+            if (value is long l) return (int)l;
+            if (value is double d) return (int)d;
+            if (value is string s)
+                return int.TryParse(ExtractDigits(s), out int result) ? result : 0;
+            return 0;
+        }
+        public static long GetInt64(object value)
+        {
+            if (value is long l) return l;
+            if (value is int i) return i;
+            if (value is double d) return (long)d;
+            if (value is string s)
+                return long.TryParse(ExtractDigits(s), out long result) ? result : 0;
+            return 0;
+        }
+        public static float GetFloat(object value)
+        {
+            if (value is float f) return f;
+            if (value is double d) return (float)d;
+            if (value is string s)
+                return float.TryParse(ExtractDigitsAndDot(s), out float result) ? result : 0;
+            return 0;
+        }
+        public static double GetDouble(object value)
+        {
+            if (value is double d) return d;
+            if (value is float f) return f;
+            if (value is string s)
+                return double.TryParse(ExtractDigitsAndDot(s), out double result) ? result : 0;
+            return 0;
+        }
+        public static DateTime GetDateTime(object value)
+        {
+            if (value is DateTime dt) return dt;
+            if (value is string s && DateTime.TryParse(s, out DateTime result))
+                return result;
+            return DateTime.MinValue;
+        }
+        public static DateOnly GetDateOnly(object value)
+        {
+            if (value is DateTime dt) return DateOnly.FromDateTime(dt);
+            if (value is string s && DateOnly.TryParse(s, out DateOnly result))
+                return result;
+            return DateOnly.MinValue;
+        }
+        public static TimeOnly GetTimeOnly(object value)
+        {
+            if (value is DateTime dt) return TimeOnly.FromDateTime(dt);
+            if (value is string s && TimeOnly.TryParse(s, out TimeOnly result))
+                return result;
+            return TimeOnly.MinValue;
+        }
+        public static TimeSpan GetTimeSpan(object value)
+        {
+            if (value is TimeSpan ts) return ts;
+            if (value is int minutes) return TimeSpan.FromMinutes(minutes);
+            if (value is string s && TimeSpan.TryParse(s, out TimeSpan result))
+                return result;
+            return TimeSpan.MinValue;
+        }
+        public static object? GetDesiredType(Type targetType, object value)
+        {
+            if (value == null) return null;
+            try
+            {
+                if (targetType == typeof(string))
+                    return value?.ToString() ?? string.Empty;
+
+                if (targetType == typeof(int))
+                    return GetInt32(value);
+
+                if (targetType == typeof(long))
+                    return GetInt64(value);
+
+                if (targetType == typeof(float))
+                    return GetFloat(value);
+
+                if (targetType == typeof(double))
+                    return GetDouble(value);
+
+                if (targetType == typeof(DateTime))
+                    return GetDateTime(value);
+
+                if (targetType == typeof(DateOnly))
+                    return GetDateOnly(value);
+
+                if (targetType == typeof(TimeOnly))
+                    return GetTimeOnly(value);
+
+                if (targetType == typeof(TimeSpan))
+                    return GetTimeSpan(value);
+
+                return null;
+            }
+            catch
+            {
+                // Optionally log or handle conversion error
+                return null;
+            }
+
+        }
+    }
+}
