@@ -81,7 +81,7 @@ namespace Indica.System.Shared
                 foreach (DataColumn header in datatable.Columns)
                 {
                     var propertyName = ToPascalPropertyName(header.ColumnName);
-                    // get property by aliases
+                    // get property by property name or aliases
                     var property = type.GetProperty(propertyName) ?? type.GetProperties()
                         .FirstOrDefault(p => p.GetCustomAttributes(typeof(AliasAttribute), true).Any(attr =>
                             ((AliasAttribute)attr).Name.Equals(header.ColumnName, StringComparison.OrdinalIgnoreCase) ||
