@@ -12,21 +12,21 @@ namespace Indica.System.Application.DTO
         [Alias("Status da Atividade")]
         public string SituationName { get; set; }
         [Alias("Nome")]
-        public string? CostumerName { get; set; }
+        public string CostumerName { get; set; }
         [Alias("Endereço")]
-        public string? CostumerAddress { get; set; }
+        public string CostumerAddress { get; set; }
         [Alias("Cidade")]
-        public string? CostumerCity { get; set; }
+        public string CostumerCity { get; set; }
         [Alias("Estado")]
-        public string? CostumerState { get; set; }
+        public string CostumerState { get; set; }
         [Alias("CEP/Código Postal")]
-        public int? CostumerPostalCode { get; set; }
+        public int CostumerPostalCode { get; set; }
         [Alias("Telefone")]
-        public long? CostumerTelephone { get; set; }
+        public long CostumerTelephone { get; set; }
         [Alias("Telefone Celular")]
-        public long? CostumerCellphone { get; set; }
+        public long CostumerCellphone { get; set; }
         [Alias("E-mail")]
-        public string? CostumerEmail { get; set; }
+        public string CostumerEmail { get; set; }
         [Alias("Início")]
         public TimeOnly StartTime { get; set; }
         [Alias("Fim")]
