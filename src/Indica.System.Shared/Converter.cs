@@ -92,7 +92,7 @@ namespace Indica.System.Shared
                 if (TimeSpan.TryParseExact(s, @"hh\:mm", null, out result))
                     return result;
             }
-            return TimeSpan.MinValue;
+            return TimeSpan.Zero;
         }
 
         public static bool? GetBoolean(object value)
