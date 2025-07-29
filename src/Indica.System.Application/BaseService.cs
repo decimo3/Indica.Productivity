@@ -9,7 +9,7 @@ namespace Indica.System.Application
 {
     public class BaseService<T, Y> : IBaseService<T, Y>
         where T : EntityBaseDTO, new()
-        where Y : class
+        where Y : EntityBase, new()
     {
         private readonly IBaseRepository<Y> _repository;
         private readonly IMapper _mapper;
@@ -104,8 +104,9 @@ namespace Indica.System.Application
 
         public virtual async Task<int> AddRangeAsync(Stream arquivo, string filename)
         {
-            var entities = _fileParser.ParseByFilepath<T>(arquivo, filename);
-            return await AddRangeAsync(entities);
+            var entities = _fileParser.ParseByFilepath<Y>(arquivo, filename);
+            var entitiesMapped = _mapper.Map<List<T>>(entities);
+            return await AddRangeAsync(entitiesMapped);
         }
     }
 }
