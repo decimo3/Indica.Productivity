@@ -74,6 +74,7 @@ namespace Indica.System.Shared
             foreach (DataRow row in datatable.Rows)
             {
                 T item = new();
+                var propertiesAdded = 0;
                 foreach (DataColumn header in datatable.Columns)
                 {
                     var propertyName = ToPascalPropertyName(header.ColumnName);
@@ -86,8 +87,11 @@ namespace Indica.System.Shared
                     var value = row[header.ColumnName];
                     if (value is null || value is DBNull) continue;
                     property.SetValue(item, Converter.GetDesiredType(property.PropertyType, value));
+                    propertiesAdded++;
                     value = null;
                 }
+                if (propertiesAdded == 0)
+                    throw new InvalidOperationException($"Nenhuma propriedade mapeada para a classe {type.Name} na planilha {filename}!");
                 list.Add(item);
             }
             return list;
