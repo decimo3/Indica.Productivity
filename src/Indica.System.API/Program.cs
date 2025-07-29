@@ -4,6 +4,8 @@ using Indica.System.Application.Services;
 using Indica.System.Domain.Interfaces;
 using Indica.System.Infra;
 using Indica.System.Infra.Repositories;
+using Indica.System.Shared;
+using Indica.System.Shared.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Indica.System.API
@@ -44,6 +46,7 @@ namespace Indica.System.API
             #endregion
 
             #region SERVICES
+            builder.Services.AddScoped<IFileParser, FileParser>();
             builder.Services.AddScoped<IContractService, ContractService>();
             builder.Services.AddScoped<IEmployerService, EmployerService>();
             builder.Services.AddScoped<IPaymentService, PaymentService>();
