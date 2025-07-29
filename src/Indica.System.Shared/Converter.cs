@@ -1,4 +1,6 @@
-﻿namespace Indica.System.Shared
+﻿using System.Globalization;
+
+namespace Indica.System.Shared
 {
     public static class Converter
     {
@@ -33,7 +35,7 @@
             if (value is float f) return f;
             if (value is double d) return (float)d;
             if (value is string s)
-                return float.TryParse(ExtractDigitsAndDot(s), out float result) ? result : 0;
+                return float.TryParse(ExtractDigitsAndDot(s), CultureInfo.InvariantCulture, out float result) ? result : 0;
             return 0;
         }
         public static double GetDouble(object value)
@@ -41,7 +43,7 @@
             if (value is double d) return d;
             if (value is float f) return f;
             if (value is string s)
-                return double.TryParse(ExtractDigitsAndDot(s), out double result) ? result : 0;
+                return double.TryParse(ExtractDigitsAndDot(s), CultureInfo.InvariantCulture, out double result) ? result : 0;
             return 0;
         }
         public static DateTime GetDateTime(object value)
