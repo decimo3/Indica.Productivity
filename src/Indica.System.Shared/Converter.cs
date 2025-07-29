@@ -81,6 +81,7 @@ namespace Indica.System.Shared
         public static TimeSpan GetTimeSpan(object value)
         {
             if (value is TimeSpan ts) return ts;
+            if (value is DateTime dt) return dt.TimeOfDay;
             if (value is int minutes) return TimeSpan.FromMinutes(minutes);
             if (value is double min) return TimeSpan.FromMinutes(min);
             if (value is string s)
