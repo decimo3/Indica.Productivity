@@ -17,7 +17,7 @@ namespace Indica.System.Shared
         private static string ExtractDigits(string input) =>
             new(input.Where(char.IsDigit).ToArray());
         private static string ExtractDigitsAndDot(string input) =>
-            new(input.Where(c => char.IsDigit(c) || c == '.').ToArray());
+            new(input.Where(c => char.IsDigit(c) || c == '.' || c == '-').ToArray());
         public static string GetString(object value)
         {
             return value?.ToString() ?? string.Empty;
