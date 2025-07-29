@@ -59,6 +59,7 @@ namespace Indica.System.Shared
         public static DateTime GetDateTime(object value)
         {
             if (value is DateTime dt) return dt;
+            if (value is double d) return DateTime.FromOADate(d);
             if (value is string s && DateTime.TryParse(s, out DateTime result))
                 return result;
             return DateTime.MinValue;
