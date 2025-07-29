@@ -37,10 +37,11 @@ namespace Indica.System.Shared
             }
             return result.ToString();
         }
-        public List<T> ParseByFilepath<T>(string filepath) where T : new()
+        public List<T> ParseByFilepath<T>(Stream stream, string filename) where T : new()
         {
-            if (!File.Exists(filepath))
-                throw new InvalidOperationException("Arquivo não encontrado!");
+            ArgumentNullException.ThrowIfNull(filename);
+            if (stream is null || stream.Length == 0 || !stream.CanRead)
+                throw new ArgumentException("O fluxo de dados é inválido!");
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var config = new ExcelDataSetConfiguration
@@ -50,8 +51,7 @@ namespace Indica.System.Shared
                     UseHeaderRow = true
                 }
             };
-            stream = File.Open(filepath, FileMode.Open, FileAccess.Read);
-            if (string.Equals(Path.GetExtension(filepath), ".xlsx"))
+            if (string.Equals(Path.GetExtension(filename), ".xlsx"))
             {
                 reader = ExcelReaderFactory.CreateReader(stream);
                 if (reader.AsDataSet().Tables.Count == 0)
@@ -60,7 +60,7 @@ namespace Indica.System.Shared
                     throw new InvalidOperationException("Somente uma planilha é suportada!");
                 datatable = reader.AsDataSet(config).Tables[0];
             }
-            else if (string.Equals(Path.GetExtension(filepath), ".csv"))
+            else if (string.Equals(Path.GetExtension(filename), ".csv"))
             {
                 reader = ExcelReaderFactory.CreateCsvReader(stream);
                 datatable = reader.AsDataSet(config).Tables[0];
