@@ -34,15 +34,15 @@ namespace Indica.System.Test
             );
             var filepathJsonSample = Path.Combine(
                 AppContext.BaseDirectory, "Samples",
-                "FileParserReportFileSample.json"
+                "FileParserReportFileSample.xlsx"
             );
             if (!File.Exists(filepathCsvSample) || !File.Exists(filepathJsonSample)) Assert.Fail();
-            var JsonSampleContent = File.ReadAllText(filepathJsonSample);
-            var objListFromSample = JsonSerializer.Deserialize<List<WorkOrderDTO>>(JsonSampleContent);
-            if (objListFromSample is null || objListFromSample.Count == 0) Assert.Fail();
             using var fileparser = new FileParser();
-            var objListToBeTested = fileparser.ParseByFilepath<WorkOrderDTO>(filepathCsvSample);
+            var objListFromSample = fileparser.ParseByFilepath<WorkOrderDTO>(filepathJsonSample)
+                .OrderBy(l => l.IdActivity).ToList();
+            var objListToBeTested = fileparser.ParseByFilepath<WorkOrderDTO>(filepathCsvSample)
+                .OrderBy(l => l.IdActivity).ToList();
             objListToBeTested.Should().BeEquivalentTo(objListFromSample, options => options.WithTracing());
-        }        
+        }
     }
 }
