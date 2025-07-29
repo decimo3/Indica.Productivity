@@ -12,30 +12,6 @@ namespace Indica.System.Shared
     {
         private IExcelDataReader? reader = null;
         private DataTable? datatable = null;
-        public static string ToPascalPropertyName(string input)
-        {
-            var result = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(input))
-                return string.Empty;
-            // Normalize and remove diacritics
-            foreach (char c in input.Normalize(NormalizationForm.FormD))
-            {
-                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-                    result.Append(c);
-            }
-            // Remove non-letter/digit characters
-            var ascii = Regex.Replace(result.ToString(), @"[^a-zA-Z0-9\s]", " ");
-            result.Clear();
-            // Split, capitalize, and combine
-            var parts = ascii.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var part in parts)
-            {
-                result.Append(char.ToUpperInvariant(part[0]));
-                if (part.Length > 1)
-                    result.Append(part.Substring(1).ToLowerInvariant());
-            }
-            return result.ToString();
-        }
         public List<T> ParseByFilepath<T>(Stream stream, string filename) where T : new()
         {
             ArgumentNullException.ThrowIfNull(filename);
@@ -77,12 +53,9 @@ namespace Indica.System.Shared
                 var propertiesAdded = 0;
                 foreach (DataColumn header in datatable.Columns)
                 {
-                    var propertyName = ToPascalPropertyName(header.ColumnName);
-                    // get property by property name or aliases
-                    var property = type.GetProperty(propertyName) ?? properties.FirstOrDefault(
+                    var property = type.GetProperty(header.ColumnName) ?? properties.FirstOrDefault(
                         p => p.GetCustomAttributes(typeof(AliasAttribute), true).Any(attr =>
-                            ((AliasAttribute)attr).Name.Equals(header.ColumnName, StringComparison.OrdinalIgnoreCase) ||
-                            ((AliasAttribute)attr).Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase)));
+                            ((AliasAttribute)attr).Name.Equals(header.ColumnName, StringComparison.OrdinalIgnoreCase)));
                     if (property is null) continue;
                     var value = row[header.ColumnName];
                     if (value is null || value is DBNull) continue;
