@@ -33,18 +33,14 @@ namespace Indica.System.Shared
             {
                 result.Append(char.ToUpperInvariant(part[0]));
                 if (part.Length > 1)
-                {
                     result.Append(part.Substring(1).ToLowerInvariant());
-                }
             }
             return result.ToString();
         }
         public List<T> ParseByFilepath<T>(string filepath) where T : new()
         {
             if (!File.Exists(filepath))
-            {
-                throw new InvalidOperationException();
-            }
+                throw new InvalidOperationException("Arquivo não encontrado!");
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var config = new ExcelDataSetConfiguration
@@ -59,13 +55,9 @@ namespace Indica.System.Shared
             {
                 reader = ExcelReaderFactory.CreateReader(stream);
                 if (reader.AsDataSet().Tables.Count == 0)
-                {
                     throw new InvalidOperationException("Planilha não encontrada!");
-                }
                 if (reader.AsDataSet().Tables.Count > 1)
-                {
                     throw new InvalidOperationException("Somente uma planilha é suportada!");
-                }
                 datatable = reader.AsDataSet(config).Tables[0];
             }
             else if (string.Equals(Path.GetExtension(filepath), ".csv"))
@@ -74,13 +66,9 @@ namespace Indica.System.Shared
                 datatable = reader.AsDataSet(config).Tables[0];
             }
             else
-            {
                 throw new InvalidOperationException("Formato de arquivo não suportado!");
-            }
             if (datatable is null)
-            {
                 throw new InvalidOperationException("Planilha não encontrada!");
-            }
             var type = typeof(T);
             var list = new List<T>();
             var properties = type.GetProperties();
@@ -109,23 +97,14 @@ namespace Indica.System.Shared
         {
             if (disposing)
             {
-                if (datatable is not null)
-                {
-                    datatable.Dispose();
-                    datatable = null;
-                }
-                if (reader is not null)
-                {
-                    reader.Dispose();
-                    reader = null;
-                }
-                if (stream is not null)
-                {
-                    stream.Dispose();
-                    stream = null;
+                datatable?.Dispose();
+                datatable = null;
+                reader?.Dispose();
+                reader = null;
+                stream?.Dispose();
+                stream = null;
                 }
             }
-        }
         public void Dispose()
         {
             Dispose(true);
