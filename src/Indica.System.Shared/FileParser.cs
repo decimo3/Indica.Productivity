@@ -93,6 +93,18 @@ namespace Indica.System.Shared
             }
             return list;
         }
+
+        public List<T> ParseByFilepath<T>(string filepath) where T : new()
+        {
+            ArgumentNullException.ThrowIfNull(filepath);
+            if (!File.Exists(filepath))
+                throw new FileNotFoundException("Arquivo não encontrado!", filepath);
+            using (stream = File.Open(filepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                return ParseByFilepath<T>(stream, Path.GetFileName(filepath));
+            }
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
