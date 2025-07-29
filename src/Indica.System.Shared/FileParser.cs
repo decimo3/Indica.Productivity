@@ -75,6 +75,7 @@ namespace Indica.System.Shared
             }
             var type = typeof(T);
             var list = new List<T>();
+            var properties = type.GetProperties();
             foreach (DataRow row in datatable.Rows)
             {
                 T item = new();
@@ -82,8 +83,8 @@ namespace Indica.System.Shared
                 {
                     var propertyName = ToPascalPropertyName(header.ColumnName);
                     // get property by property name or aliases
-                    var property = type.GetProperty(propertyName) ?? type.GetProperties()
-                        .FirstOrDefault(p => p.GetCustomAttributes(typeof(AliasAttribute), true).Any(attr =>
+                    var property = type.GetProperty(propertyName) ?? properties.FirstOrDefault(
+                        p => p.GetCustomAttributes(typeof(AliasAttribute), true).Any(attr =>
                             ((AliasAttribute)attr).Name.Equals(header.ColumnName, StringComparison.OrdinalIgnoreCase) ||
                             ((AliasAttribute)attr).Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase)));
                     if (property is null) continue;
