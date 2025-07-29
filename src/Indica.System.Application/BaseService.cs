@@ -2,21 +2,24 @@
 using Indica.System.Application.DTO;
 using Indica.System.Domain;
 using Indica.System.Domain.Entities;
+using Indica.System.Shared.Interfaces;
 using System.Linq.Expressions;
 
 namespace Indica.System.Application
 {
     public class BaseService<T, Y> : IBaseService<T, Y>
-        where T : EntityBaseDTO
+        where T : EntityBaseDTO, new()
         where Y : class
     {
         private readonly IBaseRepository<Y> _repository;
         private readonly IMapper _mapper;
+        private readonly IFileParser _fileParser;
 
-        public BaseService(IBaseRepository<Y> repository, IMapper mapper)
+        public BaseService(IBaseRepository<Y> repository, IMapper mapper, IFileParser fileParser)
         {
             _repository = repository;
             _mapper = mapper;
+            _fileParser = fileParser;
         }
 
         public virtual async Task<bool> AddAsync(T entity)
@@ -101,7 +104,8 @@ namespace Indica.System.Application
 
         public virtual async Task<int> AddRangeAsync(Stream arquivo, string filename)
         {
-            throw new NotImplementedException();
+            var entities = _fileParser.ParseByFilepath<T>(arquivo, filename);
+            return await AddRangeAsync(entities);
         }
     }
 }
