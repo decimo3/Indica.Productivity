@@ -17,8 +17,6 @@ namespace Indica.System.Infra
 
             modelBuilder.ApplyConfiguration(new EmployerFunctionMapper());
             modelBuilder.ApplyConfiguration(new EmployerSituationMapper());
-            //modelBuilder.ApplyConfiguration(new EmployerAbilityMapper());
-            //modelBuilder.ApplyConfiguration(new EmployerAbilitiesMapper());
             modelBuilder.ApplyConfiguration(new EmployerMapper());
 
             modelBuilder.ApplyConfiguration(new FieldTeamRegionalMapper());
