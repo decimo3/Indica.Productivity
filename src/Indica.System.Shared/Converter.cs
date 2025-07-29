@@ -82,8 +82,16 @@ namespace Indica.System.Shared
         {
             if (value is TimeSpan ts) return ts;
             if (value is int minutes) return TimeSpan.FromMinutes(minutes);
-            if (value is string s && TimeSpan.TryParse(s, out TimeSpan result))
-                return result;
+            if (value is double min) return TimeSpan.FromMinutes(min);
+            if (value is string s)
+            {
+                if (int.TryParse(s, out int num))
+                    return TimeSpan.FromMinutes(num);
+                if (TimeSpan.TryParse(s, out TimeSpan result))
+                    return result;
+                if (TimeSpan.TryParseExact(s, @"hh\:mm", null, out result))
+                    return result;
+            }
             return TimeSpan.MinValue;
         }
 
