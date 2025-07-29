@@ -115,8 +115,8 @@ namespace Indica.System.Shared
                 reader = null;
                 stream?.Dispose();
                 stream = null;
-                }
             }
+        }
         public void Dispose()
         {
             Dispose(true);
