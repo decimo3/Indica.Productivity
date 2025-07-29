@@ -4,6 +4,16 @@ namespace Indica.System.Shared
 {
     public static class Converter
     {
+        private static readonly Dictionary<string, bool> booleanStrings = new()
+        {
+            {"Normal", true},
+            {"não", false }, {"sim", true },
+            {"true", true}, {"false", false},
+            {"Done", true }, {"Notdone", false},
+            {"found", true}, {"not_found", false},
+            {"1 - Sim", true}, {"2 - Não", false},
+            {"VERDADEIRO", true}, {"FALSO", false}
+        };
         private static string ExtractDigits(string input) =>
             new(input.Where(char.IsDigit).ToArray());
         private static string ExtractDigitsAndDot(string input) =>
@@ -75,6 +85,14 @@ namespace Indica.System.Shared
                 return result;
             return TimeSpan.MinValue;
         }
+
+        public static bool? GetBoolean(object value)
+        {
+            if (value is bool b) return b;
+            if (value is string s && booleanStrings.TryGetValue(s, out bool result))
+                return result;
+            return null;
+        }
         public static object? GetDesiredType(Type targetType, object value)
         {
             if (value == null) return null;
@@ -106,6 +124,9 @@ namespace Indica.System.Shared
 
                 if (targetType == typeof(TimeSpan))
                     return GetTimeSpan(value);
+
+                if (targetType == typeof(bool))
+                    return GetBoolean(value);
 
                 return null;
             }
