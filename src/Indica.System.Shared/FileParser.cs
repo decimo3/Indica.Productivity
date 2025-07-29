@@ -58,6 +58,14 @@ namespace Indica.System.Shared
             if (string.Equals(Path.GetExtension(filepath), ".xlsx"))
             {
                 reader = ExcelReaderFactory.CreateReader(stream);
+                if (reader.AsDataSet().Tables.Count == 0)
+                {
+                    throw new InvalidOperationException("Planilha não encontrada!");
+                }
+                if (reader.AsDataSet().Tables.Count > 1)
+                {
+                    throw new InvalidOperationException("Somente uma planilha é suportada!");
+                }
                 datatable = reader.AsDataSet(config).Tables[0];
             }
             else if (string.Equals(Path.GetExtension(filepath), ".csv"))
