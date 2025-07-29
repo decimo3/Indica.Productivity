@@ -12,7 +12,6 @@ namespace Indica.System.Shared
     {
         private IExcelDataReader? reader = null;
         private DataTable? datatable = null;
-        private Stream? stream = null;
         public static string ToPascalPropertyName(string input)
         {
             var result = new StringBuilder();
@@ -99,10 +98,8 @@ namespace Indica.System.Shared
             ArgumentNullException.ThrowIfNull(filepath);
             if (!File.Exists(filepath))
                 throw new FileNotFoundException("Arquivo não encontrado!", filepath);
-            using (stream = File.Open(filepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                return ParseByFilepath<T>(stream, Path.GetFileName(filepath));
-            }
+            using var stream = File.Open(filepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            return ParseByFilepath<T>(stream, Path.GetFileName(filepath));
         }
 
         protected virtual void Dispose(bool disposing)
@@ -113,8 +110,6 @@ namespace Indica.System.Shared
                 datatable = null;
                 reader?.Dispose();
                 reader = null;
-                stream?.Dispose();
-                stream = null;
             }
         }
         public void Dispose()
