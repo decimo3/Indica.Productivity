@@ -31,9 +31,6 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.Cellphone)
                 .HasColumnName("telefone")
                 .IsRequired();
-            builder.Property(x => x.IdFieldTeam)
-                .HasColumnName("abreviatura")
-                .IsRequired();
             builder.Property(x => x.IdActivity)
                 .HasColumnName("id_atividade")
                 .IsRequired();
