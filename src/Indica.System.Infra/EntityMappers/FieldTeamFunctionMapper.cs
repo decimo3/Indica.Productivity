@@ -19,6 +19,12 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(32)
                 .IsRequired();
             builder.HasIndex(x => x.FunctionName).IsUnique();
+            builder.HasData([
+                new FieldTeamFunction() { Id = 1, FunctionName = "supervisor" },
+                new FieldTeamFunction() { Id = 2, FunctionName = "executor1" },
+                new FieldTeamFunction() { Id = 3, FunctionName = "executor2" },
+                new FieldTeamFunction() { Id = 4, FunctionName = "executor3" },
+                ]);
         }
     }
 }
