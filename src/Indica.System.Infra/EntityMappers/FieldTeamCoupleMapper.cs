@@ -28,12 +28,12 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdFieldTeam)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasOne<Employer>()
+            builder.HasOne(c => c.Employer)
                 .WithMany()
                 .HasForeignKey(x => x.IdEmployer)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasOne<FieldTeamFunction>()
+            builder.HasOne(c => c.Function)
                 .WithMany()
                 .HasForeignKey(x => x.IdFunction)
                 .OnDelete(DeleteBehavior.SetNull)
