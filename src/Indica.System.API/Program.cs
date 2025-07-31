@@ -44,19 +44,16 @@ namespace Indica.System.API
 
             #region SERVICES
             builder.Services.AddScoped<IFileParser, FileParser>();
-            builder.Services.AddScoped<IContractService, ContractService>();
-            builder.Services.AddScoped<IEmployerService, EmployerService>();
-            builder.Services.AddScoped<IPaymentService, PaymentService>();
-            // Finishing entity will not exposed in the API, so I don't create a service
-            builder.Services.AddScoped<IFinishingPaymentService, FinishingPaymentService>();
-            #endregion
-
-            #region REPOSITORIES
-            builder.Services.AddScoped<IContractRepository, ContractRepository>();
-            builder.Services.AddScoped<IEmployerRepository, EmployerRepository>();
-            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
-            // Finishing entity will not exposed in the API, so I don't create a repository
-            builder.Services.AddScoped<IFinishingPaymentRepository, FinishingPaymentRepository>();
+            // Used Scrutor instead add all services manually
+            builder.Services.Scan(scan => scan
+                .FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+                .AddClasses(classes => classes.Where(c => c.Name.EndsWith("Service")))
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime()
+                .AddClasses(classes => classes.Where(c => c.Name.EndsWith("Repository")))
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime()
+            );
             #endregion
 
             WebApplication app = builder.Build();
