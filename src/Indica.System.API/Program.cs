@@ -26,12 +26,9 @@ namespace Indica.System.API
 			builder.Services.AddSwaggerGen();
 
             // AutoMapper
-            builder.Services.AddAutoMapper(
-                typeof(ContractAutoMapper).Assembly,
-                typeof(EmployerAutoMapper).Assembly,
-                typeof(PaymentAutoMappers).Assembly,
-                typeof(FinishingPaymentAutoMapper).Assembly
-            );
+            // Add at least only one assemby reference,
+            // and all others will be automaticaly loaded.
+            builder.Services.AddAutoMapper(typeof(ContractAutoMapper));
 
             #region DATABASE
             // InMemory
