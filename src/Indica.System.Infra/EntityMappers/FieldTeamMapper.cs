@@ -48,16 +48,22 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("eh_especial")
                 .HasDefaultValue(false)
                 .IsRequired();
-            builder.HasOne<Activity>()
+            builder.HasOne(f => f.Activity)
                 .WithMany()
                 .HasForeignKey(x => x.IdActivity)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasOne<FieldTeamRegional>()
+            builder.HasOne(f => f.Regional)
                 .WithMany()
                 .HasForeignKey(x => x.IdRegion)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
+            builder.HasMany(x => x.Couples)
+                .WithOne()
+                .HasForeignKey(y => y.IdFieldTeam)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+                
         }
     }
 }
