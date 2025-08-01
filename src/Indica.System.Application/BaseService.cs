@@ -104,9 +104,8 @@ namespace Indica.System.Application
 
         public virtual async Task<int> AddRangeAsync(Stream arquivo, string filename)
         {
-            var entities = _fileParser.ParseByFilepath<Y>(arquivo, filename);
-            var entitiesMapped = _mapper.Map<List<T>>(entities);
-            return await AddRangeAsync(entitiesMapped);
+            var entities = _fileParser.ParseByFilepath<T>(arquivo, filename);
+            return await AddRangeAsync(entities);
         }
     }
 }
