@@ -141,6 +141,17 @@ INSERT INTO regionais (id_regional, nome_regional) VALUES
 (1, 'oeste'),
 (2, 'baixada');
 
+CREATE TABLE IF NOT EXISTS composicao_funcoes (
+    id_composicao_funcao INTEGER PRIMARY KEY,
+    nome_composicao_funcao VARCHAR(16) NOT NULL
+);
+
+INSERT INTO composicao_funcoes (id_composicao_funcao, nome_composicao_funcao) VALUES
+(1, 'supervisor'),
+(2, 'executor1'),
+(3, 'executor2')
+(4, 'executor3');
+
 CREATE TABLE IF NOT EXISTS composicoes (
     id_composicao INTEGER PRIMARY KEY,
     dia DATE NOT NULL,
@@ -154,16 +165,6 @@ CREATE TABLE IF NOT EXISTS composicoes (
     id_atividade INTEGER REFERENCES atividades(id_atividade),
     id_regional INTEGER REFERENCES regionais(id_regional),
 );
-
-CREATE TABLE IF NOT EXISTS composicao_funcao (
-    id_funcao INTEGER PRIMARY KEY,
-    nome_funcao VARCHAR(16) NOT NULL
-);
-
-INSERT INTO composicao_funcao (id_composicao_funcao, nome_composicao_funcao) VALUES
-(1, 'lider'),
-(2, 'auxiliar'),
-(3, 'supervisor');
 
 CREATE TABLE IF NOT EXISTS equipes (
     id_equipe INTEGER PRIMARY KEY,
