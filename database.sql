@@ -187,13 +187,13 @@ CREATE TABLE IF NOT EXISTS pagamentos (
     valoracao DECIMAL(6,2) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS categorias (
-    id_categoria INTEGER PRIMARY KEY,
-    nome_categoria VARCHAR(16) NOT NULL,
+CREATE TABLE IF NOT EXISTS finalizacao_categorias (
+    id_finalizacao_categoria INTEGER PRIMARY KEY,
+    nome_finalizacao_categoria VARCHAR(16) NOT NULL,
     eh_executado BOOLEAN DEFAULT TRUE
 );
 
-INSERT INTO categorias (id_categoria, nome_categoria, eh_executado) VALUES
+INSERT INTO finalizacao_categorias (id_finalizacao_categoria, nome_finalizacao_categoria, eh_executado) VALUES
 (1, 'EXEC', TRUE),
 (2, 'NEXE', FALSE),
 (3, 'PGMQ', TRUE),
