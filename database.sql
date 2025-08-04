@@ -92,14 +92,14 @@ CREATE TABLE IF NOT EXISTS objetivos (
     mensal_divisor_fixo NUMERIC DEFAULT 0,
     meta_apresentacao_util INTEGER DEFAULT 0,
     meta_apresentacao_feriado INTEGER DEFAULT 0,
-    meta_execucoes_diaria INTEGER DEFAULT 0
+    meta_execucoes_diaria INTEGER DEFAULT 0,
     id_contrato INTEGER REFERENCES contratos(id_contrato),
-    id_projeto INTEGER REFERENCES projetos(id_projeto),
+    id_projeto INTEGER REFERENCES projetos(id_projeto)
 );
 
 CREATE TABLE IF NOT EXISTS funcionario_situacoes (
     id_funcionario_situacao INTEGER PRIMARY KEY,
-    nome_funcionario_situacao VARCHAR(16) NOT NULL,
+    nome_funcionario_situacao VARCHAR(16) NOT NULL
 );
 
 INSERT INTO funcionario_situacoes (id_funcionario_situacao, nome_funcionario_situacao) VALUES
@@ -111,7 +111,7 @@ INSERT INTO funcionario_situacoes (id_funcionario_situacao, nome_funcionario_sit
 
 CREATE TABLE IF NOT EXISTS funcionario_funcoes (
     id_funcionario_funcao INTEGER PRIMARY KEY,
-    nome_funcionario_funcao VARCHAR(16) NOT NULL,
+    nome_funcionario_funcao VARCHAR(16) NOT NULL
 );
 
 INSERT INTO funcionario_funcoes (id_funcionario_funcao, nome_funcionario_funcao) VALUES
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS composicao_funcoes (
 INSERT INTO composicao_funcoes (id_composicao_funcao, nome_composicao_funcao) VALUES
 (1, 'supervisor'),
 (2, 'executor1'),
-(3, 'executor2')
+(3, 'executor2'),
 (4, 'executor3');
 
 CREATE TABLE IF NOT EXISTS composicoes (
@@ -159,9 +159,9 @@ CREATE TABLE IF NOT EXISTS composicoes (
     recurso VARCHAR(32) NOT NULL,
     telefone INTEGER NOT NULL,
     eh_considerado BOOLEAN DEFAULT TRUE,
-    eh_especial BOOLEAN DEFAULT FALSE
+    eh_especial BOOLEAN DEFAULT FALSE,
     id_atividade INTEGER REFERENCES atividades(id_atividade),
-    id_regional INTEGER REFERENCES regionais(id_regional),
+    id_regional INTEGER REFERENCES regionais(id_regional)
 );
 
 CREATE TABLE IF NOT EXISTS equipes (
@@ -208,7 +208,7 @@ INSERT INTO finalizacao_categorias (id_finalizacao_categoria, nome_finalizacao_c
 (12, 'S_MD', TRUE),
 (13, 'S_RM', TRUE),
 (14, 'PROD', TRUE),
-(15, 'IMPR', FALSE)
+(15, 'IMPR', FALSE),
 (99, 'ERRO', FALSE);
 
 CREATE TABLE IF NOT EXISTS finalizacoes (
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS finalizacoes (
 CREATE TABLE IF NOT EXISTS finalizacoes_pagamento (
     id_finalizacao_pagamento INTEGER PRIMARY KEY,
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao),
-    id_mestre INTEGER REFERENCES mestres(id_mestre),
+    id_mestre INTEGER REFERENCES mestres(id_mestre)
 );
 
 CREATE TABLE IF NOT EXISTS dano_projeto (
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS servico_turnoinfo (
     label_do_veiculo CHAR(13) NOT NULL,
     id_matricula_lider INTEGER NOT NULL,
     id_matricula_auxiliares INTEGER DEFAULT 0,
-    id_matricula_tecnico INTEGER NOT NULL,
+    id_matricula_tecnico INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS servico_servico (
