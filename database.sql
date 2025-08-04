@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS finalizacoes_pagamento (
 
 CREATE TABLE IF NOT EXISTS dano_projeto (
     id_dano_projeto INTEGER PRIMARY KEY,
-    dano VARCHAR(4) NOT NULL,
+    nome_dano_projeto VARCHAR(4) NOT NULL,
     texto_breve_para_dano VARCHAR(64) NOT NULL,
     id_projeto INTEGER REFERENCES projetos(id_projeto)
 );
