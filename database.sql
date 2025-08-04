@@ -161,7 +161,6 @@ CREATE TABLE IF NOT EXISTS composicoes (
     telefone INTEGER NOT NULL,
     eh_considerado BOOLEAN DEFAULT TRUE,
     eh_especial BOOLEAN DEFAULT FALSE
-    abreviatura VARCHAR(16) NOT NULL,
     id_atividade INTEGER REFERENCES atividades(id_atividade),
     id_regional INTEGER REFERENCES regionais(id_regional),
 );
