@@ -126,10 +126,10 @@ CREATE TABLE IF NOT EXISTS funcionarios (
     matricula_indica INTEGER NOT NULL,
     matricula_cliente INTEGER NOT NULL,
     nome_funcionario VARCHAR(128) NOT NULL,
-    admissao DATE NOT NULL,
-    demissao DATE DEFAULT NULL,
-    id_situacao INTEGER REFERENCES funcionario_situacao(id_funcionario_situacao),
-    id_funcao INTEGER REFERENCES funcionario_funcao(id_funcionario_funcao)
+    data_admissao DATE NOT NULL,
+    data_demissao DATE DEFAULT NULL,
+    id_funcionario_situacao INTEGER REFERENCES funcionario_situacoes(id_funcionario_situacao),
+    id_funcionario_funcao INTEGER REFERENCES funcionario_funcoes(id_funcionario_funcao)
 );
 
 CREATE TABLE IF NOT EXISTS regionais (
