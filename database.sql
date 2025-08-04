@@ -195,20 +195,21 @@ CREATE TABLE IF NOT EXISTS finalizacao_categorias (
 
 INSERT INTO finalizacao_categorias (id_finalizacao_categoria, nome_finalizacao_categoria, eh_executado) VALUES
 (1, 'EXEC', TRUE),
-(2, 'NEXE', FALSE),
-(3, 'PGMQ', TRUE),
-(4, 'CAPEX', TRUE),
-(5, 'OPEX', TRUE),
+(2, 'CAPEX', TRUE),
+(3, 'OPEX', TRUE),
+(4, 'PGMQ', TRUE),
+(5, 'VIST', TRUE),
 (6, 'TOI', TRUE),
+(7, 'NORM', TRUE),
 (7, 'NA', TRUE),
 (8, 'NI', FALSE),
-(9, 'NORM', TRUE),
-(10, 'VIST', TRUE),
-(11, 'ELIG', FALSE),
-(12, 'SO MEDIDOR', TRUE),
-(13, 'SO RAMAL', TRUE),
-(14, 'PRODUTIVO', TRUE),
-(15, 'IMPRODUTIVO', FALSE);
+(10, 'ELIG', FALSE),
+(11, 'NEXE', FALSE),
+(12, 'S_MD', TRUE),
+(13, 'S_RM', TRUE),
+(14, 'PROD', TRUE),
+(15, 'IMPR', FALSE)
+(99, 'ERRO', FALSE);
 
 CREATE TABLE IF NOT EXISTS finalizacoes (
     id_finalizacao INTEGER PRIMARY KEY,
