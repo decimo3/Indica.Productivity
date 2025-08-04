@@ -97,25 +97,6 @@ CREATE TABLE IF NOT EXISTS objetivos (
     id_projeto INTEGER REFERENCES projetos(id_projeto),
 );
 
-INSERT INTO objetivos (id_objetivo, id_contrato, id_projeto, eh_caminhao, eh_metade, meta_valor_mensal, divisor_mensal_fixo, meta_apresentacao_util, meta_apresentacao_feriado, meta_execucoes_diaria) VALUES
-(1, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0, 1, 1),
-(2, FALSE, FALSE, 36312.65, 20.42, 0, 0, 0, 1, 2),
-(3, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0, 1, 2),
-(4, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0, 1, 3),
-(5, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0, 1, 3),
-(6, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0, 1, 3),
-(7, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0, 1, 4),
-(8, FALSE, TRUE, 18156.33, 22.00, 0, 0, 0, 1, 4),
-(9, TRUE, FALSE, 49972.97, 20.42, 0, 0, 0, 1, 4),
-(10, FALSE, FALSE, 36312.65, 22.00, 0, 0, 0,  1, 5),
-(11, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 6),
-(12, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 7),
-(13, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 8),
-(14, FALSE, FALSE, 32057.52, 22.00, 0, 0, 0,  1, 9),
-(15, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0,  1, 1),
-(16, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0,  1, 1),
-(17, FALSE, FALSE, 36920.69, 20.42, 0, 0, 0,  1, 1);
-
 CREATE TABLE IF NOT EXISTS funcionario_situacao (
     id_funcionario_situacao INTEGER PRIMARY KEY,
     nome_funcionario_situacao VARCHAR(16) NOT NULL,
