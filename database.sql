@@ -260,9 +260,9 @@ CREATE TABLE IF NOT EXISTS servico_fases (
 INSERT INTO servico_fases (id_servico_fase, nome_servico_fase) VALUES
 (1, 'Monofásico'), (2, 'Bifásico'), (3, 'Trifásico');
 
-CREATE TABLE IF NOT EXISTS servico_exatidao (
-    id_servico_exatidao INTEGER PRIMARY KEY,
-    nome_servico_exatidao VARCHAR(16) NOT NULL
+CREATE TABLE IF NOT EXISTS coordenadas_exatidao (
+    id_coordenadas_exatidao INTEGER PRIMARY KEY,
+    nome_coordenadas_exatidao VARCHAR(8) NOT NULL
 );
 
 INSERT INTO coordenadas_exatidao (id_coordenadas_exatidao, nome_coordenadas_exatidao) VALUES
