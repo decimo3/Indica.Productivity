@@ -132,14 +132,13 @@ CREATE TABLE IF NOT EXISTS funcionarios (
     id_funcionario_funcao INTEGER REFERENCES funcionario_funcoes(id_funcionario_funcao)
 );
 
-CREATE TABLE IF NOT EXISTS regionais (
-    id_regional INTEGER PRIMARY KEY,
-    nome_regional VARCHAR(16) NOT NULL
+CREATE TABLE IF NOT EXISTS composicao_regionais (
+    id_composicao_regional INTEGER PRIMARY KEY,
+    nome_composicao_regional VARCHAR(16) NOT NULL
 );
 
-INSERT INTO regionais (id_regional, nome_regional) VALUES
-(1, 'oeste'),
-(2, 'baixada');
+INSERT INTO composicao_regionais (id_composicao_regional, nome_composicao_regional) VALUES
+(1, 'oeste'), (2, 'baixada');
 
 CREATE TABLE IF NOT EXISTS composicao_funcoes (
     id_composicao_funcao INTEGER PRIMARY KEY,
