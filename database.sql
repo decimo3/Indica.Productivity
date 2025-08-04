@@ -231,6 +231,13 @@ CREATE TABLE IF NOT EXISTS dano_projeto (
     id_projeto INTEGER REFERENCES projetos(id_projeto)
 );
 
+INSERT INTO dano_projeto (id_dano_projeto, nome_dano_projeto, texto_breve_para_dano, id_projeto) VALUES
+(1, '0001', 'Início de turno', 0),
+(2, '0002', 'Intervalo para almoço', 0),
+(3, '0003', 'Indisponibilidade', 0),
+(4, '0004', 'Retorno para base', 0);
+
+
 CREATE TABLE IF NOT EXISTS codigo_filtragem (
     id_code_filtragem INTEGER PRIMARY KEY,
     code VARCHAR(4) NOT NULL,
@@ -245,15 +252,6 @@ CREATE TABLE IF NOT EXISTS servico_situacao (
 INSERT INTO servico_situacao (id_servico_situacao, nome_servico_situacao) VALUES
 (1, 'pendente'), (2, 'em rota'), (3, 'iniciado'),
 (4, 'concluído'), (5, 'não concluído'), (6, 'cancelado');
-
-CREATE TABLE IF NOT EXISTS servico_tipo (
-    id_servico_tipo INTEGER PRIMARY KEY,
-    nome_servico_tipo VARCHAR(64) NOT NULL
-);
-
-INSERT INTO servico_tipo (id_servico_tipo, nome_servico_tipo) VALUES
-(1, 'Início de turno'), (2, 'Intervalo para almoço'),
-(3, 'Indisponibilidade'), (4, 'Retorno para base');
 
 CREATE TABLE IF NOT EXISTS servico_fases (
     id_servico_fase INTEGER PRIMARY KEY,
