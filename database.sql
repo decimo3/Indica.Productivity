@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS finalizacoes (
     id_categoria INTEGER REFERENCES categorias(id_categoria)
 );
 
-CREATE TABLE IF NOT EXISTS finalizacoes_mestres (
+CREATE TABLE IF NOT EXISTS finalizacoes_pagamento (
     id_finalizacao_pagamento INTEGER PRIMARY KEY,
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao),
     id_mestre INTEGER REFERENCES mestres(id_mestre),
