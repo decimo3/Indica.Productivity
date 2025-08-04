@@ -238,8 +238,8 @@ INSERT INTO dano_projeto (id_dano_projeto, nome_dano_projeto, texto_breve_para_d
 
 
 CREATE TABLE IF NOT EXISTS codigo_filtragem (
-    id_code_filtragem INTEGER PRIMARY KEY,
-    code VARCHAR(4) NOT NULL,
+    id_codigo_filtragem INTEGER PRIMARY KEY,
+    nome_codigo_filtragem VARCHAR(4) NOT NULL,
     id_projeto INTEGER REFERENCES projetos(id_projeto)
 );
 
