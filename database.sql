@@ -292,30 +292,6 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
     FOREIGN KEY (id_coordenadas_exatidao)
     REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
 );
-
-CREATE TABLE IF NOT EXISTS primeira_operacao_manual (
-    id_primeira_operacao_manual INTEGER PRIMARY KEY,
-    nome_primeira_operacao_manual VARCHAR(16) NOT NULL
-);
-
-INSERT INTO primeira_operacao_manual (id_primeira_operacao_manual, nome_primeira_operacao_manual) VALUES
-(1, 'Não agendado'), (2, 'Reordenado'), (3, 'Reatribuída');
-
-CREATE TABLE IF NOT EXISTS servico_roteamento (
-    id_servico_roteamento INTEGER PRIMARY KEY,
-    id_primeira_operacao_manual INTEGER NOT NULL,
-    primeira_operacao_manual_usuario_login VARCHAR(64) NOT NULL,
-    primeira_operacao_manual_usuario_nome VARCHAR(64) NOT NULL,
-    roteado_automaticamente_ate_o_momento DATE NOT NULL,
-    roteado_automaticamente_ate_o_recurso_id INTEGER NOT NULL,
-    roteado_automaticamente_ate_o_recurso_nome VARCHAR(32) NOT NULL,
-    id_recurso INTEGER NOT NULL,
-    primeira_operacao_manual_usuario INTEGER NOT NULL,
-    usuario_conclusao VARCHAR(16) DEFAULT NULL,
-    horario_em_rota TIMESTAMP DEFAULT NULL,
-    balde_de_origem VARCHAR(32) NOT NULL,
-    FOREIGN KEY (id_primeira_operacao_manual)
-    REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
 );
 
 CREATE TABLE IF NOT EXISTS servicos (
