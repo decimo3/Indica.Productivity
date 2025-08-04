@@ -311,6 +311,47 @@ CREATE TABLE IF NOT EXISTS servicos_base (
     id_dano_projeto INTEGER REFERENCES dano_projeto(id_composicao)
 );
 
+CREATE TABLE IF NOT EXISTS servico_intervalo (
+    id_servico_intervalo INTEGER PRIMARY KEY,
+    motivo_indisponibilidade_ou_descricao_intervalo VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS servico_turnoinfo (
+    id_servico_turnoinfo INTEGER PRIMARY KEY,
+    inicio_do_turno DATE NOT NULL,
+    label_do_veiculo CHAR(13) NOT NULL,
+    id_matricula_lider INTEGER NOT NULL,
+    id_matricula_auxiliares INTEGER DEFAULT 0,
+    id_matricula_tecnico INTEGER NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS servico_servico (
+    id_servico_servico INTEGER PRIMARY KEY,
+    nota BIGINT NOT NULL,
+    inicio_do_sla DATETIME DEFAULT '0001-01-01',
+    final_do_sla DATETIME DEFAULT '9999-12-31',
+    eh_lg_ctrl_tipo_fechamento_ok BOOLEAN DEFAULT TRUE,
+    codigos_fechamento_preenchido BOOLEAN DEFAULT FALSE,
+    codigos_fechamentos VARCHAR(128) NOT NULL,
+    observacao VARCHAR(1024) DEFAULT NULL,
+    descricao VARCHAR(64) DEFAULT NULL,
+    eh_lg_flag_preech_fechamento BOOLEAN DEFAULT FALSE,
+    codigos_de_fechamento_da_atividade_pai VARCHAR(32),
+    eh_lg_ctrl_reprovado_flag BOOLEAN DEFAULT FALSE,
+    tipo_da_nota CHAR(2) NOT NULL,
+    balde_origem VARCHAR(32)
+    cliente_debitos DECIMAL(6,2) DEFAULT 0,
+    eh_cliente_assinou_toi BOOLEAN DEFAULT NULL,
+    eh_cliente_recusa_assinar_toi BOOLEAN DEFAULT NULL,
+    eh_cliente_autorizou_levantar_carga BOOLEAN DEFAULT NULL,
+    abrangencia VARCHAR(32) DEFAULT NULL,
+    chi INTEGER DEFAULT NULL,
+    tempo_interrompido INTEGER DEFAULT NULL,
+    valor_compensação_financeira INTEGER DEFAULT NULL,
+    instalacao BIGINT REFERENCES servico_cliente(instalacao)
+    eh_finalizado BOOLEAN DEFAULT TRUE,
+    id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao)
+);
 
 CREATE TABLE IF NOT EXISTS credenciais (
     id_credencial INTEGER PRIMARY KEY,
