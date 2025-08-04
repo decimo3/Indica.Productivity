@@ -76,10 +76,10 @@ CREATE TABLE IF NOT EXISTS contratos (
     final_vigencia DATE DEFAULT '9999-12-31'
 );
 
-CREATE TABLE IF NOT EXISTS contrato_atividade (
-    id_contrato_atividade INTEGER PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS contrato_projeto (
+    id_contrato_projeto INTEGER PRIMARY KEY,
     id_contrato INTEGER REFERENCES contratos(id_contrato),
-    id_atividade INTEGER REFERENCES atividades(id_atividade),
+    id_projeto INTEGER REFERENCES projetos(id_projeto),
     inicio_vigencia DATE NOT NULL,
     final_vigencia DATE DEFAULT '9999-12-31'
 );
