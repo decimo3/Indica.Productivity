@@ -273,9 +273,9 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
     instalacao BIGINT NOT NULL,
     nome VARCHAR(128) NOT NULL,
     logradouro VARCHAR(64) NOT NULL,
-    num_edificio VARCHAR(32),
+    numero VARCHAR(32),
     complemento VARCHAR(32)
-    area_trabalho INTEGER NOT NULL,
+    localidade INTEGER NOT NULL,
     sub_bairro VARCHAR(32) NOT NULL,
     cidade VARCHAR(32) NOT NULL,
     estado VARCHAR(32) NOT NULL,
@@ -283,14 +283,11 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
     telefone INTEGER DEFAULT 0,
     celular INTEGER DEFAULT 0,
     email VARCHAR(64) DEFAULT NULL,
-    fases INTEGER NOT NULL,
+    fases INTEGER REFERENCES servico_fases(id_servico_fase),
     eh_encontrada_coordenadas BOOLEAN DEFAULT TRUE,
     coordenada_x DOUBLE DEFAULT 0,
     coordenada_y DOUBLE DEFAULT 0,
-    id_coordenadas_exatidao INTEGER DEFAULT 0,
-    FOREIGN KEY (id_coordenadas_exatidao)
-    REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
-);
+    id_coordenadas_exatidao INTEGER REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
 );
 
 CREATE TABLE IF NOT EXISTS servicos_base (
