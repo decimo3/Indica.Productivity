@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS objetivos (
     id_objetivo INTEGER PRIMARY KEY,
     eh_caminhao BOOLEAN DEFAULT FALSE,
     eh_metade BOOLEAN DEFAULT FALSE,
-    meta_valor_mensal NUMERIC DEFAULT 0,
-    divisor_mensal_fixo NUMERIC DEFAULT 0,
+    mensal_valor_meta NUMERIC DEFAULT 0,
+    mensal_divisor_fixo NUMERIC DEFAULT 0,
     meta_apresentacao_util INTEGER DEFAULT 0,
     meta_apresentacao_feriado INTEGER DEFAULT 0,
     meta_execucoes_diaria INTEGER DEFAULT 0
