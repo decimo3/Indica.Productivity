@@ -179,12 +179,12 @@ CREATE TABLE IF NOT EXISTS mestres (
 
 CREATE TABLE IF NOT EXISTS pagamentos (
     id_pagamento INTEGER PRIMARY KEY,
+    eh_caminhao BOOLEAN DEFAULT FALSE,
+    eh_especial BOOLEAN DEFAULT FALSE,
     id_contrato INTEGER REFERENCES contrato(id_contrato),
     id_projeto INTEGER REFERENCES projetos(id_projeto),
     id_mestre INTEGER REFERENCES mestres(id_mestre),
-    valor_leve DECIMAL(5,2) NOT NULL,
-    valor_pesado DECIMAL(5,2) NOT NULL,
-    valor_especial DECIMAL(5,2) NOT NULL
+    valoracao DECIMAL(6,2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS categorias (
