@@ -132,29 +132,6 @@ CREATE TABLE IF NOT EXISTS funcionarios (
     id_funcao INTEGER REFERENCES funcionario_funcao(id_funcionario_funcao)
 );
 
-CREATE TABLE IF NOT EXISTS competencias (
-    id_competencia INTEGER PRIMARY KEY,
-    nome_competencia VARCHAR(32) NOT NULL
-);
-
-INSERT INTO competencias (id_competencia, nome_competencia) VALUES
-(1, 'CORTE'),
-(2, 'RELIGA'),
-(3, 'LIDE'),
-(4, 'ANEXO'),
-(5, 'REN'),
-(6, 'PQM'),
-(7, 'EMERGENCIA'),
-(8, 'MANOBRA');
-
-CREATE TABLE IF NOT EXISTS qualificacoes (
-    id_qualificacoes INTEGER PRIMARY KEY,
-    vigencia_inicio DATE NOT NULL,
-    vigencia_final DATE NOT NULL,
-    id_funcionario INTEGER REFERENCES funcionarios(id_funcionario),
-    id_competencia INTEGER REFERENCES competencias(id_competencia)
-);
-
 CREATE TABLE IF NOT EXISTS regionais (
     id_regional INTEGER PRIMARY KEY,
     nome_regional VARCHAR(16) NOT NULL
