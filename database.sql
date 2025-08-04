@@ -76,9 +76,6 @@ CREATE TABLE IF NOT EXISTS contratos (
     final_vigencia DATE DEFAULT '9999-12-31'
 );
 
-INSERT INTO contratos (id_contrato, contrato, aditivo, vigencia_inicio) VALUES
-(1, 4600008096, 1, '2025-06-01');
-
 CREATE TABLE IF NOT EXISTS contrato_atividade (
     id_contrato_atividade INTEGER PRIMARY KEY,
     id_contrato INTEGER REFERENCES contratos(id_contrato),
