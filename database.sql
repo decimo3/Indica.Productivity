@@ -97,24 +97,24 @@ CREATE TABLE IF NOT EXISTS objetivos (
     id_projeto INTEGER REFERENCES projetos(id_projeto),
 );
 
-CREATE TABLE IF NOT EXISTS funcionario_situacao (
+CREATE TABLE IF NOT EXISTS funcionario_situacoes (
     id_funcionario_situacao INTEGER PRIMARY KEY,
     nome_funcionario_situacao VARCHAR(16) NOT NULL,
 );
 
-INSERT INTO funcionario_situacao (id_funcionario_situacao, nome_funcionario_situacao) VALUES
+INSERT INTO funcionario_situacoes (id_funcionario_situacao, nome_funcionario_situacao) VALUES
 (1, 'ativo'),
 (2, 'inss'),
 (3, 'ferias'),
 (4, 'suspenso'),
 (5, 'desligado');
 
-CREATE TABLE IF NOT EXISTS funcionario_funcao (
+CREATE TABLE IF NOT EXISTS funcionario_funcoes (
     id_funcionario_funcao INTEGER PRIMARY KEY,
     nome_funcionario_funcao VARCHAR(16) NOT NULL,
 );
 
-INSERT INTO funcionario_funcao (id_funcionario_funcao, nome_funcionario_funcao) VALUES
+INSERT INTO funcionario_funcoes (id_funcionario_funcao, nome_funcionario_funcao) VALUES
 (1, 'eletricista'),
 (2, 'supervisor'),
 (3, 'administrativo'),
