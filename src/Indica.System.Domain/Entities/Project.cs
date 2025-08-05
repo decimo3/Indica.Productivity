@@ -4,5 +4,6 @@
     {
         public string ProjectName { get; set; }
         public int IdProcess { get; set; }
+        public Process Process { get; set; }
     }
 }
