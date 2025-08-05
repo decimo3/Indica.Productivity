@@ -356,3 +356,54 @@ CREATE TABLE IF NOT EXISTS credenciais (
     id_funcionario INTEGER REFERENCES funcionario(id_funcionario),
     passwordhash VARCHAR(32) NOT NULL
 );
+
+CREATE VIEW relatorio_composicoes AS SELECT
+-- composicao table fields
+    c.id_composicao,
+    c.dia,
+    c.ordem,
+    c.placa,
+    c.recurso,
+    c.telefone,
+    c.eh_considerado,
+-- atividade table fields
+    a.nome_atividade,
+    a.eh_caminhao,
+    a.eh_metade,
+    a.eh_especial,
+-- projeto table fields
+    p.nome_projeto,
+-- processo table fields
+    pr.nome_processo,
+-- regional table fields
+    r.nome_regional,
+-- contrato table fields
+    ctt.contrato,
+    ctt.aditivo,
+    ctt.inicio_vigencia,
+    ctt.final_vigencia
+FROM composicoes AS c
+LEFT JOIN atividades AS a
+    ON a.id_atividade = c.id_atividade
+LEFT JOIN projetos AS p
+    ON p.id_projeto = a.id_projeto
+LEFT JOIN processos AS pr
+    ON pr.id_processo = p.id_processo
+LEFT JOIN regionais AS r
+    ON r.id_regional = c.id_regional
+LEFT JOIN (SELECT
+    cp.id_projeto,
+    cp.id_regional,
+    ct.id_contrato,
+    ct.contrato,
+    ct.aditivo,
+    ct.inicio_vigencia,
+    ct.final_vigencia
+    FROM contrato_projeto AS cp
+    INNER JOIN contratos AS ct
+        ON cp.id_contrato = ct.id_contrato) AS ctt
+ON p.id_projeto = ctt.id_projeto
+    AND c.id_regional = ctt.id_regional
+    AND c.dia
+        BETWEEN ctt.inicio_vigencia
+            AND ctt.final_vigencia;
