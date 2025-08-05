@@ -8,7 +8,7 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<FieldTeam> builder)
         {
-            builder.ToTable("composicao");
+            builder.ToTable("composicoes");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasColumnName("id_composicao")
@@ -57,7 +57,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(y => y.IdFieldTeam)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-                
         }
     }
 }
