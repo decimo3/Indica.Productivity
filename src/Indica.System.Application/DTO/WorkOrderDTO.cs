@@ -58,15 +58,13 @@ namespace Indica.System.Application.DTO
         public string CoordinateAccuracy { get; set; }
         [Alias("Status da Coordenada")]
         public bool IsFoundCoordinateStatus { get; set; }
-        [Alias("Códigos Fechamento")]
+        [Alias("Códs. de Fechamento")]
+        [Alias("Motivo de Rejeição")]
         public string ClosingCodes { get; set; }
         [Alias("LG_CTRL_TipoFechamento_Ok")]
         public bool IsLgCtrlTypeClosingOk { get; set; }
         [Alias("Cod. Fechamento Preenchido")]
         public bool IsClosedCodesFilledIn { get; set; }
-        [Alias("Códs. de Fechamento")]
-        [Alias("Motivo de Rejeição")]
-        public string ClosingCodes_1 { get; set; }
         [Alias("Label do veículo")]
         public string VehicleLabel { get; set; }
         [Alias("IdMatriculaLider")]
