@@ -18,7 +18,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(f => f.IdFinishingDetail)
                 .IsRequired();
-            builder.HasOne<FinishingDetail>()
+            builder.HasOne(f => f.Detail)
                 .WithMany()
                 .HasForeignKey(f => f.IdFinishingDetail)
                 .OnDelete(DeleteBehavior.SetNull);
