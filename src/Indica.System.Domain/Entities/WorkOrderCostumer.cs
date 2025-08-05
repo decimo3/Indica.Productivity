@@ -20,5 +20,7 @@ namespace Indica.System.Domain.Entities
         public double CoordinateX { get; set; }
         public double CoordinateY { get; set; }
         public int IdCoordinateAccuracy { get; set; }
+        public WorkOrderPhase Phase { get; set; }
+        public WorkOrderAccuracy Accuracy { get; set; }
     }
 }
