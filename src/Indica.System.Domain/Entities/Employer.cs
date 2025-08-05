@@ -9,5 +9,7 @@ namespace Indica.System.Domain.Entities
 		public DateOnly? Demission { get; set; }
 		public int IdSituation { get; set; }
         public int IdFunction { get; set; }
+		public EmployerFunction Function { get; set; }
+		public EmployerSituation Situation { get; set; }
     }
 }
