@@ -8,14 +8,14 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<CodeFilter> builder)
         {
-            builder.ToTable("code_filter");
+            builder.ToTable("codigo_filtragem");
             builder.HasKey(cf => cf.Id);
             builder.Property(cf => cf.Id)
-                .HasColumnName("id_code_filter")
+                .HasColumnName("id_codigo_filtragem")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(cf => cf.Code)
-                .HasColumnName("code")
+                .HasColumnName("nome_codigo_filtragem")
                 .HasMaxLength(4)
                 .IsRequired();
             builder.Property(cf => cf.IdProject)
