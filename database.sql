@@ -302,7 +302,7 @@ CREATE TABLE IF NOT EXISTS servicos_base (
     eh_finalizado BOOLEAN DEFAULT TRUE,
     id_situacao INTEGER REFERENCES servico_situacao(id_servico_situacao),
     id_composicao INTEGER REFERENCES composicoes(id_composicao),
-    id_dano_projeto INTEGER REFERENCES dano_projeto(id_composicao)
+    id_dano_projeto INTEGER REFERENCES dano_projeto(id_dano_projeto)
 );
 
 CREATE TABLE IF NOT EXISTS servico_intervalo (
