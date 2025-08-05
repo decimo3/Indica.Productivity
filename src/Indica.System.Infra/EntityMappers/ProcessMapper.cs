@@ -16,7 +16,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(p => p.ProcessName)
                 .HasColumnName("nome_processo")
-                .HasMaxLength(100)
+                .HasMaxLength(8)
                 .IsRequired();
             builder.HasData([
                 new Process { Id = 1, ProcessName = "CORE" },
