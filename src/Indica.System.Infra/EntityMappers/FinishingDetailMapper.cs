@@ -26,11 +26,17 @@ namespace Indica.System.Infra.EntityMappers
                 new FinishingDetail { Id = 3, Detail = "OPEX", IsExecuted = true },
                 new FinishingDetail { Id = 4, Detail = "PGMQ", IsExecuted = true },
                 new FinishingDetail { Id = 5, Detail = "VIST", IsExecuted = true },
-                new FinishingDetail { Id = 6, Detail = "ELIG", IsExecuted = false },
-                new FinishingDetail { Id = 7, Detail = "NEXE", IsExecuted = false },
-                new FinishingDetail { Id = 8, Detail = "TOI", IsExecuted = true },
-                new FinishingDetail { Id = 9, Detail = "NORM", IsExecuted = true },
-                new FinishingDetail { Id = 10, Detail = "ERRO", IsExecuted = false },
+                new FinishingDetail { Id = 6, Detail = "TOI", IsExecuted = true },
+                new FinishingDetail { Id = 7, Detail = "NORM", IsExecuted = true },
+                new FinishingDetail { Id = 8, Detail = "NA", IsExecuted = true },
+                new FinishingDetail { Id = 9, Detail = "NI", IsExecuted = false },
+                new FinishingDetail { Id = 10, Detail = "ELIG", IsExecuted = false },
+                new FinishingDetail { Id = 11, Detail = "NEXE", IsExecuted = false },
+                new FinishingDetail { Id = 12, Detail = "S_MD", IsExecuted = true },
+                new FinishingDetail { Id = 13, Detail = "S_RM", IsExecuted = true },
+                new FinishingDetail { Id = 14, Detail = "PROD", IsExecuted = true },
+                new FinishingDetail { Id = 14, Detail = "IMPR", IsExecuted = false },
+                new FinishingDetail { Id = 99, Detail = "ERRO", IsExecuted = false }
                 ]);
         }
     }
