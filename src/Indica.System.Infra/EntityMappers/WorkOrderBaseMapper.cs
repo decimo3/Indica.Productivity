@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public static class WorkOrderMapperHelper
+    public class WorkOrderBaseMapper : IEntityTypeConfiguration<WorkOrderBase>
     {
-        public static void ConfigureBase<T>(EntityTypeBuilder<T> builder) where T : WorkOrderBase
+        public void Configure(EntityTypeBuilder<WorkOrderBase> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
