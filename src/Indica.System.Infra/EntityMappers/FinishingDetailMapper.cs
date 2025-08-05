@@ -8,17 +8,18 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<FinishingDetail> builder)
         {
-            builder.ToTable("finalizacao_detalhe");
+            builder.ToTable("finalizacao_categorias");
             builder.HasKey(fd => fd.Id);
             builder.Property(fd => fd.Id)
+                .HasColumnName("id_finalizacao_categoria")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(fd => fd.Detail)
-                .HasColumnName("detalhe")
+                .HasColumnName("nome_finalizacao_categoria")
                 .HasMaxLength(16)
                 .IsRequired();
             builder.Property(fd => fd.IsExecuted)
-                .HasColumnName("eh_executacao")
+                .HasColumnName("eh_executado")
                 .IsRequired();
             builder.HasData([
                 new FinishingDetail { Id = 1, Detail = "EXEC", IsExecuted = true },
