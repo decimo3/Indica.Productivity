@@ -88,8 +88,7 @@ CREATE TABLE IF NOT EXISTS contrato_projeto (
     id_contrato_projeto INTEGER PRIMARY KEY,
     id_contrato INTEGER REFERENCES contratos(id_contrato),
     id_projeto INTEGER REFERENCES projetos(id_projeto),
-    inicio_vigencia DATE NOT NULL,
-    final_vigencia DATE DEFAULT '9999-12-31'
+    id_regional INTEGER REFERENCES regionais(id_regional)
 );
 
 CREATE TABLE IF NOT EXISTS objetivos (
