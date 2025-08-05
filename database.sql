@@ -6,7 +6,7 @@ CREATE DATABASE IF NOT EXISTS produtivity;
 
 CREATE TABLE IF NOT EXISTS processos (
     id_processo INTEGER PRIMARY KEY,
-    nome_processo VARCHAR(8) NOT NULL,
+    nome_processo VARCHAR(8) NOT NULL
 );
 
 INSERT INTO processos (id_processo, nome_processo) VALUES
