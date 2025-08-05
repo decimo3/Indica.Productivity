@@ -330,7 +330,7 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     observacao VARCHAR(1024) DEFAULT NULL,
     descricao VARCHAR(64) DEFAULT NULL,
     eh_lg_flag_preech_fechamento BOOLEAN DEFAULT FALSE,
-    codigos_de_fechamento_da_atividade_pai VARCHAR(32),
+    codigos_de_fechamento_da_atividade_pai VARCHAR(32) DEFAULT NULL,
     eh_lg_ctrl_reprovado_flag BOOLEAN DEFAULT FALSE,
     tipo_da_nota VARCHAR(2) NOT NULL,
     balde_origem VARCHAR(32) NOT NULL,
