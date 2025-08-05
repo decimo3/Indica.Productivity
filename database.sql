@@ -342,7 +342,7 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     chi INTEGER DEFAULT NULL,
     tempo_interrompido INTEGER DEFAULT NULL,
     valor_compensação_financeira INTEGER DEFAULT NULL,
-    instalacao BIGINT REFERENCES servico_cliente(instalacao),
+    id_cliente INTEGER REFERENCES servico_cliente(id_servico_cliente),
     eh_finalizado BOOLEAN DEFAULT TRUE,
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao)
 );
