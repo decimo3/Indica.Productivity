@@ -8,12 +8,14 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<EmployerSituation> builder)
         {
-            builder.ToTable("funcionario_situacao");
+            builder.ToTable("funcionario_situacoes");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
+                .HasColumnName("id_funcionario_situacao")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.SituationName)
+                .HasColumnName("nome_funcionario_situacao")
                 .HasMaxLength(16)
                 .IsRequired();
             builder.HasData([
