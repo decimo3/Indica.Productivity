@@ -8,7 +8,7 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<Activity> builder)
         {
-            builder.ToTable("atividade");
+            builder.ToTable("atividades");
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id)
                 .HasColumnName("id_atividade")
