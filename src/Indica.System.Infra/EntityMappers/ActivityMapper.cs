@@ -33,7 +33,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("eh_especial")
                 .HasDefaultValue(false)
                 .IsRequired();
-            builder.HasOne<Project>()
+            builder.HasOne(a => a.Project)
                 .WithMany()
                 .HasForeignKey(a => a.IdProject)
                 .OnDelete(DeleteBehavior.SetNull);
