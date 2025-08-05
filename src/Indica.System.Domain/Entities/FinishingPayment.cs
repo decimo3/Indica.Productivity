@@ -4,5 +4,6 @@
     {
         public string IdFinishing { get; set; }
         public int IdPaymentMaster { get; set; }
+        public FinishingPayment Mestre { get; set; }
     }
 }
