@@ -6,7 +6,6 @@ namespace Indica.System.Domain.Entities
         public int IdProcess { get; set; }
         public bool IsBasketTruck { get; set; }
         public bool IsHalfPrice { get; set; }
-        public bool IsEspecial { get; set; }
         public decimal MonthlyProfitGoal { get; set; }
         public float FixedDivisorByMonth { get; set; }
         public int TargetOfTeamCountOnWorkday { get; set; }
