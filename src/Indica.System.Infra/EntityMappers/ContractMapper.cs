@@ -11,6 +11,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.ToTable("contratos");
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id)
+                .HasColumnName("id_contrato")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(c => c.ContractNumber)
@@ -24,8 +25,8 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(c => c.FinalDate)
                 .HasColumnName("final_vigencia")
+                .HasDefaultValue(DateOnly.MaxValue)
                 .IsRequired();
-
         }
     }
 }
