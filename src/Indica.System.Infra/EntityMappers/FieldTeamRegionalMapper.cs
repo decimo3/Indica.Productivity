@@ -8,14 +8,14 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<FieldTeamRegional> builder)
         {
-            builder.ToTable("composicao_regional");
+            builder.ToTable("regionais");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                .HasColumnName("id_composicao_regional")
+                .HasColumnName("id_regional")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.RegionName)
-                .HasColumnName("nome_composicao_regional")
+                .HasColumnName("nome_regional")
                 .HasMaxLength(32)
                 .IsRequired();
             builder.HasIndex(x => x.RegionName).IsUnique();
