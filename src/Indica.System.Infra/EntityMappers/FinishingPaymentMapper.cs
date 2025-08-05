@@ -19,7 +19,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdPaymentMaster)
                 .HasColumnName("id_mestre_pagamento")
                 .IsRequired();
-            builder.HasOne<PaymentMaster>()
+            builder.HasOne(x => x.Mestre)
                 .WithMany()
                 .HasForeignKey(x => x.IdPaymentMaster)
                 .OnDelete(DeleteBehavior.SetNull)
