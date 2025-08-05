@@ -158,7 +158,6 @@ CREATE TABLE IF NOT EXISTS composicoes (
     recurso VARCHAR(32) NOT NULL,
     telefone INTEGER NOT NULL,
     eh_considerado BOOLEAN DEFAULT TRUE,
-    eh_especial BOOLEAN DEFAULT FALSE,
     id_atividade INTEGER REFERENCES atividades(id_atividade),
     id_regional INTEGER REFERENCES regionais(id_regional)
 );
