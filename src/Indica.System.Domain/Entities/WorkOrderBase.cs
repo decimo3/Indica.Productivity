@@ -1,6 +1,6 @@
 namespace Indica.System.Domain.Entities
 {
-    public abstract class WorkOrderBase : EntityBase
+    public class WorkOrderBase : EntityBase
     {
         public string Resource { get; set; }
         public DateOnly Date { get; set; }
