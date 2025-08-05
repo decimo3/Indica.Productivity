@@ -11,6 +11,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.ToTable("funcionarios");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)
+                .HasColumnName("id_funcionario")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(e => e.IndicaRegistry)
@@ -20,18 +21,19 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("matricula_cliente")
                 .IsRequired();
             builder.Property(e => e.FullName)
-                .HasColumnName("nome_colaborador")
+                .HasColumnName("nome_funcionario")
                 .IsRequired();
             builder.Property(e => e.Admission)
-                .HasColumnName("admissao")
+                .HasColumnName("data_admissao")
                 .IsRequired();
             builder.Property(e => e.Demission)
-                .HasColumnName("demissao");
+                .HasColumnName("data_demissao")
+                .IsRequired(false);
             builder.Property(e => e.IdFunction)
-                .HasColumnName("id_cargo")
+                .HasColumnName("id_funcionario_funcao")
                 .IsRequired();
             builder.Property(e => e.IdSituation)
-                .HasColumnName("id_situacao")
+                .HasColumnName("id_funcionario_situacao")
                 .IsRequired();
             builder.HasOne(e => e.Function)
                 .WithMany()
