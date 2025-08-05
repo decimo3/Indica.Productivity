@@ -23,7 +23,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdFunction)
                 .HasColumnName("id_composicao_funcao")
                 .IsRequired();
-            builder.HasOne<FieldTeam>()
+            builder.HasOne(c => c.FieldTeam)
                 .WithMany()
                 .HasForeignKey(x => x.IdFieldTeam)
                 .OnDelete(DeleteBehavior.SetNull)
