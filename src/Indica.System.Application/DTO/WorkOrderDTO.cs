@@ -40,7 +40,6 @@ namespace Indica.System.Application.DTO
         [Alias("Tempo de Deslocamento")]
         public TimeSpan TravellingTime { get; set; }
         [Alias("Tipo de Atividade")]
-        [Alias("Tipo de Atividade")]
         public string TypeOfActivity { get; set; }
         [Alias("Ordem de Serviço")]
         public long WorkOrderNumber { get; set; }
