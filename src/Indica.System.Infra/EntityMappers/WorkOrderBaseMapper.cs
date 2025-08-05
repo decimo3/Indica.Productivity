@@ -70,6 +70,11 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdTypeOfActivity)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
+            builder.HasOne(x => x.FieldTeam)
+                .WithMany()
+                .HasForeignKey(x => x.IdFieldTeam)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
             builder.HasIndex(x => x.IdActivity).IsUnique();
         }
     }
