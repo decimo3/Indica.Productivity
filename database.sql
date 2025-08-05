@@ -76,6 +76,14 @@ CREATE TABLE IF NOT EXISTS contratos (
     final_vigencia DATE DEFAULT '9999-12-31'
 );
 
+CREATE TABLE IF NOT EXISTS regionais (
+    id_regional INTEGER PRIMARY KEY,
+    nome_regional VARCHAR(16) NOT NULL
+);
+
+INSERT INTO regionais (id_regional, nome_regional) VALUES
+(1, 'CAMPO GRANDE'), (2, 'BAIXADA');
+
 CREATE TABLE IF NOT EXISTS contrato_projeto (
     id_contrato_projeto INTEGER PRIMARY KEY,
     id_contrato INTEGER REFERENCES contratos(id_contrato),
@@ -131,14 +139,6 @@ CREATE TABLE IF NOT EXISTS funcionarios (
     id_funcionario_situacao INTEGER REFERENCES funcionario_situacoes(id_funcionario_situacao),
     id_funcionario_funcao INTEGER REFERENCES funcionario_funcoes(id_funcionario_funcao)
 );
-
-CREATE TABLE IF NOT EXISTS composicao_regionais (
-    id_composicao_regional INTEGER PRIMARY KEY,
-    nome_composicao_regional VARCHAR(16) NOT NULL
-);
-
-INSERT INTO composicao_regionais (id_composicao_regional, nome_composicao_regional) VALUES
-(1, 'oeste'), (2, 'baixada');
 
 CREATE TABLE IF NOT EXISTS composicao_funcoes (
     id_composicao_funcao INTEGER PRIMARY KEY,
