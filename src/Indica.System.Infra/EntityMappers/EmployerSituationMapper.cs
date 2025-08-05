@@ -18,6 +18,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("nome_funcionario_situacao")
                 .HasMaxLength(16)
                 .IsRequired();
+            builder.HasIndex(x => x.SituationName).IsUnique();
             builder.HasData([
                 new EmployerSituation { Id = 1, SituationName = "ativo" },
                 new EmployerSituation { Id = 2, SituationName = "inss" },
