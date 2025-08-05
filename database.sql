@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS funcionario_funcoes (
 INSERT INTO funcionario_funcoes (id_funcionario_funcao, nome_funcionario_funcao) VALUES
 (1, 'eletricista'),
 (2, 'supervisor'),
-(3, 'controlador')
+(3, 'controlador'),
 (4, 'administrador'),
 (5, 'proprietario');
 
@@ -271,15 +271,15 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
     instalacao BIGINT NOT NULL,
     nome VARCHAR(128) NOT NULL,
     logradouro VARCHAR(64) NOT NULL,
-    numero VARCHAR(32),
-    complemento VARCHAR(32)
+    numero VARCHAR(32) DEFAULT NULL,
+    complemento VARCHAR(32) DEFAULT NULL,
     localidade INTEGER NOT NULL,
     sub_bairro VARCHAR(32) NOT NULL,
     cidade VARCHAR(32) NOT NULL,
     estado VARCHAR(32) NOT NULL,
-    codigo_postal INTEGER DEFAULT 0,
-    telefone INTEGER DEFAULT 0,
-    celular INTEGER DEFAULT 0,
+    codigo_postal INTEGER DEFAULT NULL,
+    telefone INTEGER DEFAULT NULL,
+    celular INTEGER DEFAULT NULL,
     email VARCHAR(64) DEFAULT NULL,
     fases INTEGER REFERENCES servico_fases(id_servico_fase),
     eh_encontrada_coordenadas BOOLEAN DEFAULT TRUE,
@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS servico_turnoinfo (
 
 CREATE TABLE IF NOT EXISTS servico_servico (
     id_servico_servico INTEGER PRIMARY KEY,
-    nota BIGINT NOT NULL,
+    nota_de_servico BIGINT NOT NULL,
     inicio_do_sla DATETIME DEFAULT '0001-01-01',
     final_do_sla DATETIME DEFAULT '9999-12-31',
     eh_lg_ctrl_tipo_fechamento_ok BOOLEAN DEFAULT TRUE,
@@ -336,8 +336,8 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     eh_lg_flag_preech_fechamento BOOLEAN DEFAULT FALSE,
     codigos_de_fechamento_da_atividade_pai VARCHAR(32),
     eh_lg_ctrl_reprovado_flag BOOLEAN DEFAULT FALSE,
-    tipo_da_nota CHAR(2) NOT NULL,
-    balde_origem VARCHAR(32)
+    tipo_da_nota VARCHAR(2) NOT NULL,
+    balde_origem VARCHAR(32) NOT NULL,
     cliente_debitos DECIMAL(6,2) DEFAULT 0,
     eh_cliente_assinou_toi BOOLEAN DEFAULT NULL,
     eh_cliente_recusa_assinar_toi BOOLEAN DEFAULT NULL,
@@ -346,7 +346,7 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     chi INTEGER DEFAULT NULL,
     tempo_interrompido INTEGER DEFAULT NULL,
     valor_compensação_financeira INTEGER DEFAULT NULL,
-    instalacao BIGINT REFERENCES servico_cliente(instalacao)
+    instalacao BIGINT REFERENCES servico_cliente(instalacao),
     eh_finalizado BOOLEAN DEFAULT TRUE,
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao)
 );
