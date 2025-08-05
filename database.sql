@@ -124,9 +124,9 @@ CREATE TABLE IF NOT EXISTS funcionario_funcoes (
 INSERT INTO funcionario_funcoes (id_funcionario_funcao, nome_funcionario_funcao) VALUES
 (1, 'eletricista'),
 (2, 'supervisor'),
-(3, 'administrativo'),
-(4, 'supervisor lider'),
-(5, 'coordenador');
+(3, 'controlador')
+(4, 'administrador'),
+(5, 'proprietario');
 
 CREATE TABLE IF NOT EXISTS funcionarios (
     id_funcionario INTEGER PRIMARY KEY,
