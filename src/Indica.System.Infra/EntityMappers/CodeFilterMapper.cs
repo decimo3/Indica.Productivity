@@ -21,7 +21,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(cf => cf.IdProject)
                 .HasColumnName("id_projeto")
                 .IsRequired();
-            builder.HasOne<Project>()
+            builder.HasOne(cf => cf.Project)
                 .WithMany()
                 .HasForeignKey(cf => cf.IdProject)
                 .OnDelete(DeleteBehavior.SetNull);
