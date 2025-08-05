@@ -33,12 +33,12 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(e => e.IdSituation)
                 .HasColumnName("id_situacao")
                 .IsRequired();
-            builder.HasOne<EmployerFunction>()
+            builder.HasOne(e => e.Function)
                 .WithMany()
                 .HasForeignKey(e => e.IdFunction)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
-            builder.HasOne<EmployerSituation>()
+            builder.HasOne(e => e.Situation)
                 .WithMany()
                 .HasForeignKey(e => e.IdSituation)
                 .OnDelete(DeleteBehavior.NoAction)
