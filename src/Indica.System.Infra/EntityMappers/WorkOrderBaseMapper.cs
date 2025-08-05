@@ -8,9 +8,10 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<WorkOrderBase> builder)
         {
+            builder.ToTable("servico_base");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                .HasColumnName("id_servico")
+                .HasColumnName("id_servico_base")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.Resource)
@@ -24,7 +25,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("id_atividade")
                 .IsRequired();
             builder.Property(x => x.IdSituation)
-                .HasColumnName("id_servico_situacao")
+                .HasColumnName("id_situacao")
                 .IsRequired();
             builder.Property(x => x.StartTime)
                 .HasColumnName("tempo_inicio")
@@ -36,28 +37,26 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("tempo_duracao")
                 .IsRequired();
             builder.Property(x => x.TravellingTime)
-                .HasColumnName("tempo_deslocamento")
+                .HasColumnName("tempo_desloca")
                 .IsRequired();
             builder.Property(x => x.IdTypeOfActivity)
-                .HasColumnName("dano")
-                .HasMaxLength(4)
-                .IsFixedLength()
+                .HasColumnName("id_dano_servico")
                 .IsRequired();
             builder.Property(x => x.ActivityBookingTime)
-                .HasColumnName("tempo_de_reserva_da_atividade")
+                .HasColumnName("tempo_de_reserva")
                 .IsRequired();
             builder.Property(x => x.EstimatedTravellingTime)
-                .HasColumnName("desloca_estimado")
+                .HasColumnName("estimado_desloca")
                 .IsRequired();
             builder.Property(x => x.EstimatedDurationTime)
-                .HasColumnName("duracao_estimado")
+                .HasColumnName("estimado_duracao")
                 .IsRequired();
             builder.Property(x => x.FileName)
-                .HasColumnName("nome_do_arquivo")
+                .HasColumnName("nome_arquivo")
                 .HasMaxLength(64)
                 .IsRequired();
-            builder.Property(x => x.ComposedKey)
-                .HasColumnName("identificador")
+            builder.Property(x => x.IdFieldTeam)
+                .HasColumnName("id_composicao")
                 .HasMaxLength(32)
                 .IsRequired();
             builder.HasOne(x => x.WorkOrderSituation)
