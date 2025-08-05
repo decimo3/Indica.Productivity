@@ -19,6 +19,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.Resource)
                 .HasColumnName("recurso")
+                .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.Order)
                 .HasColumnName("ordem")
@@ -26,7 +27,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.Plate)
                 .HasColumnName("placa")
                 .IsFixedLength()
-                .HasMaxLength(7)
+                .HasMaxLength(8)
                 .IsRequired();
             builder.Property(x => x.Cellphone)
                 .HasColumnName("telefone")
