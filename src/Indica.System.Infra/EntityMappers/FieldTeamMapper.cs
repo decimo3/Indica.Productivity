@@ -41,10 +41,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("eh_considerado")
                 .HasDefaultValue(true)
                 .IsRequired();
-            builder.Property(x => x.IsSpecial)
-                .HasColumnName("eh_especial")
-                .HasDefaultValue(false)
-                .IsRequired();
             builder.HasOne(f => f.Activity)
                 .WithMany()
                 .HasForeignKey(x => x.IdActivity)
