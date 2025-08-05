@@ -18,47 +18,47 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("instalacao")
                 .IsRequired();
             builder.Property(x => x.CostumerName)
-                .HasColumnName("nome_cliente")
+                .HasColumnName("nome")
                 .HasMaxLength(128)
                 .IsRequired();
             builder.Property(x => x.CostumerAddress)
-                .HasColumnName("cliente_logradouro")
+                .HasColumnName("logradouro")
                 .HasMaxLength(64)
                 .IsRequired();
             builder.Property(x => x.BuildingNumberOrAcronym)
-                .HasColumnName("numero_de_rua")
+                .HasColumnName("numero")
                 .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.NumberComplement)
-                .HasColumnName("complemento_de_numero")
+                .HasColumnName("complemento")
                 .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.SubNeighborhood)
-                .HasColumnName("subbairro")
+                .HasColumnName("sub_bairro")
                 .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.WorkAreaNumber)
-                .HasColumnName("area_de_trabalho")
+                .HasColumnName("localidade")
                 .IsRequired();
             builder.Property(x => x.CostumerCity)
-                .HasColumnName("cliente_cidade")
+                .HasColumnName("cidade")
                 .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.CostumerState)
-                .HasColumnName("cliente_estado")
+                .HasColumnName("estado")
                 .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.CostumerPostalCode)
-                .HasColumnName("cliente_codigo_postal")
+                .HasColumnName("codigo_postal")
                 .IsRequired();
             builder.Property(x => x.CostumerTelephone)
-                .HasColumnName("cliente_telefone")
+                .HasColumnName("telefone")
                 .IsRequired();
             builder.Property(x => x.CostumerCellphone)
-                .HasColumnName("cliente_celular")
+                .HasColumnName("celular")
                 .IsRequired();
             builder.Property(x => x.CostumerEmail)
-                .HasColumnName("cliente_email")
+                .HasColumnName("email")
                 .IsRequired();
             builder.Property(x => x.CoordinateX)
                 .HasColumnName("coordenada_x")
@@ -67,7 +67,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("coordenada_y")
                 .IsRequired();
             builder.Property(x => x.IdCoordinateAccuracy)
-                .HasColumnName("id_coordenadas_precisao")
+                .HasColumnName("id_coordenadas_exatidao")
                 .HasMaxLength(5)
                 .IsRequired();
             builder.Property(x => x.IsFoundCoordinateStatus)
