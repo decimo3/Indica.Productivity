@@ -11,13 +11,14 @@ namespace Indica.System.Infra.EntityMappers
             builder.ToTable("finalizacao_pagamento");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
+                .HasColumnName("id_finalizacao_pagamento")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.IdFinishing)
                 .HasColumnName("id_finalizacao")
                 .IsRequired();
             builder.Property(x => x.IdPaymentMaster)
-                .HasColumnName("id_mestre_pagamento")
+                .HasColumnName("id_mestre")
                 .IsRequired();
             builder.HasOne(x => x.Mestre)
                 .WithMany()
