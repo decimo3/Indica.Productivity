@@ -28,10 +28,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("eh_metade")
                 .HasDefaultValue(false)
                 .IsRequired();
-            builder.Property(x => x.IsEspecial)
-                .HasColumnName("eh_especial")
-                .HasDefaultValue(false)
-                .IsRequired();
             builder.Property(x => x.MonthlyProfitGoal)
                 .HasColumnName("mensal_valor_meta")
                 .IsRequired();
