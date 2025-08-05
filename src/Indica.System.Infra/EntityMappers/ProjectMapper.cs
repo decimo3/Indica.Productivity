@@ -21,7 +21,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(p=> p.IdProcess)
                 .HasColumnName("id_processo")
                 .IsRequired();
-            builder.HasOne<Process>()
+            builder.HasOne(p => p.Process)
                 .WithMany()
                 .HasForeignKey(p => p.IdProcess)
                 .OnDelete(DeleteBehavior.SetNull);
