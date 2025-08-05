@@ -46,7 +46,7 @@ namespace Indica.System.Application.DTO
         [Alias("Habilidade de Trabalho")]
         public string WorkOrderAbility { get; set; }
         [Alias("Área de Trabalho")]
-        public string WorkOrderArea { get; set; }
+        public int WorkOrderArea { get; set; }
         [Alias("Data de Início de turno")]
         public DateTime ShiftStartDate { get; set; }
         [Alias("Coordenada X")]
