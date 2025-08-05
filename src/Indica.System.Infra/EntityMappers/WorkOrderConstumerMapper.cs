@@ -73,6 +73,19 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IsFoundCoordinateStatus)
                 .HasColumnName("eh_encontrada_coordenadas")
                 .IsRequired();
+            builder.Property(x => x.IdConnectionType)
+                .HasColumnName("fases")
+                .IsRequired();
+            builder.HasOne(x => x.Phase)
+                .WithMany()
+                .HasForeignKey(x => x.IdConnectionType)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasOne(x => x.Accuracy)
+                .WithMany()
+                .HasForeignKey(x => x.IdCoordinateAccuracy)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
         }
     }
 }
