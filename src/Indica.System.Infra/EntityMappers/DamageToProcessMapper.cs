@@ -8,19 +8,19 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<DamageToProcess> builder)
         {
-            builder.ToTable("dano_processo");
+            builder.ToTable("dano_projeto");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                .HasColumnName("id_dano_processo")
+                .HasColumnName("id_dano_projeto")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.Damage)
-                .HasColumnName("dano")
+                .HasColumnName("nome_dano_projeto")
                 .HasMaxLength(4)
-                .IsFixedLength(true)
+                .IsFixedLength()
                 .IsRequired();
             builder.Property(x => x.Description)
-                .HasColumnName("descricao")
+                .HasColumnName("texto_breve_para_dano")
                 .HasMaxLength(128)
                 .IsRequired();
             builder.Property(x => x.IdProject)
