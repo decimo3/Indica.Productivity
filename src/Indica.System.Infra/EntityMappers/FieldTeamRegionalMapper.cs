@@ -19,6 +19,10 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(32)
                 .IsRequired();
             builder.HasIndex(x => x.RegionName).IsUnique();
+            builder.HasData([
+                new FieldTeamRegional() { Id = 1, RegionName = "CAMPO GRANDE" },
+                new FieldTeamRegional() { Id = 2, RegionName = "BAIXADA"}
+            ]);
         }
     }
 }
