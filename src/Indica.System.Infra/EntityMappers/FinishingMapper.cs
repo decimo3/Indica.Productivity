@@ -11,20 +11,21 @@ namespace Indica.System.Infra.EntityMappers
             builder.ToTable("finalizacoes");
             builder.HasKey(f => f.Id);
             builder.Property(f => f.Id)
+                .HasColumnName("id_finalizacao")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(f => f.GroupingOfMeasures)
+                .HasColumnName("agrupamento_medidas")
                 .HasMaxLength(128)
                 .IsRequired();
             builder.Property(f => f.IdFinishingDetail)
+                .HasColumnName("id_categoria")
                 .IsRequired();
             builder.HasOne(f => f.Detail)
                 .WithMany()
                 .HasForeignKey(f => f.IdFinishingDetail)
                 .OnDelete(DeleteBehavior.SetNull);
-            builder.HasIndex(f => f.GroupingOfMeasures)
-                .IsUnique()
-                .HasDatabaseName("IX_Finishing_GroupingOfMeasures");
+            builder.HasIndex(f => f.GroupingOfMeasures).IsUnique();
         }
     }
 }
