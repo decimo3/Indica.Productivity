@@ -100,8 +100,7 @@ CREATE TABLE IF NOT EXISTS objetivos (
     meta_apresentacao_util INTEGER DEFAULT 0,
     meta_apresentacao_feriado INTEGER DEFAULT 0,
     meta_execucoes_diaria INTEGER DEFAULT 0,
-    id_contrato INTEGER REFERENCES contratos(id_contrato),
-    id_projeto INTEGER REFERENCES projetos(id_projeto)
+    id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto)
 );
 
 CREATE TABLE IF NOT EXISTS funcionario_situacoes (
@@ -179,8 +178,7 @@ CREATE TABLE IF NOT EXISTS pagamentos (
     id_pagamento INTEGER PRIMARY KEY,
     eh_caminhao BOOLEAN DEFAULT FALSE,
     eh_especial BOOLEAN DEFAULT FALSE,
-    id_contrato INTEGER REFERENCES contrato(id_contrato),
-    id_projeto INTEGER REFERENCES projetos(id_projeto),
+    id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto),
     id_mestre INTEGER REFERENCES mestres(id_mestre),
     valoracao DECIMAL(6,2) NOT NULL
 );
