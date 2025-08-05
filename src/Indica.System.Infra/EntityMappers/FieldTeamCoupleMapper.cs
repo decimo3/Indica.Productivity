@@ -8,7 +8,7 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<FieldTeamCouple> builder)
         {
-            builder.ToTable("equipe");
+            builder.ToTable("equipes");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasColumnName("id_equipe")
