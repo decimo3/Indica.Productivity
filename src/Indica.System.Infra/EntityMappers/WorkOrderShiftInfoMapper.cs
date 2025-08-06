@@ -8,9 +8,12 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<WorkOrderShiftInfo> builder)
         {
-            builder.ToTable("servico_turno");
-            builder.UseTpcMappingStrategy();
-            WorkOrderMapperHelper.ConfigureBase(builder);
+            builder.ToTable("servico_turnoinfo");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                .HasColumnName("id_servico_turnoinfo")
+                .ValueGeneratedOnAdd()
+                .IsRequired();
             builder.Property(x => x.ShiftStartDate)
                 .HasColumnName("inicio_da_turno")
                 .IsRequired();
