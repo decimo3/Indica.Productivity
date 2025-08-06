@@ -1,9 +1,12 @@
 ﻿namespace Indica.System.Domain.Entities
 {
-    public class SupervisorContract : EntityBase
+    public class ContractProject : EntityBase
     {
-        public int Registry { get; set; }
-        public int ContractNumber { get; set; }
-        public int AdditiveNumber { get; set; }
+        public int IdContract { get; set; }
+        public int IdRegional { get; set; }
+        public int IdProject { get; set; }
+        public Contract Contract { get; set; }
+        public FieldTeamRegional Regional { get; set; }
+        public Project Project { get; set; }
     }
 }
