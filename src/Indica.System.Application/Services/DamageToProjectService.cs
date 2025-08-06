@@ -7,11 +7,10 @@ using Indica.System.Shared.Interfaces;
 
 namespace Indica.System.Application.Services
 {
-    public class DamageToProjectService : BaseService<DamageToProjectDTO, DamageToProcess>, IDamageToProjectService
+    public class DamageToProjectService : BaseService<DamageToProjectDTO, DamageToProject>, IDamageToProjectService
     {
-        public DamageToProjectService(IDamageToProcessRepository repository, IMapper mapper, IFileParser parser) : base(repository, mapper, parser)
+        public DamageToProjectService(IDamageToProjectRepository repository, IMapper mapper, IFileParser parser) : base(repository, mapper, parser)
         {
-
         }
     }
 }
