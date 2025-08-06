@@ -8,7 +8,7 @@ namespace Indica.System.Application.Mappers
     {
         public DamageToProjectAutoMapper()
         {
-            CreateMap<DamageToProcess, DamageToProjectDTO>().ReverseMap();
+            CreateMap<DamageToProject, DamageToProjectDTO>().ReverseMap();
         }
     }
 }
