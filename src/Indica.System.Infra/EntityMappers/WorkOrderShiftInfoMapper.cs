@@ -15,7 +15,7 @@ namespace Indica.System.Infra.EntityMappers
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.ShiftStartDate)
-                .HasColumnName("inicio_da_turno")
+                .HasColumnName("inicio_do_turno")
                 .IsRequired();
             builder.Property(x => x.VehicleLabel)
                 .HasColumnName("label_do_veiculo")
