@@ -13,6 +13,7 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new ActivityMapper());
 
             modelBuilder.ApplyConfiguration(new ContractMapper());
+            modelBuilder.ApplyConfiguration(new ContractProjectMapper());
             modelBuilder.ApplyConfiguration(new ObjectiveMapper());
 
             modelBuilder.ApplyConfiguration(new EmployerFunctionMapper());
