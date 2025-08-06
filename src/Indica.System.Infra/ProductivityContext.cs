@@ -25,7 +25,7 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new FieldTeamCoupleMapper());
             modelBuilder.ApplyConfiguration(new FieldTeamMapper());
 
-            modelBuilder.ApplyConfiguration(new DamageToProcessMapper());
+            modelBuilder.ApplyConfiguration(new DamageToProjectMapper());
             modelBuilder.ApplyConfiguration(new CodeFilterMapper());
 
             modelBuilder.ApplyConfiguration(new FinishingDetailMapper());
