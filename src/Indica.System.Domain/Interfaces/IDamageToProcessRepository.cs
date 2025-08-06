@@ -2,5 +2,5 @@ using Indica.System.Domain.Entities;
 
 namespace Indica.System.Domain.Interfaces
 {
-    public interface IDamageToProcessRepository : IBaseRepository<DamageToProcess> { }
+    public interface IDamageToProjectRepository : IBaseRepository<DamageToProject> { }
 }
