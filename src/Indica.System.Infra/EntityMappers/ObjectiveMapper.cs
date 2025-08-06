@@ -14,11 +14,8 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("id_objetivo")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
-            builder.Property(x => x.IdContract)
-                .HasColumnName("id_contrato")
-                .IsRequired();
-            builder.Property(x => x.IdProcess)
-                .HasColumnName("id_processo")
+            builder.Property(x => x.IdContractProject)
+                .HasColumnName("id_contrato_projeto")
                 .IsRequired();
             builder.Property(x => x.IsBasketTruck)
                 .HasColumnName("eh_caminhao")
@@ -43,7 +40,12 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.TargetOfExecutionsPerDay)
                 .HasColumnName("meta_execucoes_diaria")
                 .IsRequired();
-            builder.HasIndex(x => new {x.IdContract, x.IdProcess, x.IsBasketTruck, x.IsHalfPrice, x.IsEspecial}).IsUnique();
+            builder.HasOne(x => x.ContractProject)
+                .WithMany()
+                .HasForeignKey(x => x.IdContractProject)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasIndex(x => new {x.IdContractProject, x.IsBasketTruck, x.IsHalfPrice}).IsUnique();
         }
     }
 }
