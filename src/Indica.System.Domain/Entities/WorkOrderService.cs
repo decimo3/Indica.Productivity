@@ -10,7 +10,6 @@ namespace Indica.System.Domain.Entities
         public string ClosingCodes { get; set; }
         public bool IsLgCtrlTypeClosingOk { get; set; }
         public bool IsClosedCodesFilledIn { get; set; }
-        public string ClosingCodes_1 { get; set; }
         public string? Observation { get; set; }
         public string? Description { get; set; }
         public bool IsLgFlagPrefillimentoClosing { get; set; }
