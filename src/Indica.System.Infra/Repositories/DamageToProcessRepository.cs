@@ -3,8 +3,8 @@ using Indica.System.Domain.Interfaces;
 
 namespace Indica.System.Infra.Repositories
 {
-    public class DamageToProcessRepository : BaseRepository<DamageToProcess>, IDamageToProcessRepository
+    public class DamageToProjectRepository : BaseRepository<DamageToProject>, IDamageToProjectRepository
     {
-        public DamageToProcessRepository(ProductivityContext context) : base(context) {}
+        public DamageToProjectRepository(ProductivityContext context) : base(context) {}
     }
 }
