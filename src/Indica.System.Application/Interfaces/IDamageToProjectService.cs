@@ -3,7 +3,7 @@ using Indica.System.Domain.Entities;
 
 namespace Indica.System.Application.Interfaces
 {
-    public interface IDamageToProjectService : IBaseService<DamageToProjectDTO, DamageToProcess>
+    public interface IDamageToProjectService : IBaseService<DamageToProjectDTO, DamageToProject>
     {
     }
 }
