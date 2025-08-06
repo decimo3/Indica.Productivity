@@ -16,7 +16,7 @@ namespace Indica.System.Domain.Entities
         public TimeSpan EstimatedDurationTime { get; set; }
         public string FileName { get; set; }
         public int IdFieldTeam { get; set; }
-        public virtual DamageToProcess DamageToProcess { get; set; }
+        public virtual DamageToProject DamageToProject { get; set; }
         public virtual WorkOrderSituation WorkOrderSituation { get; set; }
         public virtual FieldTeam FieldTeam { get; set; }
     }
