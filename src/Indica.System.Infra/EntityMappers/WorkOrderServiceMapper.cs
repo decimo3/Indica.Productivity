@@ -15,27 +15,26 @@ namespace Indica.System.Infra.EntityMappers
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.WorkOrderNumber)
-                .HasColumnName("nota")
+                .HasColumnName("nota_de_servico")
                 .IsRequired();
             builder.Property(x => x.StartOfSLA)
                 .HasColumnName("inicio_do_sla")
+                .HasDefaultValue(DateOnly.MinValue)
                 .IsRequired();
             builder.Property(x => x.FinalOfSLA)
                 .HasColumnName("final_do_sla")
-                .IsRequired();
-            builder.Property(x => x.ClosingCodes)
-                .HasColumnName("codigos_fechamentos")
-                .HasMaxLength(0)
-                .HasDefaultValue(null)
+                .HasDefaultValue(DateOnly.MaxValue)
                 .IsRequired();
             builder.Property(x => x.IsLgCtrlTypeClosingOk)
                 .HasColumnName("eh_lg_ctrl_tipo_fechamento_ok")
+                .HasDefaultValue(true)
                 .IsRequired();
             builder.Property(x => x.IsClosedCodesFilledIn)
                 .HasColumnName("codigos_fechamento_preenchido")
+                .HasDefaultValue(false)
                 .IsRequired();
-            builder.Property(x => x.ClosingCodes_1)
-                .HasColumnName("codigos_fechamentos_1")
+            builder.Property(x => x.ClosingCodes)
+                .HasColumnName("codigos_fechamentos")
                 .HasMaxLength(128)
                 .IsRequired();
             builder.Property(x => x.Observation)
@@ -55,7 +54,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.IsLgCtrlReprovedFlag)
-                .HasColumnName("lg_ctrl_reprovado_flag")
+                .HasColumnName("eh_lg_ctrl_reprovado_flag")
                 .HasDefaultValue(false)
                 .IsRequired();
             builder.Property(x => x.TypeOfServiceNote)
@@ -65,6 +64,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired(false);
             builder.Property(x => x.BucketOrigin)
                 .HasColumnName("balde_origem")
+                .HasMaxLength(32)
                 .IsRequired();
             builder.Property(x => x.TotalCustomerDebts)
                 .HasColumnName("cliente_debitos")
@@ -72,29 +72,31 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.HasCustomerSignedToi)
                 .HasColumnName("eh_cliente_assinou_toi")
                 .HasDefaultValue(null)
-                .IsRequired();
+                .IsRequired(false);
             builder.Property(x => x.HasRefusedToSignToi)
                 .HasColumnName("eh_cliente_recusa_assinar_toi")
                 .HasDefaultValue(null)
-                .IsRequired();
+                .IsRequired(false);
             builder.Property(x => x.HasRefusedToReceiveToi)
                 .HasColumnName("eh_cliente_recusa_receber_toi")
                 .HasDefaultValue(null)
-                .IsRequired();
+                .IsRequired(false);
             builder.Property(x => x.CustomerAuthorizedloadAnalysis)
                 .HasColumnName("eh_cliente_autorizou_levantar_carga")
                 .HasDefaultValue(null)
-                .IsRequired();
+                .IsRequired(false);
             builder.Property(x => x.ScopeOfService)
                 .HasColumnName("abrangencia")
+                .HasDefaultValue(null)
                 .HasMaxLength(32)
-                .IsRequired();
+                .IsRequired(false);
             builder.Property(x => x.CHI)
                 .HasColumnName("chi")
-                .IsRequired();
+                .HasDefaultValue(0)
+                .IsRequired(false);
             builder.Property(x => x.InterruptedTime)
                 .HasColumnName("tempo_interrompido")
-                .IsRequired();
+                .IsRequired(false);
             builder.Property(x => x.FinancialCompensationAmount)
                 .HasColumnName("valor_compensação_financeira")
                 .IsRequired();
