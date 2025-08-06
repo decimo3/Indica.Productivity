@@ -13,11 +13,8 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(p => p.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
-            builder.Property(p => p.IdProject)
-                .HasColumnName("id_projeto")
-                .IsRequired();
-            builder.Property(p => p.IdContract)
-                .HasColumnName("id_contrato")
+            builder.Property(p => p.IdContractProject)
+                .HasColumnName("id_contrato_projeto")
                 .IsRequired();
             builder.Property(p => p.IdPaymentMaster)
                 .HasColumnName("id_mestre")
@@ -34,18 +31,16 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("valor_leve")
                 .HasColumnType("decimal(18, 2)")
                 .IsRequired();
-            builder.HasOne<Contract>()
+            builder.HasOne(x => x.ContractProject)
                 .WithMany()
-                .HasForeignKey(p => p.IdContract)
-                .OnDelete(DeleteBehavior.SetNull);
-            builder.HasOne<Project>()
-                .WithMany()
-                .HasForeignKey(p => p.IdProject)
-                .OnDelete(DeleteBehavior.SetNull);
-            builder.HasOne<PaymentMaster>()
+                .HasForeignKey(p => p.IdContractProject)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasOne(p => p.Mestre)
                 .WithMany()
                 .HasForeignKey(p => p.IdPaymentMaster)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
         }
     }
 }
