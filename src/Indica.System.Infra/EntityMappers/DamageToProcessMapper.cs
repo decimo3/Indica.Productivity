@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Indica.System.Infra.EntityMappers
 {
-    public class DamageToProcessMapper : IEntityTypeConfiguration<DamageToProcess>
+    public class DamageToProjectMapper : IEntityTypeConfiguration<DamageToProject>
     {
-        public void Configure(EntityTypeBuilder<DamageToProcess> builder)
+        public void Configure(EntityTypeBuilder<DamageToProject> builder)
         {
             builder.ToTable("dano_projeto");
             builder.HasKey(x => x.Id);
