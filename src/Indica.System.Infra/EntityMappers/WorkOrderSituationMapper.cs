@@ -19,6 +19,14 @@ namespace Indica.System.Infra.EntityMappers
                 .HasMaxLength(16)
                 .IsRequired();
             builder.HasIndex(x => x.SituationName).IsUnique();
+            builder.HasData([
+                new WorkOrderSituation() { Id = 1, SituationName = "pendente" },
+                new WorkOrderSituation() { Id = 2, SituationName = "em rota" },
+                new WorkOrderSituation() { Id = 3, SituationName = "iniciado" },
+                new WorkOrderSituation() { Id = 4, SituationName = "concluído" },
+                new WorkOrderSituation() { Id = 5, SituationName = "não concluído" },
+                new WorkOrderSituation() { Id = 6, SituationName = "cancelado" },
+            ]);
         }
     }
 }
