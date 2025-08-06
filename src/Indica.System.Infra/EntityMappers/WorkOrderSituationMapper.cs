@@ -16,7 +16,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.SituationName)
                 .HasColumnName("nome_servico_situacao")
-                .HasMaxLength(32)
+                .HasMaxLength(16)
                 .IsRequired();
             builder.HasIndex(x => x.SituationName).IsUnique();
         }
