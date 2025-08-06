@@ -9,8 +9,11 @@ namespace Indica.System.Infra.EntityMappers
         public void Configure(EntityTypeBuilder<WorkOrderService> builder)
         {
             builder.ToTable("servico_servico");
-            builder.UseTpcMappingStrategy();
-            WorkOrderMapperHelper.ConfigureBase(builder);
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                .HasColumnName("id_servico_servico")
+                .ValueGeneratedOnAdd()
+                .IsRequired();
             builder.Property(x => x.WorkOrderNumber)
                 .HasColumnName("nota")
                 .IsRequired();
