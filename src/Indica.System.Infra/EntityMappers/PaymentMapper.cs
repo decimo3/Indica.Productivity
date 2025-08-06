@@ -11,6 +11,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.ToTable("pagamentos");
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id)
+                .HasColumnName("id_pagamento")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(p => p.IdContractProject)
@@ -28,8 +29,8 @@ namespace Indica.System.Infra.EntityMappers
                 .HasDefaultValue(false)
                 .IsRequired();
             builder.Property(p => p.Valuation)
-                .HasColumnName("valor_leve")
-                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("valoracao")
+                .HasColumnType("decimal(6,2)")
                 .IsRequired();
             builder.HasOne(x => x.ContractProject)
                 .WithMany()
