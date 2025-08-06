@@ -64,7 +64,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdSituation)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasOne(x => x.DamageToProcess)
+            builder.HasOne(x => x.DamageToProject)
                 .WithMany()
                 .HasForeignKey(x => x.IdTypeOfActivity)
                 .OnDelete(DeleteBehavior.SetNull)
