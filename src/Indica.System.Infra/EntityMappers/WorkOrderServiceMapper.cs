@@ -96,9 +96,11 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.InterruptedTime)
                 .HasColumnName("tempo_interrompido")
+                .HasDefaultValue(0)
                 .IsRequired();
             builder.Property(x => x.FinancialCompensationAmount)
                 .HasColumnName("valor_compensação_financeira")
+                .HasDefaultValue(0)
                 .IsRequired();
             builder.Property(x => x.IdFinishing)
                 .HasColumnName("id_finalizacao")
