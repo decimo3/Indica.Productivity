@@ -19,11 +19,11 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.StartOfSLA)
                 .HasColumnName("inicio_do_sla")
-                .HasDefaultValue(DateOnly.MinValue)
+                .HasDefaultValue(DateTime.MinValue)
                 .IsRequired();
             builder.Property(x => x.FinalOfSLA)
                 .HasColumnName("final_do_sla")
-                .HasDefaultValue(DateOnly.MaxValue)
+                .HasDefaultValue(DateTime.MaxValue)
                 .IsRequired();
             builder.Property(x => x.IsLgCtrlTypeClosingOk)
                 .HasColumnName("eh_lg_ctrl_tipo_fechamento_ok")
