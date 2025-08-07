@@ -1,4 +1,5 @@
 using Indica.System.Infra.EntityMappers;
+using Indica.System.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Indica.System.Infra
@@ -45,6 +46,13 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new WorkOrderShiftInfoMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderCostumerMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderServiceMapper());
+
+            // Explicitly configure EF Core with TPT
+            // because EF Core configure TPH by default
+            modelBuilder.Entity<WorkOrderBase>().ToTable("servico_base");
+            modelBuilder.Entity<WorkOrderService>().ToTable("servico_servico");
+            modelBuilder.Entity<WorkOrderInterval>().ToTable("servico_intervalo");
+            modelBuilder.Entity<WorkOrderShiftInfo>().ToTable("servico_turnoinfo");
         }
     }
 }
