@@ -36,7 +36,7 @@ namespace Indica.System.Infra.EntityMappers
                 new FinishingDetail { Id = 12, Detail = "S_MD", IsExecuted = true },
                 new FinishingDetail { Id = 13, Detail = "S_RM", IsExecuted = true },
                 new FinishingDetail { Id = 14, Detail = "PROD", IsExecuted = true },
-                new FinishingDetail { Id = 14, Detail = "IMPR", IsExecuted = false },
+                new FinishingDetail { Id = 15, Detail = "IMPR", IsExecuted = false },
                 new FinishingDetail { Id = 99, Detail = "ERRO", IsExecuted = false }
                 ]);
         }
