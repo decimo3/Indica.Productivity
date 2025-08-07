@@ -18,10 +18,10 @@ namespace Indica.System.Domain.Entities
         public string TypeOfServiceNote { get; set; }
         public string BucketOrigin { get; set; }
         public decimal TotalCustomerDebts { get; set; }
-        public bool HasCustomerSignedToi { get; set; }
-        public bool HasRefusedToSignToi { get; set; }
-        public bool HasRefusedToReceiveToi { get; set; }
-        public bool CustomerAuthorizedloadAnalysis { get; set; }
+        public bool? HasCustomerSignedToi { get; set; }
+        public bool? HasRefusedToSignToi { get; set; }
+        public bool? HasRefusedToReceiveToi { get; set; }
+        public bool? CustomerAuthorizedloadAnalysis { get; set; }
         public string ScopeOfService { get; set; }
         public int CHI { get; set; }
         public int InterruptedTime { get; set; }
