@@ -93,10 +93,10 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.CHI)
                 .HasColumnName("chi")
                 .HasDefaultValue(0)
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.InterruptedTime)
                 .HasColumnName("tempo_interrompido")
-                .IsRequired(false);
+                .IsRequired();
             builder.Property(x => x.FinancialCompensationAmount)
                 .HasColumnName("valor_compensação_financeira")
                 .IsRequired();
