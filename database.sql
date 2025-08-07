@@ -265,7 +265,7 @@ INSERT INTO coordenadas_exatidao (id_coordenadas_exatidao, nome_coordenadas_exat
 (1, 'Alto'), (2, 'Médio'), (3, 'Baixo');
 
 CREATE TABLE IF NOT EXISTS servico_cliente (
-    id_servico_cliente INTEGER PRIMARY KEY,
+    id_servico INTEGER PRIMARY KEY,
     instalacao BIGINT NOT NULL,
     nome VARCHAR(128) NOT NULL,
     logradouro VARCHAR(64) NOT NULL,
@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
 );
 
 CREATE TABLE IF NOT EXISTS servicos_base (
-    id_servico_base INTEGER PRIMARY KEY,
+    id_servico INTEGER PRIMARY KEY,
     recurso VARCHAR(32) NOT NULL,
     dia DATE NOT NULL,
     id_atividade INTEGER NOT NULL,
@@ -306,12 +306,12 @@ CREATE TABLE IF NOT EXISTS servicos_base (
 );
 
 CREATE TABLE IF NOT EXISTS servico_intervalo (
-    id_servico_intervalo INTEGER PRIMARY KEY,
+    id_servico INTEGER PRIMARY KEY,
     motivo_indisponibilidade_ou_descricao_intervalo VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS servico_turnoinfo (
-    id_servico_turnoinfo INTEGER PRIMARY KEY,
+    id_servico INTEGER PRIMARY KEY,
     inicio_do_turno DATE NOT NULL,
     label_do_veiculo CHAR(13) NOT NULL,
     id_matricula_lider INTEGER NOT NULL,
@@ -320,7 +320,7 @@ CREATE TABLE IF NOT EXISTS servico_turnoinfo (
 );
 
 CREATE TABLE IF NOT EXISTS servico_servico (
-    id_servico_servico INTEGER PRIMARY KEY,
+    id_servico INTEGER PRIMARY KEY,
     nota_de_servico BIGINT NOT NULL,
     inicio_do_sla DATETIME DEFAULT '0001-01-01',
     final_do_sla DATETIME DEFAULT '9999-12-31',
