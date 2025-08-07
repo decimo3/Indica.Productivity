@@ -27,8 +27,8 @@ namespace Indica.System.Domain.Entities
         public int InterruptedTime { get; set; }
         public int FinancialCompensationAmount { get; set; }
         public int IdFinishing { get; set; }
-        public virtual Finishing? Finishing { get; set; }
-        public virtual WorkOrderCostumer? WorkOrderCostumer { get; set; }
-        public virtual WorkOrderAbilities? WorkOrderAbility { get; set; }
+        public virtual Finishing Finishing { get; set; }
+        public virtual WorkOrderCostumer WorkOrderCostumer { get; set; }
+        public virtual WorkOrderAbilities WorkOrderAbility { get; set; }
     }
 }
