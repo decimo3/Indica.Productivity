@@ -110,7 +110,7 @@ namespace Indica.System.Application.DTO
         [Alias("Recusou receber TOI?")]
         public bool HasRefusedToReceiveToi { get; set; }
         [Alias("Cliente autorizou levantamento de Carga")]
-        public string CustomerAuthorizedloadAnalysis { get; set; }
+        public bool CustomerAuthorizedloadAnalysis { get; set; }
         [Alias("Deslocamento estimado")]
         public TimeSpan EstimatedTravellingTime { get; set; }
         [Alias("Duração padrão")]
