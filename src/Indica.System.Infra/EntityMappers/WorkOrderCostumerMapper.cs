@@ -11,7 +11,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.ToTable("servico_cliente");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                .HasColumnName("id_servico_cliente")
+                .HasColumnName("id_servico")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
             builder.Property(x => x.InstallationNumber)
