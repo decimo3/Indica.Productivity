@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Indica.System.API
 {
-	public static class Program
+	public class Program
 	{
 		public static void Main(string[] args)
 		{
