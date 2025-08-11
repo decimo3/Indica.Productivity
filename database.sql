@@ -185,7 +185,8 @@ CREATE TABLE IF NOT EXISTS pagamentos (
     eh_especial BOOLEAN DEFAULT FALSE,
     id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto),
     id_mestre INTEGER REFERENCES mestres(id_mestre),
-    valoracao DECIMAL(6,2) NOT NULL
+    valoracao DECIMAL(6,2) NOT NULL,
+    UNIQUE (id_contrato_projeto, id_mestre, eh_caminhao, eh_especial)
 );
 
 CREATE TABLE IF NOT EXISTS finalizacao_categorias (
