@@ -227,10 +227,10 @@ CREATE TABLE IF NOT EXISTS dano_projeto (
 );
 
 INSERT INTO dano_projeto (id_dano_projeto, nome_dano_projeto, texto_breve_para_dano, id_projeto) VALUES
-(1, '0001', 'Início de turno', 0),
-(2, '0002', 'Intervalo para almoço', 0),
-(3, '0003', 'Indisponibilidade', 0),
-(4, '0004', 'Retorno para base', 0);
+(1, '0001', 'Início de turno', NULL),
+(2, '0002', 'Intervalo para almoço', NULL),
+(3, '0003', 'Indisponibilidade', NULL),
+(4, '0004', 'Retorno para base', NULL);
 
 
 CREATE TABLE IF NOT EXISTS codigo_filtragem (
