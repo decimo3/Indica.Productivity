@@ -102,7 +102,8 @@ CREATE TABLE IF NOT EXISTS objetivos (
     meta_apresentacao_util INTEGER DEFAULT 0,
     meta_apresentacao_feriado INTEGER DEFAULT 0,
     meta_execucoes_diaria INTEGER DEFAULT 0,
-    id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto)
+    id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto),
+    UNIQUE (id_contrato_projeto, eh_caminhao, eh_metade)
 );
 
 CREATE TABLE IF NOT EXISTS funcionario_situacoes (
