@@ -25,6 +25,7 @@ namespace Indica.System.Infra.EntityMappers
                 .WithMany()
                 .HasForeignKey(p => p.IdProcess)
                 .OnDelete(DeleteBehavior.SetNull);
+            builder.HasIndex(x => x.ProjectName).IsUnique();
             builder.HasData(
                 new Project { Id = 1, ProjectName = "CORTE", IdProcess = 1 },
                 new Project { Id = 2, ProjectName = "RELIGA", IdProcess = 1 },
