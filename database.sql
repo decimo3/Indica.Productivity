@@ -222,7 +222,8 @@ CREATE TABLE IF NOT EXISTS finalizacoes (
 CREATE TABLE IF NOT EXISTS finalizacoes_pagamento (
     id_finalizacao_pagamento INTEGER PRIMARY KEY,
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao),
-    id_mestre INTEGER REFERENCES mestres(id_mestre)
+    id_mestre INTEGER REFERENCES mestres(id_mestre),
+    UNIQUE (id_finalizacao, id_mestre)
 );
 
 CREATE TABLE IF NOT EXISTS dano_projeto (
