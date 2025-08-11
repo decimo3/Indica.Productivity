@@ -322,8 +322,8 @@ CREATE TABLE IF NOT EXISTS servico_turnoinfo (
 CREATE TABLE IF NOT EXISTS servico_servico (
     id_servico INTEGER PRIMARY KEY,
     nota_de_servico BIGINT NOT NULL,
-    inicio_do_sla DATETIME DEFAULT '0001-01-01',
-    final_do_sla DATETIME DEFAULT '9999-12-31',
+    inicio_do_sla TIMESTAMP DEFAULT '0001-01-01 00:00:00',
+    final_do_sla TIMESTAMP DEFAULT '9999-12-31 23:59:59',
     eh_lg_ctrl_tipo_fechamento_ok BOOLEAN DEFAULT TRUE,
     codigos_fechamento_preenchido BOOLEAN DEFAULT FALSE,
     codigos_fechamentos VARCHAR(128) NOT NULL,
