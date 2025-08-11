@@ -86,6 +86,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdCoordinateAccuracy)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
+            builder.HasIndex(x => x.InstallationNumber).IsUnique();
         }
     }
 }
