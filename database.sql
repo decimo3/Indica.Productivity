@@ -161,7 +161,8 @@ CREATE TABLE IF NOT EXISTS composicoes (
     telefone INTEGER NOT NULL,
     eh_considerado BOOLEAN DEFAULT TRUE,
     id_atividade INTEGER REFERENCES atividades(id_atividade),
-    id_regional INTEGER REFERENCES regionais(id_regional)
+    id_regional INTEGER REFERENCES regionais(id_regional),
+    UNIQUE (dia, recurso)
 );
 
 CREATE TABLE IF NOT EXISTS equipes (
