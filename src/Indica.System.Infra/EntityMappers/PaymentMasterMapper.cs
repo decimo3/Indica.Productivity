@@ -20,6 +20,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("descricao")
                 .HasMaxLength(128)
                 .IsRequired();
+            builder.HasIndex(x => x.Master).IsUnique();
         }
     }
 }
