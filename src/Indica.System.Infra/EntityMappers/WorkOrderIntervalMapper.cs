@@ -13,7 +13,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("motivo_indisponibilidade_ou_descricao_intervalo")
                 .HasMaxLength(32)
                 .IsRequired();
-            builder.HasIndex(x => x.UnavailableReasonOrIntervalDescription).IsUnique();
         }
     }
 }
