@@ -70,7 +70,7 @@ INSERT INTO atividades (id_atividade, nome_atividade, eh_caminhao, eh_metade, eh
 
 CREATE TABLE IF NOT EXISTS contratos (
     id_contrato INTEGER PRIMARY KEY,
-    contrato INTEGER NOT NULL,
+    contrato BIGINT NOT NULL,
     aditivo INTEGER NOT NULL,
     inicio_vigencia DATE NOT NULL,
     final_vigencia DATE DEFAULT '9999-12-31'
