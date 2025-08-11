@@ -169,7 +169,8 @@ CREATE TABLE IF NOT EXISTS equipes (
     id_equipe INTEGER PRIMARY KEY,
     id_composicao INTEGER REFERENCES composicoes(id_composicao),
     id_funcionario INTEGER REFERENCES funcionarios(id_funcionario),
-    id_composicao_funcao INTEGER REFERENCES composicao_funcoes(id_composicao_funcao)
+    id_composicao_funcao INTEGER REFERENCES composicao_funcoes(id_composicao_funcao),
+    UNIQUE (id_composicao, id_funcionario)
 );
 
 CREATE TABLE IF NOT EXISTS mestres (
