@@ -25,6 +25,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdPaymentMaster)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
+            builder.HasIndex(x => new { x.IdFinishing, x.IdPaymentMaster }).IsUnique();
         }
     }
 }
