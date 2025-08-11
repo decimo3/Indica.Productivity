@@ -45,6 +45,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(e => e.IdSituation)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
+            builder.HasIndex(x => new { x.IndicaRegistry, x.ClientRegistry }).IsUnique();
         }
     }
 }
