@@ -18,6 +18,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("nome_funcionario_funcao")
                 .HasMaxLength(16)
                 .IsRequired();
+            builder.HasIndex(x => x.FunctionName).IsUnique();
             builder.HasData([
                 new EmployerFunction { Id = 1, FunctionName = "eletricista" },
                 new EmployerFunction { Id = 2, FunctionName = "supervisor" },
