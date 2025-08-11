@@ -37,6 +37,7 @@ namespace Indica.System.Infra.EntityMappers
                 .WithMany()
                 .HasForeignKey(a => a.IdProject)
                 .OnDelete(DeleteBehavior.SetNull);
+            builder.HasIndex(x => x.ActivityName).IsUnique();
         }
     }
 }
