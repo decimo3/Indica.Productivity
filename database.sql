@@ -281,8 +281,8 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
     email VARCHAR(64) DEFAULT NULL,
     fases INTEGER REFERENCES servico_fases(id_servico_fase),
     eh_encontrada_coordenadas BOOLEAN DEFAULT TRUE,
-    coordenada_x DOUBLE DEFAULT 0,
-    coordenada_y DOUBLE DEFAULT 0,
+    coordenada_x DOUBLE PRECISION DEFAULT 0,
+    coordenada_y DOUBLE PRECISION DEFAULT 0,
     id_coordenadas_exatidao INTEGER REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
 );
 
