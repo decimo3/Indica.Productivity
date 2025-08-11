@@ -27,6 +27,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("final_vigencia")
                 .HasDefaultValue(DateOnly.MaxValue)
                 .IsRequired();
+            builder.HasIndex(x => new {x.ContractNumber, x.AdditiveNumber}).IsUnique();
         }
     }
 }
