@@ -21,6 +21,7 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(fd => fd.IsExecuted)
                 .HasColumnName("eh_executado")
                 .IsRequired();
+            builder.HasIndex(x => x.Detail).IsUnique();
             builder.HasData([
                 new FinishingDetail { Id = 1, Detail = "EXEC", IsExecuted = true },
                 new FinishingDetail { Id = 2, Detail = "CAPEX", IsExecuted = true },
