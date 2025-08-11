@@ -2,8 +2,7 @@ namespace Indica.System.Application.DTO
 {
     public class ObjectiveDTO : EntityBaseDTO
     {
-        public int IdContract { get; set; }
-        public int IdProcess { get; set; }
+        public int IdContractProject { get; set; }
         public bool IsBasketTruck { get; set; }
         public bool IsHalfPrice { get; set; }
         public bool IsEspecial { get; set; }
