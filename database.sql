@@ -6,7 +6,7 @@ CREATE DATABASE IF NOT EXISTS produtivity;
 
 CREATE TABLE IF NOT EXISTS processos (
     id_processo INTEGER PRIMARY KEY,
-    nome_processo VARCHAR(8) NOT NULL
+    nome_processo VARCHAR(8) UNIQUE
 );
 
 INSERT INTO processos (id_processo, nome_processo) VALUES
@@ -17,7 +17,7 @@ INSERT INTO processos (id_processo, nome_processo) VALUES
 
 CREATE TABLE IF NOT EXISTS projetos (
     id_projeto INTEGER PRIMARY KEY,
-    nome_projeto VARCHAR(16) NOT NULL,
+    nome_projeto VARCHAR(16) UNIQUE,
     id_processo INTEGER REFERENCES processos(id_processo)
 );
 
@@ -37,7 +37,7 @@ INSERT INTO projetos (id_projeto, nome_projeto, id_processo) VALUES
 
 CREATE TABLE IF NOT EXISTS atividades (
     id_atividade INTEGER PRIMARY KEY,
-    nome_atividade VARCHAR(32) NOT NULL,
+    nome_atividade VARCHAR(32) UNIQUE,
     eh_caminhao BOOLEAN DEFAULT FALSE,
     eh_metade BOOLEAN DEFAULT FALSE,
     eh_especial BOOLEAN DEFAULT FALSE,
@@ -73,12 +73,13 @@ CREATE TABLE IF NOT EXISTS contratos (
     contrato BIGINT NOT NULL,
     aditivo INTEGER NOT NULL,
     inicio_vigencia DATE NOT NULL,
-    final_vigencia DATE DEFAULT '9999-12-31'
+    final_vigencia DATE DEFAULT '9999-12-31',
+    UNIQUE (contrato, aditivo)
 );
 
 CREATE TABLE IF NOT EXISTS regionais (
     id_regional INTEGER PRIMARY KEY,
-    nome_regional VARCHAR(16) NOT NULL
+    nome_regional VARCHAR(16) UNIQUE
 );
 
 INSERT INTO regionais (id_regional, nome_regional) VALUES
@@ -105,7 +106,7 @@ CREATE TABLE IF NOT EXISTS objetivos (
 
 CREATE TABLE IF NOT EXISTS funcionario_situacoes (
     id_funcionario_situacao INTEGER PRIMARY KEY,
-    nome_funcionario_situacao VARCHAR(16) NOT NULL
+    nome_funcionario_situacao VARCHAR(16) UNIQUE
 );
 
 INSERT INTO funcionario_situacoes (id_funcionario_situacao, nome_funcionario_situacao) VALUES
@@ -117,7 +118,7 @@ INSERT INTO funcionario_situacoes (id_funcionario_situacao, nome_funcionario_sit
 
 CREATE TABLE IF NOT EXISTS funcionario_funcoes (
     id_funcionario_funcao INTEGER PRIMARY KEY,
-    nome_funcionario_funcao VARCHAR(16) NOT NULL
+    nome_funcionario_funcao VARCHAR(16) UNIQUE
 );
 
 INSERT INTO funcionario_funcoes (id_funcionario_funcao, nome_funcionario_funcao) VALUES
@@ -129,9 +130,9 @@ INSERT INTO funcionario_funcoes (id_funcionario_funcao, nome_funcionario_funcao)
 
 CREATE TABLE IF NOT EXISTS funcionarios (
     id_funcionario INTEGER PRIMARY KEY,
-    matricula_indica INTEGER NOT NULL,
-    matricula_cliente INTEGER NOT NULL,
-    nome_funcionario VARCHAR(128) NOT NULL,
+    matricula_indica INTEGER UNIQUE,
+    matricula_cliente INTEGER UNIQUE,
+    nome_funcionario VARCHAR(128) UNIQUE,
     data_admissao DATE NOT NULL,
     data_demissao DATE DEFAULT NULL,
     id_funcionario_situacao INTEGER REFERENCES funcionario_situacoes(id_funcionario_situacao),
@@ -140,7 +141,7 @@ CREATE TABLE IF NOT EXISTS funcionarios (
 
 CREATE TABLE IF NOT EXISTS composicao_funcoes (
     id_composicao_funcao INTEGER PRIMARY KEY,
-    nome_composicao_funcao VARCHAR(16) NOT NULL
+    nome_composicao_funcao VARCHAR(16) UNIQUE
 );
 
 INSERT INTO composicao_funcoes (id_composicao_funcao, nome_composicao_funcao) VALUES
@@ -170,7 +171,7 @@ CREATE TABLE IF NOT EXISTS equipes (
 
 CREATE TABLE IF NOT EXISTS mestres (
     id_mestre INTEGER PRIMARY KEY,
-    mestre INTEGER NOT NULL,
+    mestre INTEGER UNIQUE,
     descricao VARCHAR(128) NOT NULL
 );
 
@@ -185,7 +186,7 @@ CREATE TABLE IF NOT EXISTS pagamentos (
 
 CREATE TABLE IF NOT EXISTS finalizacao_categorias (
     id_finalizacao_categoria INTEGER PRIMARY KEY,
-    nome_finalizacao_categoria VARCHAR(16) NOT NULL,
+    nome_finalizacao_categoria VARCHAR(16) UNIQUE,
     eh_executado BOOLEAN DEFAULT TRUE
 );
 
@@ -209,7 +210,7 @@ INSERT INTO finalizacao_categorias (id_finalizacao_categoria, nome_finalizacao_c
 
 CREATE TABLE IF NOT EXISTS finalizacoes (
     id_finalizacao INTEGER PRIMARY KEY,
-    agrupamento_medidas VARCHAR(128) NOT NULL,
+    agrupamento_medidas VARCHAR(128) UNIQUE,
     id_categoria INTEGER REFERENCES finalizacao_categorias(id_finalizacao_categoria)
 );
 
@@ -221,7 +222,7 @@ CREATE TABLE IF NOT EXISTS finalizacoes_pagamento (
 
 CREATE TABLE IF NOT EXISTS dano_projeto (
     id_dano_projeto INTEGER PRIMARY KEY,
-    nome_dano_projeto VARCHAR(4) NOT NULL,
+    nome_dano_projeto VARCHAR(4) UNIQUE,
     texto_breve_para_dano VARCHAR(64) NOT NULL,
     id_projeto INTEGER REFERENCES projetos(id_projeto)
 );
@@ -235,13 +236,13 @@ INSERT INTO dano_projeto (id_dano_projeto, nome_dano_projeto, texto_breve_para_d
 
 CREATE TABLE IF NOT EXISTS codigo_filtragem (
     id_codigo_filtragem INTEGER PRIMARY KEY,
-    nome_codigo_filtragem VARCHAR(4) NOT NULL,
+    nome_codigo_filtragem VARCHAR(4) UNIQUE,
     id_projeto INTEGER REFERENCES projetos(id_projeto)
 );
 
 CREATE TABLE IF NOT EXISTS servico_situacao (
     id_servico_situacao INTEGER PRIMARY KEY,
-    nome_servico_situacao VARCHAR(16) NOT NULL
+    nome_servico_situacao VARCHAR(16) UNIQUE
 );
 
 INSERT INTO servico_situacao (id_servico_situacao, nome_servico_situacao) VALUES
@@ -250,7 +251,7 @@ INSERT INTO servico_situacao (id_servico_situacao, nome_servico_situacao) VALUES
 
 CREATE TABLE IF NOT EXISTS servico_fases (
     id_servico_fase INTEGER PRIMARY KEY,
-    nome_servico_fase VARCHAR(16) NOT NULL
+    nome_servico_fase VARCHAR(16) UNIQUE
 );
 
 INSERT INTO servico_fases (id_servico_fase, nome_servico_fase) VALUES
@@ -258,7 +259,7 @@ INSERT INTO servico_fases (id_servico_fase, nome_servico_fase) VALUES
 
 CREATE TABLE IF NOT EXISTS coordenadas_exatidao (
     id_coordenadas_exatidao INTEGER PRIMARY KEY,
-    nome_coordenadas_exatidao VARCHAR(8) NOT NULL
+    nome_coordenadas_exatidao VARCHAR(8) UNIQUE
 );
 
 INSERT INTO coordenadas_exatidao (id_coordenadas_exatidao, nome_coordenadas_exatidao) VALUES
@@ -266,7 +267,7 @@ INSERT INTO coordenadas_exatidao (id_coordenadas_exatidao, nome_coordenadas_exat
 
 CREATE TABLE IF NOT EXISTS servico_cliente (
     id_servico INTEGER PRIMARY KEY,
-    instalacao BIGINT NOT NULL,
+    instalacao BIGINT UNIQUE,
     nome VARCHAR(128) NOT NULL,
     logradouro VARCHAR(64) NOT NULL,
     numero VARCHAR(32) DEFAULT NULL,
@@ -290,7 +291,7 @@ CREATE TABLE IF NOT EXISTS servicos_base (
     id_servico INTEGER PRIMARY KEY,
     recurso VARCHAR(32) NOT NULL,
     dia DATE NOT NULL,
-    id_atividade INTEGER NOT NULL,
+    id_atividade INTEGER UNIQUE,
     tempo_inicio TIME NOT NULL,
     tempo_final TIME NOT NULL,
     tempo_duracao INTERVAL NOT NULL,
