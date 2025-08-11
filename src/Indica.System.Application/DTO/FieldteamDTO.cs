@@ -3,7 +3,6 @@ namespace Indica.System.Application.DTO
 {
     public class FieldTeamDTO : EntityBaseDTO
     {
-        public string IdFieldTeam { get; set; }
         [Alias("DATA")]
         public DateOnly Date { get; set; }
         [Alias("ADESIVO LIGHT")]
