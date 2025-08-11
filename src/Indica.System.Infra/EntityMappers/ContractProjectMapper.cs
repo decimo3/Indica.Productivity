@@ -38,6 +38,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdRegional)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
+            builder.HasIndex(x => new { x.IdContract, x.IdProject, x.IdRegional}).IsUnique();
         }
     }
 }
