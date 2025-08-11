@@ -38,6 +38,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdFunction)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
+            builder.HasIndex(x => new {x.IdFieldTeam, x.IdEmployer}).IsUnique();
         }
     }
 }
