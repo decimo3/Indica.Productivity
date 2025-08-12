@@ -35,7 +35,49 @@ namespace Indica.System.Application.Services
         }
         public async Task<bool> AddAsync(FieldTeamDTO entity)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(entity);
+            var erros = entity.Validate();
+            if (erros.Count != 0)
+                throw new InvalidOperationException();
+            var regional = (await _regionalRepository.GetByExpression(
+                r => r.RegionName == entity.WorkArea)).Single();
+            var activity = (await _activityRepository.GetByExpression(
+                a => a.ActivityName == entity.ActivityName)).Single();
+            var functions = await _functionRepository.GetAllAsync();
+            var fieldteam = new FieldTeam()
+            {
+                Date = entity.Date,
+                Order = entity.Order,
+                Plate = entity.Plate,
+                Resource = entity.Resource,
+                Cellphone = entity.Cellphone,
+                IdActivity = activity.Id,
+                Activity = activity,
+                IdRegion = regional.Id,
+                Regional = regional,
+                Couples = [
+                    new FieldTeamCouple()
+                    {
+                        IdEmployer = entity.EmployerRegistry1,
+                        IdFunction = functions.Where(f =>
+                            f.FunctionName == "executor1").Single().Id,
+                    },
+                    new FieldTeamCouple()
+                    {
+                        IdEmployer = entity.EmployerRegistry2,
+                        IdFunction = functions.Where(f =>
+                            f.FunctionName == "executor2").Single().Id,
+                    },
+                    new FieldTeamCouple()
+                    {
+                        IdEmployer = entity.SupervisorRegistry,
+                        IdFunction = functions.Where(f =>
+                            f.FunctionName == "supervisor").Single().Id,
+                    }
+                ]
+            };
+            await _fieldteamRepository.AddAsync(fieldteam);
+            return true;
         }
         public Task<int> AddRangeAsync(List<FieldTeamDTO> lista)
         {
