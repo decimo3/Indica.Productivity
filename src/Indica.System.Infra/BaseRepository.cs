@@ -76,5 +76,22 @@ namespace Indica.System.Infra
             await _context.SaveChangesAsync();
             return lista.Count;
         }
+
+        public async Task<T?> FirstOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
+        {
+            return await _dbSet.FirstOrDefaultAsync(expression);
+        }
+
+        public async Task<T> SingleByExpressionAsync(Expression<Func<T, bool>> expression)
+        {
+            return await _dbSet.SingleAsync(expression);
+        }
+
+        public async Task<List<T>> GetPagedAndFilteredByExpressionAsync(int offset, int limit, Expression<Func<T, bool>>? filter = null)
+        {
+            IQueryable<T> queryable = _dbSet;
+            if (filter != null) queryable = queryable.Where(filter);
+            return await queryable.Skip((offset - 1) * limit).Take(limit).ToListAsync();
+        }
     }
 }
