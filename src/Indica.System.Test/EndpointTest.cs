@@ -69,5 +69,17 @@ namespace Indica.System.Test
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
+        [Fact]
+        public async Task PostResquest_FieldTeamSingle_ReturnSucess()
+        {
+            // Arrange
+            var url = "/api/fieldteam";
+            var json = "{\"Date\": \"2025-07-15\",\"Order\": 16590,\"Plate\": \"SIN-2B41\",\"Resource\": \"AXOI - Indica - Equipe 001\",\"ActivityName\": \"ANEXO IV\",\"EmployerRegistry1\": 2272046,\"EmployerName1\": \"Claudio Ferreira CASSIANO\",\"EmployerRegistry2\": 2266958,\"EmployerName2\": \"VINICIUS da Silva Franca de ASSIS\",\"Cellphone\": 999881467,\"SupervisorRegistry\": 2255625,\"SupervisorName\": \"ALEX OTAVIO Figueiredo\",\"WorkArea\": \"CAMPO GRANDE\"}";
+            var payload = new StringContent(json, Encoding.UTF8, "application/json");
+            // Act test
+            var response = await _client.PostAsync(url, payload);
+            // Assert
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+        }
     }
 }
