@@ -26,6 +26,13 @@ namespace Indica.System.Test
                 {
                     options.UseInMemoryDatabase("TestDb");
                 });
+                // Obtém o serviço DbContext para aplicar o dataseed
+                var serviceProvider = services.BuildServiceProvider();
+                using var scope = serviceProvider.CreateScope();
+                var context = scope.ServiceProvider.GetService<ProductivityContext>() ??
+                    throw new InvalidOperationException();
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
             });
         }
     }
