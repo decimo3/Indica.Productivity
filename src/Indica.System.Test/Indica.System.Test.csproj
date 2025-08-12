@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Indica.System.Shared\Indica.System.Shared.csproj" />
     <ProjectReference Include="..\Indica.System.Application\Indica.System.Application.csproj" />
+    <ProjectReference Include="..\Indica.System.API\Indica.System.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
