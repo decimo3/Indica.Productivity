@@ -23,9 +23,7 @@ namespace Indica.System.Test
                     services.Remove(descriptor);
                 // Adiciona um DbContext em memória
                 services.AddDbContext<ProductivityContext>(options =>
-                {
-                    options.UseInMemoryDatabase("TestDb");
-                });
+                    options.UseSqlite("Data Source=TestsResults.db"));
                 // Obtém o serviço DbContext para aplicar o dataseed
                 var serviceProvider = services.BuildServiceProvider();
                 using var scope = serviceProvider.CreateScope();
