@@ -27,7 +27,7 @@ namespace Indica.System.Test
                 var serviceProvider = services.BuildServiceProvider();
                 using var scope = serviceProvider.CreateScope();
                 var context = scope.ServiceProvider.GetService<ProductivityContext>() ??
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException("Não foi possível obter o serviço `DbContext`.");
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
             });
