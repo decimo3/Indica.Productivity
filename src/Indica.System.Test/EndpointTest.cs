@@ -16,9 +16,8 @@ namespace Indica.System.Test
             builder.ConfigureServices(services =>
             {
                 // Remove o DbContext real
-                var descriptor = services.SingleOrDefault(
-                d => d.ServiceType == typeof(ProductivityContext)
-                );
+                var descriptor = services.SingleOrDefault(d =>
+                    d.ServiceType == typeof(ProductivityContext));
                 if (descriptor != null)
                     services.Remove(descriptor);
                 // Adiciona um DbContext em memória
