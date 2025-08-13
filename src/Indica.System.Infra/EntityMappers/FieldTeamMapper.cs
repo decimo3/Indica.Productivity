@@ -52,11 +52,6 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdRegion)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasMany(x => x.Couples)
-                .WithOne()
-                .HasForeignKey(y => y.IdFieldTeam)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
             builder.HasIndex(x => new { x.Date, x.Resource }).IsUnique();
         }
     }
