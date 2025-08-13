@@ -30,17 +30,9 @@ namespace Indica.System.API
             // and all others will be automaticaly loaded.
             builder.Services.AddAutoMapper(typeof(ContractAutoMapper));
 
-            #region DATABASE
-            // InMemory
+            // Database
             builder.Services.AddDbContext<ProductivityContext>(options =>
-                options.UseInMemoryDatabase(databaseName: "productivity"));
-            // SQLite
-            // builder.Services.AddDbContext<ProductivityContext>(options =>
-            //      options.UseSqlite("Data Source=productivity.db"));
-            // Postgres
-            // builder.Services.AddDbContext<ProductivityContext>(options =>
-            //      options.UseNpgsql(config.GetConnectionString("Default")));
-            #endregion
+                options.UseNpgsql(config.GetConnectionString("Default")));
 
             #region SERVICES
             builder.Services.AddScoped<IFileParser, FileParser>();
