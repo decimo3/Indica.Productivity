@@ -1,9 +1,3 @@
--- Criação do banco de dados
-CREATE DATABASE IF NOT EXISTS produtivity;
-
--- Conectar ao banco de dados
-\c produtivity;
-
 CREATE TABLE IF NOT EXISTS processos (
     id_processo INTEGER PRIMARY KEY,
     nome_processo VARCHAR(8) UNIQUE
