@@ -82,9 +82,9 @@ namespace Indica.System.Infra
             return await _dbSet.FirstOrDefaultAsync(expression);
         }
 
-        public async Task<T> SingleByExpressionAsync(Expression<Func<T, bool>> expression)
+        public async Task<T?> SingleOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
         {
-            return await _dbSet.SingleAsync(expression);
+            return await _dbSet.SingleOrDefaultAsync(expression);
         }
 
         public async Task<List<T>> GetPagedAndFilteredByExpressionAsync(int offset, int limit, Expression<Func<T, bool>>? filter = null)
