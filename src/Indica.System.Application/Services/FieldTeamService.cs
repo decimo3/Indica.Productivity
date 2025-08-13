@@ -38,12 +38,15 @@ namespace Indica.System.Application.Services
             ArgumentNullException.ThrowIfNull(entity);
             var erros = entity.Validate();
             if (erros.Count != 0)
-                throw new InvalidOperationException();
-            var regional = (await _regionalRepository.GetByExpression(
-                r => r.RegionName == entity.WorkArea)).Single();
-            var activity = (await _activityRepository.GetByExpression(
-                a => a.ActivityName == entity.ActivityName)).Single();
-            var functions = await _functionRepository.GetAllAsync();
+                throw new InvalidOperationException("Há erros de validação na informação enviada!");
+            var regional = await _regionalRepository.SingleOrDefaultByExpressionAsync(
+                r => r.RegionName == entity.WorkArea) ??
+                    throw new InvalidOperationException("A regional informada não foi encontrada!");
+            var activity = await _activityRepository.SingleOrDefaultByExpressionAsync(
+                a => a.ActivityName == entity.ActivityName) ??
+                    throw new InvalidOperationException("A atividade informada não foi encontrada!");
+            var functions = await _functionRepository.GetAllAsync() ??
+                throw new InvalidOperationException("A tabela de funções da composição está vazia!");
             var fieldteam = new FieldTeam()
             {
                 Date = entity.Date,
