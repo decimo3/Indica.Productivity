@@ -53,7 +53,7 @@ namespace Indica.System.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<WorkOrderDTO>> GetByExpression(Expression<Func<WorkOrderDTO, bool>> expression)
+        public Task<List<WorkOrderDTO>> GetByExpressionAsync(Expression<Func<WorkOrderDTO, bool>> expression)
         {
             throw new NotImplementedException();
         }
