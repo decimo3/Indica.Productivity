@@ -51,7 +51,7 @@ namespace Indica.System.Infra
             return true;
         }
 
-        public virtual async Task<List<T>> GetByExpression(Expression<Func<T, bool>> expression)
+        public virtual async Task<List<T>> GetByExpressionAsync(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.Where(expression).ToListAsync();
         }
