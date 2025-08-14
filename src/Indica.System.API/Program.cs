@@ -41,7 +41,11 @@ namespace Indica.System.API
             {
                 // Sqlite3
                 builder.Services.AddDbContext<ProductivityContext>(options =>
-                    options.UseSqlite("Data Source=TestsResults.db"));
+                {
+                    options.UseSqlite("Data Source=TestsResults.db");
+                    options.LogTo(Console.WriteLine, LogLevel.Information)
+                        .EnableSensitiveDataLogging();
+                });
             }
             #endregion
 
