@@ -63,10 +63,10 @@ namespace Indica.System.Application
             return await _repository.UpdateAsync(entityMapped);
         }
 
-        public virtual async Task<List<T>> GetByExpression(Expression<Func<T, bool>> expression)
+        public virtual async Task<List<T>> GetByExpressionAsync(Expression<Func<T, bool>> expression)
         {
             var mappedExpression = _mapper.Map<Expression<Func<Y, bool>>>(expression);
-            var entity = await _repository.GetByExpression(mappedExpression);
+            var entity = await _repository.GetByExpressionAsync(mappedExpression);
             return _mapper.Map<List<T>>(entity);
         }
 
