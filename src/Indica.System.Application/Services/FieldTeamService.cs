@@ -39,10 +39,10 @@ namespace Indica.System.Application.Services
             var erros = entity.Validate();
             if (erros.Count != 0)
                 throw new InvalidOperationException("Há erros de validação na informação enviada!");
-            var regional = await _regionalRepository.SingleOrDefaultByExpressionAsync(
+            var regional = await _regionalRepository.GetSingleOrDefaultByExpressionAsync(
                 r => r.RegionName == entity.WorkArea) ??
                     throw new InvalidOperationException("A regional informada não foi encontrada!");
-            var activity = await _activityRepository.SingleOrDefaultByExpressionAsync(
+            var activity = await _activityRepository.GetSingleOrDefaultByExpressionAsync(
                 a => a.ActivityName == entity.ActivityName) ??
                     throw new InvalidOperationException("A atividade informada não foi encontrada!");
             var functions = await _functionRepository.GetAllAsync() ??
