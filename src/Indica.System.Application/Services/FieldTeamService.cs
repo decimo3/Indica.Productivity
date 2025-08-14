@@ -102,7 +102,7 @@ namespace Indica.System.Application.Services
         {
             throw new NotImplementedException();
         }
-        public Task<List<FieldTeamDTO>> GetByExpression(Expression<Func<FieldTeamDTO, bool>> expression)
+        public Task<List<FieldTeamDTO>> GetByExpressionAsync(Expression<Func<FieldTeamDTO, bool>> expression)
         {
             throw new NotImplementedException();
         }
