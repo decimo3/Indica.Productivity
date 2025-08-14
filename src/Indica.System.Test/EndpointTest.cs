@@ -39,7 +39,7 @@ namespace Indica.System.Test
         {
             // Arrange
             var url = "/api/process";
-            var json = "{\"processName\":\"CORE\",\"id\":1}";
+            var json = "{\"processName\":\"VASCO\"}";
             var payload = new StringContent(json,
                 Encoding.UTF8, "application/json");
             // Act test
