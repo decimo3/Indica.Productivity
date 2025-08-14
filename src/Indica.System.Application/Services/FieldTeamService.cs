@@ -12,6 +12,7 @@ namespace Indica.System.Application.Services
     {
         private readonly IFileParser _parser;
         private readonly IActivityRepository _activityRepository;
+        private readonly IEmployerRepository _employerRepository;
         private readonly IFieldTeamRepository _fieldteamRepository;
         private readonly IFieldTeamCoupleRepository _coupleRepository;
         private readonly IFieldTeamRegionalRepository _regionalRepository;
@@ -20,6 +21,7 @@ namespace Indica.System.Application.Services
         (
             IFileParser parser,
             IActivityRepository activityRepository,
+            IEmployerRepository employerRepository,
             IFieldTeamRepository fieldteamRepository,
             IFieldTeamCoupleRepository coupleRepository,
             IFieldTeamRegionalRepository regionalRepository,
@@ -28,6 +30,7 @@ namespace Indica.System.Application.Services
         {
             _parser = parser;
             _activityRepository = activityRepository;
+            _employerRepository = employerRepository;
             _fieldteamRepository = fieldteamRepository;
             _coupleRepository = coupleRepository;
             _regionalRepository = regionalRepository;
@@ -47,6 +50,14 @@ namespace Indica.System.Application.Services
                     throw new InvalidOperationException("A atividade informada não foi encontrada!");
             var functions = await _functionRepository.GetAllAsync() ??
                 throw new InvalidOperationException("A tabela de funções da composição está vazia!");
+            var employers = await _employerRepository.GetByExpressionAsync(e =>
+                e.ClientRegistry == entity.EmployerRegistry1 ||
+                e.ClientRegistry == entity.EmployerRegistry2 ||
+                e.ClientRegistry == entity.SupervisorRegistry
+            );
+            if (employers.Count != 3)
+                throw new InvalidOperationException("Não foram encontrados todos os funcionarios");
+            
             var fieldteam = new FieldTeam()
             {
                 Date = entity.Date,
@@ -61,24 +72,26 @@ namespace Indica.System.Application.Services
                 Couples = [
                     new FieldTeamCouple()
                     {
-                        IdEmployer = entity.EmployerRegistry1,
+                        IdEmployer = employers.Single(e =>
+                            e.ClientRegistry == entity.EmployerRegistry1).Id,
                         IdFunction = functions.Where(f =>
                             f.FunctionName == "executor1").Single().Id,
                     },
                     new FieldTeamCouple()
                     {
-                        IdEmployer = entity.EmployerRegistry2,
+                        IdEmployer = employers.Single(e =>
+                            e.ClientRegistry == entity.EmployerRegistry2).Id,
                         IdFunction = functions.Where(f =>
                             f.FunctionName == "executor2").Single().Id,
                     },
                     new FieldTeamCouple()
                     {
-                        IdEmployer = entity.SupervisorRegistry,
+                        IdEmployer = employers.Single(e =>
+                            e.ClientRegistry == entity.SupervisorRegistry).Id,
                         IdFunction = functions.Where(f =>
                             f.FunctionName == "supervisor").Single().Id,
                     }
-                ]
-            };
+                ]};
             await _fieldteamRepository.AddAsync(fieldteam);
             return true;
         }
