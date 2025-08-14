@@ -1,0 +1,17 @@
+[
+  {
+    "Date": "2025-01-01",
+    "Order": 12345,
+    "Plate": "ABC-1234",
+    "Resource": "CCOIC - Corte - Equipe 001",
+    "ActivityName": "CORTE",
+    "EmployerRegistry1": 1111111,
+    "EmployerName1": "Fulano De Tal",
+    "EmployerRegistry2": 2222222,
+    "EmployerName2": "Ciclano De Tal",
+    "Cellphone": 999999999,
+    "SupervisorRegistry": 3333333,
+    "SupervisorName": "Beltrano De Tal",
+    "WorkArea": "BAIXADA"
+  }
+]
