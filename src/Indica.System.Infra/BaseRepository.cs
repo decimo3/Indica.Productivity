@@ -77,12 +77,12 @@ namespace Indica.System.Infra
             return lista.Count;
         }
 
-        public async Task<T?> FirstOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
+        public async Task<T?> GetFirstOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.FirstOrDefaultAsync(expression);
         }
 
-        public async Task<T?> SingleOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
+        public async Task<T?> GetSingleOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.SingleOrDefaultAsync(expression);
         }
