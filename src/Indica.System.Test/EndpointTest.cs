@@ -52,11 +52,11 @@ namespace Indica.System.Test
         {
             // Arrange
             var url = "/api/process";
-            var json = "{\"processName\":\"COREASDASDASDASDASDAS\"}";
+            var json = "{\"processName\":\"ASDASDASDASDASDASDASDASD\",\"id\":1}";
             var payload = new StringContent(json,
                 Encoding.UTF8, "application/json");
             // Act test
-            var response = await _client.PostAsync(url, payload);
+            var response = await _client.PutAsync(url, payload);
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
