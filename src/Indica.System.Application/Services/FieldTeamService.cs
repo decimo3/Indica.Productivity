@@ -66,9 +66,7 @@ namespace Indica.System.Application.Services
                 Resource = entity.Resource,
                 Cellphone = entity.Cellphone,
                 IdActivity = activity.Id,
-                Activity = activity,
                 IdRegion = regional.Id,
-                Regional = regional,
                 Couples = [
                     new FieldTeamCouple()
                     {
