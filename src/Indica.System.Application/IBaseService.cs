@@ -10,7 +10,7 @@ namespace Indica.System.Application
         Task<bool> AddAsync(T entity);
         Task<bool> UpdateAsync(T entity);
         Task<bool> DeleteAsync(int id);
-        Task<List<T>> GetByExpression(Expression<Func<T, bool>> expression);
+        Task<List<T>> GetByExpressionAsync(Expression<Func<T, bool>> expression);
         Task<int> AddRangeAsync(List<T> lista);
         Task<int> UpdateRangeAsync(List<T> lista);
         Task<int> DeleteRangeAsync(List<T> lista);
