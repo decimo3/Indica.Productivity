@@ -57,16 +57,6 @@ namespace Indica.System.Application.Services
             var activity = await _activityRepository.GetSingleOrDefaultByExpressionAsync(
                 a => a.ActivityName == entity.ActivityName) ??
                     throw new InvalidOperationException("A atividade informada não foi encontrada!");
-            var functions = await _functionRepository.GetAllAsync() ??
-                throw new InvalidOperationException("A tabela de funções da composição está vazia!");
-            var employers = await _employerRepository.GetByExpressionAsync(e =>
-                e.ClientRegistry == entity.EmployerRegistry1 ||
-                e.ClientRegistry == entity.EmployerRegistry2 ||
-                e.ClientRegistry == entity.SupervisorRegistry
-            );
-            if (employers.Count != 3)
-                throw new InvalidOperationException("Não foram encontrados todos os funcionarios");
-            
             var fieldteam = new FieldTeam()
             {
                 Date = entity.Date,
