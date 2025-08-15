@@ -32,7 +32,7 @@ namespace Indica.System.Application.Services
             _regionalRepository = regionalRepository;
             _functionRepository = functionRepository;
         }
-        public async Task<bool> AddAsync(FieldTeamDTO entity)
+        public override async Task<bool> AddAsync(FieldTeamDTO entity)
         {
             ArgumentNullException.ThrowIfNull(entity);
             var erros = entity.Validate();
@@ -89,39 +89,39 @@ namespace Indica.System.Application.Services
             await _fieldteamRepository.AddAsync(fieldteam);
             return true;
         }
-        public Task<int> AddRangeAsync(List<FieldTeamDTO> lista)
+        public override async Task<int> AddRangeAsync(List<FieldTeamDTO> lista)
         {
             throw new NotImplementedException();
         }
-        public Task<int> AddRangeAsync(Stream arquivo, string filename)
+        public override async Task<int> AddRangeAsync(Stream arquivo, string filename)
         {
             throw new NotImplementedException();
         }
-        public Task<bool> DeleteAsync(int id)
+        public override async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
-        public Task<int> DeleteRangeAsync(List<FieldTeamDTO> lista)
+        public override async Task<int> DeleteRangeAsync(List<FieldTeamDTO> lista)
         {
             throw new NotImplementedException();
         }
-        public Task<List<FieldTeamDTO>> GetAllAsync()
+        public override async Task<List<FieldTeamDTO>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
-        public Task<List<FieldTeamDTO>> GetByExpressionAsync(Expression<Func<FieldTeamDTO, bool>> expression)
+        public override async Task<List<FieldTeamDTO>> GetByExpressionAsync(Expression<Func<FieldTeamDTO, bool>> expression)
         {
             throw new NotImplementedException();
         }
-        public Task<FieldTeamDTO> GetByIdAsync(int id)
+        public override async Task<FieldTeamDTO> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
-        public Task<bool> UpdateAsync(FieldTeamDTO entity)
+        public override async Task<bool> UpdateAsync(FieldTeamDTO entity)
         {
             throw new NotImplementedException();
         }
-        public Task<int> UpdateRangeAsync(List<FieldTeamDTO> lista)
+        public override async Task<int> UpdateRangeAsync(List<FieldTeamDTO> lista)
         {
             throw new NotImplementedException();
         }
