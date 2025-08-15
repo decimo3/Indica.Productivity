@@ -96,10 +96,10 @@ namespace Indica.System.Application
             return lista.Count;
         }
 
-        public Task<int> DeleteRangeAsync(List<T> lista)
+        public virtual async Task<int> DeleteRangeAsync(List<T> lista)
         {
             var entitiesMapped = _mapper.Map<List<Y>>(lista);
-            return _repository.DeleteRangeAsync(entitiesMapped);
+            return await _repository.DeleteRangeAsync(entitiesMapped);
         }
 
         public virtual async Task<int> AddRangeAsync(Stream arquivo, string filename)
