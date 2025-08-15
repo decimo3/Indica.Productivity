@@ -10,11 +10,9 @@ namespace Indica.System.Application.Services
 {
     public class FieldTeamService : IBaseService<FieldTeamDTO, FieldTeam>, IFieldTeamService
     {
-        private readonly IFileParser _parser;
         private readonly IActivityRepository _activityRepository;
         private readonly IEmployerRepository _employerRepository;
         private readonly IFieldTeamRepository _fieldteamRepository;
-        private readonly IFieldTeamCoupleRepository _coupleRepository;
         private readonly IFieldTeamRegionalRepository _regionalRepository;
         private readonly IFieldTeamFunctionRepository _functionRepository;
         public FieldTeamService
@@ -23,16 +21,13 @@ namespace Indica.System.Application.Services
             IActivityRepository activityRepository,
             IEmployerRepository employerRepository,
             IFieldTeamRepository fieldteamRepository,
-            IFieldTeamCoupleRepository coupleRepository,
             IFieldTeamRegionalRepository regionalRepository,
             IFieldTeamFunctionRepository functionRepository
         )
         {
-            _parser = parser;
             _activityRepository = activityRepository;
             _employerRepository = employerRepository;
             _fieldteamRepository = fieldteamRepository;
-            _coupleRepository = coupleRepository;
             _regionalRepository = regionalRepository;
             _functionRepository = functionRepository;
         }
