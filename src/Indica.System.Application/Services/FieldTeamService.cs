@@ -32,6 +32,21 @@ namespace Indica.System.Application.Services
             _regionalRepository = regionalRepository;
             _functionRepository = functionRepository;
         }
+        private async Task<FieldTeamRegional> GetRegionalAsync(string name)
+        {
+            return await _regionalRepository.GetSingleOrDefaultByExpressionAsync(r => r.RegionName == name.ToUpper()) ??
+                throw new InvalidOperationException($"A regional {name} não foi encontrada!");
+        }
+        private async Task<FieldTeamCouple> GetCoupleAsync(int registry, string name, int function)
+        {
+            var employer = await _employerRepository.GetSingleOrDefaultByExpressionAsync(e => e.ClientRegistry == registry) ??
+                throw new InvalidOperationException($"A matrícula {registry} não foi encontrada!");
+            if (!employer.FullName.Equals(name, StringComparison.InvariantCultureIgnoreCase))
+                throw new InvalidOperationException($"O nome {name} não condiz com a matrícula!");
+            if (employer.Demission is not null)
+                throw new InvalidOperationException($"O funcionário {name} foi desligado!");
+            return new FieldTeamCouple() { IdEmployer = employer.Id, IdFunction = function };
+        }
         public override async Task<bool> AddAsync(FieldTeamDTO entity)
         {
             ArgumentNullException.ThrowIfNull(entity);
