@@ -77,28 +77,12 @@ namespace Indica.System.Application.Services
                 IdActivity = activity.Id,
                 IdRegion = regional.Id,
                 Couples = [
-                    new FieldTeamCouple()
-                    {
-                        IdEmployer = employers.Single(e =>
-                            e.ClientRegistry == entity.EmployerRegistry1).Id,
-                        IdFunction = functions.Where(f =>
-                            f.FunctionName == "executor1").Single().Id,
-                    },
-                    new FieldTeamCouple()
-                    {
-                        IdEmployer = employers.Single(e =>
-                            e.ClientRegistry == entity.EmployerRegistry2).Id,
-                        IdFunction = functions.Where(f =>
-                            f.FunctionName == "executor2").Single().Id,
-                    },
-                    new FieldTeamCouple()
-                    {
-                        IdEmployer = employers.Single(e =>
-                            e.ClientRegistry == entity.SupervisorRegistry).Id,
-                        IdFunction = functions.Where(f =>
-                            f.FunctionName == "supervisor").Single().Id,
-                    }
-                ]};
+                    await GetCoupleAsync(entity.EmployerRegistry1, entity.EmployerName1, 2),
+                    await GetCoupleAsync(entity.EmployerRegistry2, entity.EmployerName2, 3),
+                    await GetCoupleAsync(entity.SupervisorRegistry, entity.SupervisorName, 1)
+                ],
+                IsConsidered = true
+            };
             await _fieldteamRepository.AddAsync(fieldteam);
             return true;
         }
