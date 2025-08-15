@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace Indica.System.Application.Services
 {
-    public class FieldTeamService : IBaseService<FieldTeamDTO, FieldTeam>, IFieldTeamService
+    public class FieldTeamService : BaseService<FieldTeamDTO, FieldTeam>, IFieldTeamService
     {
         private readonly IActivityRepository _activityRepository;
         private readonly IEmployerRepository _employerRepository;
@@ -17,13 +17,14 @@ namespace Indica.System.Application.Services
         private readonly IFieldTeamFunctionRepository _functionRepository;
         public FieldTeamService
         (
+            IMapper mapper,
             IFileParser parser,
             IActivityRepository activityRepository,
             IEmployerRepository employerRepository,
             IFieldTeamRepository fieldteamRepository,
             IFieldTeamRegionalRepository regionalRepository,
             IFieldTeamFunctionRepository functionRepository
-        )
+        ) : base(fieldteamRepository, mapper, parser)
         {
             _activityRepository = activityRepository;
             _employerRepository = employerRepository;
