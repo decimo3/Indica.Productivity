@@ -35,7 +35,10 @@ namespace Indica.System.API
             {
                 // Postgres
                 builder.Services.AddDbContext<ProductivityContext>(options =>
-                    options.UseNpgsql(config.GetConnectionString("Default")));
+                {
+                    options.UseNpgsql(config.GetConnectionString("Default"));
+                    options.UseLazyLoadingProxies();
+                });
             }
             else
             {
@@ -43,6 +46,7 @@ namespace Indica.System.API
                 builder.Services.AddDbContext<ProductivityContext>(options =>
                 {
                     options.UseSqlite("Data Source=TestsResults.db");
+                    options.UseLazyLoadingProxies();
                     options.LogTo(Console.WriteLine, LogLevel.Information)
                         .EnableSensitiveDataLogging();
                 });
