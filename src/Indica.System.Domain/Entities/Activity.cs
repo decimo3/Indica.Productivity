@@ -7,6 +7,6 @@ namespace Indica.System.Domain.Entities
         public bool IsBasketTruck { get; set; }
         public bool IsHalfPrice { get; set; }
         public bool IsSpecial { get; set; }
-        public Project Project { get; set; }
+        public virtual Project Project { get; set; }
     }
 }
