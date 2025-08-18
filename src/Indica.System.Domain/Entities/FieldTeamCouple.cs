@@ -5,8 +5,8 @@
         public int IdFieldTeam { get; set; }
         public int IdEmployer { get; set; }
         public int IdFunction { get; set; }
-        public FieldTeam FieldTeam { get; set; }
-        public Employer Employer { get; set; }
-        public FieldTeamFunction Function { get; set; }
+        public virtual FieldTeam FieldTeam { get; set; }
+        public virtual Employer Employer { get; set; }
+        public virtual FieldTeamFunction Function { get; set; }
     }
 }
