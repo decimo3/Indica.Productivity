@@ -10,8 +10,8 @@ namespace Indica.System.Domain.Entities
         public long Cellphone { get; set; }
         public int IdRegion { get; set; }
         public bool IsConsidered { get; set; }
-        public Activity Activity { get; set; }
-        public FieldTeamRegional Regional { get; set; }
-        public List<FieldTeamCouple> Couples { get; set; }
+        public virtual Activity Activity { get; set; }
+        public virtual FieldTeamRegional Regional { get; set; }
+        public virtual List<FieldTeamCouple> Couples { get; set; } = new();
     }
 }
