@@ -83,30 +83,6 @@ namespace Indica.System.Application.Services
         {
             throw new NotImplementedException();
         }
-        public override async Task<int> AddRangeAsync(Stream arquivo, string filename)
-        {
-            throw new NotImplementedException();
-        }
-        public override async Task<bool> DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public override async Task<int> DeleteRangeAsync(List<FieldTeamDTO> lista)
-        {
-            throw new NotImplementedException();
-        }
-        public override async Task<List<FieldTeamDTO>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-        public override async Task<List<FieldTeamDTO>> GetByExpressionAsync(Expression<Func<FieldTeamDTO, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-        public override async Task<FieldTeamDTO> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
         public override async Task<bool> UpdateAsync(FieldTeamDTO entity)
         {
             throw new NotImplementedException();
