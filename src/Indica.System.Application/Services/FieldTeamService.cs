@@ -51,6 +51,10 @@ namespace Indica.System.Application.Services
         {
             if (entities is null || entities.Count == 0)
                 throw new ArgumentException();
+            var dates = entities.GroupBy(e => e.Date)
+                .Select(group => new { Key = group.Key, Count = group.Count() });
+            if (dates.Count() != 1)
+                throw new InvalidOperationException("Mais de uma data na planilha!");
             var regional = await GetRegionalAsync(entities.First().WorkArea);
             var activities = await _activityRepository.GetAllAsync();
             var tasks = entities.Select(async entity =>
