@@ -4,6 +4,6 @@ namespace Indica.System.Domain.Entities
     {
         public string GroupingOfMeasures { get; set; }
         public int IdFinishingDetail { get; set; }
-        public FinishingDetail Detail { get; set; }
+        public virtual FinishingDetail Detail { get; set; }
     }    
 }
