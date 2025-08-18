@@ -59,6 +59,15 @@ namespace Indica.System.Application.Services
             var activities = await _activityRepository.GetAllAsync();
             var tasks = entities.Select(async entity =>
             {
+                var activity = activities.Single(a => a.ActivityName == entity.ActivityName) ??
+                    throw new InvalidOperationException($"A atividade {entity.ActivityName} não foi encontrada!");
+                var couples = new List<FieldTeamCouple>
+                {
+                    await GetCoupleAsync(entity.SupervisorRegistry, entity.SupervisorName, 1),
+                    await GetCoupleAsync(entity.EmployerRegistry1, entity.EmployerName1, 2)
+                };
+                if (!entity.ActivityName.Contains("VISTORIADOR"))
+                    couples.Add(await GetCoupleAsync(entity.EmployerRegistry2, entity.EmployerName2, 3));
                 return new FieldTeam
                 {
                     Date = entity.Date,
@@ -66,13 +75,9 @@ namespace Indica.System.Application.Services
                     Plate = entity.Plate,
                     Resource = entity.Resource,
                     Cellphone = entity.Cellphone,
-                    IdActivity = activities.Single(y => y.ActivityName == entity.ActivityName).Id,
+                    IdActivity = activity.Id,
                     IdRegion = regional.Id,
-                    Couples = [
-                        await GetCoupleAsync(entity.EmployerRegistry1, entity.EmployerName1, 2),
-                        await GetCoupleAsync(entity.EmployerRegistry2, entity.EmployerName2, 3),
-                        await GetCoupleAsync(entity.SupervisorRegistry, entity.SupervisorName, 1)
-                    ],
+                    Couples = couples,
                     IsConsidered = true
                 };
             });
