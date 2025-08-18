@@ -81,15 +81,18 @@ namespace Indica.System.Application.Services
         }
         public override async Task<int> AddRangeAsync(List<FieldTeamDTO> lista)
         {
-            throw new NotImplementedException();
+            var converted = await GetFieldTeamAsync(lista);
+            return await _fieldteamRepository.AddRangeAsync(converted);
         }
         public override async Task<bool> UpdateAsync(FieldTeamDTO entity)
         {
-            throw new NotImplementedException();
+            var converted = await GetFieldTeamAsync([entity]);
+            return await _fieldteamRepository.UpdateAsync(converted.Single());
         }
         public override async Task<int> UpdateRangeAsync(List<FieldTeamDTO> lista)
         {
-            throw new NotImplementedException();
+            var converted = await GetFieldTeamAsync(lista);
+            return await _fieldteamRepository.UpdateRangeAsync(converted);
         }
     }
 }
