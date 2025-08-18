@@ -13,20 +13,20 @@ namespace Indica.System.Application.Mappers
                 .ForMember(dest => dest.ActivityName, opt => opt.MapFrom(src => src.Activity.ActivityName))
 
                 .ForMember(dest => dest.EmployerRegistry1, opt => opt.MapFrom((src, dest) =>
-                    src.Couples.FirstOrDefault(f => f.Function.FunctionName == "executor1")?.Employer?.Id ?? 0))
+                    src.Couples.FirstOrDefault(f => f.Function.FunctionName == "executor1")?.Employer?.ClientRegistry ?? 0))
                 .ForMember(dest => dest.EmployerName1, opt => opt.MapFrom((src, dest) =>
                     src.Couples.FirstOrDefault(f => f.Function.FunctionName == "executor1")?.Employer?.FullName ?? string.Empty))
 
                 .ForMember(dest => dest.EmployerRegistry2, opt => opt.MapFrom((src, dest) =>
-                    src.Couples.FirstOrDefault(f => f.Function.FunctionName == "executor2")?.Employer?.Id ?? 0))
+                    src.Couples.FirstOrDefault(f => f.Function.FunctionName == "executor2")?.Employer?.ClientRegistry ?? 0))
                 .ForMember(dest => dest.EmployerName2, opt => opt.MapFrom((src, dest) =>
                     src.Couples.FirstOrDefault(f => f.Function.FunctionName == "executor2")?.Employer?.FullName ?? string.Empty))
 
                 .ForMember(dest => dest.SupervisorRegistry, opt => opt.MapFrom((src, dest) =>
-                    src.Couples.FirstOrDefault(f => f.Function.FunctionName == "supervisor")?.Employer?.Id ?? 0))
+                    src.Couples.FirstOrDefault(f => f.Function.FunctionName == "supervisor")?.Employer?.ClientRegistry ?? 0))
                 .ForMember(dest => dest.SupervisorName, opt => opt.MapFrom((src, dest) =>
                     src.Couples.FirstOrDefault(f => f.Function.FunctionName == "supervisor")?.Employer?.FullName ?? string.Empty))
-                    
+
                 .ReverseMap();
         }
     }
