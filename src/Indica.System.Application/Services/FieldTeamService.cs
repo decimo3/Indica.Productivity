@@ -47,34 +47,37 @@ namespace Indica.System.Application.Services
                 throw new InvalidOperationException($"O funcionário {name} foi desligado!");
             return new FieldTeamCouple() { IdEmployer = employer.Id, IdFunction = function };
         }
+        private async Task<List<FieldTeam>> GetFieldTeamAsync(List<FieldTeamDTO> entities)
+        {
+            if (entities is null || entities.Count == 0)
+                throw new ArgumentException();
+            var regional = await GetRegionalAsync(entities.First().WorkArea);
+            var activities = await _activityRepository.GetAllAsync();
+            var tasks = entities.Select(async entity =>
+            {
+                return new FieldTeam
+                {
+                    Date = entity.Date,
+                    Order = entity.Order,
+                    Plate = entity.Plate,
+                    Resource = entity.Resource,
+                    Cellphone = entity.Cellphone,
+                    IdActivity = activities.Single(y => y.ActivityName == entity.ActivityName).Id,
+                    IdRegion = regional.Id,
+                    Couples = [
+                        await GetCoupleAsync(entity.EmployerRegistry1, entity.EmployerName1, 2),
+                        await GetCoupleAsync(entity.EmployerRegistry2, entity.EmployerName2, 3),
+                        await GetCoupleAsync(entity.SupervisorRegistry, entity.SupervisorName, 1)
+                    ],
+                    IsConsidered = true
+                };
+            });
+            return (await Task.WhenAll(tasks)).ToList();
+        }
         public override async Task<bool> AddAsync(FieldTeamDTO entity)
         {
-            ArgumentNullException.ThrowIfNull(entity);
-            var erros = entity.Validate();
-            if (erros.Count != 0)
-                throw new InvalidOperationException("Há erros de validação na informação enviada!");
-            var regional = await GetRegionalAsync(entity.WorkArea);
-            var activity = await _activityRepository.GetSingleOrDefaultByExpressionAsync(
-                a => a.ActivityName == entity.ActivityName) ??
-                    throw new InvalidOperationException("A atividade informada não foi encontrada!");
-            var fieldteam = new FieldTeam()
-            {
-                Date = entity.Date,
-                Order = entity.Order,
-                Plate = entity.Plate,
-                Resource = entity.Resource,
-                Cellphone = entity.Cellphone,
-                IdActivity = activity.Id,
-                IdRegion = regional.Id,
-                Couples = [
-                    await GetCoupleAsync(entity.EmployerRegistry1, entity.EmployerName1, 2),
-                    await GetCoupleAsync(entity.EmployerRegistry2, entity.EmployerName2, 3),
-                    await GetCoupleAsync(entity.SupervisorRegistry, entity.SupervisorName, 1)
-                ],
-                IsConsidered = true
-            };
-            await _fieldteamRepository.AddAsync(fieldteam);
-            return true;
+            var converted = await GetFieldTeamAsync([entity]);
+            return await _fieldteamRepository.AddAsync(converted.Single());
         }
         public override async Task<int> AddRangeAsync(List<FieldTeamDTO> lista)
         {
