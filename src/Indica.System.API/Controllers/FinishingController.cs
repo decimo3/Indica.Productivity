@@ -7,9 +7,9 @@ namespace Indica.System.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FinishingPaymentController : GenericController<FinishingPaymentDTO, FinishingPayment>
+    public class FinishingController : GenericController<FinishingDTO, Finishing>
     {
-        public FinishingPaymentController(IFinishingPaymentService service, ILogger<FinishingPaymentController> logger) : base(service, logger)
+        public FinishingController(IFinishingService service, ILogger<FinishingController> logger) : base(service, logger)
         {
         }
     }
