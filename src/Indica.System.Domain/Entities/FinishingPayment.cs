@@ -4,6 +4,6 @@
     {
         public string IdFinishing { get; set; }
         public int IdPaymentMaster { get; set; }
-        public virtual FinishingPayment Mestre { get; set; }
+        public virtual PaymentMaster Mestre { get; set; }
     }
 }
