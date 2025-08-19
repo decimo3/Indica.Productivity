@@ -3,5 +3,5 @@ using Indica.System.Domain.Entities;
 
 namespace Indica.System.Application.Interfaces
 {
-    public interface IFinishingPaymentService : IBaseService<FinishingPaymentDTO, FinishingPayment> {}
+    public interface IFinishingService : IBaseService<FinishingDTO, Finishing> {}
 }
