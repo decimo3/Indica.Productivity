@@ -167,7 +167,44 @@ namespace Indica.System.Application.Services
 
         public override async Task<int> AddRangeAsync(List<WorkOrderDTO> lista)
         {
-            throw new NotImplementedException();
+            var serviceToAdd = new List<Domain.Entities.WorkOrderService>();
+            var serviceToUpd = new List<Domain.Entities.WorkOrderService>();
+            var shiftinfoToAdd = new List<Domain.Entities.WorkOrderShiftInfo>();
+            var shiftinfoToUpd = new List<Domain.Entities.WorkOrderShiftInfo>();
+
+            var serviceDTO = lista.Where(x => x.WorkOrderNumber != 0).ToList();
+            var shiftinfoDTO = lista.Where(x => x.WorkOrderNumber == 0).ToList();
+            var convertedShiftInfo = await GetWorkOrderShiftInfosAsync(shiftinfoDTO);
+            var convertedServices = await GetWorkOrderServiceAsync(serviceDTO);
+
+            var existingShiftInfoIds = await shiftInfoRepository
+                .GetAllIdsByActivityAsync(convertedShiftInfo.Select(s => s.IdActivity).ToList());
+
+            var existingServiceIds = await serviceRepository
+                .GetAllIdsByActivityAsync(convertedServices.Select(s => s.IdActivity).ToList());
+
+            foreach (var shiftInfo in convertedShiftInfo)
+            {
+                if (existingShiftInfoIds.Contains(shiftInfo.IdActivity))
+                    shiftinfoToUpd.Add(shiftInfo);
+                else
+                    shiftinfoToAdd.Add(shiftInfo);
+            }
+
+            foreach (var service in convertedServices)
+            {
+                if (existingServiceIds.Contains(service.Id))
+                    serviceToUpd.Add(service);
+                else
+                    serviceToAdd.Add(service);
+            }
+
+            await shiftInfoRepository.UpdateRangeAsync(shiftinfoToUpd);
+            await shiftInfoRepository.AddRangeAsync(shiftinfoToAdd);
+            await serviceRepository.UpdateRangeAsync(serviceToUpd);
+            await serviceRepository.AddRangeAsync(serviceToAdd);
+
+            return lista.Count;
         }
 
         public override async Task<bool> DeleteAsync(int id)
