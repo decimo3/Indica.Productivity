@@ -78,6 +78,21 @@ namespace Indica.System.Application.Services
             };
         }
 
+        private async Task<List<Domain.Entities.WorkOrderShiftInfo>> GetWorkOrderShiftInfosAsync(List<WorkOrderDTO> entities)
+        {
+            var tasks = entities.Select(async entity =>
+            {
+                var result = await GetWorkOrderBaseAsync<Domain.Entities.WorkOrderShiftInfo>(entity);
+                result.ShiftStartDate = entity.ShiftStartDate;
+                result.VehicleLabel = entity.VehicleLabel;
+                result.IdLeaderRegistration = entity.IdLeaderRegistration;
+                result.IdAuxiliaryRegistration = entity.IdAuxiliaryRegistration;
+                result.IdTechnicalRegistration = entity.IdTechnicalRegistration;
+                return result;
+            });
+            return (await Task.WhenAll(tasks)).ToList();
+        }
+
         public override async Task<bool> AddAsync(WorkOrderDTO entity)
             => throw new MethodAccessException("Método não permitido para essa entidade!");
 
