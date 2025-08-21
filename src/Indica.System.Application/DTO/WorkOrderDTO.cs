@@ -102,7 +102,7 @@ namespace Indica.System.Application.DTO
         [Alias("Balde Origem")]
         public string BucketOrigin { get; set; }
         [Alias("Tipo de ligação")]
-        public int ConnectionType { get; set; }
+        public string ConnectionType { get; set; }
         [Alias("Cliente assinou TOI?")]
         public bool HasCustomerSignedToi { get; set; }
         [Alias("Recusou a assinar TOI?")]
