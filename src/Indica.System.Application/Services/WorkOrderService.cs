@@ -47,6 +47,37 @@ namespace Indica.System.Application.Services
             this.finishingRepository = finishingRepository;
             this.codeFilterRepository = codeFilterRepository;
         }
+
+        private async Task<T> GetWorkOrderBaseAsync<T>(WorkOrderDTO entity) where T : WorkOrderBase, new()
+        {
+            var situation = await situationRepository.GetSingleOrDefaultByExpressionAsync(
+                s => s.SituationName == entity.SituationName) ??
+                    throw new InvalidOperationException($"A situação {entity.SituationName} não foi encontrada!");
+            var dano = entity.TypeOfActivity[..4];
+            var typeOfActivity = await damageToProjectRepository.GetSingleOrDefaultByExpressionAsync(
+                dm => (dm.Damage + " - " + dm.Description) == entity.TypeOfActivity || dm.Description == entity.TypeOfActivity) ??
+                    throw new InvalidOperationException($"O dano {entity.TypeOfActivity} não foi encontrado!");
+            var fieldteam = await fieldTeamRepository.GetSingleOrDefaultByExpressionAsync(ft =>
+                ft.Resource == entity.Resource && ft.Date == entity.Date);
+            return new T()
+            {
+                Resource = entity.Resource.Trim().Replace('–', '-'),
+                Date = entity.Date,
+                IdActivity = entity.IdActivity,
+                IdSituation = situation.Id,
+                StartTime = entity.StartTime,
+                FinalTime = entity.FinalTime,
+                DurationTime = entity.DurationTime,
+                TravellingTime = entity.TravellingTime,
+                IdTypeOfActivity = typeOfActivity.Id,
+                ActivityBookingTime = entity.ActivityBookingTime,
+                EstimatedTravellingTime = entity.EstimatedTravellingTime,
+                EstimatedDurationTime = entity.EstimatedDurationTime,
+                IdFieldTeam = fieldteam?.Id ?? null,
+                DamageToProject = typeOfActivity,
+            };
+        }
+
         public override async Task<bool> AddAsync(WorkOrderDTO entity)
             => throw new MethodAccessException("Método não permitido para essa entidade!");
 
