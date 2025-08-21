@@ -8,21 +8,45 @@ using Indica.System.Shared.Interfaces;
 
 namespace Indica.System.Application.Services
 {
-    public class WorkOrderService : IBaseService<WorkOrderDTO, WorkOrderBase>, IWorkOrderService
+    public class WorkOrderService : BaseService<WorkOrderDTO, WorkOrderBase>, IWorkOrderService
     {
+        private readonly IWorkOrderSituationRepository situationRepository;
+        private readonly IWorkOrderAccuracyRepository accuracyRepository;
+        private readonly IWorkOrderPhaseRepository phaseRepository;
+        private readonly IWorkOrderServiceRepository serviceRepository;
+        private readonly IWorkOrderCostumerRepository costumerRepository;
+        private readonly IWorkOrderShiftInfoRepository shiftInfoRepository;
+        private readonly IDamageToProjectRepository damageToProjectRepository;
+        private readonly IFieldTeamRepository fieldTeamRepository;
+        private readonly ICodeFilterRepository codeFilterRepository;
+        private readonly IFinishingRepository finishingRepository;
         public WorkOrderService
         (
             IMapper mapper, IFileParser parser,
+            IWorkOrderBaseRepository workOrderBaseRepository,
             IWorkOrderServiceRepository serviceRepository,
             IWorkOrderCostumerRepository costumerRepository,
-            IWorkOrderIntervalRepository intervalRepository,
             IWorkOrderShiftInfoRepository shiftInfoRepository,
-            IWorkOrderSituationRepository situationRepository
-        )
+            IWorkOrderSituationRepository situationRepository,
+            IWorkOrderAccuracyRepository accuracyRepository,
+            IWorkOrderPhaseRepository phaseRepository,
+            IDamageToProjectRepository damageToProjectRepository,
+            IFieldTeamRepository fieldTeamRepository,
+            ICodeFilterRepository codeFilterRepository,
+            IFinishingRepository finishingRepository
+        ) : base(workOrderBaseRepository, mapper, parser)
         {
-
+            this.serviceRepository = serviceRepository;
+            this.costumerRepository = costumerRepository;
+            this.shiftInfoRepository = shiftInfoRepository;
+            this.situationRepository = situationRepository;
+            this.accuracyRepository = accuracyRepository;
+            this.phaseRepository = phaseRepository;
+            this.damageToProjectRepository = damageToProjectRepository;
+            this.fieldTeamRepository = fieldTeamRepository;
+            this.finishingRepository = finishingRepository;
+            this.codeFilterRepository = codeFilterRepository;
         }
-
         public Task<bool> AddAsync(WorkOrderDTO entity)
         {
             throw new NotImplementedException();
