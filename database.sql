@@ -306,18 +306,14 @@ CREATE TABLE IF NOT EXISTS servicos_base (
     id_dano_projeto INTEGER REFERENCES dano_projeto(id_dano_projeto)
 );
 
-CREATE TABLE IF NOT EXISTS servico_intervalo (
-    id_servico INTEGER PRIMARY KEY,
-    motivo_indisponibilidade_ou_descricao_intervalo VARCHAR(32) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS servico_turnoinfo (
     id_servico INTEGER PRIMARY KEY,
-    inicio_do_turno DATE NOT NULL,
-    label_do_veiculo CHAR(13) NOT NULL,
-    id_matricula_lider INTEGER NOT NULL,
-    id_matricula_auxiliares INTEGER DEFAULT 0,
-    id_matricula_tecnico INTEGER NOT NULL
+    inicio_do_turno DATE,
+    label_do_veiculo CHAR(13),
+    id_matricula_lider INTEGER,
+    id_matricula_auxiliares INTEGER,
+    id_matricula_tecnico INTEGER,
+    motivo_indisponibilidade_ou_descricao_intervalo VARCHAR(32)
 );
 
 CREATE TABLE IF NOT EXISTS servico_servico (
