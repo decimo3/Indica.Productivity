@@ -26,6 +26,10 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdTechnicalRegistration)
                 .HasColumnName("id_matricula_tecnico")
                 .IsRequired();
+            builder.Property(x => x.UnavailableReasonOrIntervalDescription)
+                .HasColumnName("motivo_indisponibilidade_ou_descricao_intervalo")
+                .HasMaxLength(32)
+                .IsRequired();
         }
     }
 }
