@@ -42,7 +42,6 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new WorkOrderSituationMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderAbilitiesMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderBaseMapper());
-            modelBuilder.ApplyConfiguration(new WorkOrderIntervalMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderShiftInfoMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderCostumerMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderServiceMapper());
@@ -51,7 +50,6 @@ namespace Indica.System.Infra
             // because EF Core configure TPH by default
             modelBuilder.Entity<WorkOrderBase>().ToTable("servico_base");
             modelBuilder.Entity<WorkOrderService>().ToTable("servico_servico");
-            modelBuilder.Entity<WorkOrderInterval>().ToTable("servico_intervalo");
             modelBuilder.Entity<WorkOrderShiftInfo>().ToTable("servico_turnoinfo");
         }
     }
