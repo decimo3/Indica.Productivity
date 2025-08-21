@@ -55,7 +55,8 @@ namespace Indica.System.Application.Services
                     throw new InvalidOperationException($"A situação {entity.SituationName} não foi encontrada!");
             var dano = entity.TypeOfActivity[..4];
             var typeOfActivity = await damageToProjectRepository.GetSingleOrDefaultByExpressionAsync(
-                dm => (dm.Damage + " - " + dm.Description) == entity.TypeOfActivity || dm.Description == entity.TypeOfActivity) ??
+                dm => dm.Damage == dano || dm.Description == entity.TypeOfActivity ||
+                (dm.Damage + " - " + dm.Description) == entity.TypeOfActivity) ??
                     throw new InvalidOperationException($"O dano {entity.TypeOfActivity} não foi encontrado!");
             var fieldteam = await fieldTeamRepository.GetSingleOrDefaultByExpressionAsync(ft =>
                 ft.Resource == entity.Resource && ft.Date == entity.Date);
