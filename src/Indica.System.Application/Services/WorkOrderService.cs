@@ -153,10 +153,10 @@ namespace Indica.System.Application.Services
                         IsFoundCoordinateStatus = entity.IsFoundCoordinateStatus,
                         CoordinateX = entity.CoordinateX,
                         CoordinateY = entity.CoordinateY,
-                        IdConnectionType = phasing.Single(ph =>
-                            ph.PhaseName == entity.ConnectionType).Id,
-                        IdCoordinateAccuracy = accuracies.Single(ac =>
-                            ac.AccuracyLevel == entity.CoordinateAccuracy).Id
+                        IdConnectionType = phasing.SingleOrDefault(ph =>
+                            ph.PhaseName == entity.ConnectionType)?.Id ?? 0,
+                        IdCoordinateAccuracy = accuracies.SingleOrDefault(ac =>
+                            ac.AccuracyLevel == entity.CoordinateAccuracy)?.Id ?? 0
                     };
                 return result;
             });
