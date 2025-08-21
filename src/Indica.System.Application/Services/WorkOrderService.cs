@@ -93,6 +93,75 @@ namespace Indica.System.Application.Services
             return (await Task.WhenAll(tasks)).ToList();
         }
 
+        private async Task<List<Domain.Entities.WorkOrderService>> GetWorkOrderServiceAsync(List<WorkOrderDTO> entities)
+        {
+            if (entities is null || entities.Count == 0)
+                throw new ArgumentException();
+            var accuracies = await accuracyRepository.GetAllAsync();
+            var phasing = await phaseRepository.GetAllAsync();
+            var codeFilter = await codeFilterRepository.GetAllAsync();
+            var tasks = entities.Select(async entity =>
+            {
+                var result = await GetWorkOrderBaseAsync<Domain.Entities.WorkOrderService>(entity);
+                var orderedCodes = entity.ClosingCodes.Split(';').Order().ToList();
+                var allowedCodes = codeFilter.Where(c =>
+                    c.IdProject == result.DamageToProject.IdProject).Select(a => a.Code).ToList();
+                var filteredCodes = string.Join(string.Empty, orderedCodes.Where(c => allowedCodes.Contains(c)).ToList());
+                var finishing = await finishingRepository.GetSingleOrDefaultByExpressionAsync(
+                    f => f.GroupingOfMeasures == filteredCodes);
+                result.WorkOrderNumber = entity.WorkOrderNumber;
+                result.StartOfSLA = entity.StartOfSLA;
+                result.FinalOfSLA = entity.FinalOfSLA;
+                result.WorkOrderAbility = entity.WorkOrderAbility;
+                result.ClosingCodes = string.Join(';', orderedCodes);
+                result.IsLgCtrlTypeClosingOk = entity.IsLgCtrlTypeClosingOk;
+                result.IsClosedCodesFilledIn = entity.IsClosedCodesFilledIn;
+                result.Observation = entity.Observation;
+                result.Description = entity.Description;
+                result.IsLgFlagPrefillimentoClosing = entity.IsLgFlagPrefillimentoClosing;
+                result.ParentActivityClosingCodesV03 = entity.ParentActivityClosingCodesV03;
+                result.IsLgCtrlReprovedFlag = entity.IsLgCtrlReprovedFlag;
+                result.TypeOfServiceNote = entity.TypeOfServiceNote;
+                result.BucketOrigin = entity.BucketOrigin;
+                result.TotalCustomerDebts = entity.TotalCustomerDebts;
+                result.HasCustomerSignedToi = entity.HasCustomerSignedToi;
+                result.HasRefusedToSignToi = entity.HasRefusedToSignToi;
+                result.HasRefusedToReceiveToi = entity.HasRefusedToReceiveToi;
+                result.CustomerAuthorizedloadAnalysis = entity.CustomerAuthorizedloadAnalysis;
+                result.ScopeOfService = entity.ScopeOfService;
+                result.CHI = entity.CHI;
+                result.InterruptedTime = entity.InterruptedTime;
+                result.FinancialCompensationAmount = entity.FinancialCompensationAmount;
+                result.IdFinishing = finishing?.Id ?? null;
+                result.WorkOrderCostumer = await costumerRepository.GetSingleOrDefaultByExpressionAsync(
+                    c => c.InstallationNumber == entity.InstallationNumber) ?? new WorkOrderCostumer
+                    {
+                        InstallationNumber = entity.InstallationNumber,
+                        CostumerName = entity.CostumerName,
+                        CostumerAddress = entity.CostumerAddress,
+                        BuildingNumberOrAcronym = entity.BuildingNumberOrAcronym,
+                        NumberComplement = entity.NumberComplement,
+                        SubNeighborhood = entity.SubNeighborhood,
+                        WorkAreaNumber = entity.WorkOrderArea,
+                        CostumerCity = entity.CostumerCity,
+                        CostumerState = entity.CostumerState,
+                        CostumerPostalCode = entity.CostumerPostalCode,
+                        CostumerTelephone = entity.CostumerTelephone,
+                        CostumerCellphone = entity.CostumerCellphone,
+                        CostumerEmail = entity.CostumerEmail,
+                        IsFoundCoordinateStatus = entity.IsFoundCoordinateStatus,
+                        CoordinateX = entity.CoordinateX,
+                        CoordinateY = entity.CoordinateY,
+                        IdConnectionType = phasing.Single(ph =>
+                            ph.PhaseName == entity.ConnectionType).Id,
+                        IdCoordinateAccuracy = accuracies.Single(ac =>
+                            ac.AccuracyLevel == entity.CoordinateAccuracy).Id
+                    };
+                return result;
+            });
+            return (await Task.WhenAll(tasks)).ToList();
+        }
+
         public override async Task<bool> AddAsync(WorkOrderDTO entity)
             => throw new MethodAccessException("Método não permitido para essa entidade!");
 
