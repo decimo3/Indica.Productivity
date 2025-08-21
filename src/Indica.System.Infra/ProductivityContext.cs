@@ -40,7 +40,6 @@ namespace Indica.System.Infra
             modelBuilder.ApplyConfiguration(new WorkOrderPhaseMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderAccuracyMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderSituationMapper());
-            modelBuilder.ApplyConfiguration(new WorkOrderAbilitiesMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderBaseMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderShiftInfoMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderCostumerMapper());
