@@ -49,7 +49,7 @@ namespace Indica.System.Application.Services
         }
         public override async Task<bool> AddAsync(WorkOrderDTO entity)
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
 
         public override async Task<int> AddRangeAsync(List<WorkOrderDTO> lista)
@@ -59,37 +59,37 @@ namespace Indica.System.Application.Services
 
         public override async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
 
         public override async Task<int> DeleteRangeAsync(List<WorkOrderDTO> lista)
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
 
         public override async Task<List<WorkOrderDTO>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
 
         public override async Task<List<WorkOrderDTO>> GetByExpressionAsync(Expression<Func<WorkOrderDTO, bool>> expression)
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
 
         public override async Task<WorkOrderDTO> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
 
         public override async Task<bool> UpdateAsync(WorkOrderDTO entity)
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
 
         public override async Task<int> UpdateRangeAsync(List<WorkOrderDTO> lista)
         {
-            throw new NotImplementedException();
+            throw new MethodAccessException("Método não permitido para essa entidade!");
         }
     }
 }
