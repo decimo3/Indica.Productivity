@@ -57,11 +57,6 @@ namespace Indica.System.Application.Services
             throw new NotImplementedException();
         }
 
-        public override async Task<int> AddRangeAsync(Stream arquivo, string filename)
-        {
-            throw new NotImplementedException();
-        }
-
         public override async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
