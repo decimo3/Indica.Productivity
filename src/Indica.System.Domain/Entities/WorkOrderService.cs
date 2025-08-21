@@ -4,7 +4,7 @@ namespace Indica.System.Domain.Entities
     {
         public long WorkOrderNumber { get; set; }
         public int IdCostumer { get; set; }
-        public int IdWorkAbility { get; set; }
+        public string WorkOrderAbility { get; set; }
         public DateTime StartOfSLA { get; set; }
         public DateTime FinalOfSLA { get; set; }
         public string ClosingCodes { get; set; }
@@ -29,6 +29,5 @@ namespace Indica.System.Domain.Entities
         public int IdFinishing { get; set; }
         public virtual Finishing Finishing { get; set; }
         public virtual WorkOrderCostumer WorkOrderCostumer { get; set; }
-        public virtual WorkOrderAbilities WorkOrderAbility { get; set; }
     }
 }
