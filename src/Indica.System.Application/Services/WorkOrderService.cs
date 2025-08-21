@@ -47,52 +47,52 @@ namespace Indica.System.Application.Services
             this.finishingRepository = finishingRepository;
             this.codeFilterRepository = codeFilterRepository;
         }
-        public Task<bool> AddAsync(WorkOrderDTO entity)
+        public override async Task<bool> AddAsync(WorkOrderDTO entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddRangeAsync(List<WorkOrderDTO> lista)
+        public override async Task<int> AddRangeAsync(List<WorkOrderDTO> lista)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddRangeAsync(Stream arquivo, string filename)
+        public override async Task<int> AddRangeAsync(Stream arquivo, string filename)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public override async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteRangeAsync(List<WorkOrderDTO> lista)
+        public override async Task<int> DeleteRangeAsync(List<WorkOrderDTO> lista)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<WorkOrderDTO>> GetAllAsync()
+        public override async Task<List<WorkOrderDTO>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<WorkOrderDTO>> GetByExpressionAsync(Expression<Func<WorkOrderDTO, bool>> expression)
+        public override async Task<List<WorkOrderDTO>> GetByExpressionAsync(Expression<Func<WorkOrderDTO, bool>> expression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<WorkOrderDTO> GetByIdAsync(int id)
+        public override async Task<WorkOrderDTO> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(WorkOrderDTO entity)
+        public override async Task<bool> UpdateAsync(WorkOrderDTO entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateRangeAsync(List<WorkOrderDTO> lista)
+        public override async Task<int> UpdateRangeAsync(List<WorkOrderDTO> lista)
         {
             throw new NotImplementedException();
         }
