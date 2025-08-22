@@ -217,6 +217,9 @@ namespace Indica.System.Application.Services
                 costumerToAdd.Add(costumer);
             }
 
+            await costumerRepository.UpdateRangeAsync(costumerToUpd);
+            await costumerRepository.AddRangeAsync(costumerToAdd);
+
             foreach (var service in convertedServices)
             {
                 service.IdCostumer = (int)existingCostumerIdsAndInstallation.Single(
