@@ -190,9 +190,11 @@ namespace Indica.System.Application.Services
             foreach (var shiftInfo in convertedShiftInfo)
             {
                 if (existingShiftInfoIds.Contains(shiftInfo.IdActivity))
+                {
                     shiftinfoToUpd.Add(shiftInfo);
-                else
-                    shiftinfoToAdd.Add(shiftInfo);
+                    continue;
+                }
+                shiftinfoToAdd.Add(shiftInfo);
             }
 
             foreach (var service in convertedServices)
