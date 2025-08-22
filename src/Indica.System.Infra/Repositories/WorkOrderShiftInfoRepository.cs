@@ -11,11 +11,11 @@ namespace Indica.System.Infra.Repositories
         {
             this.context = context;
         }
-        public async Task<List<long>> GetAllIdsByActivityAsync(List<long> ids)
+        public async Task<List<(long IdActivity, long Id)>> GetAllIdsByActivityAsync(List<long> ids)
         {
             return await context.Set<WorkOrderShiftInfo>()
                 .Where(e => ids.Contains(e.IdActivity))
-                .Select(e => e.IdActivity)
+                .Select(e => new ValueTuple<long, long>(e.IdActivity, e.Id))
                 .ToListAsync();
         }
     }
