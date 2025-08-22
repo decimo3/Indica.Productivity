@@ -220,6 +220,10 @@ namespace Indica.System.Application.Services
             await costumerRepository.UpdateRangeAsync(costumerToUpd);
             await costumerRepository.AddRangeAsync(costumerToAdd);
 
+            existingCostumerIdsAndInstallation = await costumerRepository
+                .GetAllIdsByInstallationAsync(convertedServices.Select(
+                    s => s.WorkOrderCostumer.InstallationNumber).ToList());
+
             foreach (var service in convertedServices)
             {
                 service.IdCostumer = (int)existingCostumerIdsAndInstallation.Single(
