@@ -183,6 +183,10 @@ namespace Indica.System.Application.Services
             var existingServiceIds = await serviceRepository
                 .GetAllIdsByActivityAsync(convertedServices.Select(s => s.IdActivity).ToList());
 
+            var existingCostumerIdsAndInstallation = await costumerRepository
+                .GetAllIdsByInstallationAsync(convertedServices.Select(
+                    s => s.WorkOrderCostumer.InstallationNumber).ToList());
+
             foreach (var shiftInfo in convertedShiftInfo)
             {
                 if (existingShiftInfoIds.Contains(shiftInfo.IdActivity))
@@ -193,10 +197,15 @@ namespace Indica.System.Application.Services
 
             foreach (var service in convertedServices)
             {
+                service.IdCostumer = (int)existingCostumerIdsAndInstallation.Single(
+                    c => c.InstallationNumber == service.WorkOrderCostumer!.InstallationNumber).Id;
+                service.WorkOrderCostumer = null;
                 if (existingServiceIds.Contains(service.Id))
+                {
                     serviceToUpd.Add(service);
-                else
-                    serviceToAdd.Add(service);
+                    continue;
+                }
+                serviceToAdd.Add(service);
             }
 
             await shiftInfoRepository.UpdateRangeAsync(shiftinfoToUpd);
