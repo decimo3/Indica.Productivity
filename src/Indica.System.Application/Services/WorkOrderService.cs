@@ -134,8 +134,7 @@ namespace Indica.System.Application.Services
                 result.InterruptedTime = entity.InterruptedTime;
                 result.FinancialCompensationAmount = entity.FinancialCompensationAmount;
                 result.IdFinishing = finishing?.Id ?? null;
-                result.WorkOrderCostumer = (await costumerRepository.GetFirstOrDefaultByExpressionAsync(
-                    c => c.InstallationNumber == entity.InstallationNumber)) ?? new WorkOrderCostumer
+                result.WorkOrderCostumer = new WorkOrderCostumer()
                     {
                         InstallationNumber = entity.InstallationNumber,
                         CostumerName = entity.CostumerName,
