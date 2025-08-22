@@ -15,11 +15,11 @@ namespace Indica.System.Domain.Entities
         public long CostumerTelephone { get; set; }
         public long CostumerCellphone { get; set; }
         public string CostumerEmail { get; set; }
-        public int IdConnectionType { get; set; }
+        public int? IdConnectionType { get; set; }
         public bool IsFoundCoordinateStatus { get; set; }
         public double CoordinateX { get; set; }
         public double CoordinateY { get; set; }
-        public int IdCoordinateAccuracy { get; set; }
+        public int? IdCoordinateAccuracy { get; set; }
         public virtual WorkOrderPhase Phase { get; set; }
         public virtual WorkOrderAccuracy Accuracy { get; set; }
     }
