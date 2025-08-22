@@ -192,8 +192,11 @@ namespace Indica.System.Application.Services
 
             foreach (var shiftInfo in convertedShiftInfo)
             {
-                if (existingShiftInfoIds.Contains(shiftInfo.IdActivity))
+                var existingShiftInfo = existingShiftInfoIds.FirstOrDefault(
+                    s => s.IdActivity == shiftInfo.IdActivity);
+                if (existingShiftInfo.Id != 0)
                 {
+                    shiftInfo.Id = (int)existingShiftInfo.Id;
                     shiftinfoToUpd.Add(shiftInfo);
                     continue;
                 }
@@ -229,8 +232,11 @@ namespace Indica.System.Application.Services
                 service.IdCostumer = (int)existingCostumerIdsAndInstallation.Single(
                     c => c.InstallationNumber == service.WorkOrderCostumer!.InstallationNumber).Id;
                 service.WorkOrderCostumer = null;
-                if (existingServiceIds.Contains(service.Id))
+                var existingService = existingServiceIds.FirstOrDefault(
+                    s => s.IdActivity == service.IdActivity);
+                if (existingService.Id != 0)
                 {
+                    service.Id = (int)existingService.Id;
                     serviceToUpd.Add(service);
                     continue;
                 }
