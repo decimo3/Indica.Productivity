@@ -14,7 +14,6 @@ namespace Indica.System.Domain.Entities
         public DateTime ActivityBookingTime { get; set; }
         public TimeSpan EstimatedTravellingTime { get; set; }
         public TimeSpan EstimatedDurationTime { get; set; }
-        public string FileName { get; set; }
         public int? IdFieldTeam { get; set; }
         public virtual DamageToProject DamageToProject { get; set; }
         public virtual WorkOrderSituation WorkOrderSituation { get; set; }
