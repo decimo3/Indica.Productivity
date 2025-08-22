@@ -4,6 +4,6 @@ namespace Indica.System.Domain.Interfaces
 {
     public interface IWorkOrderShiftInfoRepository : IBaseRepository<WorkOrderShiftInfo>
     {
-        Task<List<long>> GetAllIdsByActivityAsync(List<long> ids);
+        Task<List<(long IdActivity, long Id)>> GetAllIdsByActivityAsync(List<long> ids);
     }
 }
