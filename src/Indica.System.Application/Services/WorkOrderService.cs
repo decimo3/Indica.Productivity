@@ -169,6 +169,8 @@ namespace Indica.System.Application.Services
         {
             var serviceToAdd = new List<Domain.Entities.WorkOrderService>();
             var serviceToUpd = new List<Domain.Entities.WorkOrderService>();
+            var costumerToAdd = new List<Domain.Entities.WorkOrderCostumer>();
+            var costumerToUpd = new List<Domain.Entities.WorkOrderCostumer>();
             var shiftinfoToAdd = new List<Domain.Entities.WorkOrderShiftInfo>();
             var shiftinfoToUpd = new List<Domain.Entities.WorkOrderShiftInfo>();
 
@@ -196,6 +198,23 @@ namespace Indica.System.Application.Services
                     continue;
                 }
                 shiftinfoToAdd.Add(shiftInfo);
+            }
+
+            foreach (var costumer in convertedCostumers)
+            {
+                // Remove duplicated values
+                if (costumerToUpd.Any(c => c.InstallationNumber == costumer.InstallationNumber) ||
+                    costumerToAdd.Any(c => c.InstallationNumber == costumer.InstallationNumber))
+                    continue;
+                var existingCostumer = existingCostumerIdsAndInstallation.FirstOrDefault(
+                    c => c.InstallationNumber == costumer.InstallationNumber);
+                if (existingCostumer.Id != 0)
+                {
+                    costumer.Id = (int)existingCostumer.Id;
+                    costumerToUpd.Add(costumer);
+                    continue;
+                }
+                costumerToAdd.Add(costumer);
             }
 
             foreach (var service in convertedServices)
