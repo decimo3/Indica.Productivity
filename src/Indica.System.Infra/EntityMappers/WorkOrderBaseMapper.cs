@@ -51,10 +51,6 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.EstimatedDurationTime)
                 .HasColumnName("estimado_duracao")
                 .IsRequired();
-            builder.Property(x => x.FileName)
-                .HasColumnName("nome_arquivo")
-                .HasMaxLength(64)
-                .IsRequired();
             builder.Property(x => x.IdFieldTeam)
                 .HasColumnName("id_composicao")
                 .HasMaxLength(32)
