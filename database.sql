@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
     id_coordenadas_exatidao INTEGER REFERENCES coordenadas_exatidao(id_coordenadas_exatidao)
 );
 
-CREATE TABLE IF NOT EXISTS servicos_base (
+CREATE TABLE IF NOT EXISTS servico_base (
     id_servico INTEGER PRIMARY KEY,
     recurso VARCHAR(32) NOT NULL,
     dia DATE NOT NULL,
