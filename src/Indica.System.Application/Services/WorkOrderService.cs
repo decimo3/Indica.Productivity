@@ -176,6 +176,7 @@ namespace Indica.System.Application.Services
             var shiftinfoDTO = lista.Where(x => x.WorkOrderNumber == 0).ToList();
             var convertedShiftInfo = await GetWorkOrderShiftInfosAsync(shiftinfoDTO);
             var convertedServices = await GetWorkOrderServiceAsync(serviceDTO);
+            var convertedCostumers = convertedServices.Select(s => s.WorkOrderCostumer).ToList();
 
             var existingShiftInfoIds = await shiftInfoRepository
                 .GetAllIdsByActivityAsync(convertedShiftInfo.Select(s => s.IdActivity).ToList());
