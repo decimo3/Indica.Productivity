@@ -99,7 +99,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.IdFinishing)
                 .HasColumnName("id_finalizacao")
-                .IsRequired();
+                .IsRequired(false);
             builder.Property(x => x.WorkOrderAbility)
                 .HasColumnName("habilidades_trabalho")
                 .HasMaxLength(64)
@@ -111,7 +111,7 @@ namespace Indica.System.Infra.EntityMappers
                 .WithMany()
                 .HasForeignKey(x => x.IdFinishing)
                 .OnDelete(DeleteBehavior.SetNull)
-                .IsRequired();
+                .IsRequired(false);
             builder.HasOne(x => x.WorkOrderCostumer)
                 .WithMany()
                 .HasForeignKey(x => x.IdCostumer)
