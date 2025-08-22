@@ -40,7 +40,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("tempo_desloca")
                 .IsRequired();
             builder.Property(x => x.IdTypeOfActivity)
-                .HasColumnName("id_dano_servico")
+                .HasColumnName("id_dano_projeto")
                 .IsRequired();
             builder.Property(x => x.ActivityBookingTime)
                 .HasColumnName("tempo_de_reserva")
