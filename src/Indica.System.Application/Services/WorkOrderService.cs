@@ -154,9 +154,9 @@ namespace Indica.System.Application.Services
                         CoordinateX = entity.CoordinateX,
                         CoordinateY = entity.CoordinateY,
                         IdConnectionType = phasing.SingleOrDefault(ph =>
-                            ph.PhaseName == entity.ConnectionType)?.Id ?? 0,
+                            ph.PhaseName == entity.ConnectionType)?.Id ?? null,
                         IdCoordinateAccuracy = accuracies.SingleOrDefault(ac =>
-                            ac.AccuracyLevel == entity.CoordinateAccuracy)?.Id ?? 0
+                            ac.AccuracyLevel == entity.CoordinateAccuracy)?.Id ?? null
                     };
                 return result;
             });
