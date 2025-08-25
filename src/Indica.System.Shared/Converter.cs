@@ -56,6 +56,15 @@ namespace Indica.System.Shared
                 return double.TryParse(ExtractDigitsAndDot(s), CultureInfo.InvariantCulture, out double result) ? result : 0;
             return 0;
         }
+        public static decimal GetDecimal(object value)
+        {
+            if (value is decimal d) return d;
+            if (value is double m) return (decimal)m;
+            if (value is float f) return (decimal)f;
+            if (value is string s)
+                return decimal.TryParse(ExtractDigitsAndDot(s), CultureInfo.InvariantCulture, out decimal result) ? result : 0;
+            return 0;
+        }
         public static DateTime GetDateTime(object value)
         {
             if (value is DateTime dt) return dt;
@@ -95,7 +104,6 @@ namespace Indica.System.Shared
             }
             return TimeSpan.Zero;
         }
-
         public static bool? GetBoolean(object value)
         {
             if (value is bool b) return b;
@@ -138,6 +146,9 @@ namespace Indica.System.Shared
                 if (targetType == typeof(bool))
                     return GetBoolean(value);
 
+                if (targetType == typeof(decimal))
+                    return GetDecimal(value);
+
                 return null;
             }
             catch
@@ -145,7 +156,6 @@ namespace Indica.System.Shared
                 // Optionally log or handle conversion error
                 return null;
             }
-
         }
     }
 }
