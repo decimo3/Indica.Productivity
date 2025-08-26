@@ -37,6 +37,7 @@ namespace Indica.System.Infra
 
             modelBuilder.ApplyConfiguration(new FinishingPaymentMapper());
 
+            modelBuilder.ApplyConfiguration(new WorkOrderAreaMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderPhaseMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderAccuracyMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderSituationMapper());
