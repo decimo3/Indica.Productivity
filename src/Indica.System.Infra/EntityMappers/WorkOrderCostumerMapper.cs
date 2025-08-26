@@ -37,8 +37,8 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("sub_bairro")
                 .HasMaxLength(32)
                 .IsRequired();
-            builder.Property(x => x.WorkAreaNumber)
-                .HasColumnName("localidade")
+            builder.Property(x => x.IdWorkOrderArea)
+                .HasColumnName("id_localidade")
                 .IsRequired();
             builder.Property(x => x.CostumerCity)
                 .HasColumnName("cidade")
@@ -84,6 +84,11 @@ namespace Indica.System.Infra.EntityMappers
             builder.HasOne(x => x.Accuracy)
                 .WithMany()
                 .HasForeignKey(x => x.IdCoordinateAccuracy)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasOne(x => x.WorkOrderArea)
+                .WithMany()
+                .HasForeignKey(x => x.IdWorkOrderArea)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
             builder.HasIndex(x => x.InstallationNumber).IsUnique();
