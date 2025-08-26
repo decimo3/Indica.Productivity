@@ -89,6 +89,7 @@ namespace Indica.System.Application.Services
                 result.IdLeaderRegistration = entity.IdLeaderRegistration;
                 result.IdAuxiliaryRegistration = entity.IdAuxiliaryRegistration;
                 result.IdTechnicalRegistration = entity.IdTechnicalRegistration;
+                result.UnavailableReasonOrIntervalDescription = entity.UnavailableReasonOrIntervalDescription;
                 return result;
             });
             return (await Task.WhenAll(tasks)).ToList();
