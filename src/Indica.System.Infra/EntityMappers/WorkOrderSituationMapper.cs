@@ -18,6 +18,9 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("nome_servico_situacao")
                 .HasMaxLength(16)
                 .IsRequired();
+            builder.Property(x => x.IsFinished)
+                .HasColumnName("eh_servico_finalizado")
+                .IsRequired();
             builder.HasIndex(x => x.SituationName).IsUnique();
             builder.HasData([
                 new WorkOrderSituation() { Id = 1, SituationName = "pendente" },
