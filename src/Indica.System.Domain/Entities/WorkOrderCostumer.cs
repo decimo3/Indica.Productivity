@@ -8,7 +8,7 @@ namespace Indica.System.Domain.Entities
         public string BuildingNumberOrAcronym { get; set; }
         public string NumberComplement { get; set; }
         public string SubNeighborhood { get; set; }
-        public int WorkAreaNumber { get; set; }
+        public int? IdWorkOrderArea { get; set; }
         public string CostumerCity { get; set; }
         public string CostumerState { get; set; }
         public int CostumerPostalCode { get; set; }
@@ -22,5 +22,6 @@ namespace Indica.System.Domain.Entities
         public int? IdCoordinateAccuracy { get; set; }
         public virtual WorkOrderPhase Phase { get; set; }
         public virtual WorkOrderAccuracy Accuracy { get; set; }
+        public virtual WorkOrderArea WorkOrderArea { get; set; }
     }
 }
