@@ -242,12 +242,13 @@ CREATE TABLE IF NOT EXISTS codigo_filtragem (
 
 CREATE TABLE IF NOT EXISTS servico_situacao (
     id_servico_situacao INTEGER PRIMARY KEY,
-    nome_servico_situacao VARCHAR(16) UNIQUE
+    nome_servico_situacao VARCHAR(16) UNIQUE,
+    eh_servico_finalizado BOOLEAN NOT NULL
 );
 
-INSERT INTO servico_situacao (id_servico_situacao, nome_servico_situacao) VALUES
-(1, 'pendente'), (2, 'em rota'), (3, 'iniciado'),
-(4, 'concluído'), (5, 'não concluído'), (6, 'cancelado');
+INSERT INTO servico_situacao (id_servico_situacao, nome_servico_situacao, eh_servico_finalizado) VALUES
+(1, 'pendente', FALSE), (2, 'em rota', FALSE), (3, 'iniciado', FALSE),
+(4, 'concluído', TRUE), (5, 'não concluído', TRUE), (6, 'cancelado', TRUE);
 
 CREATE TABLE IF NOT EXISTS servico_fases (
     id_servico_fase INTEGER PRIMARY KEY,
