@@ -23,12 +23,12 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.HasIndex(x => x.SituationName).IsUnique();
             builder.HasData([
-                new WorkOrderSituation() { Id = 1, SituationName = "pendente" },
-                new WorkOrderSituation() { Id = 2, SituationName = "em rota" },
-                new WorkOrderSituation() { Id = 3, SituationName = "iniciado" },
-                new WorkOrderSituation() { Id = 4, SituationName = "concluído" },
-                new WorkOrderSituation() { Id = 5, SituationName = "não concluído" },
-                new WorkOrderSituation() { Id = 6, SituationName = "cancelado" },
+                new WorkOrderSituation() { Id = 1, SituationName = "pendente", IsFinished = false },
+                new WorkOrderSituation() { Id = 2, SituationName = "em rota", IsFinished = false },
+                new WorkOrderSituation() { Id = 3, SituationName = "iniciado", IsFinished = false },
+                new WorkOrderSituation() { Id = 4, SituationName = "concluído", IsFinished = true },
+                new WorkOrderSituation() { Id = 5, SituationName = "não concluído", IsFinished = true },
+                new WorkOrderSituation() { Id = 6, SituationName = "cancelado", IsFinished = true },
             ]);
         }
     }
