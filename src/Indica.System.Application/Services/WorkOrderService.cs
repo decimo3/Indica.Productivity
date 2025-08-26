@@ -79,6 +79,7 @@ namespace Indica.System.Application.Services
                 EstimatedDurationTime = entity.EstimatedDurationTime,
                 IdFieldTeam = fieldteam?.Id ?? null,
                 DamageToProject = typeOfActivity,
+                WorkOrderTotalTime = (float)(entity.DurationTime + entity.TravellingTime).TotalHours
             };
         }
 
