@@ -10,6 +10,7 @@ namespace Indica.System.Application.Services
 {
     public class WorkOrderService : BaseService<WorkOrderDTO, WorkOrderBase>, IWorkOrderService
     {
+        private readonly IWorkOrderAreaRepository orderAreaRepository;
         private readonly IWorkOrderSituationRepository situationRepository;
         private readonly IWorkOrderAccuracyRepository accuracyRepository;
         private readonly IWorkOrderPhaseRepository phaseRepository;
@@ -23,6 +24,7 @@ namespace Indica.System.Application.Services
         public WorkOrderService
         (
             IMapper mapper, IFileParser parser,
+            IWorkOrderAreaRepository orderAreaRepository,
             IWorkOrderBaseRepository workOrderBaseRepository,
             IWorkOrderServiceRepository serviceRepository,
             IWorkOrderCostumerRepository costumerRepository,
@@ -36,6 +38,7 @@ namespace Indica.System.Application.Services
             IFinishingRepository finishingRepository
         ) : base(workOrderBaseRepository, mapper, parser)
         {
+            this.orderAreaRepository = orderAreaRepository;
             this.serviceRepository = serviceRepository;
             this.costumerRepository = costumerRepository;
             this.shiftInfoRepository = shiftInfoRepository;
@@ -102,6 +105,7 @@ namespace Indica.System.Application.Services
             var accuracies = await accuracyRepository.GetAllAsync();
             var phasing = await phaseRepository.GetAllAsync();
             var codeFilter = await codeFilterRepository.GetAllAsync();
+            var workareas = await orderAreaRepository.GetAllAsync();
             var tasks = entities.Select(async entity =>
             {
                 var result = await GetWorkOrderBaseAsync<Domain.Entities.WorkOrderService>(entity);
@@ -143,7 +147,8 @@ namespace Indica.System.Application.Services
                         BuildingNumberOrAcronym = entity.BuildingNumberOrAcronym,
                         NumberComplement = entity.NumberComplement,
                         SubNeighborhood = entity.SubNeighborhood,
-                        WorkAreaNumber = entity.WorkOrderArea,
+                        IdWorkOrderArea = workareas.SingleOrDefault(a =>
+                            a.AreaNumber == entity.WorkOrderArea)?.Id ?? null,
                         CostumerCity = entity.CostumerCity,
                         CostumerState = entity.CostumerState,
                         CostumerPostalCode = entity.CostumerPostalCode,
