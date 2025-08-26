@@ -3,7 +3,7 @@
     public class FinishingPayment : EntityBase
     {
         public int IdFinishing { get; set; }
-        public int IdPaymentMaster { get; set; }
-        public virtual PaymentMaster Mestre { get; set; }
+        public int IdPayment { get; set; }
+        public virtual Payment Payment { get; set; }
     }
 }
