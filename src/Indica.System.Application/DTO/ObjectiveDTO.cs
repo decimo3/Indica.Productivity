@@ -6,7 +6,7 @@ namespace Indica.System.Application.DTO
         public bool IsBasketTruck { get; set; }
         public bool IsHalfPrice { get; set; }
         public bool IsEspecial { get; set; }
-        public decimal MonthlyProfitGoal { get; set; }
+        public float MonthlyProfitGoal { get; set; }
         public float FixedDivisorByMonth { get; set; }
         public int TargetOfTeamCountOnWorkday { get; set; }
         public int TargetOfTeamCountOnHoliday { get; set; }

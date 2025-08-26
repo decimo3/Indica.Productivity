@@ -98,7 +98,7 @@ namespace Indica.System.Application.DTO
         [Alias("Tempo de Reserva da Atividade")]
         public DateTime ActivityBookingTime { get; set; }
         [Alias("Total de Débitos")]
-        public decimal TotalCustomerDebts { get; set; }
+        public float TotalCustomerDebts { get; set; }
         [Alias("Balde Origem")]
         public string BucketOrigin { get; set; }
         [Alias("Tipo de ligação")]

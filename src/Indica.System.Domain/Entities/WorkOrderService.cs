@@ -17,7 +17,7 @@ namespace Indica.System.Domain.Entities
         public bool IsLgCtrlReprovedFlag { get; set; }
         public string TypeOfServiceNote { get; set; }
         public string BucketOrigin { get; set; }
-        public decimal TotalCustomerDebts { get; set; }
+        public float TotalCustomerDebts { get; set; }
         public bool? HasCustomerSignedToi { get; set; } = null;
         public bool? HasRefusedToSignToi { get; set; } = null;
         public bool? HasRefusedToReceiveToi { get; set; } = null;
