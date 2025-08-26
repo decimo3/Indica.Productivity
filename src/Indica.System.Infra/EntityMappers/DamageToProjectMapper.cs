@@ -26,6 +26,11 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdProject)
                 .HasColumnName("id_projeto")
                 .IsRequired();
+            builder.HasOne(x => x.Project)
+                .WithMany()
+                .HasForeignKey(x => x.IdProject)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
             builder.HasIndex(x => new { x.Damage, x.IdProject }).IsUnique();
         }
     }
