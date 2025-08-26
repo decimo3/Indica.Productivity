@@ -5,5 +5,6 @@
         public int IdFinishing { get; set; }
         public int IdPayment { get; set; }
         public virtual Payment Payment { get; set; }
+        public virtual Finishing Finishing { get; set; }
     }
 }
