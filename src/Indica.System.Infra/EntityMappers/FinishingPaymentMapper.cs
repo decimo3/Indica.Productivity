@@ -25,7 +25,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdPayment)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasOne<Finishing>()
+            builder.HasOne(x => x.Finishing)
                 .WithMany(f => f.Payments)
                 .HasForeignKey(fp => fp.IdFinishing)
                 .OnDelete(DeleteBehavior.Cascade)
