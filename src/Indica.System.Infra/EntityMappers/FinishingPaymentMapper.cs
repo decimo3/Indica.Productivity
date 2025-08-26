@@ -17,12 +17,12 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdFinishing)
                 .HasColumnName("id_finalizacao")
                 .IsRequired();
-            builder.Property(x => x.IdPaymentMaster)
-                .HasColumnName("id_mestre")
+            builder.Property(x => x.IdPayment)
+                .HasColumnName("id_pagamento")
                 .IsRequired();
-            builder.HasOne(x => x.Mestre)
+            builder.HasOne(x => x.Payment)
                 .WithMany()
-                .HasForeignKey(x => x.IdPaymentMaster)
+                .HasForeignKey(x => x.IdPayment)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
             builder.HasOne<Finishing>()
@@ -30,7 +30,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(fp => fp.IdFinishing)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-            builder.HasIndex(x => new { x.IdFinishing, x.IdPaymentMaster }).IsUnique();
+            builder.HasIndex(x => new { x.IdFinishing, x.IdPayment }).IsUnique();
         }
     }
 }
