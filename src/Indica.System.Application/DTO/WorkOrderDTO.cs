@@ -58,8 +58,9 @@ namespace Indica.System.Application.DTO
         [Alias("Status da Coordenada")]
         public bool IsFoundCoordinateStatus { get; set; }
         [Alias("Códs. de Fechamento")]
-        [Alias("Motivo de Rejeição")]
         public string ClosingCodes { get; set; }
+        [Alias("Motivo de Rejeição")]
+        public string ReasonOfRejection { get; set; }
         [Alias("LG_CTRL_TipoFechamento_Ok")]
         public bool IsLgCtrlTypeClosingOk { get; set; }
         [Alias("Cod. Fechamento Preenchido")]
@@ -91,8 +92,9 @@ namespace Indica.System.Application.DTO
         [Alias("Complemento do nº")]
         public string NumberComplement { get; set; }
         [Alias("Intervalo de Tempo")]
+        public string IntervalDescription { get; set; }
         [Alias("Motivo indisponibilidade")]
-        public string UnavailableReasonOrIntervalDescription { get; set; }
+        public string UnavailableReason { get; set; }
         [Alias("Tipo de Nota de Serviço")]
         public string TypeOfServiceNote { get; set; }
         [Alias("Tempo de Reserva da Atividade")]
