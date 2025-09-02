@@ -93,7 +93,8 @@ namespace Indica.System.Application.Services
                 result.IdLeaderRegistration = entity.IdLeaderRegistration;
                 result.IdAuxiliaryRegistration = entity.IdAuxiliaryRegistration;
                 result.IdTechnicalRegistration = entity.IdTechnicalRegistration;
-                result.UnavailableReasonOrIntervalDescription = entity.UnavailableReasonOrIntervalDescription;
+                result.UnavailableReasonOrIntervalDescription += entity.UnavailableReason;
+                result.UnavailableReasonOrIntervalDescription += entity.IntervalDescription;
                 return result;
             });
             return (await Task.WhenAll(tasks)).ToList();
@@ -110,7 +111,11 @@ namespace Indica.System.Application.Services
             var tasks = entities.Select(async entity =>
             {
                 var result = await GetWorkOrderBaseAsync<Domain.Entities.WorkOrderService>(entity);
-                var orderedCodes = entity.ClosingCodes.Split(';').Order().ToList();
+                List<string> orderedCodes = new();
+                if (!string.IsNullOrWhiteSpace(entity.ClosingCodes))
+                    orderedCodes.AddRange(entity.ClosingCodes.Split(';').Order());
+                if (!string.IsNullOrWhiteSpace(entity.ReasonOfRejection))
+                    orderedCodes.Add(entity.ReasonOfRejection[..4]);
                 var allowedCodes = codeFilter.Where(c =>
                     c.IdProject == result.DamageToProject.IdProject).Select(a => a.Code).ToList();
                 var filteredCodes = string.Join(string.Empty, orderedCodes.Where(c => allowedCodes.Contains(c)).ToList());
