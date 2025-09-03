@@ -264,6 +264,13 @@ CREATE TABLE IF NOT EXISTS coordenadas_exatidao (
 INSERT INTO coordenadas_exatidao (id_coordenadas_exatidao, nome_coordenadas_exatidao) VALUES
 (1, 'Alto'), (2, 'Médio'), (3, 'Baixo');
 
+CREATE TABLE IF NOT EXISTS servico_localidade (
+    id_servico_localidade INTEGER PRIMARY KEY,
+    num_servico_localidade INTEGER UNIQUE,
+    nome_servico_localidade VARCHAR(16) UNIQUE,
+    id_regional INTEGER REFERENCES regionais(id_regional)
+);
+
 CREATE TABLE IF NOT EXISTS servico_cliente (
     id_servico INTEGER PRIMARY KEY,
     instalacao BIGINT UNIQUE,
@@ -271,7 +278,7 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
     logradouro VARCHAR(64) NOT NULL,
     numero VARCHAR(32) DEFAULT NULL,
     complemento VARCHAR(32) DEFAULT NULL,
-    localidade INTEGER NOT NULL,
+    id_localidade INTEGER REFERENCES servico_localidade(id_servico_localidade),
     sub_bairro VARCHAR(32) NOT NULL,
     cidade VARCHAR(32) NOT NULL,
     estado VARCHAR(32) NOT NULL,
