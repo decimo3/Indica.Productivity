@@ -34,7 +34,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdFinishing)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-            builder.HasIndex(x => new { x.IdFinishing, x.IdPayment }).IsUnique();
+            builder.HasIndex(x => new { x.IdFinishing, x.IdMaster, x.IsAlternative }).IsUnique();
         }
     }
 }
