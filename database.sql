@@ -90,8 +90,6 @@ CREATE TABLE IF NOT EXISTS contrato_projeto (
 
 CREATE TABLE IF NOT EXISTS objetivos (
     id_objetivo INTEGER PRIMARY KEY,
-    eh_caminhao BOOLEAN DEFAULT FALSE,
-    eh_metade BOOLEAN DEFAULT FALSE,
     mensal_valor_meta NUMERIC DEFAULT 0,
     mensal_divisor_fixo NUMERIC DEFAULT 0,
     meta_apresentacao_util INTEGER DEFAULT 0,
@@ -176,8 +174,6 @@ CREATE TABLE IF NOT EXISTS mestres (
 
 CREATE TABLE IF NOT EXISTS pagamentos (
     id_pagamento INTEGER PRIMARY KEY,
-    eh_caminhao BOOLEAN DEFAULT FALSE,
-    eh_especial BOOLEAN DEFAULT FALSE,
     id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto),
     id_mestre INTEGER REFERENCES mestres(id_mestre),
     valoracao DECIMAL(6,2) NOT NULL,

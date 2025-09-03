@@ -4,8 +4,6 @@ namespace Indica.System.Domain.Entities
     {
         public int IdContractProject { get; set; }
         public int IdPaymentMaster { get; set; }
-        public bool IsCaminhao { get; set; }
-        public bool IsEspecial { get; set; }
         public decimal Valuation { get; set; }
         public virtual ContractProject ContractProject { get; set; }
         public virtual PaymentMaster Mestre { get; set; }
