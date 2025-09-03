@@ -12,22 +12,23 @@ INSERT INTO processos (id_processo, nome_processo) VALUES
 CREATE TABLE IF NOT EXISTS projetos (
     id_projeto INTEGER PRIMARY KEY,
     nome_projeto VARCHAR(16) UNIQUE,
+    usar_dano BOOLEAN DEFAULT FALSE,
     id_processo INTEGER REFERENCES processos(id_processo)
 );
 
-INSERT INTO projetos (id_projeto, nome_projeto, id_processo) VALUES
-(1, 'CORTE', 1),
-(2, 'RELIGA', 1),
-(3, 'LIDE', 2),
-(4, 'ANEXO', 2),
-(5, 'AFERICAO', 2),
-(6, 'INSPECAO', 3),
-(7, 'EXTERNALIZACAO', 3),
-(8, 'MODERNIZACAO', 3),
-(9, 'MANUTENCAO', 3),
-(10, 'PQM', 4),
-(11, 'EMERGENCIA', 4),
-(12, 'MANOBRA', 4);
+INSERT INTO projetos (id_projeto, nome_projeto, usar_dano, id_processo) VALUES
+(1, 'CORTE', FALSE, 1),
+(2, 'RELIGA', FALSE, 1),
+(3, 'LIDE', TRUE, 2),
+(4, 'ANEXO', FALSE, 2),
+(5, 'AFERICAO', TRUE, 2),
+(6, 'INSPECAO', FALSE, 3),
+(7, 'EXTERNALIZACAO', FALSE, 3),
+(8, 'MODERNIZACAO', FALSE, 3),
+(9, 'MANUTENCAO', FALSE, 3),
+(10, 'PQM', FALSE, 4),
+(11, 'EMERGENCIA', FALSE, 4),
+(12, 'MANOBRA', TRUE, 4);
 
 CREATE TABLE IF NOT EXISTS atividades (
     id_atividade INTEGER PRIMARY KEY,
