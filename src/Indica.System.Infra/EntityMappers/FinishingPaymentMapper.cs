@@ -17,17 +17,17 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdFinishing)
                 .HasColumnName("id_finalizacao")
                 .IsRequired();
-            builder.Property(x => x.IdPayment)
-                .HasColumnName("id_pagamento")
+            builder.Property(x => x.IdMaster)
+                .HasColumnName("id_mestre")
                 .IsRequired();
-            builder.HasOne(x => x.Payment)
+            builder.HasOne(x => x.Master)
                 .WithMany()
-                .HasForeignKey(x => x.IdPayment)
+                .HasForeignKey(x => x.IdMaster)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
             builder.HasOne(x => x.Finishing)
                 .WithMany(f => f.Payments)
-                .HasForeignKey(fp => fp.IdFinishing)
+                .HasForeignKey(x => x.IdFinishing)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
             builder.HasIndex(x => new { x.IdFinishing, x.IdPayment }).IsUnique();
