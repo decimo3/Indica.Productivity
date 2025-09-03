@@ -121,7 +121,7 @@ namespace Indica.System.Application.Services
                 var filteredCodes = string.Join(string.Empty, orderedCodes.Where(c => allowedCodes.Contains(c)).ToList());
                 if (result.DamageToProject.Project.UsesDamage || string.IsNullOrWhiteSpace(filteredCodes))
                     filteredCodes = result.DamageToProject.Damage + filteredCodes;
-                filteredCodes = result.TypeOfServiceNote + filteredCodes;
+                filteredCodes = entity.TypeOfServiceNote + filteredCodes;
                 var finishing = await finishingRepository.GetSingleOrDefaultByExpressionAsync(
                     f => f.GroupingOfMeasures == filteredCodes);
                 result.WorkOrderNumber = entity.WorkOrderNumber;
