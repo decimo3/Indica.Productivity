@@ -18,6 +18,10 @@ namespace Indica.System.Infra.EntityMappers
                 .HasColumnName("nome_projeto")
                 .HasMaxLength(100)
                 .IsRequired();
+            builder.Property(p => p.UsesDamage)
+                .HasColumnName("usar_dano")
+                .HasDefaultValue(false)
+                .IsRequired();
             builder.Property(p=> p.IdProcess)
                 .HasColumnName("id_processo")
                 .IsRequired();
