@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS servico_base (
     tempo_de_reserva TIMESTAMP NOT NULL,
     estimado_desloca INTERVAL NOT NULL,
     estimado_duracao INTERVAL NOT NULL,
-    eh_finalizado BOOLEAN DEFAULT TRUE,
+    tempo_total_decimal REAL DEFAULT 0,
     id_situacao INTEGER REFERENCES servico_situacao(id_servico_situacao),
     id_composicao INTEGER REFERENCES composicoes(id_composicao),
     id_dano_projeto INTEGER REFERENCES dano_projeto(id_dano_projeto)
