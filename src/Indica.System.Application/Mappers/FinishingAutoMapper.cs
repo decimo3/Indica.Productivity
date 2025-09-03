@@ -11,7 +11,7 @@ namespace Indica.System.Application.Mappers
             CreateMap<Finishing, FinishingDTO>()
                 .ForMember(dest => dest.GroupingOfMeasures, opt => opt.MapFrom(src => src.GroupingOfMeasures))
                 .ForMember(dest => dest.FinishingDetail, opt => opt.MapFrom(src => src.Detail.Detail))
-                .ForMember(dest => dest.PaymentMasters, opt => opt.MapFrom(src => string.Join('/', src.Payments.Select(p => p.Mestre.Master).ToList())));
+                .ForMember(dest => dest.PaymentMasters, opt => opt.MapFrom(src => string.Join('/', src.Payments.Select(p => p.Master).ToList())));
         }
     }
 }
