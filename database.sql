@@ -347,7 +347,6 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     tempo_interrompido INTEGER DEFAULT NULL,
     valor_compensação_financeira INTEGER DEFAULT NULL,
     id_cliente INTEGER REFERENCES servico_cliente(id_servico),
-    eh_finalizado BOOLEAN DEFAULT TRUE,
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao)
 );
 
