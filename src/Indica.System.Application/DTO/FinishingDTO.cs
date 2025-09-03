@@ -5,5 +5,6 @@ namespace Indica.System.Application.DTO
         public string GroupingOfMeasures { get; set; }
         public string FinishingDetail { get; set; }
         public string PaymentMasters { get; set; }
+        public bool IsAlternative { get; set; }
     }
 }
