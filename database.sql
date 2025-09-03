@@ -409,3 +409,87 @@ ON p.id_projeto = ctt.id_projeto
     AND c.dia
         BETWEEN ctt.inicio_vigencia
             AND ctt.final_vigencia;
+
+CREATE VIEW relatorio_servicos AS SELECT
+-- servico_base table fields
+    sb.recurso,
+    sb.dia,
+    sb.id_atividade,
+    sb.tempo_inicio,
+    sb.tempo_final,
+    sb.tempo_duracao,
+    sb.tempo_desloca,
+    sb.tempo_de_reserva,
+    sb.estimado_desloca,
+    sb.estimado_duracao,
+    sb.id_composicao,
+    sb.id_dano_projeto,
+-- servico_servico table fields
+    sv.nota_de_servico,
+    sv.inicio_do_sla,
+    sv.final_do_sla,
+    sv.tipo_da_nota,
+    sv.habilidades_trabalho,
+    sv.codigos_fechamentos,
+    sv.observacao,
+    sv.descricao,
+--  sv.tempo_total_decimal,
+-- servico_cliente table fields
+    cl.instalacao,
+-- servico_localidade table fields
+    sl.num_servico_localidade,
+    sl.nome_servico_localidade,
+-- serviico_regional table fields
+    r.nome_regional,
+-- servico_situacao table fields
+    ss.nome_servico_situacao,
+    ss.eh_servico_finalizado,
+-- dano_projeto table fields
+    dm.nome_dano_projeto,
+    dm.texto_breve_para_dano,
+-- projeto table fields
+    pj.nome_projeto,
+--  pj.eh_especial,
+-- processos table fields
+    pc.nome_processo,
+-- finalizacoes table fields
+    f.id_finalizacao,
+    f.agrupamento_medidas,
+-- finalizacao_categorias table fields
+    fc.nome_finalizacao_categoria,
+    fc.eh_executado,
+-- pagamentos table fields
+    pg.id_mestre,
+    pg.valoracao
+--  SUM(pg.valoracao) AS 'pg.valoracao'
+FROM servico_servico AS sv
+LEFT JOIN servico_base AS sb
+    ON sv.id_servico = sb.id_servico
+LEFT JOIN servico_cliente AS cl
+    ON sv.id_cliente = cl.id_servico
+LEFT JOIN servico_localidade AS sl
+    ON cl.id_localidade = sl.id_servico_localidade
+LEFT JOIN regionais AS r
+    ON sl.id_regional = r.id_regional
+LEFT JOIN servico_situacao AS ss
+    ON sb.id_situacao = ss.id_servico_situacao
+LEFT JOIN dano_projeto AS dm
+    ON sb.id_dano_projeto = dm.id_dano_projeto
+LEFT JOIN projetos AS pj
+    ON dm.id_projeto = pj.id_projeto
+LEFT JOIN processos AS pc
+    ON pj.id_processo = pc.id_processo
+LEFT JOIN relatorio_contrato_projeto AS ctt
+    ON ctt.id_regional = r.id_regional
+    AND ctt.id_projeto = pj.id_projeto
+    AND sb.dia BETWEEN ctt.inicio_vigencia
+    AND ctt.final_vigencia
+LEFT JOIN finalizacoes AS f
+    ON sv.id_finalizacao = f.id_finalizacao
+LEFT JOIN finalizacao_categorias AS fc
+    ON f.id_categoria = fc.id_finalizacao_categoria
+LEFT JOIN finalizacoes_pagamento AS fp
+    ON f.id_finalizacao = fp.id_finalizacao
+LEFT JOIN pagamentos AS pg
+    ON fp.id_mestre = pg.id_mestre
+    AND ctt.id_contrato_projeto = pg.id_contrato_projeto;
