@@ -214,6 +214,7 @@ CREATE TABLE IF NOT EXISTS finalizacoes_pagamento (
     id_finalizacao_pagamento INTEGER PRIMARY KEY,
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao),
     id_mestre INTEGER REFERENCES mestres(id_mestre),
+    eh_alternativo BOOLEAN DEFAULT FALSE,
     UNIQUE (id_finalizacao, id_mestre)
 );
 
