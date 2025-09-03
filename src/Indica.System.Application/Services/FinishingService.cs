@@ -11,7 +11,6 @@ namespace Indica.System.Application.Services
     {
         private readonly IFinishingRepository finishingRepository;
         private readonly IFinishingDetailRepository detailRepository;
-        private readonly IFinishingPaymentRepository paymentRepository;
         private readonly IPaymentMasterRepository paymentMasterRepository;
 
         public FinishingService
@@ -20,13 +19,11 @@ namespace Indica.System.Application.Services
             IFileParser fileParser,
             IFinishingRepository finishingRepository,
             IFinishingDetailRepository detailRepository,
-            IFinishingPaymentRepository paymentRepository,
             IPaymentMasterRepository paymentMasterRepository
         ) : base(finishingRepository, mapper, fileParser)
         {
             this.finishingRepository = finishingRepository;
             this.detailRepository = detailRepository;
-            this.paymentRepository = paymentRepository;
             this.paymentMasterRepository = paymentMasterRepository;
         }
         private async Task<List<Finishing>> GetFinishingAsync(List<FinishingDTO> entities)
@@ -36,16 +33,20 @@ namespace Indica.System.Application.Services
             var details = await detailRepository.GetAllAsync();
             var tasks = entities.Select(async entity =>
             {
-                var detail = details.Where(d => d.Detail == entity.FinishingDetail).Single();
+                var detail = details.Single(d => d.Detail == entity.FinishingDetail);
                 var payments = new List<FinishingPayment>();
                 foreach (var paymentMaster in entity.PaymentMasters.Split('/'))
                 {
-                    if (int.TryParse(paymentMaster, out int mestre))
+                    if (!int.TryParse(paymentMaster, out int mestre))
                         throw new InvalidOperationException($"O mestre {paymentMaster} é inválido!");
-                    var payment = await paymentRepository.GetSingleOrDefaultByExpressionAsync(
-                        p => p.Mestre.Master == mestre) ??
-                            throw new InvalidOperationException($"O mestre {mestre} não foi encontrado!");
-                    payments.Add(payment);
+                    if (mestre == 0) continue;
+                    var master = await paymentMasterRepository.GetSingleOrDefaultByExpressionAsync(m => m.Master == mestre) ??
+                        throw new InvalidOperationException($"O mestre {mestre} não foi encontrado!");
+                    payments.Add(new FinishingPayment()
+                    {
+                        IdMaster = master.Id,
+                        IsAlternative = entity.IsAlternative
+                    });
                 }
                 return new Finishing
                 {
