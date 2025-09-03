@@ -8,7 +8,7 @@ namespace Indica.System.Infra.EntityMappers
     {
         public void Configure(EntityTypeBuilder<FinishingPayment> builder)
         {
-            builder.ToTable("finalizacao_pagamento");
+            builder.ToTable("finalizacoes_pagamento");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasColumnName("id_finalizacao_pagamento")
