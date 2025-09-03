@@ -337,7 +337,7 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     eh_lg_ctrl_reprovado_flag BOOLEAN DEFAULT FALSE,
     tipo_da_nota VARCHAR(2) NOT NULL,
     balde_origem VARCHAR(32) NOT NULL,
-    cliente_debitos DECIMAL(6,2) DEFAULT 0,
+    cliente_debitos REAL DEFAULT 0,
     eh_cliente_assinou_toi BOOLEAN DEFAULT NULL,
     eh_cliente_recusa_assinar_toi BOOLEAN DEFAULT NULL,
     eh_cliente_recusa_receber_toi BOOLEAN DEFAULT NULL,
