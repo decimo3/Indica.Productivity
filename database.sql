@@ -356,6 +356,19 @@ CREATE TABLE IF NOT EXISTS credenciais (
     passwordhash VARCHAR(32) NOT NULL
 );
 
+CREATE VIEW relatorio_contrato_projeto AS SELECT
+    cp.id_contrato_projeto,
+    cp.id_projeto,
+    cp.id_regional,
+    ct.id_contrato,
+    ct.contrato,
+    ct.aditivo,
+    ct.inicio_vigencia,
+    ct.final_vigencia
+FROM contrato_projeto AS cp
+INNER JOIN contratos AS ct
+    ON cp.id_contrato = ct.id_contrato;
+
 CREATE VIEW relatorio_composicoes AS SELECT
 -- composicao table fields
     c.id_composicao,
@@ -390,17 +403,7 @@ LEFT JOIN processos AS pr
     ON pr.id_processo = p.id_processo
 LEFT JOIN regionais AS r
     ON r.id_regional = c.id_regional
-LEFT JOIN (SELECT
-    cp.id_projeto,
-    cp.id_regional,
-    ct.id_contrato,
-    ct.contrato,
-    ct.aditivo,
-    ct.inicio_vigencia,
-    ct.final_vigencia
-    FROM contrato_projeto AS cp
-    INNER JOIN contratos AS ct
-        ON cp.id_contrato = ct.id_contrato) AS ctt
+LEFT JOIN relatorio_contrato_projeto AS ctt
 ON p.id_projeto = ctt.id_projeto
     AND c.id_regional = ctt.id_regional
     AND c.dia
