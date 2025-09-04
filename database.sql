@@ -33,35 +33,32 @@ INSERT INTO projetos (id_projeto, nome_projeto, usar_dano, id_processo) VALUES
 CREATE TABLE IF NOT EXISTS atividades (
     id_atividade INTEGER PRIMARY KEY,
     nome_atividade VARCHAR(32) UNIQUE,
-    eh_caminhao BOOLEAN DEFAULT FALSE,
-    eh_metade BOOLEAN DEFAULT FALSE,
-    eh_especial BOOLEAN DEFAULT FALSE,
     id_projeto INTEGER REFERENCES projetos(id_projeto)
 );
 
-INSERT INTO atividades (id_atividade, nome_atividade, eh_caminhao, eh_metade, eh_especial, id_projeto) VALUES
-(1, 'CORTE', FALSE, FALSE, FALSE, 1),
-(2, 'CORTE PILOTO', FALSE, FALSE, FALSE, 1),
-(3, 'CORTE ESPECIAL', FALSE, FALSE, FALSE, 1),
-(4, 'RELIGA', FALSE, FALSE, FALSE, 2),
-(5, 'RELIGA POSTO', FALSE, FALSE, FALSE, 2),
-(6, 'RELIGA CAMINHÃO', TRUE, FALSE, FALSE, 2),
-(7, 'LIDE', FALSE, FALSE, FALSE, 3),
-(8, 'LIDE VISTORIADOR', FALSE, TRUE, FALSE, 3),
-(9, 'LIDE PESADO', TRUE, FALSE, TRUE, 3),
-(10, 'ANEXO IV', FALSE, FALSE, FALSE, 4),
-(11, 'ANEXO IV VISTORIADOR', FALSE, TRUE, TRUE, 4),
-(12, 'ANEXO IV PESADO', TRUE, FALSE, FALSE, 4),
-(13, 'EMERGÊNCIA', FALSE, FALSE, TRUE, 11),
-(14, 'PQM', FALSE, FALSE,  FALSE, 10),
-(15, 'ATENDIMENTO COLETIVO', FALSE, FALSE, FALSE, 11),
-(16, 'CONVENCIONAL', FALSE, FALSE, FALSE, 6),
-(17, 'EXTERNALIZAÇÃO', FALSE, FALSE, FALSE, 7),
-(18, 'LABORATÓRIO', FALSE, TRUE, FALSE, 3),
-(19, 'CORTE OSDC', FALSE, FALSE, FALSE, 1),
-(20, 'BAIXA RENDA', FALSE, FALSE, FALSE, 1),
-(21, 'MANUTENÇÃO BT', FALSE, FALSE, FALSE, 9),
-(22, 'MEDIDOR OBSOLETO', FALSE, FALSE, FALSE, 8);
+INSERT INTO atividades (id_atividade, nome_atividade, id_projeto) VALUES
+(1, 'CORTE', 1),
+(2, 'CORTE PILOTO', 1),
+(3, 'CORTE ESPECIAL', 1),
+(4, 'RELIGA', 2),
+(5, 'RELIGA POSTO', 2),
+(6, 'RELIGA CAMINHÃO', 2),
+(7, 'LIDE', 3),
+(8, 'LIDE VISTORIADOR', 3),
+(9, 'LIDE PESADO', 3),
+(10, 'ANEXO IV', 4),
+(11, 'ANEXO IV VISTORIADOR', 4),
+(12, 'ANEXO IV PESADO', 4),
+(13, 'EMERGÊNCIA', 11),
+(14, 'PQM', 10),
+(15, 'ATENDIMENTO COLETIVO', 11),
+(16, 'CONVENCIONAL', 6),
+(17, 'EXTERNALIZAÇÃO', 7),
+(18, 'LABORATÓRIO', 3),
+(19, 'CORTE OSDC', 1),
+(20, 'BAIXA RENDA', 1),
+(21, 'MANUTENÇÃO BT', 9),
+(22, 'MEDIDOR OBSOLETO', 8);
 
 CREATE TABLE IF NOT EXISTS contratos (
     id_contrato INTEGER PRIMARY KEY,
@@ -380,9 +377,6 @@ CREATE VIEW relatorio_composicoes AS SELECT
     c.eh_considerado,
 -- atividade table fields
     a.nome_atividade,
-    a.eh_caminhao,
-    a.eh_metade,
-    a.eh_especial,
 -- projeto table fields
     p.nome_projeto,
 -- processo table fields
