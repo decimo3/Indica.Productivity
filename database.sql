@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS objetivos (
     meta_apresentacao_feriado INTEGER DEFAULT 0,
     meta_execucoes_diaria INTEGER DEFAULT 0,
     id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto),
-    UNIQUE (id_contrato_projeto, eh_caminhao, eh_metade)
+    UNIQUE (id_contrato_projeto)
 );
 
 CREATE TABLE IF NOT EXISTS funcionario_situacoes (
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS pagamentos (
     id_contrato_projeto INTEGER REFERENCES contrato_projeto(id_contrato_projeto),
     id_mestre INTEGER REFERENCES mestres(id_mestre),
     valoracao DECIMAL(6,2) NOT NULL,
-    UNIQUE (id_contrato_projeto, id_mestre, eh_caminhao, eh_especial)
+    UNIQUE (id_contrato_projeto, id_mestre)
 );
 
 CREATE TABLE IF NOT EXISTS finalizacao_categorias (
@@ -231,8 +231,9 @@ INSERT INTO dano_projeto (id_dano_projeto, nome_dano_projeto, texto_breve_para_d
 
 CREATE TABLE IF NOT EXISTS codigo_filtragem (
     id_codigo_filtragem INTEGER PRIMARY KEY,
-    nome_codigo_filtragem VARCHAR(4) UNIQUE,
-    id_projeto INTEGER REFERENCES projetos(id_projeto)
+    nome_codigo_filtragem VARCHAR(4) NOT NULL,
+    id_projeto INTEGER REFERENCES projetos(id_projeto),
+    UNIQUE (nome_codigo_filtragem, id_projeto)
 );
 
 CREATE TABLE IF NOT EXISTS servico_situacao (
