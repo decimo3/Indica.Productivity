@@ -93,8 +93,9 @@ CREATE TABLE IF NOT EXISTS contrato_projeto (
     id_contrato_projeto INTEGER PRIMARY KEY,
     id_contrato INTEGER REFERENCES contratos(id_contrato),
     id_projeto INTEGER REFERENCES projetos(id_projeto),
+    id_derivacao INTEGER REFERENCES derivacoes(id_derivacao),
     id_regional INTEGER REFERENCES regionais(id_regional),
-    UNIQUE (id_contrato, id_projeto, id_regional)
+    UNIQUE (id_contrato, id_projeto, id_regional, id_derivacao)
 );
 
 CREATE TABLE IF NOT EXISTS objetivos (
