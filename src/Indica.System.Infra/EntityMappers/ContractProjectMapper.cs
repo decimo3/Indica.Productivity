@@ -23,6 +23,10 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdRegional)
                 .HasColumnName("id_regional")
                 .IsRequired();
+            builder.Property(x => x.IdDerivation)
+                .HasColumnName("id_derivacao")
+                .HasDefaultValue(1)
+                .IsRequired();
             builder.HasOne(x => x.Contract)
                 .WithMany()
                 .HasForeignKey(x => x.IdContract)
@@ -38,7 +42,12 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdRegional)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
-            builder.HasIndex(x => new { x.IdContract, x.IdProject, x.IdRegional}).IsUnique();
+            builder.HasOne(x => x.Derivation)
+                .WithMany()
+                .HasForeignKey(x => x.IdDerivation)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasIndex(x => new { x.IdContract, x.IdProject, x.IdRegional, x.IdDerivation }).IsUnique();
         }
     }
 }
