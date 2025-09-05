@@ -23,12 +23,8 @@ INSERT INTO projetos (id_projeto, nome_projeto, usar_dano, id_processo) VALUES
 (4, 'ANEXO', FALSE, 2),
 (5, 'AFERICAO', TRUE, 2),
 (6, 'INSPECAO', FALSE, 3),
-(7, 'EXTERNALIZACAO', FALSE, 3),
-(8, 'MODERNIZACAO', FALSE, 3),
-(9, 'MANUTENCAO', FALSE, 3),
-(10, 'PQM', FALSE, 4),
-(11, 'EMERGENCIA', FALSE, 4),
-(12, 'MANOBRA', TRUE, 4);
+(7, 'COLETIVO', FALSE, 4),
+(8, 'MANOBRA', TRUE, 4);
 
 CREATE TABLE IF NOT EXISTS atividades (
     id_atividade INTEGER PRIMARY KEY,
