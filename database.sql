@@ -26,6 +26,22 @@ INSERT INTO projetos (id_projeto, nome_projeto, usar_dano, id_processo) VALUES
 (7, 'COLETIVO', FALSE, 4),
 (8, 'MANOBRA', TRUE, 4);
 
+CREATE TABLE IF NOT EXISTS derivacoes (
+    id_derivacao INTEGER PRIMARY KEY,
+    nome_derivacao VARCHAR(16) UNIQUE
+);
+
+INSERT INTO derivacoes ( id_derivacao, nome_derivacao ) VALUES
+(1, 'CONVENCIONAL'),
+(2, 'CAMINHÃO CESTO'),
+(3, 'INICIATIVA'),
+(4, 'MANUTENÇÃO BT'),
+(5, 'EXTERNALIZAÇÃO'),
+(6, 'MODERNIZAÇÃO'),
+(7, 'NORMALIZAÇÃO'),
+(8, 'VISTORIADOR'),
+(9, 'EMERGÊNCIA');
+
 CREATE TABLE IF NOT EXISTS atividades (
     id_atividade INTEGER PRIMARY KEY,
     nome_atividade VARCHAR(32) UNIQUE,
