@@ -20,10 +20,6 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(x => x.IdMaster)
                 .HasColumnName("id_mestre")
                 .IsRequired();
-            builder.Property(x => x.IsAlternative)
-                .HasColumnName("eh_alternativo")
-                .HasDefaultValue(false)
-                .IsRequired();
             builder.HasOne(x => x.Master)
                 .WithMany()
                 .HasForeignKey(x => x.IdMaster)
@@ -34,7 +30,7 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(x => x.IdFinishing)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-            builder.HasIndex(x => new { x.IdFinishing, x.IdMaster, x.IsAlternative }).IsUnique();
+            builder.HasIndex(x => new { x.IdFinishing, x.IdMaster }).IsUnique();
         }
     }
 }

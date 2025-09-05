@@ -42,15 +42,12 @@ namespace Indica.System.Application.Services
                     if (mestre == 0) continue;
                     var master = await paymentMasterRepository.GetSingleOrDefaultByExpressionAsync(m => m.Master == mestre) ??
                         throw new InvalidOperationException($"O mestre {mestre} não foi encontrado!");
-                    payments.Add(new FinishingPayment()
-                    {
-                        IdMaster = master.Id,
-                        IsAlternative = entity.IsAlternative
-                    });
+                    payments.Add(new FinishingPayment() { IdMaster = master.Id });
                 }
                 return new Finishing
                 {
                     GroupingOfMeasures = entity.GroupingOfMeasures,
+                    IsAlternative = entity.IsAlternative,
                     IdFinishingDetail = detail.Id,
                     Payments = payments
                 };

@@ -4,7 +4,6 @@
     {
         public int IdFinishing { get; set; }
         public int IdMaster { get; set; }
-        public bool IsAlternative { get; set; }
         public virtual PaymentMaster Master { get; set; }
         public virtual Finishing Finishing { get; set; }
     }

@@ -21,11 +21,15 @@ namespace Indica.System.Infra.EntityMappers
             builder.Property(f => f.IdFinishingDetail)
                 .HasColumnName("id_categoria")
                 .IsRequired();
+            builder.Property(f => f.IsAlternative)
+                .HasColumnName("eh_alternativo")
+                .HasDefaultValue(false)
+                .IsRequired();
             builder.HasOne(f => f.Detail)
                 .WithMany()
                 .HasForeignKey(f => f.IdFinishingDetail)
                 .OnDelete(DeleteBehavior.SetNull);
-            builder.HasIndex(f => f.GroupingOfMeasures).IsUnique();
+            builder.HasIndex(f => new { f.GroupingOfMeasures, f.IsAlternative } ).IsUnique();
         }
     }
 }
