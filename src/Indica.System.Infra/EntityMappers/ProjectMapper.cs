@@ -16,7 +16,7 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(p => p.ProjectName)
                 .HasColumnName("nome_projeto")
-                .HasMaxLength(100)
+                .HasMaxLength(8)
                 .IsRequired();
             builder.Property(p => p.UsesDamage)
                 .HasColumnName("usar_dano")
@@ -30,20 +30,16 @@ namespace Indica.System.Infra.EntityMappers
                 .HasForeignKey(p => p.IdProcess)
                 .OnDelete(DeleteBehavior.SetNull);
             builder.HasIndex(x => x.ProjectName).IsUnique();
-            builder.HasData(
+            builder.HasData([
                 new Project { Id = 1, ProjectName = "CORTE", IdProcess = 1 },
                 new Project { Id = 2, ProjectName = "RELIGA", IdProcess = 1 },
                 new Project { Id = 3, ProjectName = "LIDE", IdProcess = 2 },
                 new Project { Id = 4, ProjectName = "ANEXO", IdProcess = 2 },
                 new Project { Id = 5, ProjectName = "AFERICAO", IdProcess = 2 },
                 new Project { Id = 6, ProjectName = "INSPECAO", IdProcess = 3 },
-                new Project { Id = 7, ProjectName = "EXTERNALIZACAO", IdProcess = 3 },
-                new Project { Id = 8, ProjectName = "MODERNIZACAO", IdProcess = 3 },
-                new Project { Id = 9, ProjectName = "MANUTENCAO", IdProcess = 3 },
-                new Project { Id = 10, ProjectName = "PQM", IdProcess = 4 },
-                new Project { Id = 11, ProjectName = "EMERGENCIA", IdProcess = 4 },
-                new Project { Id = 12, ProjectName = "MANOBRA", IdProcess = 4 }
-            );
+                new Project { Id = 7, ProjectName = "COLETIVO", IdProcess = 4 },
+                new Project { Id = 8, ProjectName = "MANOBRA", IdProcess = 4 },
+            ]);
         }
     }
 }

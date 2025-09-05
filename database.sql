@@ -11,7 +11,7 @@ INSERT INTO processos (id_processo, nome_processo) VALUES
 
 CREATE TABLE IF NOT EXISTS projetos (
     id_projeto INTEGER PRIMARY KEY,
-    nome_projeto VARCHAR(16) UNIQUE,
+    nome_projeto VARCHAR(8) UNIQUE,
     usar_dano BOOLEAN DEFAULT FALSE,
     id_processo INTEGER REFERENCES processos(id_processo)
 );
