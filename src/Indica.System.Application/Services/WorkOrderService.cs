@@ -78,6 +78,7 @@ namespace Indica.System.Application.Services
                 EstimatedTravellingTime = entity.EstimatedTravellingTime,
                 EstimatedDurationTime = entity.EstimatedDurationTime,
                 IdFieldTeam = fieldteam?.Id ?? null,
+                FieldTeam = fieldteam,
                 DamageToProject = typeOfActivity,
                 WorkOrderTotalTime = (float)(entity.DurationTime + entity.TravellingTime).TotalHours
             };
@@ -99,7 +100,15 @@ namespace Indica.System.Application.Services
             });
             return (await Task.WhenAll(tasks)).ToList();
         }
-
+        private static bool IfItIsAlternative(string activity, string project)
+        {
+            if (string.IsNullOrWhiteSpace(activity) || string.IsNullOrWhiteSpace(project))
+                return false;
+            return (activity.Contains("VISTORIADOR") && project == "ANEXO") ||
+                    (activity.Contains("VISTORIADOR") && project == "LIDE") ||
+                    (activity.Contains("PESADO") && project == "LIDE") ||
+                    (activity == "NORMALIZAÇÃO" && project == "INSPECAO");
+        }
         private async Task<List<Domain.Entities.WorkOrderService>> GetWorkOrderServiceAsync(List<WorkOrderDTO> entities)
         {
             if (entities is null || entities.Count == 0)
@@ -122,8 +131,9 @@ namespace Indica.System.Application.Services
                 if (result.DamageToProject.Project.UsesDamage || string.IsNullOrWhiteSpace(filteredCodes))
                     filteredCodes = result.DamageToProject.Damage + filteredCodes;
                 filteredCodes = entity.TypeOfServiceNote + filteredCodes;
+                var isAlternative = IfItIsAlternative(result.FieldTeam?.Activity.ActivityName, result.DamageToProject.Project.ProjectName);
                 var finishing = await finishingRepository.GetSingleOrDefaultByExpressionAsync(
-                    f => f.GroupingOfMeasures == filteredCodes);
+                    f => f.GroupingOfMeasures == filteredCodes && f.IsAlternative == isAlternative);
                 result.WorkOrderNumber = entity.WorkOrderNumber;
                 result.StartOfSLA = entity.StartOfSLA;
                 result.FinalOfSLA = entity.FinalOfSLA;
@@ -172,6 +182,7 @@ namespace Indica.System.Application.Services
                         IdCoordinateAccuracy = accuracies.SingleOrDefault(ac =>
                             ac.AccuracyLevel == entity.CoordinateAccuracy)?.Id ?? null
                     };
+                result.FieldTeam = null;
                 return result;
             });
             return (await Task.WhenAll(tasks)).ToList();
