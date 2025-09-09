@@ -21,6 +21,8 @@ namespace Indica.System.Application.Services
         private readonly IFieldTeamRepository fieldTeamRepository;
         private readonly ICodeFilterRepository codeFilterRepository;
         private readonly IFinishingRepository finishingRepository;
+        private readonly IDerivationRepository derivationRepository;
+        private readonly ISelectionRepository selectionRepository;
         public WorkOrderService
         (
             IMapper mapper, IFileParser parser,
@@ -35,7 +37,9 @@ namespace Indica.System.Application.Services
             IDamageToProjectRepository damageToProjectRepository,
             IFieldTeamRepository fieldTeamRepository,
             ICodeFilterRepository codeFilterRepository,
-            IFinishingRepository finishingRepository
+            IFinishingRepository finishingRepository,
+            IDerivationRepository derivationRepository,
+            ISelectionRepository selectionRepository
         ) : base(workOrderBaseRepository, mapper, parser)
         {
             this.orderAreaRepository = orderAreaRepository;
@@ -49,6 +53,8 @@ namespace Indica.System.Application.Services
             this.fieldTeamRepository = fieldTeamRepository;
             this.finishingRepository = finishingRepository;
             this.codeFilterRepository = codeFilterRepository;
+            this.derivationRepository = derivationRepository;
+            this.selectionRepository = selectionRepository;
         }
 
         private async Task<T> GetWorkOrderBaseAsync<T>(WorkOrderDTO entity) where T : WorkOrderBase, new()
@@ -100,6 +106,7 @@ namespace Indica.System.Application.Services
             });
             return (await Task.WhenAll(tasks)).ToList();
         }
+
         private static bool IfItIsAlternative(string activity, string project)
         {
             if (string.IsNullOrWhiteSpace(activity) || string.IsNullOrWhiteSpace(project))
@@ -109,6 +116,7 @@ namespace Indica.System.Application.Services
                     (activity.Contains("PESADO") && project == "LIDE") ||
                     (activity == "NORMALIZAÇÃO" && project == "INSPECAO");
         }
+
         private async Task<List<Domain.Entities.WorkOrderService>> GetWorkOrderServiceAsync(List<WorkOrderDTO> entities)
         {
             if (entities is null || entities.Count == 0)
@@ -117,6 +125,8 @@ namespace Indica.System.Application.Services
             var phasing = await phaseRepository.GetAllAsync();
             var codeFilter = await codeFilterRepository.GetAllAsync();
             var workareas = await orderAreaRepository.GetAllAsync();
+            var derivation = await derivationRepository.GetAllAsync();
+            var selections = await selectionRepository.GetAllAsync();
             var tasks = entities.Select(async entity =>
             {
                 var result = await GetWorkOrderBaseAsync<Domain.Entities.WorkOrderService>(entity);
@@ -134,6 +144,8 @@ namespace Indica.System.Application.Services
                 var isAlternative = IfItIsAlternative(result.FieldTeam?.Activity.ActivityName, result.DamageToProject.Project.ProjectName);
                 var finishing = await finishingRepository.GetSingleOrDefaultByExpressionAsync(
                     f => f.GroupingOfMeasures == filteredCodes && f.IsAlternative == isAlternative);
+                result.IdDerivation = derivation.SingleOrDefault(d => result.FieldTeam.Activity.ActivityName.Contains(d.DerivationName))?.Id ??
+                    selections.SingleOrDefault(s => entity.Description.Contains(s.SelectionPattern))?.Derivation.Id ?? 1;
                 result.WorkOrderNumber = entity.WorkOrderNumber;
                 result.StartOfSLA = entity.StartOfSLA;
                 result.FinalOfSLA = entity.FinalOfSLA;
