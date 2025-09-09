@@ -5,5 +5,6 @@ namespace Indica.System.Application.DTO
         public int IdContract { get; set; }
         public int IdRegional { get; set; }
         public int IdProject { get; set; }
+        public int IdDerivation { get; set; }
     }
 }
