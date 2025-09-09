@@ -16,12 +16,12 @@ namespace Indica.System.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.DerivationName)
                 .HasColumnName("nome_derivacao")
-                .HasMaxLength(16)
+                .HasMaxLength(32)
                 .IsRequired();
             builder.HasIndex(x => new { x.DerivationName }).IsUnique();
             builder.HasData([
                 new Derivation() { Id = 1,  DerivationName = "CONVENCIONAL" },
-                new Derivation() { Id = 2,  DerivationName = "CAMINHÃO CESTO" },
+                new Derivation() { Id = 2,  DerivationName = "PESADO" },
                 new Derivation() { Id = 3,  DerivationName = "INICIATIVA" },
                 new Derivation() { Id = 4,  DerivationName = "MANUTENÇÃO BT" },
                 new Derivation() { Id = 5, DerivationName = "EXTERNALIZAÇÃO" },
@@ -29,6 +29,7 @@ namespace Indica.System.Infra.EntityMappers
                 new Derivation() { Id = 7, DerivationName = "NORMALIZAÇÃO" },
                 new Derivation() { Id = 8,  DerivationName = "VISTORIADOR" },
                 new Derivation() { Id = 9,  DerivationName = "EMERGÊNCIA" },
+                new Derivation() { Id = 10,  DerivationName = "ESTOQUE DE CORTADOS" },
             ]);
         }
     }
