@@ -43,6 +43,23 @@ INSERT INTO derivacoes ( id_derivacao, nome_derivacao ) VALUES
 (9, 'EMERGÊNCIA')
 (10, 'ESTOQUE DE CORTADOS');
 
+CREATE TABLE IF NOT EXISTS selecao (
+    id_selecao INTEGER PRIMARY KEY,
+    padrao_selecao VARCHAR(16) UNIQUE,
+    id_derivacao INTEGER REFERENCES derivacoes(id_derivacao)
+);
+
+INSERT INTO selecao ( id_selecao, padrao_selecao, id_derivacao ) VALUES
+(1, 'INICIATIVA', 3),
+(2, 'SELMANUTBT', 4),
+(3, 'ESTOQCORT',  10),
+(4, 'SELEXTMED',  5),
+(5, 'SELEXTMDNI', 5),
+(6, 'MODYMYMFT',  6),
+(7, 'MODMYMFT',   6),
+(8, 'PROJTURIA',  7),
+(9, 'PROJTUIA',   7);
+
 CREATE TABLE IF NOT EXISTS atividades (
     id_atividade INTEGER PRIMARY KEY,
     nome_atividade VARCHAR(32) UNIQUE,
