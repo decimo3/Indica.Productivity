@@ -6,6 +6,7 @@ using Indica.System.Infra;
 using Indica.System.Infra.Repositories;
 using Indica.System.Shared;
 using Indica.System.Shared.Interfaces;
+using Indica.System.API.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Indica.System.API
@@ -67,6 +68,10 @@ namespace Indica.System.API
             );
             #endregion
 
+            builder.Services.AddJwtAuthentication(config);
+
+            builder.Services.AddAuthorization();
+
             WebApplication app = builder.Build();
 
 			// Configure the HTTP request pipeline.
@@ -77,6 +82,8 @@ namespace Indica.System.API
 			}
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
 			app.UseAuthorization();
 
