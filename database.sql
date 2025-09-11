@@ -382,7 +382,8 @@ CREATE TABLE IF NOT EXISTS servico_servico (
 CREATE TABLE IF NOT EXISTS credenciais (
     id_credencial INTEGER PRIMARY KEY,
     id_funcionario INTEGER REFERENCES funcionarios(id_funcionario),
-    passwordhash VARCHAR(32) NOT NULL
+    passwordhash VARCHAR(32) NOT NULL,
+    UNIQUE (id_funcionario)
 );
 
 CREATE VIEW relatorio_contrato_projeto AS SELECT
