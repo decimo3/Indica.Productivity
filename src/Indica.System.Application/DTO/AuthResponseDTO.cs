@@ -4,6 +4,6 @@ namespace Indica.System.Application.DTO
     {
         public int UserId { get; set; }
         public int Registry { get; set; }
-        public string FirstName { get; set; }
+        public string FullName { get; set; }
     }
 }

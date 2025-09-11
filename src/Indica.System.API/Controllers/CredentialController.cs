@@ -40,7 +40,7 @@ namespace Indica.System.API.Controllers
             {
                 UserId = user.Id,
                 Registry = user.ClientRegistry,
-                FirstName = user.FullName.Split(' ').First()
+                FullName = user.FullName
             };
             return Ok(response);
         }
@@ -57,7 +57,7 @@ namespace Indica.System.API.Controllers
             {
                 UserId = user.Id,
                 Registry = user.ClientRegistry,
-                FirstName = user.FullName.Split(' ').First()
+                FullName = user.FullName
             };
             return Ok(response);
         }
