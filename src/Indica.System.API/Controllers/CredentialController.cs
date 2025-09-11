@@ -13,11 +13,18 @@ namespace Indica.System.API.Controllers
         private readonly ILogger logger;
         private readonly ICredentialService service;
         private readonly CookieOptions options;
-        private const string COOKIE_NAME = "MestreRuan";
-        public CredentialController(ICredentialService service, ILogger<CredentialController> logger)
+        private readonly string cookieName;
+        public CredentialController
+        (
+            ICredentialService service,
+            IConfiguration configuration,
+            ILogger<CredentialController> logger
+        )
         {
             this.service = service;
             this.logger = logger;
+            this.cookieName = configuration["Cookies:Auth"] ??
+                throw new InvalidOperationException("Cookie de autenticação não configurado!");
             this.options = new CookieOptions()
             {
                 Path = "/",
@@ -35,7 +42,7 @@ namespace Indica.System.API.Controllers
             if (user is null)
                 return Unauthorized("Usuário ou senha incorretos!");
             var token = await service.GenerateToken(user);
-            Response.Cookies.Append(COOKIE_NAME, token, options);
+            Response.Cookies.Append(cookieName, token, options);
             var response = new AuthResponseDTO()
             {
                 UserId = user.Id,
@@ -48,7 +55,7 @@ namespace Indica.System.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetInfo()
         {
-            if (!Request.Cookies.TryGetValue(COOKIE_NAME, out string? token))
+            if (!Request.Cookies.TryGetValue(cookieName, out string? token))
                 return Unauthorized("Usuário deveria estar logado!");
             var user = await service.ValidateToken(token);
             if (user is null)
@@ -65,7 +72,7 @@ namespace Indica.System.API.Controllers
         [HttpDelete]
         public async Task<IActionResult> Logout()
         {
-            Response.Cookies.Delete(COOKIE_NAME, options);
+            Response.Cookies.Delete(cookieName, options);
             return Ok("Usuário deslogado com sucesso!");
         }
     }
