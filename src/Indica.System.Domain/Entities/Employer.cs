@@ -11,6 +11,6 @@ namespace Indica.System.Domain.Entities
         public int IdFunction { get; set; }
 		public virtual EmployerFunction Function { get; set; }
 		public virtual EmployerSituation Situation { get; set; }
-		public virtual Credential Credential { get; set; }
+		public virtual Credential? Credential { get; set; }
     }
 }
