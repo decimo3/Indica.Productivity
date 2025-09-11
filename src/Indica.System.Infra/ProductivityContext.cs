@@ -30,6 +30,7 @@ namespace Indica.System.Infra
 
             modelBuilder.ApplyConfiguration(new DamageToProjectMapper());
             modelBuilder.ApplyConfiguration(new CodeFilterMapper());
+            modelBuilder.ApplyConfiguration(new CredentialMapper());
 
             modelBuilder.ApplyConfiguration(new FinishingDetailMapper());
             modelBuilder.ApplyConfiguration(new FinishingMapper());
