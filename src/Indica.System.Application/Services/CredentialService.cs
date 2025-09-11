@@ -41,8 +41,12 @@ namespace Indica.System.Application.Services
 
         public async Task<string> GenerateToken(Employer employer)
         {
-            var secret = configuration["SecretKey"] ??
-                throw new InvalidOperationException("A configuração `SecretKey` não foi definida!");
+            var secret = configuration["Jwt:Key"] ??
+                throw new InvalidOperationException("A configuração `Jwt:Key` não foi definida!");
+            var issuer = configuration["Jwt:Issuer"] ??
+                throw new InvalidOperationException("A configuração `Jwt:Issuer` não foi definida!");
+            var audience = configuration["Jwt:Audience"] ??
+                throw new InvalidOperationException("A configuração `Jwt:Audience` não foi definida!");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -54,8 +58,8 @@ namespace Indica.System.Application.Services
             };
 
             var token = new JwtSecurityToken(
-                issuer: "Indica.System",
-                audience: "Indica.System.Users",
+                issuer: issuer,
+                audience: audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddHours(8),
                 signingCredentials: creds
@@ -66,8 +70,10 @@ namespace Indica.System.Application.Services
 
         public async Task<Employer?> ValidateToken(string token)
         {
-            var secret = configuration["SecretKey"] ??
-                throw new InvalidOperationException("A configuração `SecretKey` não foi definida!");
+            var secret = configuration["Jwt:Key"] ??
+                throw new InvalidOperationException("A configuração `Jwt:Key` não foi definida!");
+            var issuer = configuration["Jwt:Issuer"] ??
+                throw new InvalidOperationException("A configuração `Jwt:Issuer` não foi definida!");
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(secret);
             var issuerSiginingKey = new SymmetricSecurityKey(key);
@@ -75,7 +81,8 @@ namespace Indica.System.Application.Services
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = issuerSiginingKey,
-                ValidateIssuer = false,
+                ValidateIssuer = true,
+                ValidIssuer = issuer,
                 ValidateAudience = false,
                 ClockSkew = TimeSpan.Zero
             };
