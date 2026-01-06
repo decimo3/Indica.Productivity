@@ -2,9 +2,13 @@ namespace Indica.System.Application.DTO
 {
     public class ContractProjectDTO : EntityBaseDTO
     {
-        public int IdContract { get; set; }
-        public int IdRegional { get; set; }
-        public int IdProject { get; set; }
-        public int IdDerivation { get; set; }
+        [Alias("Contrato")]
+        public int Contract { get; set; }
+        [Alias("Aditivo")]
+        public int Additive { get; set; }
+        [Alias("Projeto")]
+        public string Project { get; set; }
+        [Alias("Derivação")]
+        public string Derivation { get; set; }
     }
 }
