@@ -58,7 +58,8 @@ INSERT INTO selecao ( id_selecao, padrao_selecao, id_derivacao ) VALUES
 (6, 'MODYMYMFT',  6),
 (7, 'MODMYMFT',   6),
 (8, 'PROJTURIA',  7),
-(9, 'PROJTUIA',   7);
+(9, 'PROJTUIA',   7),
+(10, 'SELMANTUFAT', 4);
 
 CREATE TABLE IF NOT EXISTS atividades (
     id_atividade INTEGER PRIMARY KEY,
