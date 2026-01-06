@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using Indica.System.API;
-using Indica.System.Infra;
+using Indica.Productivity.API;
+using Indica.Productivity.Infra;
 
-namespace Indica.System.Test
+namespace Indica.Productivity.Test
 {
     public class MockWebapi : WebApplicationFactory<Program>
     {

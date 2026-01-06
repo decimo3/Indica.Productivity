@@ -1,4 +1,4 @@
-﻿namespace Indica.System.Application.Common.Validators
+﻿namespace Indica.Productivity.Application.Common.Validators
 {
     public static class ValidationHelper
     {

@@ -1,4 +1,4 @@
-﻿namespace Indica.System.Shared.Interfaces
+﻿namespace Indica.Productivity.Shared.Interfaces
 {
     public interface IFileParser
     {

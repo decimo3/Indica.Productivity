@@ -1,8 +1,8 @@
-using Indica.System.Infra.EntityMappers;
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Infra.EntityMappers;
+using Indica.Productivity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Indica.System.Infra
+namespace Indica.Productivity.Infra
 {
     public class ProductivityContext : DbContext
     {

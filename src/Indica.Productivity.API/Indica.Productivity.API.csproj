@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Indica.System.Application\Indica.System.Application.csproj" />
-    <ProjectReference Include="..\Indica.System.Infra\Indica.System.Infra.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.Application\Indica.Productivity.Application.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.Infra\Indica.Productivity.Infra.csproj" />
   </ItemGroup>
 
 </Project>

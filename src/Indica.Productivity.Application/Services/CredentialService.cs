@@ -1,6 +1,6 @@
-using Indica.System.Application.Interfaces;
-using Indica.System.Domain.Interfaces;
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Application.Interfaces;
+using Indica.Productivity.Domain.Interfaces;
+using Indica.Productivity.Domain.Entities;
 using System.Security.Cryptography;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
 
-namespace Indica.System.Application.Services
+namespace Indica.Productivity.Application.Services
 {
     public class CredentialService : ICredentialService
     {

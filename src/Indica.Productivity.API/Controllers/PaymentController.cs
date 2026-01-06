@@ -1,8 +1,8 @@
-﻿using Indica.System.Domain.Entities;
-using Indica.System.Application.DTO;
-using Indica.System.Application.Interfaces;
+﻿using Indica.Productivity.Domain.Entities;
+using Indica.Productivity.Application.DTO;
+using Indica.Productivity.Application.Interfaces;
 
-namespace Indica.System.API.Controllers
+namespace Indica.Productivity.API.Controllers
 {
     public class PaymentController : GenericController<PaymentDTO, Payment>
     {

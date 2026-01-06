@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Indica.System.Domain
+namespace Indica.Productivity.Domain
 {
     public interface IBaseRepository<T> where T : class
     {

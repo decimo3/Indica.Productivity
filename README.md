@@ -26,14 +26,14 @@ This project is an integrated productivity management solution designed for oper
 1. Clone the repository.
 2. Configure the database connection in `appsettings.json` or environment files.
 3. Run database migrations and seed data if necessary.
-4. Start the API project (`src/Indica.System.API`).
+4. Start the API project (`src/Indica.Productivity.API`).
 
 ## Folder Structure
 
-- `src/Indica.System.Domain`: Domain entities and interfaces
-- `src/Indica.System.Infra`: Database context, entity mappers, repositories
-- `src/Indica.System.Application`: DTOs, services, validation, mapping
-- `src/Indica.System.API`: REST API controllers and startup configuration
+- `src/Indica.Productivity.Domain`: Domain entities and interfaces
+- `src/Indica.Productivity.Infra`: Database context, entity mappers, repositories
+- `src/Indica.Productivity.Application`: DTOs, services, validation, mapping
+- `src/Indica.Productivity.API`: REST API controllers and startup configuration
 
 ## License
 

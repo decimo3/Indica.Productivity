@@ -1,7 +1,7 @@
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-namespace Indica.System.Infra.EntityMappers
+namespace Indica.Productivity.Infra.EntityMappers
 {
     public class PaymentMasterMapper : IEntityTypeConfiguration<PaymentMaster>
     {

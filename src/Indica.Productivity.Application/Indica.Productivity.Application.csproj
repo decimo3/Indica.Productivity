@@ -8,8 +8,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Indica.System.Domain\Indica.System.Domain.csproj" />
-	  <ProjectReference Include="..\Indica.System.Shared\Indica.System.Shared.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.Domain\Indica.Productivity.Domain.csproj" />
+	  <ProjectReference Include="..\Indica.Productivity.Shared\Indica.Productivity.Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

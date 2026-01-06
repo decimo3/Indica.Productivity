@@ -5,17 +5,19 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6CB52090-A8B0-4B06-B1AF-392DBAD74D10}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.System.Domain", "src\Indica.System.Domain\Indica.System.Domain.csproj", "{FE796BD8-F2D2-4955-8DED-BF1FAFDED7EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.Productivity.Domain", "src\Indica.Productivity.Domain\Indica.Productivity.Domain.csproj", "{FE796BD8-F2D2-4955-8DED-BF1FAFDED7EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.System.Infra", "src\Indica.System.Infra\Indica.System.Infra.csproj", "{2B9733D6-33F0-4431-B5F7-BBF43BBB103A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.Productivity.Infra", "src\Indica.Productivity.Infra\Indica.Productivity.Infra.csproj", "{2B9733D6-33F0-4431-B5F7-BBF43BBB103A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.System.Application", "src\Indica.System.Application\Indica.System.Application.csproj", "{286CA9C8-CBD4-42C1-A0B8-3557AED0EB16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.Productivity.Application", "src\Indica.Productivity.Application\Indica.Productivity.Application.csproj", "{286CA9C8-CBD4-42C1-A0B8-3557AED0EB16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.System.API", "src\Indica.System.API\Indica.System.API.csproj", "{4DB339A3-C79A-4AD9-8654-C492AAE517F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indica.Productivity.API", "src\Indica.Productivity.API\Indica.Productivity.API.csproj", "{4DB339A3-C79A-4AD9-8654-C492AAE517F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.System.Test", "src\Indica.System.Test\Indica.System.Test.csproj", "{D144C0B2-6758-4FF4-ABE0-A02BB468E5E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.Productivity.Test", "src\Indica.Productivity.Test\Indica.Productivity.Test.csproj", "{D144C0B2-6758-4FF4-ABE0-A02BB468E5E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.System.Shared", "src\Indica.System.Shared\Indica.System.Shared.csproj", "{76B75130-99C7-4A32-92AD-B9F28652AFA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.Productivity.Shared", "src\Indica.Productivity.Shared\Indica.Productivity.Shared.csproj", "{76B75130-99C7-4A32-92AD-B9F28652AFA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indica.Productivity.Web", "src\Indica.Productivity.Web\Indica.Productivity.Web.csproj", "{3C3F6929-5533-41E7-82F4-466615B14193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{76B75130-99C7-4A32-92AD-B9F28652AFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B75130-99C7-4A32-92AD-B9F28652AFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B75130-99C7-4A32-92AD-B9F28652AFA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3F6929-5533-41E7-82F4-466615B14193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3F6929-5533-41E7-82F4-466615B14193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3F6929-5533-41E7-82F4-466615B14193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3F6929-5533-41E7-82F4-466615B14193}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{4DB339A3-C79A-4AD9-8654-C492AAE517F9} = {6CB52090-A8B0-4B06-B1AF-392DBAD74D10}
 		{D144C0B2-6758-4FF4-ABE0-A02BB468E5E0} = {6CB52090-A8B0-4B06-B1AF-392DBAD74D10}
 		{76B75130-99C7-4A32-92AD-B9F28652AFA2} = {6CB52090-A8B0-4B06-B1AF-392DBAD74D10}
+		{3C3F6929-5533-41E7-82F4-466615B14193} = {6CB52090-A8B0-4B06-B1AF-392DBAD74D10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39D8D57F-98A3-4614-9926-E7FE50314947}

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Domain.Entities;
 
-namespace Indica.System.Infra.EntityMappers
+namespace Indica.Productivity.Infra.EntityMappers
 {
     public class ContractMapper : IEntityTypeConfiguration<Contract>
     {

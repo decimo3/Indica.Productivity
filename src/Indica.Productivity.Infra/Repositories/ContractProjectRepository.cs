@@ -1,7 +1,7 @@
-using Indica.System.Domain.Entities;
-using Indica.System.Domain.Interfaces;
+using Indica.Productivity.Domain.Entities;
+using Indica.Productivity.Domain.Interfaces;
 
-namespace Indica.System.Infra.Repositories
+namespace Indica.Productivity.Infra.Repositories
 {
     public class ContractProjectRepository : BaseRepository<ContractProject>, IContractProjectRepository
     {

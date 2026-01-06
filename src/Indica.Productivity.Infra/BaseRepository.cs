@@ -1,10 +1,10 @@
-﻿using Indica.System.Domain;
-using Indica.System.Domain.Entities;
+﻿using Indica.Productivity.Domain;
+using Indica.Productivity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 
-namespace Indica.System.Infra
+namespace Indica.Productivity.Infra
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {

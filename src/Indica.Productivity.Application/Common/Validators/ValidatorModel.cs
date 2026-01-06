@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Indica.System.Application.Common.Validators
+namespace Indica.Productivity.Application.Common.Validators
 {
     public class ValidatorModel
     {

@@ -1,5 +1,5 @@
-using Indica.System.Shared;
-namespace Indica.System.Application.DTO
+using Indica.Productivity.Shared;
+namespace Indica.Productivity.Application.DTO
 {
     public class FieldTeamDTO : EntityBaseDTO
     {

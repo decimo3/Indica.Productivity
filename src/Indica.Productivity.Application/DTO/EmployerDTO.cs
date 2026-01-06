@@ -1,6 +1,6 @@
-﻿using Indica.System.Application.Common.Validators;
+﻿using Indica.Productivity.Application.Common.Validators;
 
-namespace Indica.System.Application.DTO
+namespace Indica.Productivity.Application.DTO
 {
     public class EmployerDTO : EntityBaseDTO
     {

@@ -1,8 +1,8 @@
 using AutoMapper;
-using Indica.System.Application.DTO;
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Application.DTO;
+using Indica.Productivity.Domain.Entities;
 
-namespace Indica.System.Application.Mappers
+namespace Indica.Productivity.Application.Mappers
 {
     public class PaymentAutoMapper : Profile
     {

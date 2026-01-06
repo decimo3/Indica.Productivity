@@ -1,15 +1,15 @@
-using Indica.System.Application.Interfaces;
-using Indica.System.Application.Mappers;
-using Indica.System.Application.Services;
-using Indica.System.Domain.Interfaces;
-using Indica.System.Infra;
-using Indica.System.Infra.Repositories;
-using Indica.System.Shared;
-using Indica.System.Shared.Interfaces;
-using Indica.System.API.Extensions;
+using Indica.Productivity.Application.Interfaces;
+using Indica.Productivity.Application.Mappers;
+using Indica.Productivity.Application.Services;
+using Indica.Productivity.Domain.Interfaces;
+using Indica.Productivity.Infra;
+using Indica.Productivity.Infra.Repositories;
+using Indica.Productivity.Shared;
+using Indica.Productivity.Shared.Interfaces;
+using Indica.Productivity.API.Extensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Indica.System.API
+namespace Indica.Productivity.API
 {
 	public class Program
 	{

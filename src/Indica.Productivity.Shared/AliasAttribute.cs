@@ -1,4 +1,4 @@
-namespace Indica.System.Shared
+namespace Indica.Productivity.Shared
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class AliasAttribute : Attribute

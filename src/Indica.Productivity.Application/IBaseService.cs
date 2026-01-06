@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Domain.Entities;
 
-namespace Indica.System.Application
+namespace Indica.Productivity.Application
 {
     public interface IBaseService<T, Y> where T : class where Y : class
     {

@@ -1,6 +1,6 @@
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Domain.Entities;
 
-namespace Indica.System.Domain.Interfaces
+namespace Indica.Productivity.Domain.Interfaces
 {
     public interface IEmployerRepository : IBaseRepository<Employer> {}
 }

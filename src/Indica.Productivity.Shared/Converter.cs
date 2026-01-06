@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Indica.System.Shared
+namespace Indica.Productivity.Shared
 {
     public static class Converter
     {

@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Indica.System.Shared\Indica.System.Shared.csproj" />
-    <ProjectReference Include="..\Indica.System.Application\Indica.System.Application.csproj" />
-    <ProjectReference Include="..\Indica.System.API\Indica.System.API.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.Shared\Indica.Productivity.Shared.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.Application\Indica.Productivity.Application.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.API\Indica.Productivity.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>

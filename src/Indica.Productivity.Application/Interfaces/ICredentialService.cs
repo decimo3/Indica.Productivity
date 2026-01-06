@@ -1,6 +1,6 @@
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Domain.Entities;
 
-namespace Indica.System.Application.Interfaces
+namespace Indica.Productivity.Application.Interfaces
 {
     public interface ICredentialService
     {

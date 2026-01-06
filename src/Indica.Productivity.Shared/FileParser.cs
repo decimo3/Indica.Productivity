@@ -5,8 +5,8 @@ using System.Reflection;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using ExcelDataReader;
-using Indica.System.Shared.Interfaces;
-namespace Indica.System.Shared
+using Indica.Productivity.Shared.Interfaces;
+namespace Indica.Productivity.Shared
 {
     public class FileParser : IFileParser, IDisposable
     {

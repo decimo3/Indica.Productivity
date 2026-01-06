@@ -1,7 +1,7 @@
-﻿using Indica.System.Application.DTO;
-using Indica.System.Domain.Entities;
+﻿using Indica.Productivity.Application.DTO;
+using Indica.Productivity.Domain.Entities;
 
-namespace Indica.System.Application.Interfaces
+namespace Indica.Productivity.Application.Interfaces
 {
     public interface IPaymentMasterService : IBaseService<PaymentMasterDTO, PaymentMaster>
     {

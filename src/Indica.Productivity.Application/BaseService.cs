@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Indica.System.Application.DTO;
-using Indica.System.Domain;
-using Indica.System.Domain.Entities;
-using Indica.System.Shared.Interfaces;
+using Indica.Productivity.Application.DTO;
+using Indica.Productivity.Domain;
+using Indica.Productivity.Domain.Entities;
+using Indica.Productivity.Shared.Interfaces;
 using System.Linq.Expressions;
 
-namespace Indica.System.Application
+namespace Indica.Productivity.Application
 {
     public class BaseService<T, Y> : IBaseService<T, Y>
         where T : EntityBaseDTO, new()

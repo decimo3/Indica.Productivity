@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Nome base da solução
-SOLUTION_NAME="Indica.System"
+SOLUTION_NAME="Indica.Productivity.
 
 # Cria a pasta principal
 mkdir -p $SOLUTION_NAME/src

@@ -1,10 +1,10 @@
-using Indica.System.Application.DTO;
-using Indica.System.Application.Interfaces;
-using Indica.System.Domain.Entities;
+using Indica.Productivity.Application.DTO;
+using Indica.Productivity.Application.Interfaces;
+using Indica.Productivity.Domain.Entities;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Indica.System.API.Controllers
+namespace Indica.Productivity.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

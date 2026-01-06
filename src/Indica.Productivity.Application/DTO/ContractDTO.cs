@@ -1,4 +1,4 @@
-﻿namespace Indica.System.Application.DTO
+﻿namespace Indica.Productivity.Application.DTO
 {
     public class ContractDTO : EntityBaseDTO
     {

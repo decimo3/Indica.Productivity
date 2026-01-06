@@ -1,8 +1,8 @@
 using System.IO;
 using System.Text.Json;
-using Indica.System.Application.DTO;
-using Indica.System.Shared;
-namespace Indica.System.Test
+using Indica.Productivity.Application.DTO;
+using Indica.Productivity.Shared;
+namespace Indica.Productivity.Test
 {
     public class FileParserTests
     {

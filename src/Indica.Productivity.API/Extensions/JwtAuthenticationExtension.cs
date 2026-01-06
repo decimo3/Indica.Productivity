@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 
-namespace Indica.System.API.Extensions
+namespace Indica.Productivity.API.Extensions
 {
     public static class AuthenticationExtensions
     {

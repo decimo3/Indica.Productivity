@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Indica.System.Domain\Indica.System.Domain.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.Domain\Indica.Productivity.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

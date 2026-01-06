@@ -1,4 +1,4 @@
-namespace Indica.System.Domain.Entities
+namespace Indica.Productivity.Domain.Entities
 {
     public class ChangeLog
     {
