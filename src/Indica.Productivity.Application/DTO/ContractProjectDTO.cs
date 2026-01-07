@@ -12,5 +12,7 @@ namespace Indica.Productivity.Application.DTO
         public string Project { get; set; }
         [Alias("Derivação")]
         public string Derivation { get; set; }
+        [Alias("Regional")]
+        public string Regional { get; set; }
     }
 }
