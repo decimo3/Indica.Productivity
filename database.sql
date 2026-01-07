@@ -40,7 +40,7 @@ INSERT INTO derivacoes ( id_derivacao, nome_derivacao ) VALUES
 (6, 'MODERNIZAÇÃO'),
 (7, 'NORMALIZAÇÃO'),
 (8, 'VISTORIADOR'),
-(9, 'EMERGÊNCIA')
+(9, 'EMERGÊNCIA'),
 (10, 'ESTOQUE DE CORTADOS');
 
 CREATE TABLE IF NOT EXISTS selecao (
