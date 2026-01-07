@@ -49,5 +49,25 @@ namespace Indica.Productivity.Application.Services
             });
             return (await Task.WhenAll(tasks)).ToList();
         }
+        public override async Task<bool> AddAsync(ContractProjectDTO entity)
+        {
+            var convertedEntities = await GetContractProject([entity]);
+            return await contractProjectRepository.AddAsync(convertedEntities.Single());
+        }
+        public override async Task<int> AddRangeAsync(List<ContractProjectDTO> entities)
+        {
+            var convertedEntities = await GetContractProject(entities);
+            return await contractProjectRepository.AddRangeAsync(convertedEntities);
+        }
+        public override async Task<bool> UpdateAsync(ContractProjectDTO entity)
+        {
+            var convertedEntities = await GetContractProject([entity]);
+            return await contractProjectRepository.UpdateAsync(convertedEntities.Single());
+        }
+        public override async Task<int> UpdateRangeAsync(List<ContractProjectDTO> entities)
+        {
+            var convertedEntities = await GetContractProject(entities);
+            return await contractProjectRepository.UpdateRangeAsync(convertedEntities);
+        }
     }
 }
