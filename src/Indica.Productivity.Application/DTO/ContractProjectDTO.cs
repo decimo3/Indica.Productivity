@@ -5,7 +5,7 @@ namespace Indica.Productivity.Application.DTO
     public class ContractProjectDTO : EntityBaseDTO
     {
         [Alias("Contrato")]
-        public int Contract { get; set; }
+        public long Contract { get; set; }
         [Alias("Aditivo")]
         public int Additive { get; set; }
         [Alias("Projeto")]
