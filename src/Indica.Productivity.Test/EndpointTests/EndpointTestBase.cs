@@ -9,30 +9,18 @@ using Indica.Productivity.Infra;
 
 namespace Indica.Productivity.Test
 {
-    public class MockWebApi : WebApplicationFactory<Program>
-    {
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
-        {
-            builder.ConfigureServices(services =>
-            {
-                // Obtain the DbContext service to apply the data seed.
-                var serviceProvider = services.BuildServiceProvider();
-                using var scope = serviceProvider.CreateScope();
-                var context = scope.ServiceProvider.GetService<ProductivityContext>() ??
-                    throw new InvalidOperationException("The `DbContext` service could not be obtained!");
-                var mockData = File.ReadAllText("Samples/test_queries.sql");
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-                context.Database.ExecuteSqlRaw(mockData);
-            });
-        }
-    }
+    public class MockWebApi : WebApplicationFactory<Program> { }
+
     public abstract class EndpointTestBase : IClassFixture<MockWebApi>
     {
         protected readonly HttpClient _client;
         public EndpointTestBase(MockWebApi factory)
         {
             _client = factory.CreateClient();
+            using var scope = factory.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<ProductivityContext>();
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
         }
         protected async Task<HttpResponseMessage> PostAsync(string path, string json)
         {
