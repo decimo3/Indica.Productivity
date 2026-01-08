@@ -27,10 +27,10 @@ namespace Indica.Productivity.Test
             });
         }
     }
-    public class EndpointTest : IClassFixture<MockWebapi>
+    public abstract class EndpointTestBase : IClassFixture<MockWebapi>
     {
-        private readonly HttpClient _client;
-        public EndpointTest(MockWebapi factory)
+        protected readonly HttpClient _client;
+        public EndpointTestBase(MockWebapi factory)
         {
             _client = factory.CreateClient();
         }
