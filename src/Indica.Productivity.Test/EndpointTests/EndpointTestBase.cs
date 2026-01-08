@@ -34,43 +34,23 @@ namespace Indica.Productivity.Test
         {
             _client = factory.CreateClient();
         }
-        [Fact]
-        public async Task PostRequest_ProcessSingle_ReturnSucess()
+        protected async Task<HttpResponseMessage> PostAsync(string path, string json)
         {
-            // Arrange
-            var url = "/api/process";
-            var json = "{\"processName\":\"VASCO\"}";
-            var payload = new StringContent(json,
-                Encoding.UTF8, "application/json");
-            // Act test
-            var response = await _client.PostAsync(url, payload);
-            // Assert
-            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            return await _client.PostAsync(path, content);
         }
-        [Fact]
-        public async Task PutRequest_ProcessSingle_ReturnFailure()
+        protected async Task<HttpResponseMessage> GetAsync(string path)
         {
-            // Arrange
-            var url = "/api/process";
-            var json = "{\"processName\":\"ASDASDASDASDASDASDASDASD\",\"id\":1}";
-            var payload = new StringContent(json,
-                Encoding.UTF8, "application/json");
-            // Act test
-            var response = await _client.PutAsync(url, payload);
-            // Assert
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            return await _client.GetAsync(path);
         }
-        [Fact]
-        public async Task PostResquest_FieldTeamSingle_ReturnSucess()
+        protected async Task<HttpResponseMessage> PutAsync(string path, string json)
         {
-            // Arrange
-            var url = "/api/fieldteam";
-            var json = File.ReadAllText("Samples/FileParserExcelFileSample.json");
-            var payload = new StringContent(json, Encoding.UTF8, "application/json");
-            // Act test
-            var response = await _client.PostAsync(url, payload);
-            // Assert
-            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            return await _client.PutAsync(path, content);
+        }
+        protected async Task<HttpResponseMessage> DeleteAsync(string path)
+        {
+            return await _client.DeleteAsync(path);
         }
     }
 }
