@@ -80,16 +80,16 @@ INSERT INTO atividades (id_atividade, nome_atividade, id_projeto) VALUES
 (10, 'ANEXO IV', 4),
 (11, 'ANEXO IV VISTORIADOR', 4),
 (12, 'ANEXO IV PESADO', 4),
-(13, 'EMERGÊNCIA', 11),
-(14, 'PQM', 10),
-(15, 'ATENDIMENTO COLETIVO', 11),
+(13, 'EMERGÊNCIA', 8),
+(14, 'PQM', 7),
+(15, 'ATENDIMENTO COLETIVO', 7),
 (16, 'CONVENCIONAL', 6),
-(17, 'EXTERNALIZAÇÃO', 7),
+(17, 'EXTERNALIZAÇÃO', 6),
 (18, 'LABORATÓRIO', 3),
 (19, 'CORTE OSDC', 1),
 (20, 'BAIXA RENDA', 1),
-(21, 'MANUTENÇÃO BT', 9),
-(22, 'MEDIDOR OBSOLETO', 8);
+(21, 'MANUTENÇÃO BT', 6),
+(22, 'MEDIDOR OBSOLETO', 6);
 
 CREATE TABLE IF NOT EXISTS contratos (
     id_contrato INTEGER PRIMARY KEY,
