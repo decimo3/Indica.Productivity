@@ -39,16 +39,16 @@ namespace Indica.Productivity.Infra.EntityMappers
                 new Activity() { Id = 10, ActivityName = "ANEXO IV", IdProject = 4 },
                 new Activity() { Id = 11, ActivityName = "ANEXO IV VISTORIADOR", IdProject = 4 },
                 new Activity() { Id = 12, ActivityName = "ANEXO IV PESADO", IdProject = 4 },
-                new Activity() { Id = 13, ActivityName = "EMERGÊNCIA", IdProject = 11 },
-                new Activity() { Id = 14, ActivityName = "PQM", IdProject = 10 },
-                new Activity() { Id = 15, ActivityName = "ATENDIMENTO COLETIVO", IdProject = 11 },
+                new Activity() { Id = 13, ActivityName = "EMERGÊNCIA", IdProject = 7 },
+                new Activity() { Id = 14, ActivityName = "PQM", IdProject = 7 },
+                new Activity() { Id = 15, ActivityName = "ATENDIMENTO COLETIVO", IdProject = 7 },
                 new Activity() { Id = 16, ActivityName = "CONVENCIONAL", IdProject = 6 },
-                new Activity() { Id = 17, ActivityName = "EXTERNALIZAÇÃO", IdProject = 7 },
+                new Activity() { Id = 17, ActivityName = "EXTERNALIZAÇÃO", IdProject = 6 },
                 new Activity() { Id = 18, ActivityName = "LABORATÓRIO", IdProject = 3 },
                 new Activity() { Id = 19, ActivityName = "CORTE OSDC", IdProject = 1 },
                 new Activity() { Id = 20, ActivityName = "BAIXA RENDA", IdProject = 1 },
-                new Activity() { Id = 21, ActivityName = "MANUTENÇÃO BT", IdProject = 9 },
-                new Activity() { Id = 22, ActivityName = "MEDIDOR OBSOLETO", IdProject = 8 }
+                new Activity() { Id = 21, ActivityName = "MANUTENÇÃO BT", IdProject = 6 },
+                new Activity() { Id = 22, ActivityName = "MEDIDOR OBSOLETO", IdProject = 6 }
             ]);
         }
     }
