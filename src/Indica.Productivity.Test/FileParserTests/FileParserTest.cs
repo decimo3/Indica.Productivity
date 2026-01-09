@@ -10,12 +10,12 @@ namespace Indica.Productivity.Test
         public void ParseXLSX_ValidFile_Test()
         {
             var filepathXlsxSample = Path.Combine(
-                AppContext.BaseDirectory, "Samples",
-                "FileParserExcelFileSample.xlsx"
+                AppContext.BaseDirectory, "FileParserTests",
+                "Samples", "FileParserExcelFileSample.xlsx"
             );
             var filepathJsonSample = Path.Combine(
-                AppContext.BaseDirectory, "Samples",
-                "FileParserExcelFileSample.json"
+                AppContext.BaseDirectory, "FileParserTests",
+                "Samples", "FileParserExcelFileSample.json"
             );
             if (!File.Exists(filepathXlsxSample) || !File.Exists(filepathJsonSample)) Assert.Fail();
             var JsonSampleContent = File.ReadAllText(filepathJsonSample);
@@ -29,12 +29,12 @@ namespace Indica.Productivity.Test
         public void ParseCSV_ValidFile_Test()
         {
             var filepathCsvSample = Path.Combine(
-                AppContext.BaseDirectory, "Samples",
-                "FileParserReportFileSample.csv"
+                AppContext.BaseDirectory, "FileParserTests",
+                "Samples", "FileParserReportFileSample.csv"
             );
             var filepathJsonSample = Path.Combine(
-                AppContext.BaseDirectory, "Samples",
-                "FileParserReportFileSample.xlsx"
+                AppContext.BaseDirectory, "FileParserTests",
+                "Samples", "FileParserReportFileSample.xlsx"
             );
             if (!File.Exists(filepathCsvSample) || !File.Exists(filepathJsonSample)) Assert.Fail();
             using var fileparser = new FileParser();

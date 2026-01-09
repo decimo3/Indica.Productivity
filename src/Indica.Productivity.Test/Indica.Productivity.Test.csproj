@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Samples\**" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="FileParserTests\Samples\**" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\database.sql" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
