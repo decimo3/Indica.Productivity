@@ -37,6 +37,7 @@ namespace Indica.Productivity.Application.Services
                 var payments = new List<FinishingPayment>();
                 foreach (var paymentMaster in entity.PaymentMasters.Split('/'))
                 {
+                    if (string.IsNullOrEmpty(paymentMaster)) continue;
                     if (!int.TryParse(paymentMaster, out int mestre))
                         throw new InvalidOperationException($"O mestre {paymentMaster} é inválido!");
                     if (mestre == 0) continue;
