@@ -27,8 +27,8 @@ namespace Indica.Productivity.API
 			builder.Services.AddSwaggerGen();
 
             // AutoMapper
-            // Add at least only one assemby reference,
-            // and all others will be automaticaly loaded.
+            // Add at least only one assembly reference,
+            // and all others will be automatically loaded.
             builder.Services.AddAutoMapper(typeof(ContractAutoMapper));
 
             #region DATABASE
