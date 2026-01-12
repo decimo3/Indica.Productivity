@@ -31,6 +31,7 @@ namespace Indica.Productivity.Application.Services
             if (entities is null || entities.Count == 0)
                 throw new ArgumentException();
             var details = await detailRepository.GetAllAsync();
+            var masters = await paymentMasterRepository.GetAllAsync();
             var tasks = entities.Select(async entity =>
             {
                 var detail = details.Single(d => d.Detail == entity.FinishingDetail);
@@ -41,7 +42,7 @@ namespace Indica.Productivity.Application.Services
                     if (!int.TryParse(paymentMaster, out int mestre))
                         throw new InvalidOperationException($"O mestre {paymentMaster} é inválido!");
                     if (mestre == 0) continue;
-                    var master = await paymentMasterRepository.GetSingleOrDefaultByExpressionAsync(m => m.Master == mestre) ??
+                    var master = masters.SingleOrDefault(m => m.Master == mestre) ??
                         throw new InvalidOperationException($"O mestre {mestre} não foi encontrado!");
                     payments.Add(new FinishingPayment() { IdMaster = master.Id });
                 }
