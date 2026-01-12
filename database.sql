@@ -235,9 +235,10 @@ INSERT INTO finalizacao_categorias (id_finalizacao_categoria, nome_finalizacao_c
 
 CREATE TABLE IF NOT EXISTS finalizacoes (
     id_finalizacao INTEGER PRIMARY KEY,
-    agrupamento_medidas VARCHAR(128) UNIQUE,
+    agrupamento_medidas VARCHAR(128) NOT NULL,
     eh_alternativo BOOLEAN DEFAULT FALSE,
-    id_categoria INTEGER REFERENCES finalizacao_categorias(id_finalizacao_categoria)
+    id_categoria INTEGER REFERENCES finalizacao_categorias(id_finalizacao_categoria),
+    UNIQUE (agrupamento_medidas, eh_alternativo)
 );
 
 CREATE TABLE IF NOT EXISTS finalizacoes_pagamento (
