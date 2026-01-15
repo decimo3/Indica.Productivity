@@ -107,6 +107,9 @@ namespace Indica.Productivity.Infra.EntityMappers
             builder.Property(x => x.IdCostumer)
                 .HasColumnName("id_cliente")
                 .IsRequired();
+            builder.Property(x => x.IdDerivation)
+                .HasColumnName("id_derivacao")
+                .IsRequired();
             builder.HasOne(x => x.Finishing)
                 .WithMany()
                 .HasForeignKey(x => x.IdFinishing)
@@ -115,6 +118,11 @@ namespace Indica.Productivity.Infra.EntityMappers
             builder.HasOne(x => x.WorkOrderCostumer)
                 .WithMany()
                 .HasForeignKey(x => x.IdCostumer)
+                .OnDelete(DeleteBehavior.SetNull)
+                .IsRequired();
+            builder.HasOne(x => x.Derivation)
+                .WithMany()
+                .HasForeignKey(x => x.IdDerivation)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
         }
