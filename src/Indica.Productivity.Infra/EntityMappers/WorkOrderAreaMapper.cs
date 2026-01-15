@@ -23,15 +23,13 @@ namespace Indica.Productivity.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.IdRegion)
                 .HasColumnName("id_regional")
-                .IsRequired();
+                .IsRequired(false);
             builder.HasOne(x => x.Regional)
                 .WithMany()
                 .HasForeignKey(x => x.IdRegion)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired();
             builder.HasIndex(x => new { x.AreaNumber, x.AreaName }).IsUnique();
-            builder.HasData([
-            ]);
         }
     }
 }
