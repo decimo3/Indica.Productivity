@@ -378,6 +378,7 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     tempo_interrompido INTEGER DEFAULT NULL,
     valor_compensação_financeira INTEGER DEFAULT NULL,
     id_cliente INTEGER REFERENCES servico_cliente(id_servico),
+    id_derivacao INTEGER REFERENCES derivacoes (id_derivacao),
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao)
 );
 
