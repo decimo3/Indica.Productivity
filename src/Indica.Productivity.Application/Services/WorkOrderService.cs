@@ -178,8 +178,8 @@ namespace Indica.Productivity.Application.Services
                         BuildingNumberOrAcronym = entity.BuildingNumberOrAcronym,
                         NumberComplement = entity.NumberComplement,
                         SubNeighborhood = entity.SubNeighborhood,
-                        IdWorkOrderArea = workareas.SingleOrDefault(a =>
-                            a.AreaNumber == entity.WorkOrderArea)?.Id ?? null,
+                        IdWorkOrderArea = workareas.Single(a =>
+                            a.AreaNumber == entity.WorkOrderArea).Id,
                         CostumerCity = entity.CostumerCity,
                         CostumerState = entity.CostumerState,
                         CostumerPostalCode = entity.CostumerPostalCode,
@@ -189,8 +189,8 @@ namespace Indica.Productivity.Application.Services
                         IsFoundCoordinateStatus = entity.IsFoundCoordinateStatus,
                         CoordinateX = entity.CoordinateX,
                         CoordinateY = entity.CoordinateY,
-                        IdConnectionType = phasing.SingleOrDefault(ph =>
-                            ph.PhaseName == entity.ConnectionType)?.Id ?? null,
+                        IdConnectionType = phasing.Single(ph =>
+                            ph.PhaseName == entity.ConnectionType).Id,
                         IdCoordinateAccuracy = accuracies.SingleOrDefault(ac =>
                             ac.AccuracyLevel == entity.CoordinateAccuracy)?.Id ?? null
                     };
