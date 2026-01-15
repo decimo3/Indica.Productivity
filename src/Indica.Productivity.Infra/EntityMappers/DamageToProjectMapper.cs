@@ -25,13 +25,13 @@ namespace Indica.Productivity.Infra.EntityMappers
                 .IsRequired();
             builder.Property(x => x.IdProject)
                 .HasColumnName("id_projeto")
-                .IsRequired();
+                .IsRequired(false);
             builder.HasOne(x => x.Project)
                 .WithMany()
                 .HasForeignKey(x => x.IdProject)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-            builder.HasIndex(x => new { x.Damage, x.IdProject }).IsUnique();
+            builder.HasIndex(x => x.Damage).IsUnique();
         }
     }
 }
