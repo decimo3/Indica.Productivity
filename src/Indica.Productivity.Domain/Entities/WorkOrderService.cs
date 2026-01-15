@@ -30,5 +30,6 @@ namespace Indica.Productivity.Domain.Entities
         public int? IdDerivation { get; set; }
         public virtual Finishing Finishing { get; set; }
         public virtual WorkOrderCostumer WorkOrderCostumer { get; set; }
+        public virtual Derivation Derivation { get; set; }
     }
 }
