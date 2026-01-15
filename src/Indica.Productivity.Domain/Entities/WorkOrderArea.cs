@@ -4,7 +4,7 @@ namespace Indica.Productivity.Domain.Entities
     {
         public int AreaNumber { get; set; }
         public string AreaName { get; set; }
-        public int IdRegion { get; set; }
+        public int? IdRegion { get; set; }
         public virtual FieldTeamRegional Regional { get; set; }
     }
 }
