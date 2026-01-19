@@ -529,7 +529,8 @@ LEFT JOIN processos AS pr
 LEFT JOIN regionais AS r
     ON r.id_regional = c.id_regional
 LEFT JOIN relatorio_contrato_projeto AS ctt
-ON p.id_projeto = ctt.id_projeto
+    ON p.id_projeto = ctt.id_projeto
+    AND ctt.id_derivacao = 1
     AND c.id_regional = ctt.id_regional
     AND c.dia
         BETWEEN ctt.inicio_vigencia
