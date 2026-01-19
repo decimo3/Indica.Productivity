@@ -486,6 +486,7 @@ CREATE TABLE IF NOT EXISTS credenciais (
 CREATE VIEW relatorio_contrato_projeto AS SELECT
     cp.id_contrato_projeto,
     cp.id_projeto,
+    cp.id_derivacao,
     cp.id_regional,
     ct.id_contrato,
     ct.contrato,
@@ -583,7 +584,10 @@ CREATE VIEW relatorio_servicos AS SELECT
     fc.nome_finalizacao_categoria,
     fc.eh_executado,
 -- pagamentos table fields
+    pg.id_pagamento,
+    pg.id_contrato_projeto,
     pg.id_mestre,
+    m.mestre,
     pg.valoracao
 --  SUM(pg.valoracao) AS 'pg.valoracao'
 FROM servico_servico AS sv
@@ -606,6 +610,7 @@ LEFT JOIN processos AS pc
 LEFT JOIN relatorio_contrato_projeto AS ctt
     ON ctt.id_regional = r.id_regional
     AND ctt.id_projeto = pj.id_projeto
+    AND ctt.id_derivacao = sv.id_derivacao
     AND sb.dia BETWEEN ctt.inicio_vigencia
     AND ctt.final_vigencia
 LEFT JOIN finalizacoes AS f
@@ -616,4 +621,6 @@ LEFT JOIN finalizacoes_pagamento AS fp
     ON f.id_finalizacao = fp.id_finalizacao
 LEFT JOIN pagamentos AS pg
     ON fp.id_mestre = pg.id_mestre
-    AND ctt.id_contrato_projeto = pg.id_contrato_projeto;
+    AND ctt.id_contrato_projeto = pg.id_contrato_projeto
+LEFT JOIN mestres AS m
+    ON m.id_mestre = pg.id_mestre;
