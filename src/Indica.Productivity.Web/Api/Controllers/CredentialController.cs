@@ -4,7 +4,7 @@ using Indica.Productivity.Domain.Entities;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Indica.Productivity.API.Controllers
+namespace Indica.Productivity.Web.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

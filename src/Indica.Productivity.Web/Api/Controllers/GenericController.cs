@@ -3,7 +3,7 @@ using Indica.Productivity.Application;
 using Indica.Productivity.Application.DTO;
 using Indica.Productivity.Domain.Entities;
 
-namespace Indica.Productivity.API.Controllers
+namespace Indica.Productivity.Web.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
