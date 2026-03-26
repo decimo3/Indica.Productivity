@@ -1,0 +1,57 @@
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> Localizer
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SGP - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Indica.Productivity.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+    <h1 class="card text-center p-2 m-2">
+        @Localizer["HeaderText"]
+    </h1>
+        <nav class="card text-center p-2 m-2">
+            <ul class="navbar-nav d-flex flex-row justify-content-around">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">@Localizer["Index"]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Employer/Index">@Localizer["Employer"]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Composition/Index">@Localizer["Composition"]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Report/Index">@Localizer["Report"]</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/User/Index">@Localizer["User"]</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-center text-muted">
+        <div class="container">
+            <p>@Localizer["MadeWith"] <span class="text-danger">&hearts;</span> @Localizer["MadeWithBy"] <a href="https://www.linkedin.com/in/ruanfaustinocamello/" target="_blank">@Localizer["Author"]</a>!</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

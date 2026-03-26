@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- Default headers -->
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+
+  <!-- Strings -->
+
+  <data name="NewEmployer" xml:space="preserve">
+    <value>Create new employer</value>
+  </data>
+
+  <data name="MainID" xml:space="preserve">
+    <value>Main ID</value>
+  </data>
+
+  <data name="ClientID" xml:space="preserve">
+    <value>Client ID</value>
+  </data>
+
+  <data name="FullName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+
+  <data name="Admission" xml:space="preserve">
+    <value>Admission</value>
+  </data>
+
+  <data name="Demission" xml:space="preserve">
+    <value>Demission</value>
+  </data>
+
+  <data name="Situation" xml:space="preserve">
+    <value>Situation</value>
+  </data>
+
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+
+</root>

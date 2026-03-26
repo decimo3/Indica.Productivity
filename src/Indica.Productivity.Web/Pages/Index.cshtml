@@ -1,0 +1,10 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@model IndexModel
+@{
+    ViewData["Title"] = @Localizer["Title"];
+}
+
+<span class="text-center">@Localizer["IndexText"]</span>

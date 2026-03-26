@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- Default headers -->
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+
+  <!-- Strings -->
+
+  <data name="HeaderText" xml:space="preserve">
+    <value>Sistema Gerenciador de Produtividade</value>
+  </data>
+
+  <data name="Index" xml:space="preserve">
+    <value>Início</value>
+  </data>
+
+  <data name="Employer" xml:space="preserve">
+    <value>Funcionário</value>
+  </data>
+
+  <data name="Composition" xml:space="preserve">
+    <value>Composição</value>
+  </data>
+
+  <data name="Report" xml:space="preserve">
+    <value>Relatório</value>
+  </data>
+
+  <data name="User" xml:space="preserve">
+    <value>Usuário</value>
+  </data>
+
+  <data name="MadeWith" xml:space="preserve">
+    <value>Feito com</value>
+  </data>
+
+  <data name="MadeWithBy" xml:space="preserve">
+    <value>por</value>
+  </data>
+
+  <data name="Author" xml:space="preserve">
+    <value>MestreRuan</value>
+  </data>
+
+</root>
