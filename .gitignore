@@ -482,3 +482,9 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+
+# Temporary ignore files
+dataseed.sql
+docs/*
+data/*

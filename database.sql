@@ -565,7 +565,7 @@ CREATE VIEW relatorio_servicos AS SELECT
 -- servico_localidade table fields
     sl.num_servico_localidade,
     sl.nome_servico_localidade,
--- serviico_regional table fields
+-- servico_regional table fields
     r.nome_regional,
 -- servico_situacao table fields
     ss.nome_servico_situacao,
