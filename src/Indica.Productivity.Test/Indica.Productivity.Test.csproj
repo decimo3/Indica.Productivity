@@ -24,7 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Indica.Productivity.Shared\Indica.Productivity.Shared.csproj" />
     <ProjectReference Include="..\Indica.Productivity.Application\Indica.Productivity.Application.csproj" />
-    <ProjectReference Include="..\Indica.Productivity.API\Indica.Productivity.API.csproj" />
+    <ProjectReference Include="..\Indica.Productivity.Web\Indica.Productivity.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

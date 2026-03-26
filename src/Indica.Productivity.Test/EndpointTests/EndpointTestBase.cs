@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using Indica.Productivity.API;
+using Indica.Productivity.Web;
 using Indica.Productivity.Infra;
 
 namespace Indica.Productivity.Test
