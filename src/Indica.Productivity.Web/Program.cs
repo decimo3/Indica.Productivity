@@ -1,6 +1,8 @@
+using Indica.Productivity.Application;
 using Indica.Productivity.Application.Interfaces;
 using Indica.Productivity.Application.Mappers;
 using Indica.Productivity.Application.Services;
+using Indica.Productivity.Domain;
 using Indica.Productivity.Domain.Interfaces;
 using Indica.Productivity.Infra;
 using Indica.Productivity.Infra.Repositories;
@@ -14,8 +16,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 
 namespace Indica.Productivity.Web
 {
@@ -85,16 +89,27 @@ namespace Indica.Productivity.Web
 
             #region SERVICES
             builder.Services.AddScoped<IFileParser, FileParser>();
-            // Used Scrutor instead add all services manually
+            // Use Scrutor to register services, but limit the assemblies we scan
+            // to avoid accidentally picking up framework/internal types (for example
+            // DataProtection's FileSystemXmlRepository/RegistryXmlRepository) which
+            // would register "Repository" types that require special ctor dependencies.
+            // Register only our application's Service/Repository implementations.
+            // We'll scan the application's assemblies and register only classes that
+            // inherit from BaseService<,> (for services) and BaseRepository<> (for
+            // repositories). This avoids picking up framework/internal "Repository"
+            // types as before.
             builder.Services.Scan(scan => scan
-                .FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
-                .AddClasses(classes => classes.Where(c => c.Name.EndsWith("Service")))
-                    .AsImplementedInterfaces()
-                    .WithScopedLifetime()
-                .AddClasses(classes => classes.Where(c => c.Name.EndsWith("Repository")))
-                    .AsImplementedInterfaces()
-                    .WithScopedLifetime()
+                .FromAssembliesOf(typeof(EmployerService), typeof(EmployerRepository), typeof(Program))
+                // Services: concrete types that inherit BaseService<,>
+                .AddClasses(classes => classes.Where(type => !type.IsAbstract && !type.IsInterface && type.GetInterfaces().Any(i =>
+                    i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IBaseService<,>))
+                )).AsImplementedInterfaces().WithScopedLifetime()
+                // Repositories: concrete types that inherit BaseRepository<>
+                .AddClasses(classes => classes.Where(type => !type.IsAbstract && !type.IsInterface && type.GetInterfaces().Any(i =>
+                    i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IBaseRepository<>))
+                )).AsImplementedInterfaces().WithScopedLifetime()
             );
+
             #endregion
 
             builder.Services.AddJwtAuthentication(config);
