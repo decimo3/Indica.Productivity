@@ -1,0 +1,88 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IStringLocalizer<CompositionResources> GlobalLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model Indica.Productivity.Web.Pages.Composition.IndexModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+}
+
+<div class="row">
+    <div class="col-6 text-start">
+        <a asp-page="./Upsert">@LocalLocalizer["NewComposition"]</a>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-page="./Import">@LocalLocalizer["ImportComposition"]</a>
+    </div>
+</div>
+
+<br />
+
+@if (Model.Compositions.Any())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">@GlobalLocalizer["Date"]:</th>
+                <th scope="col">@GlobalLocalizer["Order"]:</th>
+                <th scope="col">@GlobalLocalizer["Plate"]:</th>
+                <th scope="col">@GlobalLocalizer["Resource"]:</th>
+                <th scope="col">@GlobalLocalizer["Activity"]:</th>
+                <th scope="col">@GlobalLocalizer["MatLead"]:</th>
+                <th scope="col">@GlobalLocalizer["NameLead"]:</th>
+                <th scope="col">@GlobalLocalizer["MatAux"]:</th>
+                <th scope="col">@GlobalLocalizer["NameAux"]:</th>
+                <th scope="col">@GlobalLocalizer["Phone"]:</th>
+                <th scope="col">@GlobalLocalizer["MatSup"]:</th>
+                <th scope="col">@GlobalLocalizer["NameSup"]:</th>
+                <th scope="col">@GlobalLocalizer["Area"]:</th>
+                <th scope="col">@SharedLocalizer["Options"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var composition in Model.Compositions)
+            {
+                <tr scope="row"
+                    class="@(Model.IsError ? "text-danger" : "") @(!composition.IsConsidered ? "text-decoration-line-through" : "")">
+                    <td>@composition.Date</td>
+                    <td>@composition.Order</td>
+                    <td>@composition.Plate</td>
+                    <td>@composition.Abreviate</td>
+                    <td>@composition.ActivityName</td>
+                    <td>@composition.EmployerRegistry1</td>
+                    <td>@composition.EmployerName1.Split(' ', 2)[0]</td>
+                    <td>@composition.EmployerRegistry2</td>
+                    <td>@composition.EmployerName2.Split(' ', 2)[0]</td>
+                    <td>@composition.Cellphone</td>
+                    <td>@composition.SupervisorRegistry</td>
+                    <td>@composition.SupervisorName.Split(' ', 2)[0]</td>
+                    <td>@composition.WorkArea</td>
+                    <td>
+                        @if (Model.IsError)
+                        {
+                            <p>X erros</p>
+                        }
+                        else
+                        {
+                            <div class="d-flex">
+                                <a asp-page="./Upsert" asp-route-id="@composition.Id">@SharedLocalizer["Edit"]</a> /
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@composition.Id">
+                                    <button type="submit"
+                                        class="btn btn-link p-0 border-0 align-baseline text-danger">@SharedLocalizer["Delete"]</button>
+                                </form>
+                            </div>
+                        }
+                    </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-center">@LocalLocalizer["EmptyComposition"].</p>
+}
