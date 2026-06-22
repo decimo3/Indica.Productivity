@@ -1,0 +1,24 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model ImportModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+    ViewData["ModalTitle"] = Model.Error?.GetType().Name;
+    ViewData["ModalMessage"] = Model.Error?.Message;
+}
+
+<h3 class="py-4 text-center">
+    @LocalLocalizer["Header"]
+</h3>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="input-group">
+        <input type="file" accept=".xls" asp-for="FileSent" class="form-control" required/>
+        <button type="submit" class="btn btn-outline-primary">@SharedLocalizer["Send"]</button>
+    </div>
+</form>
+
