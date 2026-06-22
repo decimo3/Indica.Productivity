@@ -103,5 +103,13 @@ namespace Indica.Productivity.Application.Services
             var converted = await GetFieldTeamAsync(lista);
             return await _fieldteamRepository.UpdateRangeAsync(converted);
         }
+
+        public override async Task<bool> DeleteAsync(int id)
+        {
+            var fieldteam = await _fieldteamRepository.GetByIdAsync(id) ?? throw new ArgumentException();
+            fieldteam.IsConsidered = false;
+            await _fieldteamRepository.UpdateAsync(fieldteam);
+            return true;
+        }
     }
 }
