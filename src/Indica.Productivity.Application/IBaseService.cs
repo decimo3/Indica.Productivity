@@ -15,5 +15,6 @@ namespace Indica.Productivity.Application
         Task<int> UpdateRangeAsync(List<T> lista);
         Task<int> DeleteRangeAsync(List<T> lista);
         Task<int> AddRangeAsync(Stream arquivo, string filename);
+        Task<List<T>> GetPagedAndFilteredByExpressionAsync(int page, Expression<Func<T, bool>>? filter = null);
     }
 }

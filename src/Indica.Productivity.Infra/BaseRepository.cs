@@ -10,6 +10,7 @@ namespace Indica.Productivity.Infra
     {
         private readonly ProductivityContext _context;
         private readonly DbSet<T> _dbSet;
+        private const int PAGE_SIZE = 100;
 
         public BaseRepository(ProductivityContext context)
         {
@@ -87,11 +88,12 @@ namespace Indica.Productivity.Infra
             return await _dbSet.AsNoTracking().SingleOrDefaultAsync(expression);
         }
 
-        public async Task<List<T>> GetPagedAndFilteredByExpressionAsync(int offset, int limit, Expression<Func<T, bool>>? filter = null)
+        public async Task<List<T>> GetPagedAndFilteredByExpressionAsync(int page, Expression<Func<T, bool>>? filter = null)
         {
+            var offset = page * PAGE_SIZE;
             IQueryable<T> queryable = _dbSet.AsNoTracking();
             if (filter != null) queryable = queryable.Where(filter);
-            return await queryable.Skip((offset - 1) * limit).Take(limit).ToListAsync();
+            return await queryable.Skip((offset - 1) * PAGE_SIZE).Take(PAGE_SIZE).ToListAsync();
         }
     }
 }

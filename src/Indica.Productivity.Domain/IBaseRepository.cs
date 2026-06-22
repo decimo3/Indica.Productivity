@@ -16,6 +16,6 @@ namespace Indica.Productivity.Domain
         Task<int> DeleteRangeAsync(List<T> lista);
         Task<T?> GetFirstOrDefaultByExpressionAsync(Expression<Func<T, bool>> eexpression);
         Task<T?> GetSingleOrDefaultByExpressionAsync(Expression<Func<T, bool>> eexpression);
-        Task<List<T>> GetPagedAndFilteredByExpressionAsync(int offset, int limit, Expression<Func<T, bool>>? filter = null);
+        Task<List<T>> GetPagedAndFilteredByExpressionAsync(int page, Expression<Func<T, bool>>? filter = null);
     }
 }

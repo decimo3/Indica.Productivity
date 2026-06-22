@@ -113,5 +113,13 @@ namespace Indica.Productivity.Application
 
             return await _repository.AddRangeAsync(entityMapped);
         }
+
+        public async Task<List<T>> GetPagedAndFilteredByExpressionAsync(int page, Expression<Func<T, bool>>? filter = null)
+        {
+            Expression<Func<Y, bool>>? mappedExpression = null;
+            if (filter != null) mappedExpression = _mapper.Map<Expression<Func<Y, bool>>>(filter);
+            var entities = _repository.GetPagedAndFilteredByExpressionAsync(page, mappedExpression);
+            return _mapper.Map<List<T>>(entities);
+        }
     }
 }
