@@ -51,5 +51,10 @@
   <data name="Author" xml:space="preserve">
     <value>MasterRuan</value>
   </data>
-
+  <data name="ModalClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ModalTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>
