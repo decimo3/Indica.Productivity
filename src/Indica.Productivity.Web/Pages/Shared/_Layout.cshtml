@@ -1,4 +1,4 @@
-﻿@using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Localization
 @inject IStringLocalizer<SharedResources> Localizer
 
 <!DOCTYPE html>
@@ -12,6 +12,29 @@
     <link rel="stylesheet" href="~/Indica.Productivity.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_head">
+                        @(ViewData["ModalTitle"] ?? Localizer["ModalTitle"])
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal_body">@ViewData["ModalMessage"]</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">@Localizer["ModalClose"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header>
     <h1 class="card text-center p-2 m-2">
         @Localizer["HeaderText"]
