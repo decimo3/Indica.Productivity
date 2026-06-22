@@ -1,0 +1,57 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IStringLocalizer<EmployerResources> GlobalLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model Indica.Productivity.Web.Pages.Employer.UpsertModel
+@{
+    ViewData["Title"] = Model.IsEdit ? @LocalLocalizer["EditEmployer"] : @LocalLocalizer["NewEmployer"];
+    ViewData["ModalTitle"] = Model.Error?.GetType().Name;
+    ViewData["ModalMessage"] = Model.Error?.Message;
+}
+
+<form method="post">
+    <input asp-for="Employer.Id" type="hidden" />
+    <div class="card p-2 m-2">
+        <div class="row">
+            <div class="form-group my-2 col-2">
+                <label asp-for="Employer.IndicaRegistry">@GlobalLocalizer["MainID"]:</label>
+                <input asp-for="Employer.IndicaRegistry" class="form-control" readonly="@Model.IsEdit"/>
+            </div>
+            <div class="form-group py-2 col-2">
+                <label asp-for="Employer.ClientRegistry">@GlobalLocalizer["ClientID"]:</label>
+                <input asp-for="Employer.ClientRegistry" class="form-control" required/>
+            </div>
+            <div class="form-group py-2 col-8">
+                <label asp-for="Employer.FullName">@GlobalLocalizer["FullName"]:</label>
+                <input asp-for="Employer.FullName" class="form-control" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group py-2 col-4">
+                <label asp-for="Employer.Admission">@GlobalLocalizer["Admission"]:</label>
+                <input asp-for="Employer.Admission" class="form-control" required/>
+            </div>
+            <div class="form-group py-2 col-4">
+                <label asp-for="Employer.IdSituation">@GlobalLocalizer["Situation"]:</label>
+                <select asp-for="Employer.IdSituation" asp-items="Model.EmployerSituations" class="form-control">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group py-2 col-4">
+                <label asp-for="Employer.IdFunction">@GlobalLocalizer["Function"]:</label>
+                <select asp-for="Employer.IdFunction" asp-items="Model.EmployerFunctions" class="form-control">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group py-2">
+                <input type="submit" class="btn btn-primary btn-block" value="@SharedLocalizer["Send"]" />
+                <a asp-page="./Index" class="btn btn-secondary btn-block">@SharedLocalizer["Back"]</a>
+            </div>
+        </div>
+    </div>
+</form>
