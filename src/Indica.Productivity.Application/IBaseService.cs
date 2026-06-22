@@ -1,9 +1,12 @@
 ﻿using System.Linq.Expressions;
+using Indica.Productivity.Application.DTO;
 using Indica.Productivity.Domain.Entities;
 
 namespace Indica.Productivity.Application
 {
-    public interface IBaseService<T, Y> where T : class where Y : class
+    public interface IBaseService<T, Y>
+        where T : EntityBaseDTO, new()
+        where Y : EntityBase, new()
     {
         Task<T> GetByIdAsync(int id);
         Task<List<T>> GetAllAsync();
