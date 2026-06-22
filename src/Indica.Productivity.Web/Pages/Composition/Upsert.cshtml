@@ -1,0 +1,83 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IStringLocalizer<CompositionResources> GlobalLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model Indica.Productivity.Web.Pages.Composition.UpsertModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+}
+
+<form>
+    <div class="row py-2">
+        <div class="form-group col-4">
+            <label asp-for="Composition.Date">@GlobalLocalizer["Date"]:</label>
+            <input asp-for="Composition.Date" type="date" class="form-control" />
+        </div>
+        <div class="form-group col-4">
+            <label asp-for="Composition.Resource">@GlobalLocalizer["Resource"]:</label>
+            <input asp-for="Composition.Resource" class="form-control" type="text" />
+        </div>
+        <div class="form-group col-4">
+            <label>@GlobalLocalizer["Activity"]:</label>
+            <select asp-for="Composition.ActivityName" asp-items="Model.FieldTeamActivity" class="form-control" >
+            </select>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="form-group col-3">
+            <label asp-for="Composition.Order">@GlobalLocalizer["Order"]:</label>
+            <input asp-for="Composition.Order" class="form-control" type="number" />
+        </div>
+        <div class="form-group col-3">
+            <label asp-for="Composition.Plate">@GlobalLocalizer["Plate"]:</label>
+            <input asp-for="Composition.Plate" class="form-control" type="text" />
+        </div>
+        <div class="form-group col-3">
+            <label asp-for="Composition.Cellphone">@GlobalLocalizer["Phone"]:</label>
+            <input asp-for="Composition.Cellphone" class="form-control" type="number" />
+        </div>
+        <div class="form-group col-3">
+            <label>@GlobalLocalizer["Area"]:</label>
+            <select asp-for="Composition.WorkArea" asp-items="Model.FieldTeamRegional" class="form-control">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="form-group col-4">
+            <label asp-for="Composition.EmployerRegistry1">@GlobalLocalizer["MatLead"]:</label>
+            <input asp-for="Composition.EmployerRegistry1" class="form-control" type="number" required/>
+        </div>
+        <div class="form-group col-8">
+            <label asp-for="Composition.EmployerName1">@GlobalLocalizer["NameLead"]:</label>
+            <input asp-for="Composition.EmployerName1" class="form-control" type="text" disabled />
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="form-group col-4">
+            <label asp-for="Composition.EmployerRegistry2">@GlobalLocalizer["MatAux"]:</label>
+            <input asp-for="Composition.EmployerRegistry2" class="form-control" type="number" required />
+        </div>
+        <div class="form-group col-8">
+            <label asp-for="Composition.EmployerName2">@GlobalLocalizer["NameAux"]:</label>
+            <input asp-for="Composition.EmployerName2" class="form-control" type="text" disabled />
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="form-group col-4">
+            <label asp-for="Composition.SupervisorRegistry">@GlobalLocalizer["MatSup"]:</label>
+            <input asp-for="Composition.SupervisorRegistry" class="form-control" type="number" required/>
+        </div>
+        <div class="form-group col-8">
+            <label asp-for="Composition.SupervisorName">@GlobalLocalizer["NameSup"]:</label>
+            <input asp-for="Composition.SupervisorName" class="form-control" type="text" disabled />
+        </div>
+    </div>
+    <div class="form-group py-2">
+        <input type="submit" class="btn btn-primary btn-block" value="@SharedLocalizer["Send"]" />
+        <a asp-page="./Index" class="btn btn-secondary btn-block">@SharedLocalizer["Back"]</a>
+    </div>
+</form>
