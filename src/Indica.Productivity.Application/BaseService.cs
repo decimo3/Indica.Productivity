@@ -102,13 +102,16 @@ namespace Indica.Productivity.Application
             return await _repository.DeleteRangeAsync(entitiesMapped);
         }
 
-        public virtual async Task<int> AddRangeAsync(Stream arquivo, string filename)
+        public virtual async Task<int> AddRangeAsync(Stream file, string filename)
         {
-            if (arquivo == null || arquivo.Length == 0)
+            if (file == null || file.Length == 0)
                     throw new ArgumentException("O file está vazio!");
 
-            var entities = _fileParser.ParseByFilepath<T>(arquivo, filename);
-            return await AddRangeAsync(entities);
+            var entities = _fileParser.ParseByFilepath<T>(file, filename);
+
+            var entityMapped = _mapper.Map<List<Y>>(entities);
+
+            return await _repository.AddRangeAsync(entityMapped);
         }
     }
 }
