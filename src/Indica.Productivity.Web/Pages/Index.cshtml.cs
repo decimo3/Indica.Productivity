@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Indica.Productivity.Web.App.Pages;
+namespace Indica.Productivity.Web.Pages;
 
 public class IndexModel : PageModel
 {

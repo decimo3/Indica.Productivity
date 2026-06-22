@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Indica.Productivity.Application.Interfaces;
 using Indica.Productivity.Application.DTO;
 
-namespace Indica.Productivity.Web.App.Pages.Employer;
+namespace Indica.Productivity.Web.Pages.Employer;
 
 public class IndexModel : PageModel
 {

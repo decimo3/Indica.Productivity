@@ -1,4 +1,4 @@
-namespace Indica.Productivity.Web.App.ResourcesClasses
+namespace Indica.Productivity.Web
 {
     public class EmployerResources
     {
