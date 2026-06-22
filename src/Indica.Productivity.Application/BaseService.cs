@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Indica.Productivity.Application.DTO;
 using Indica.Productivity.Domain;
 using Indica.Productivity.Domain.Entities;
@@ -104,6 +104,9 @@ namespace Indica.Productivity.Application
 
         public virtual async Task<int> AddRangeAsync(Stream arquivo, string filename)
         {
+            if (arquivo == null || arquivo.Length == 0)
+                    throw new ArgumentException("O file está vazio!");
+
             var entities = _fileParser.ParseByFilepath<T>(arquivo, filename);
             return await AddRangeAsync(entities);
         }

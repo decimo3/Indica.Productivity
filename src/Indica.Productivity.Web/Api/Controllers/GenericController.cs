@@ -79,10 +79,6 @@ namespace Indica.Productivity.Web.Api.Controllers
         [HttpPost("Upload")]
         public virtual async Task<IActionResult> PostFile([FromForm] IFormFile file)
         {
-            if (file == null || file.Length == 0)
-            {
-                return BadRequest("Arquivo enviado está vazio!");
-            }
             await _service.AddRangeAsync(file.OpenReadStream(), file.FileName);
             return Created();
         }
