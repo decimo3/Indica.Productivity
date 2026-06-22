@@ -1,4 +1,4 @@
-﻿using Indica.Productivity.Domain;
+using Indica.Productivity.Domain;
 using Indica.Productivity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -36,12 +36,12 @@ namespace Indica.Productivity.Infra
 
         public virtual async Task<List<T>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            return await _dbSet.AsNoTracking().ToListAsync();
         }
 
         public virtual async Task<T> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return await _dbSet.AsNoTracking().FirstAsync(x => x.Id == id);
         }
 
         public virtual async Task<bool> UpdateAsync(T entity)
@@ -53,7 +53,7 @@ namespace Indica.Productivity.Infra
 
         public virtual async Task<List<T>> GetByExpressionAsync(Expression<Func<T, bool>> expression)
         {
-            return await _dbSet.Where(expression).ToListAsync();
+            return await _dbSet.AsNoTracking().Where(expression).ToListAsync();
         }
 
         public virtual async Task<int> AddRangeAsync(List<T> lista)
@@ -79,17 +79,17 @@ namespace Indica.Productivity.Infra
 
         public async Task<T?> GetFirstOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
         {
-            return await _dbSet.FirstOrDefaultAsync(expression);
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
         public async Task<T?> GetSingleOrDefaultByExpressionAsync(Expression<Func<T, bool>> expression)
         {
-            return await _dbSet.SingleOrDefaultAsync(expression);
+            return await _dbSet.AsNoTracking().SingleOrDefaultAsync(expression);
         }
 
         public async Task<List<T>> GetPagedAndFilteredByExpressionAsync(int offset, int limit, Expression<Func<T, bool>>? filter = null)
         {
-            IQueryable<T> queryable = _dbSet;
+            IQueryable<T> queryable = _dbSet.AsNoTracking();
             if (filter != null) queryable = queryable.Where(filter);
             return await queryable.Skip((offset - 1) * limit).Take(limit).ToListAsync();
         }
