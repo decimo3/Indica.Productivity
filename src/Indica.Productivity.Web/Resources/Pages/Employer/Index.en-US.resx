@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- Default headers -->
+  <!--
+    Microsoft ResX Schema
+  
+    Version 2.0
+  
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  
+    Example:
+  
+    ... ado.net/XML headers/schema ...
+    <resheader name="resmimetype">
+      <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+      <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+      <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+    </resheader>
+    <resheader name="writer">
+      <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+    </resheader>
+  -->
+
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -8,13 +34,11 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-
-  <!-- Strings -->
 
   <data name="Title" xml:space="preserve">
     <value>Employer list</value>
@@ -22,6 +46,14 @@
 
   <data name="EmptyEmployers" xml:space="preserve">
     <value>Employer list is empty</value>
+  </data>
+
+  <data name="ImportEmployers" xml:space="preserve">
+    <value>Import employers</value>
+  </data>
+
+  <data name="NewEmployer" xml:space="preserve">
+    <value>Create a new employer</value>
   </data>
 
 </root>

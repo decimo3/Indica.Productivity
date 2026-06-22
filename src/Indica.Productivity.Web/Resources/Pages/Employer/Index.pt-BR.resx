@@ -24,4 +24,12 @@
     <value>Nenhum funcionário encontrado</value>
   </data>
 
+  <data name="NewEmployer" xml:space="preserve">
+    <value>Criar um novo funcionário</value>
+  </data>
+
+  <data name="ImportEmployers" xml:space="preserve">
+    <value>Importar de um arquivo</value>
+  </data>
+
 </root>
