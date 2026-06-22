@@ -17,10 +17,18 @@ public class IndexModel : PageModel
     }
 
     public List<EmployerDTO> Employers { get; private set; } = new();
+    public Exception? Error { get; set; }
 
-    public async Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync()
     {
         try { Employers = await _service.GetAllAsync(); }
-        catch (System.Exception) { }
+        catch (System.Exception ex) { Error = ex; }
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostDeleteAsync(int id)
+    {
+        await _service.DeleteAsync(id);
+        return RedirectToPage("./Index");
     }
 }
