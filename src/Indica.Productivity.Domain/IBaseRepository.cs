@@ -1,8 +1,9 @@
 ﻿using System.Linq.Expressions;
+using Indica.Productivity.Domain.Entities;
 
 namespace Indica.Productivity.Domain
 {
-    public interface IBaseRepository<T> where T : class
+    public interface IBaseRepository<T> where T : EntityBase
     {
         Task<T> GetByIdAsync(int id);
         Task<List<T>> GetAllAsync();

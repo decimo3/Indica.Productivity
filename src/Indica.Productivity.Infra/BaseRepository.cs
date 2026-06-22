@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Indica.Productivity.Infra
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
     {
         private readonly ProductivityContext _context;
         private readonly DbSet<T> _dbSet;
