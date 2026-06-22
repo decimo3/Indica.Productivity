@@ -8,8 +8,8 @@ namespace Indica.Productivity.Web.Api.Controllers
     [ApiController]
     [Route("api/[controller]")]
     public abstract class GenericController<TDto, TEntity> : ControllerBase
-        where TDto : EntityBaseDTO
-        where TEntity : EntityBase
+        where TDto : EntityBaseDTO, new()
+        where TEntity : EntityBase, new()
     {
         private readonly ILogger _logger;
         private readonly IBaseService<TDto, TEntity> _service;
