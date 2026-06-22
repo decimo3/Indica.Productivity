@@ -1,0 +1,22 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model Indica.Productivity.Web.Pages.Composition.ImportModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+    ViewData["ModelTitle"] = Model.Error?.GetType().Name;
+    ViewData["ModalMessage"] = Model.Error?.Message;
+}
+
+<h3 class="py-4 text-center">
+    @LocalLocalizer["Header"]
+</h3>
+
+<form method="post" enctype="multipart/form-data" class="input-group">
+    <input type="file" accept=".xlsx" asp-for="FileSent" class="form-control" required />
+    <button type="submit" class="btn btn-outline-primary">@SharedLocalizer["Send"]</button>
+</form>
+
