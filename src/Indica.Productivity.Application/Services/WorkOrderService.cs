@@ -149,8 +149,10 @@ namespace Indica.Productivity.Application.Services
                 var isAlternative = IfItIsAlternative(result.FieldTeam?.Activity.ActivityName, result.DamageToProject.Project.ProjectName);
                 var finishing = await finishingRepository.GetSingleOrDefaultByExpressionAsync(
                     f => f.GroupingOfMeasures == filteredCodes && f.IsAlternative == isAlternative);
-                result.IdDerivation = derivation.SingleOrDefault(d => result.FieldTeam.Activity.ActivityName.Contains(d.DerivationName))?.Id ??
-                    selections.SingleOrDefault(s => entity.Description.Contains(s.SelectionPattern))?.Derivation.Id ?? 1;
+                result.IdDerivation = derivation.SingleOrDefault(
+                        d => result.FieldTeam?.Activity?.ActivityName?.Contains(d.DerivationName) == true)?.Id ??
+                                selections.SingleOrDefault(
+                                        s => entity.Description.Contains(s.SelectionPattern))?.Derivation.Id ?? 1;
                 result.WorkOrderNumber = entity.WorkOrderNumber;
                 result.StartOfSLA = entity.StartOfSLA;
                 result.FinalOfSLA = entity.FinalOfSLA;
