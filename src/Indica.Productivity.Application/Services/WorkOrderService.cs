@@ -23,6 +23,8 @@ namespace Indica.Productivity.Application.Services
         private readonly IFinishingRepository finishingRepository;
         private readonly IDerivationRepository derivationRepository;
         private readonly ISelectionRepository selectionRepository;
+        private readonly IWorkOrderResumeRepository resumeRepository;
+        private readonly IFileParser fileParser;
         public WorkOrderService
         (
             IMapper mapper, IFileParser parser,
@@ -39,7 +41,8 @@ namespace Indica.Productivity.Application.Services
             ICodeFilterRepository codeFilterRepository,
             IFinishingRepository finishingRepository,
             IDerivationRepository derivationRepository,
-            ISelectionRepository selectionRepository
+            ISelectionRepository selectionRepository,
+            IWorkOrderResumeRepository resumeRepository
         ) : base(workOrderBaseRepository, mapper, parser)
         {
             this.orderAreaRepository = orderAreaRepository;
@@ -55,6 +58,8 @@ namespace Indica.Productivity.Application.Services
             this.codeFilterRepository = codeFilterRepository;
             this.derivationRepository = derivationRepository;
             this.selectionRepository = selectionRepository;
+            this.resumeRepository = resumeRepository;
+            this.fileParser = parser;
         }
 
         private async Task<T> GetWorkOrderBaseAsync<T>(WorkOrderDTO entity) where T : WorkOrderBase, new()
@@ -289,6 +294,31 @@ namespace Indica.Productivity.Application.Services
             return lista.Count;
         }
 
+        public override async Task<int> AddRangeAsync(Stream stream, String filename)
+        {
+            if (stream == null || stream.Length == 0)
+                throw new InvalidOperationException(
+                        "O arquivo enviado está vazio!");
+            var entities = fileParser.ParseByFilepath<WorkOrderDTO>(stream, filename);
+
+            await this.AddRangeAsync(entities);
+
+            var resume = (await resumeRepository.GetByExpressionAsync(
+                    x => x.Filename == filename)).FirstOrDefault() ?? new WorkOrderResume();
+
+            resume.Filename = filename;
+            resume.Date = entities.First().Date;
+            resume.ResourceCount = entities.DistinctBy(x => x.Resource).Count();
+            resume.ServiceCount = entities.Where(x => x.WorkOrderNumber > 0).Count();
+
+            if (resume.Id == 0)
+                await resumeRepository.AddAsync(resume);
+            else
+                await resumeRepository.UpdateAsync(resume);
+
+            return entities.Count;
+        }
+
         public override async Task<bool> DeleteAsync(int id)
             => throw new MethodAccessException("Método não permitido para essa entidade!");
 
@@ -309,5 +339,17 @@ namespace Indica.Productivity.Application.Services
 
         public override async Task<int> UpdateRangeAsync(List<WorkOrderDTO> lista)
             => throw new MethodAccessException("Método não permitido para essa entidade!");
+
+        public async Task<List<WorkOrderResumeDTO>> GetResumeAsync(int page)
+        {
+            var entities = await resumeRepository.GetPagedAndFilteredByExpressionAsync(page);
+            return entities.Select(x => new WorkOrderResumeDTO
+            {
+                Id = x.Id,
+                Filename = x.Filename,
+                ResourcesCount = x.ResourceCount,
+                ServiceCount = x.ServiceCount
+            }).ToList();
+        }
     }
 }
