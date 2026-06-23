@@ -19,6 +19,6 @@ namespace Indica.Productivity.Domain.Entities
         public int? IdFieldTeam { get; set; }
         public virtual DamageToProject DamageToProject { get; set; }
         public virtual WorkOrderSituation WorkOrderSituation { get; set; }
-        public virtual FieldTeam FieldTeam { get; set; }
+        public virtual FieldTeam? FieldTeam { get; set; }
     }
 }
