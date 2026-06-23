@@ -112,7 +112,7 @@ namespace Indica.Productivity.Application.Services
             return (await Task.WhenAll(tasks)).ToList();
         }
 
-        private static bool IfItIsAlternative(string activity, string project)
+        private static bool IfItIsAlternative(string? activity, string? project)
         {
             if (string.IsNullOrWhiteSpace(activity) || string.IsNullOrWhiteSpace(project))
                 return false;
