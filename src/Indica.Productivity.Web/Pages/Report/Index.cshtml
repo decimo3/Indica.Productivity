@@ -1,0 +1,61 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model IndexModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+    ViewData["ModalMessage"] = Model.ErrorMessage;
+}
+
+<h3 class="py-2 text-center">
+    @LocalLocalizer["Header"]
+</h3>
+
+<form method="post" enctype="multipart/form-data" class="input-group py-4">
+    <label asp-for="FileSent" class="input-group-text">Enviar relatório:</label>
+    <input asp-for="FileSent" type="file" class="form-control" accept=".csv" required />
+    <button type="submit" class="btn btn-secondary">Enviar</button>
+</form>
+
+@if (Model.Reports.Any())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col-6">Arquivo:</th>
+                <th scope="col-4">Recursos:</th>
+                <th scope="col-4">Serviços:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in Model.Reports)
+            {
+                <tr scope="row">
+                    <td>@report.Filename</td>
+                    <td>@report.ResourcesCount</td>
+                    <td>@report.ServiceCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-center">@LocalLocalizer["EmptyReport"]</p>
+}
+
+@section Scripts
+{
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <script>
+            $(function () {
+                const modal = new bootstrap.Modal($('#modal')[0]);
+                modal.show();
+            });
+        </script>
+    }
+}
