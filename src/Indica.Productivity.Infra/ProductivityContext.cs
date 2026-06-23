@@ -48,6 +48,7 @@ namespace Indica.Productivity.Infra
             modelBuilder.ApplyConfiguration(new WorkOrderShiftInfoMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderCostumerMapper());
             modelBuilder.ApplyConfiguration(new WorkOrderServiceMapper());
+            modelBuilder.ApplyConfiguration(new WorkOrderResumeMapper());
 
             // Explicitly configure EF Core with TPT
             // because EF Core configure TPH by default
