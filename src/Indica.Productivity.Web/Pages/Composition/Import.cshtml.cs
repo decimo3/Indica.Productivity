@@ -14,12 +14,12 @@ namespace Indica.Productivity.Web.Pages.Composition
         [BindProperty]
         public IFormFile FileSent { get; set; }
         private readonly IStringLocalizer<SharedResources> _sharedLocalizer;
-        private readonly IEmployerService _service;
+        private readonly IFieldTeamService _service;
 
         public ImportModel
         (
             IStringLocalizer<SharedResources> sharedLocalizer,
-            IEmployerService service
+            IFieldTeamService service
         )
         {
             _service = service;
