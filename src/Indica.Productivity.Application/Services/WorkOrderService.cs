@@ -309,7 +309,6 @@ namespace Indica.Productivity.Application.Services
                     x => x.Filename == filename)).FirstOrDefault() ?? new WorkOrderResume();
 
             resume.Filename = filename;
-            resume.Date = entities.First().Date;
             resume.ResourceCount = entities.DistinctBy(x => x.Resource).Count();
             resume.ServiceCount = entities.Where(x => x.WorkOrderNumber > 0).Count();
 

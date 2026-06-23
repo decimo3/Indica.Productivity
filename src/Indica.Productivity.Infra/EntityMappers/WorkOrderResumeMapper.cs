@@ -18,9 +18,6 @@ namespace Indica.Productivity.Infra.EntityMappers
                 .HasColumnName("arquivo")
                 .HasMaxLength(50)
                 .IsRequired();
-            builder.Property(x => x.Date)
-                .HasColumnName("dia")
-                .IsRequired();
             builder.Property(x => x.ResourceCount)
                 .HasColumnName("recursos")
                 .IsRequired();

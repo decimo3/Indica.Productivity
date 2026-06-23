@@ -479,7 +479,6 @@ CREATE TABLE IF NOT EXISTS servico_servico (
 
 CREATE TABLE IF NOT EXISTS servico_resumo (
     id_resumo INTEGER PRIMARY KEY,
-    dia DATE NOT NULL,
     arquivo VARCHAR(50) UNIQUE NOT NULL,
     recursos INTEGER NOT NULL,
     servicos INTEGER NOT NULL
