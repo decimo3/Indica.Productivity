@@ -10,6 +10,7 @@ namespace Indica.Productivity.Application.Services
 {
     public class FieldTeamService : BaseService<FieldTeamDTO, FieldTeam>, IFieldTeamService
     {
+        private readonly IFileParser _parser;
         private readonly IActivityRepository _activityRepository;
         private readonly IEmployerRepository _employerRepository;
         private readonly IFieldTeamRepository _fieldteamRepository;
@@ -26,6 +27,7 @@ namespace Indica.Productivity.Application.Services
             IFieldTeamFunctionRepository functionRepository
         ) : base(fieldteamRepository, mapper, parser)
         {
+            _parser = parser;
             _activityRepository = activityRepository;
             _employerRepository = employerRepository;
             _fieldteamRepository = fieldteamRepository;
@@ -110,6 +112,17 @@ namespace Indica.Productivity.Application.Services
             fieldteam.IsConsidered = false;
             await _fieldteamRepository.UpdateAsync(fieldteam);
             return true;
+        }
+
+        public override async Task<int> AddRangeAsync(Stream file, string filename)
+        {
+            if (file == null || file.Length == 0) throw new ArgumentException("O file está vazio!");
+
+            var entities = _parser.ParseByFilepath<FieldTeamDTO>(file, filename);
+
+            var converted = await GetFieldTeamAsync(entities);
+
+            return await _fieldteamRepository.UpdateRangeAsync(converted);
         }
     }
 }
