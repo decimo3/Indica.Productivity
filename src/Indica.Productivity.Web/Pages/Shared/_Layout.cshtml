@@ -3,14 +3,16 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGP - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Indica.Productivity.Web.styles.css" asp-append-version="true" />
 </head>
+
 <body>
 
     <div class="modal fade" id="modal" tabindex="-1" role="dialog">
@@ -36,9 +38,9 @@
     </div>
 
     <header>
-    <h1 class="card text-center p-2 m-2">
-        @Localizer["HeaderText"]
-    </h1>
+        <h1 class="card text-center p-2 m-2">
+            @Localizer["HeaderText"]
+        </h1>
         <nav class="card text-center p-2 m-2">
             <ul class="navbar-nav d-flex flex-row justify-content-around">
                 <li class="nav-item">
@@ -74,6 +76,17 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    @if (!string.IsNullOrWhiteSpace(ViewData["ModalMessage"]?.ToString()))
+    {
+        <script>
+            $(function () {
+                const modal = new bootstrap.Modal($('#modal')[0]);
+                modal.show();
+            });
+        </script>
+    }
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
