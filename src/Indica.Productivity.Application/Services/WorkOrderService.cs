@@ -301,6 +301,8 @@ namespace Indica.Productivity.Application.Services
                         "O arquivo enviado está vazio!");
             var entities = fileParser.ParseByFilepath<WorkOrderDTO>(stream, filename);
 
+            entities.ForEach(e => e.Filename = filename);
+
             await this.AddRangeAsync(entities);
 
             var resume = (await resumeRepository.GetByExpressionAsync(

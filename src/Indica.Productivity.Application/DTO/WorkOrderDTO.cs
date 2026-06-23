@@ -3,6 +3,7 @@ namespace Indica.Productivity.Application.DTO
 {
     public class WorkOrderDTO : EntityBaseDTO
     {
+        public string Filename { get; set; }
         [Alias("Recurso")]
         public string Resource { get; set; }
         [Alias("Data")]

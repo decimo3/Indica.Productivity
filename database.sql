@@ -420,6 +420,7 @@ CREATE TABLE IF NOT EXISTS servico_cliente (
 
 CREATE TABLE IF NOT EXISTS servico_base (
     id_servico INTEGER PRIMARY KEY,
+    arquivo VARCHAR(50) NOT NULL,
     recurso VARCHAR(32) NOT NULL,
     dia DATE NOT NULL,
     id_atividade INTEGER UNIQUE,
@@ -474,6 +475,14 @@ CREATE TABLE IF NOT EXISTS servico_servico (
     id_cliente INTEGER REFERENCES servico_cliente(id_servico),
     id_derivacao INTEGER REFERENCES derivacoes (id_derivacao),
     id_finalizacao INTEGER REFERENCES finalizacoes(id_finalizacao)
+);
+
+CREATE TABLE IF NOT EXISTS servico_resumo (
+    id_resumo INTEGER PRIMARY KEY,
+    dia DATE NOT NULL,
+    arquivo VARCHAR(50) UNIQUE NOT NULL,
+    recursos INTEGER NOT NULL,
+    servicos INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS credenciais (

@@ -14,6 +14,10 @@ namespace Indica.Productivity.Infra.EntityMappers
                 .HasColumnName("id_servico")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
+            builder.Property(x => x.Filename)
+                .HasColumnName("arquivo")
+                .HasMaxLength(50)
+                .IsRequired();
             builder.Property(x => x.Resource)
                 .HasColumnName("recurso")
                 .HasMaxLength(32)

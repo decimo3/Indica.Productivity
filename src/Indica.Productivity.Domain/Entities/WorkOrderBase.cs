@@ -2,6 +2,7 @@ namespace Indica.Productivity.Domain.Entities
 {
     public class WorkOrderBase : EntityBase
     {
+        public string Filename { get; set; }
         public string Resource { get; set; }
         public DateOnly Date { get; set; }
         public long IdActivity { get; set; }
