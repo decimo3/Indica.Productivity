@@ -107,6 +107,8 @@ namespace Indica.Productivity.Application.Services
                 result.IdTechnicalRegistration = entity.IdTechnicalRegistration;
                 result.UnavailableReasonOrIntervalDescription += entity.UnavailableReason;
                 result.UnavailableReasonOrIntervalDescription += entity.IntervalDescription;
+                result.FieldTeam = null;
+                result.DamageToProject = null;
                 return result;
             });
             return (await Task.WhenAll(tasks)).ToList();
@@ -202,6 +204,7 @@ namespace Indica.Productivity.Application.Services
                             ac.AccuracyLevel == entity.CoordinateAccuracy)?.Id ?? null
                     };
                 result.FieldTeam = null;
+                result.DamageToProject = null;
                 return result;
             });
             return (await Task.WhenAll(tasks)).ToList();
