@@ -10,6 +10,8 @@ namespace Indica.Productivity.Application.Services
     public class EmployerService : BaseService<EmployerDTO, Employer>, IEmployerService
     {
         private static readonly int TERMINATED_CODE = 5;
+        private readonly IMapper _mapper;
+        private readonly IFileParser _parser;
         private readonly IEmployerRepository _repository;
         private readonly IEmployerSituationRepository _situationRepository;
         public EmployerService
@@ -20,9 +22,40 @@ namespace Indica.Productivity.Application.Services
             IEmployerSituationRepository situationRepository
         ) : base(repository, mapper, parser)
         {
+            _mapper = mapper;
+            _parser = parser;
             _repository = repository;
             _situationRepository = situationRepository;
         }
+
+        public override async Task<int> AddRangeAsync(Stream file, string filename)
+        {
+            if (file == null || file.Length == 0)
+                throw new ArgumentException("O file está vazio!");
+
+            var employers = await _repository.GetAllAsync();
+            var existingIDs = employers.Select(e => e.IndicaRegistry).ToHashSet();
+
+            var entities = _parser.ParseByFilepath<EmployerDTO>(file, filename);
+
+            var entityMapped = _mapper.Map<List<Employer>>(entities);
+            var currentIDs = entityMapped.Select(e => e.IndicaRegistry).ToHashSet();
+
+            var employersToAdd = entityMapped
+                .Where(e => !existingIDs.Contains(e.IndicaRegistry))
+                .ToList();
+
+            var employersToDel = employers
+                    .Where(e => !currentIDs.Contains(e.IndicaRegistry))
+                    .Select(e => new EmployerDTO() { Id = e.Id })
+                    .ToList();
+
+            await _repository.AddRangeAsync(employersToAdd);
+            await this.DeleteRangeAsync(employersToDel);
+
+            return employersToAdd.Count + employersToDel.Count;
+        }
+
         public override async Task<bool> DeleteAsync(int id)
         {
             var employer = await _repository.GetByIdAsync(id) ?? throw new ArgumentException();
