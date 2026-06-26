@@ -1,15 +1,22 @@
-﻿using Indica.Productivity.Application.Common.Validators;
+using Indica.Productivity.Application.Common.Validators;
+using Indica.Productivity.Shared;
 
 namespace Indica.Productivity.Application.DTO
 {
     public class EmployerDTO : EntityBaseDTO
     {
+        private static readonly int ACTIVE_STATUS = 1;
+        [Alias("matricula_indica")]
         public int IndicaRegistry { get; set; }
+        [Alias("matricula_light")]
         public int ClientRegistry { get; set; }
+        [Alias("nome")]
 		public string FullName { get; set; }
+        [Alias("data_admissao")]
 		public DateOnly Admission { get; set; }
-		public DateOnly? Demission { get; set; }
-		public int IdSituation { get; set; }
+        public DateOnly? Demission { get; set; } = null;
+        public int IdSituation { get; set; } = ACTIVE_STATUS;
+        [Alias("cargo")]
         public int IdFunction { get; set; }
 
         //public Dictionary<string, List<string>> Validate(Employer employer)
