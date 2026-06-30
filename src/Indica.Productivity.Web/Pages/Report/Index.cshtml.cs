@@ -25,7 +25,7 @@ public class IndexModel : PageModel
     }
 
     [BindProperty]
-    public string? ErrorMessage { get; set; }
+    public Exception? Error { get; set; }
     [BindProperty]
     public IFormFile FileSent { get; set; }
     public List<WorkOrderResumeDTO> Reports { get; set; } = new();
@@ -36,7 +36,7 @@ public class IndexModel : PageModel
         try { Reports = await _service.GetResumeAsync(page); }
         catch (System.Exception ex)
         {
-            ErrorMessage = ex.Message;
+            Error = ex;
         }
         return Page();
     }
@@ -49,7 +49,7 @@ public class IndexModel : PageModel
         }
         catch (Exception ex)
         {
-            ErrorMessage = ex.Message;
+            Error = ex;
             return Page();
         }
         return RedirectToPage("./Index");
