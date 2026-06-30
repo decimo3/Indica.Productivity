@@ -41,18 +41,18 @@ public class IndexModel : PageModel
         return Page();
     }
 
-        public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync()
+    {
+        try
         {
-            try
-            {
-                await _service.AddRangeAsync(FileSent.OpenReadStream(), FileSent.FileName);
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-                return Page();
-            }
-            return RedirectToPage("./Index");
+            await _service.AddRangeAsync(FileSent.OpenReadStream(), FileSent.FileName);
         }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+            return Page();
+        }
+        return RedirectToPage("./Index");
+    }
 
 }
