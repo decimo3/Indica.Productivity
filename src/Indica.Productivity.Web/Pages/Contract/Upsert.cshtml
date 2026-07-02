@@ -1,0 +1,135 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model Indica.Productivity.Web.Pages.Contract.UpsertModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+    ViewData["ModalMessage"] = Model.Error?.Message;
+}
+
+<form method="post" class="py-2">
+    <h3 class="py-2 text-center">
+        @LocalLocalizer["ContractHeader"]
+    </h3>
+
+    <div class="input-group">
+        <input type="hidden" asp-for="@Model.Contract.Id" readonly />
+        <label class="input-group-text">@LocalLocalizer["ContractNumber"]:</label>
+        <input class="form-control" asp-for="@Model.Contract.ContractNumber" type="number"
+                readonly="@(Model.Contract.Id != 0)" id="contract" required />
+        <label class="input-group-text">@LocalLocalizer["ContractAdditive"]:</label>
+        <input class="form-control" asp-for="@Model.Contract.AdditiveNumber" type="number"
+                readonly="@(Model.Contract.Id != 0)" id="additive" required />
+        <label class="input-group-text">@LocalLocalizer["ContractStartDate"]:</label>
+        <input class="form-control" asp-for="@Model.Contract.StartDate" type="date"
+                readonly="@(Model.Contract.Id != 0)" />
+        <label class="input-group-text">@LocalLocalizer["ContractFinalDate"]:</label>
+        <input class="form-control" asp-for="@Model.Contract.FinalDate" type="date" readonly />
+        <button type="button" id="addProjectButton" class="btn btn-primary">@LocalLocalizer["AddProject"]</button>
+    </div>
+
+    <div id="projects" class="my-4">
+        @for (int i = 0; i < (Model.Contract.Projects?.Count ?? 0); i++)
+        {
+            <div class="input-group project" data-project="@i">
+                <label class="input-group-text">@LocalLocalizer["ProjectName"]:</label>
+                <input asp-for="Contract.Projects[i].Project" class="form-control" readonly />
+                <label class="input-group-text">@LocalLocalizer["DerivationName"]:</label>
+                <input asp-for="Contract.Projects[i].Derivation" class="form-control" readonly />
+                <label class="input-group-text">@LocalLocalizer["RegionalName"]:</label>
+                <input asp-for="Contract.Projects[i].Regional" class="form-control" readonly />
+            </div>
+            <div class="payments">
+                @for (int j = 0; j < (Model.Contract.Projects?[i].Payments?.Count ?? 0); j++)
+                {
+                    <div class="input-group payment">
+                        <label class="input-group-text">@LocalLocalizer["MasterName"]:</label>
+                        <input asp-for="Contract.Projects[i].Payments[j].Master" class="form-control" readonly />
+                        <label class="input-group-text">@LocalLocalizer["ValueName"]:</label>
+                        <input asp-for="Contract.Projects[i].Payments[j].Valuation" class="form-control" readonly />
+                    </div>
+                }
+            </div>
+            <button type="button" class="btn btn-secondary addPaymentButton">@LocalLocalizer["AddPayment"]</button>
+        }
+    </div>
+
+    <template id="project-template">
+        <div class="project" data-project="__idx__">
+            <div class="input-group">
+                <label class="input-group-text">@LocalLocalizer["ProjectName"]:</label>
+                <select name="Contract.Projects[__idx__].Project" asp-items="Model.ProjectSelect" class="form-control">
+                    <option value=""></option>
+                </select>
+                @* <input name="Contract.Projects[__idx__].Project" class="form-control" required /> *@
+                <label class="input-group-text">@LocalLocalizer["DerivationName"]:</label>
+                <select name="Contract.Projects[__idx__].Derivation" asp-items="Model.DerivationSelect" class="form-control">
+                    <option value=""></option>
+                </select>
+                @* <input name="Contract.Projects[__idx__].Derivation" class="form-control" required /> *@
+                <label class="input-group-text">@LocalLocalizer["RegionalName"]:</label>
+                <select name="Contract.Projects[__idx__].Regional" asp-items="Model.RegionalSelect" class="form-control">
+                    <option value=""></option>
+                </select>
+                @* <input name="Contract.Projects[__idx__].Regional" class="form-control" required /> *@
+                <button type="button" class="btn btn-secondary addPaymentButton">@LocalLocalizer["AddPayment"]</button>
+            </div>
+            <div class="payments"><!-- CONTAINER PLACEHOLDER TO PAYMENTS --></div>
+        </div>
+    </template>
+
+    <template id="payment-template">
+        <div class="input-group payment">
+            <label class="input-group-text">@LocalLocalizer["MasterNumber"]:</label>
+            <input type="number" class="form-control" name="Contract.Projects[__project__].Payments[__payment__].Master"/>
+            <label class="input-group-text">@LocalLocalizer["ValueNumber"]:</label>
+            <input type="number" class="form-control" name="Contract.Projects[__project__].Payments[__payment__].Valuation"/>
+        </div>
+    </template>
+
+    <button type="submit" class="btn btn-primary">@SharedLocalizer["Send"]</button>
+</form>
+
+@section Scripts
+{
+    <script>
+        var project_container = $("#projects");
+        var project_template = $("#project-template").html();
+
+        function addProjectFunction() {
+            let contract = $("#contract").val();
+            let additive = $("#additive").val();
+            let index = project_container.find(".project").length;
+            let html = project_template
+                .replaceAll("__idx__", index)
+                .replaceAll("__ctt__", contract)
+                .replaceAll("__add__", additive);
+            project_container.append(html);
+            $(".addPaymentButton").click(addPaymentFunction);
+        }
+
+        $("#addProjectButton").click(addProjectFunction);
+
+        var payment_template = $("#payment-template").html();
+
+        function addPaymentFunction() {
+            let contract = $("#contract").val();
+            let additive = $("#additive").val();
+            let project = $(this).closest(".project");
+            let projectIndex = project.data("project");
+            let paymentsContainer = project.find(".payments");
+            let paymentIndex = paymentsContainer.find(".payment").length;
+            let html = payment_template
+                .replaceAll("__project__", projectIndex)
+                .replaceAll("__payment__", paymentIndex)
+                .replaceAll("__contract__", contract)
+                .replaceAll("__additive__", additive);
+            paymentsContainer.append(html);
+        }
+
+        $(".addPaymentButton").click(addPaymentFunction);
+    </script>
+}
