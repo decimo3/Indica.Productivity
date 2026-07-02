@@ -1,0 +1,17 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model Indica.Productivity.Web.Pages.Contract.ImportModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+    ViewData["ModalMessage"] = Model.Error?.Message;
+}
+
+<form method="post" enctype="multipart/form-data" class="input-group py-2">
+    <label class="input-group-text">@LocalLocalizer["PaymentFile"]</label>
+    <input asp-for="FileSent" type="file" accept=".xlsx" class="form-control" required />
+    <button type="submit" class="btn btn-primary">@SharedLocalizer["Send"]</button>
+</form>
