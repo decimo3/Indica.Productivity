@@ -174,4 +174,9 @@
   <data name="ModalTitle" xml:space="preserve">
     <value>Erro</value>
   </data>
+
+  <data name="Contract" xml:space="preserve">
+    <value>Contrato</value>
+  </data>
+
 </root>
