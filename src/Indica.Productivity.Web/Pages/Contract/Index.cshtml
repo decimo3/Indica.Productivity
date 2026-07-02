@@ -1,0 +1,51 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer LocalLocalizer
+
+@model IndexModel
+@{
+    ViewData["Title"] = @LocalLocalizer["Title"];
+    ViewData["ModalMessage"] = Model.Error?.Message;
+}
+
+<h3 class="py-2 text-center">
+    @LocalLocalizer["ContractHeader"]
+</h3>
+
+@if (Model.Contracts.Any())
+{
+    <table class="table table-hover py-2">
+        <thead>
+            <tr>
+                <td>@LocalLocalizer["ContractNumber"]:</td>
+                <td>@LocalLocalizer["ContractAdditive"]:</td>
+                <td>@LocalLocalizer["ContractStartDate"]:</td>
+                <td>@LocalLocalizer["ContractFinalDate"]:</td>
+                <td>@SharedLocalizer["Options"]:</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contract in Model.Contracts)
+            {
+                <tr>
+                    <td>@contract.ContractNumber</td>
+                    <td>@contract.AdditiveNumber</td>
+                    <td>@contract.StartDate</td>
+                    <td>@contract.FinalDate</td>
+                    <td class="d-flex">
+                        <a asp-page="./Upsert" asp-route-id="@contract.Id">@SharedLocalizer["Edit"]</a> /
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@contract.Id">
+                            <button type="submit" class="btn btn-link p-0 border-0 align-baseline text-danger">@SharedLocalizer["Delete"]</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-center">@LocalLocalizer["EmptyContracts"]</p>
+}
