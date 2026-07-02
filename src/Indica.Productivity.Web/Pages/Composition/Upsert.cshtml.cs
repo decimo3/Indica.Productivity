@@ -60,4 +60,12 @@ public class UpsertModel : PageModel
         await LoadEnumeratorsAsync();
         return Page();
     }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        await LoadEnumeratorsAsync();
+        try { await _fieldTeamService.AddAsync(Composition); }
+        catch (System.Exception ex) { Error = ex; return Page(); }
+        return RedirectToPage("./Index");
+    }
 }
