@@ -30,6 +30,7 @@ public class UpsertModel : PageModel
     public bool IsEdit { get; private set; } = false;
     [BindProperty]
     public FieldTeamDTO Composition { get; set; } = new();
+    public Exception? Error { get; set; }
     public SelectList FieldTeamActivity { get; set; } = null;
     public SelectList FieldTeamRegional { get; set; } = null;
 
@@ -54,7 +55,7 @@ public class UpsertModel : PageModel
         if (id != 0)
         {
             try { Composition = await _fieldTeamService.GetByIdAsync(id); }
-            catch { return NotFound(); }
+            catch (System.Exception ex) { Error = ex; return NotFound(); }
         }
         await LoadEnumeratorsAsync();
         return Page();

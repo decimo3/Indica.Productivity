@@ -8,6 +8,7 @@
 @model Indica.Productivity.Web.Pages.Composition.UpsertModel
 @{
     ViewData["Title"] = @LocalLocalizer["Title"];
+    ViewData["ModalMessage"] = Model.Error?.Message;
 }
 
 <form>
